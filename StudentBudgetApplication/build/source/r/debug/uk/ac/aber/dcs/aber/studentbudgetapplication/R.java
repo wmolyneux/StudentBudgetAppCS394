@@ -39,10 +39,11 @@ public final class R {
         public static final int activity_enter=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int fragment_budgets=0x7f030002;
-        public static final int fragment_overview=0x7f030003;
-        public static final int fragment_report=0x7f030004;
-        public static final int fragment_transactions=0x7f030005;
-        public static final int listview_item=0x7f030006;
+        public static final int fragment_history=0x7f030003;
+        public static final int fragment_overview=0x7f030004;
+        public static final int fragment_report=0x7f030005;
+        public static final int fragment_transactions=0x7f030006;
+        public static final int listview_item=0x7f030007;
     }
     public static final class menu {
         public static final int budgets_fragments=0x7f080000;

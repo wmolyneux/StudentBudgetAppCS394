@@ -9,9 +9,8 @@
         <item>Overview</item>
         <item>Report</item>
         <item>Budgets</item>
-        <item>Transactions</item>
-        <item>Item 5</item>
-        <item>Item 6</item>
+        <item>History</item>
+        <item>New Transaction</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import uk.ac.aber.dcs.aber.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.HistoryFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment;
@@ -112,6 +113,9 @@ public class MainActivity extends FragmentActivity {
                     frag = new BudgetsFragment();
                     break;
                 case 3:
+                    frag = new HistoryFragment();
+                    break;
+                case 4:
                     frag = new TransactionsFragment();
                     break;
             }

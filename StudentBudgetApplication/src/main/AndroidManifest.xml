@@ -26,22 +26,7 @@
             android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment"
-            android:label="@string/title_activity_overview_fragment" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment"
-            android:label="@string/title_activity_report_fragment" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragments"
-            android:label="@string/title_activity_budgets_fragments" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment"
-            android:label="@string/title_activity_transactions_fragment" >
-        </activity>
+
     </application>
 
 </manifest>

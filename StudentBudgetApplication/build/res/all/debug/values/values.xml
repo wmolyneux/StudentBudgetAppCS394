@@ -6,9 +6,8 @@
         <item>Overview</item>
         <item>Report</item>
         <item>Budgets</item>
-        <item>Transactions</item>
-        <item>Item 5</item>
-        <item>Item 6</item>
+        <item>History</item>
+        <item>New Transaction</item>
     </string-array>
     <!-- From: file:/aber/wim2/major%20project/StudentBudgetApplicationProject/StudentBudgetApplication/src/main/res/values/dimens.xml -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
