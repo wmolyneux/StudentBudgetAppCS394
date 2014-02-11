@@ -12,8 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/Account.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StudentBudgetApplication.iws" />
@@ -108,11 +107,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Account.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Account.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="238" selection-end="238" vertical-scroll-proportion="0.31190926" vertical-offset="0" max-vertical-offset="975">
+            <state line="11" column="0" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SQLiteHelper.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="60" selection-start="496" selection-end="496" vertical-scroll-proportion="-0.7372401" vertical-offset="645" max-vertical-offset="2985">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4177#4186#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -227,7 +238,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/fragments/OverviewFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_report.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/fragments/BudgetsFragments.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/fragments/BudgetsFragment.java" />
@@ -243,6 +253,7 @@
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_item.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/Account.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteHelper.java" />
       </list>
     </option>
   </component>
@@ -1044,7 +1055,11 @@
       <created>1392132236254</created>
       <updated>1392132236254</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Account class for account objects in the SQLite database">
+      <created>1392132574738</created>
+      <updated>1392132574738</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1092,22 +1107,13 @@
     <MESSAGE value="Added first fragment and code necessary to make the navigation slider display the fragment." />
     <MESSAGE value="Began to add more fragments to the navigation slider menu. Now contains Overview, Report, Budget and Transaction fragments which can be displayed in the activity." />
     <MESSAGE value=" - Finished entering fragment screens and linking to the navigation slider menu.&#10; - Changed a few design issues.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value=" - Finished entering fragment screens and linking to the navigation slider menu.&#10; - Changed a few design issues.&#10;" />
+    <MESSAGE value="Added Account class for account objects in the SQLite database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Account class for account objects in the SQLite database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_report.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_budgets.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -1233,8 +1239,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="238" selection-end="238" vertical-scroll-proportion="0.31190926" vertical-offset="0" max-vertical-offset="975">
+        <state line="11" column="0" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="60" selection-start="496" selection-end="496" vertical-scroll-proportion="-0.7372401" vertical-offset="645" max-vertical-offset="2985">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4177#4186#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
