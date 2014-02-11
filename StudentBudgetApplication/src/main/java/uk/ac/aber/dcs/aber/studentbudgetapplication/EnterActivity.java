@@ -1,15 +1,23 @@
 package uk.ac.aber.dcs.aber.studentbudgetapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
-public class EnterActivity extends Activity {
+public class EnterActivity extends Activity implements View.OnClickListener{
+
+    Button entryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
+        entryButton = (Button)findViewById(R.id.enterButton);
+        entryButton.setOnClickListener(this);
+
     }
 
 
@@ -19,5 +27,13 @@ public class EnterActivity extends Activity {
         getMenuInflater().inflate(R.menu.enter, menu);
         return true;
     }
-    
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.enterButton:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+        }
+    }
 }

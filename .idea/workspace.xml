@@ -12,17 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/ic_drawer.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/MainActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_main.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_item.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/menu/main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/source/r/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/build/source/r/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/res/all/debug/layout/activity_enter.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/build/res/all/debug/layout/activity_enter.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/build/res/all/debug/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/EnterActivity.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/EnterActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StudentBudgetApplication.iws" />
@@ -111,10 +101,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="62" selection-start="1419" selection-end="1419" vertical-scroll-proportion="0.63653135" vertical-offset="0" max-vertical-offset="1545">
+            <state line="31" column="75" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1545">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EnterActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/EnterActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="43" selection-start="596" selection-end="596" vertical-scroll-proportion="0.35977858" vertical-offset="0" max-vertical-offset="600">
               <folding />
             </state>
           </provider>
@@ -205,6 +204,7 @@
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/MainActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_item.xml" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/EnterActivity.java" />
       </list>
     </option>
   </component>
@@ -448,10 +448,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="avd1" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.SHOW" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
@@ -616,7 +618,11 @@
       <created>1392119771930</created>
       <updated>1392119771930</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added skeleton FragmentActivity containing navigation side bar to join between different fragment pages.">
+      <created>1392120922530</created>
+      <updated>1392120922530</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -659,7 +665,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Added skeleton activity for the entry screen." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added skeleton activity for the entry screen." />
+    <MESSAGE value="Added skeleton FragmentActivity containing navigation side bar to join between different fragment pages." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added skeleton FragmentActivity containing navigation side bar to join between different fragment pages." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -711,7 +718,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="62" selection-start="1419" selection-end="1419" vertical-scroll-proportion="0.63653135" vertical-offset="0" max-vertical-offset="1545">
+        <state line="31" column="75" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1545">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/aber/studentbudgetapplication/EnterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="43" selection-start="596" selection-end="596" vertical-scroll-proportion="0.35977858" vertical-offset="0" max-vertical-offset="600">
           <folding />
         </state>
       </provider>
