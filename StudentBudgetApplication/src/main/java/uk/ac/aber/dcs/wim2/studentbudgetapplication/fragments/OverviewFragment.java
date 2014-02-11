@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import uk.ac.aber.dcs.aber.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 
 public class OverviewFragment extends Fragment {
 

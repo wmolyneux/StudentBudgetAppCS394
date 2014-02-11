@@ -14,10 +14,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import uk.ac.aber.dcs.aber.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.HistoryFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment;
@@ -34,7 +32,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Toast.makeText(this, getIntent().getStringExtra("ACCOUNT_ID"), Toast.LENGTH_LONG).show();
         // get list items from strings.xml
         drawerListViewItems = getResources().getStringArray(R.array.items);
 
@@ -43,7 +41,7 @@ public class MainActivity extends FragmentActivity {
 
         // Set the adapter for the list view
         drawerListView.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.listview_item, drawerListViewItems));
+                R.layout.listview_navigator, drawerListViewItems));
 
         // App Icon
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,7 +96,6 @@ public class MainActivity extends FragmentActivity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
-            Toast.makeText(MainActivity.this, ((TextView) view).getText(), Toast.LENGTH_LONG).show();
             FragmentManager manager = getFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             Fragment frag = null;

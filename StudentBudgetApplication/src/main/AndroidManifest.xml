@@ -26,7 +26,10 @@
             android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
-
+        <activity
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.AccountsActivity"
+            android:label="@string/title_activity_accounts" >
+        </activity>
     </application>
 
 </manifest>

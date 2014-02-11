@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
-import uk.ac.aber.dcs.aber.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 
 public class EnterActivity extends Activity implements View.OnClickListener{
 
@@ -34,7 +34,7 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.enterButton:
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, AccountsActivity.class);
                 startActivity(intent);
         }
     }

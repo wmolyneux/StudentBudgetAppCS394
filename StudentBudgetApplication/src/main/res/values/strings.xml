@@ -20,5 +20,6 @@
     <string name="title_activity_report_fragment">ReportFragment</string>
     <string name="title_activity_budgets_fragments">BudgetsFragments</string>
     <string name="title_activity_transactions_fragment">TransactionsFragment</string>
+    <string name="title_activity_accounts">AccountsActivity</string>
 
 </resources>
