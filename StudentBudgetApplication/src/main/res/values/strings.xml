@@ -7,9 +7,9 @@
 
     <string-array name="items">
         <item>Overview</item>
-        <item>Item 2</item>
-        <item>Item 3</item>
-        <item>Item 4</item>
+        <item>Report</item>
+        <item>Budgets</item>
+        <item>Transactions</item>
         <item>Item 5</item>
         <item>Item 6</item>
     </string-array>
@@ -18,5 +18,8 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_overview_fragment">OverviewFragment</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_report_fragment">ReportFragment</string>
+    <string name="title_activity_budgets_fragments">BudgetsFragments</string>
+    <string name="title_activity_transactions_fragment">TransactionsFragment</string>
 
 </resources>

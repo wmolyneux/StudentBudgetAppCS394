@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="uk.ac.aber.dcs.aber.studentbudgetapplication.EnterActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.EnterActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,12 +23,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.aber.studentbudgetapplication.MainActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.aber.studentbudgetapplication.OverviewFragment"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment"
             android:label="@string/title_activity_overview_fragment" >
+        </activity>
+        <activity
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment"
+            android:label="@string/title_activity_report_fragment" >
+        </activity>
+        <activity
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragments"
+            android:label="@string/title_activity_budgets_fragments" >
+        </activity>
+        <activity
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment"
+            android:label="@string/title_activity_transactions_fragment" >
         </activity>
     </application>
 

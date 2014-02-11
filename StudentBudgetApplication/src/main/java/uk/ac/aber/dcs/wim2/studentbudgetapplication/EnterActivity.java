@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.aber.studentbudgetapplication;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+
+import uk.ac.aber.dcs.aber.studentbudgetapplication.R;
 
 public class EnterActivity extends Activity implements View.OnClickListener{
 

@@ -1,13 +1,12 @@
-package uk.ac.aber.dcs.aber.studentbudgetapplication;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
+import uk.ac.aber.dcs.aber.studentbudgetapplication.R;
 
 public class OverviewFragment extends Fragment {
 

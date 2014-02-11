@@ -1,11 +1,10 @@
-package uk.ac.aber.dcs.aber.studentbudgetapplication;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +16,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import uk.ac.aber.dcs.aber.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment;
 
 public class MainActivity extends FragmentActivity {
     private String[] drawerListViewItems;
@@ -95,11 +100,22 @@ public class MainActivity extends FragmentActivity {
             Toast.makeText(MainActivity.this, ((TextView) view).getText(), Toast.LENGTH_LONG).show();
             FragmentManager manager = getFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
-            Fragment frag;
-            if(position == 0){
-                frag = new OverviewFragment();
-                transaction.replace(R.id.content_frame, frag);
+            Fragment frag = null;
+            switch(position){
+                case 0:
+                    frag = new OverviewFragment();
+                    break;
+                case 1:
+                    frag = new ReportFragment();
+                    break;
+                case 2:
+                    frag = new BudgetsFragment();
+                    break;
+                case 3:
+                    frag = new TransactionsFragment();
+                    break;
             }
+            transaction.replace(R.id.content_frame, frag);
             transaction.commit();
 
             drawerLayout.closeDrawer(drawerListView);
