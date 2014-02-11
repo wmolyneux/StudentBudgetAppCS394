@@ -9,9 +9,22 @@
     tools:context=".EnterActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Welcome"
+            android:id="@+id/welcomeText"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"/>
 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter"
+            android:id="@+id/enterButton"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/welcomeText"
+            android:layout_centerHorizontal="true"/>
 </RelativeLayout>
 <!-- From: file:/aber/wim2/major%20project/StudentBudgetApplicationProject/StudentBudgetApplication/src/main/res/layout/activity_enter.xml -->
