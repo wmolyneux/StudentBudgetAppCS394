@@ -6,7 +6,7 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string-array name="items">
-        <item>Item 1</item>
+        <item>Overview</item>
         <item>Item 2</item>
         <item>Item 3</item>
         <item>Item 4</item>
@@ -16,5 +16,7 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="title_activity_overview_fragment">OverviewFragment</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

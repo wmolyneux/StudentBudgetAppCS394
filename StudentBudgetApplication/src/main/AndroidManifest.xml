@@ -26,6 +26,10 @@
             android:name="uk.ac.aber.dcs.aber.studentbudgetapplication.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
+        <activity
+            android:name="uk.ac.aber.dcs.aber.studentbudgetapplication.OverviewFragment"
+            android:label="@string/title_activity_overview_fragment" >
+        </activity>
     </application>
 
 </manifest>

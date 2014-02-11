@@ -2,6 +2,7 @@ package uk.ac.aber.dcs.aber.studentbudgetapplication;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.app.Activity;
@@ -92,15 +93,14 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             Toast.makeText(MainActivity.this, ((TextView) view).getText(), Toast.LENGTH_LONG).show();
-
+            FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            Fragment frag;
             if(position == 0){
-//                Fragment frag = new ExampleActivity();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.content_frame, frag)
-//                        .commit();
-
+                frag = new OverviewFragment();
+                transaction.replace(R.id.content_frame, frag);
             }
+            transaction.commit();
 
             drawerLayout.closeDrawer(drawerListView);
 
