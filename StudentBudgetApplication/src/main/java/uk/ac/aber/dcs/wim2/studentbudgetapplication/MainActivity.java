@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.HistoryFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment;
@@ -23,6 +24,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment;
 
 public class MainActivity extends FragmentActivity {
+    private Account currentAccount;
     private String[] drawerListViewItems;
     private ListView drawerListView;
     private DrawerLayout drawerLayout;
@@ -32,7 +34,8 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(this, getIntent().getStringExtra("ACCOUNT_ID"), Toast.LENGTH_LONG).show();
+        currentAccount = (Account) getIntent().getSerializableExtra("ACCOUNT");
+        Toast.makeText(this, currentAccount.toString(), Toast.LENGTH_LONG).show();
         // get list items from strings.xml
         drawerListViewItems = getResources().getStringArray(R.array.items);
 

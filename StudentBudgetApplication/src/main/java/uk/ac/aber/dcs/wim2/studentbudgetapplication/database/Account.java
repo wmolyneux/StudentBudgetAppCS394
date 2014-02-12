@@ -1,9 +1,12 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
 
+
+import java.io.Serializable;
+
 /**
  * Created by wim2 on 05/02/2014.
  */
-public class Account {
+public class Account implements Serializable{
 
     private int id;
     private String accountName;
@@ -17,12 +20,11 @@ public class Account {
         this.accountName = name;
         this.balance = accountBalance;
         this.overdraft = accountOverdraft;
-
     }
 
     @Override
     public String toString() {
-        return "Account [id="+id+", balance="+balance+", overdraft="+overdraft+"]";
+        return "Account [id="+id+", name="+accountName+", balance="+balance+", overdraft="+overdraft+"]";
     }
 
     public int getId() {
@@ -56,4 +58,6 @@ public class Account {
     public void setOverdraft(Float overdraft) {
         this.overdraft = overdraft;
     }
+
+
 }

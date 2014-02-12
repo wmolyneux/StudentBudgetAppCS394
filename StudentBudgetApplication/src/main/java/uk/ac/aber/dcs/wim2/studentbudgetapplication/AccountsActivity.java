@@ -44,22 +44,15 @@ public class AccountsActivity extends ListActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.accounts, menu);
         return true;
+
+
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("ACCOUNT_ID", accounts.get(position).getAccountName());
+        intent.putExtra("ACCOUNT", accounts.get(position));
         startActivity(intent);
-//        super.onListItemClick(l, v, position, id);
-
-//        // ListView Clicked item index
-//        int itemPosition     = position;
-//
-//        // ListView Clicked item value
-//        String  itemValue    = (String) l.getItemAtPosition(position);
-//
-//        content.setText("Click : \n  Position :"+itemPosition+"  \n  ListItem : " +itemValue);
 
     }
     
