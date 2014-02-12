@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

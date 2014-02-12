@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.HistoryFragment;
@@ -24,6 +25,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment;
 
 public class MainActivity extends FragmentActivity {
+
     private Account currentAccount;
     private String[] drawerListViewItems;
     private ListView drawerListView;
@@ -34,8 +36,16 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //retrieve serializable object passed from intent
         currentAccount = (Account) getIntent().getSerializableExtra("ACCOUNT");
+
+        manageFragments(new OverviewFragment(), R.id.content_frame);
+
+        //debug print statement
         Toast.makeText(this, currentAccount.toString(), Toast.LENGTH_LONG).show();
+
         // get list items from strings.xml
         drawerListViewItems = getResources().getStringArray(R.array.items);
 
@@ -96,11 +106,21 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
 
+
+    public void manageFragments(Fragment newFrag, int oldFragId){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("ACCOUNT", currentAccount);
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        newFrag.setArguments(bundle);
+        transaction.replace(oldFragId, newFrag);
+        transaction.commit();
+
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
-            FragmentManager manager = getFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
             Fragment frag = null;
             switch(position){
                 case 0:
@@ -119,8 +139,8 @@ public class MainActivity extends FragmentActivity {
                     frag = new TransactionsFragment();
                     break;
             }
-            transaction.replace(R.id.content_frame, frag);
-            transaction.commit();
+            manageFragments(frag, R.id.content_frame);
+
 
             drawerLayout.closeDrawer(drawerListView);
 
@@ -128,5 +148,9 @@ public class MainActivity extends FragmentActivity {
 
         }
     }
-    
+
+    public Account getCurrentAccount(){
+        return currentAccount;
+    }
+
 }

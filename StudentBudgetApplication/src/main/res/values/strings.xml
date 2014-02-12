@@ -3,6 +3,7 @@
 
     <string name="app_name">StudentBudgetApplication</string>
     <string name="action_settings">Settings</string>
+    <string name="action_addAccount">Add Account</string>
     <string name="title_activity_main">MainActivity</string>
 
     <string-array name="items">
@@ -21,5 +22,7 @@
     <string name="title_activity_budgets_fragments">BudgetsFragments</string>
     <string name="title_activity_transactions_fragment">TransactionsFragment</string>
     <string name="title_activity_accounts">AccountsActivity</string>
+    <string name="remove_warning">Account will be permanently deleted!</string>
+    <string name="title_activity_new_account">NewAccountActivity</string>
 
 </resources>

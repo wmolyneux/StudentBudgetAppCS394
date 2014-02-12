@@ -3,9 +3,4 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
-    <item android:id="@+id/action_addAccount"
-          android:title="@string/action_addAccount"
-          android:orderInCategory="100"
-          android:showAsAction="always"
-          android:icon="@drawable/plus_icon" />
 </menu>
