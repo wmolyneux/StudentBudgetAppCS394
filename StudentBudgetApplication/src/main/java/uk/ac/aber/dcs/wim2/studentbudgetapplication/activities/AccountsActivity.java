@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,29 @@ public class AccountsActivity extends ListActivity {
     Context context =  this;
     SQLiteHelper db;
     ArrayAdapter<String> adapter;
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(db.getAllAccounts().size() > 0){
+            Account newAcc = db.getAllAccounts().get(db.getAllAccounts().size() -1);
+            Toast.makeText(this, newAcc.getAccountName(), Toast.LENGTH_LONG).show();
+            boolean check = false;
+            for(int i = 0; i < accounts.size(); i++){
+                if(accounts.get(i).getAccountName() == newAcc.getAccountName()){
+                    check = true;
+                    break;
+                }
+
+            }
+            if(!check){
+                accounts.add(newAcc);
+                adapter.add(newAcc.getAccountName());
+                adapter.notifyDataSetInvalidated();
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -17,20 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/plus_icon.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AdapterListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/NewAccountActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_new_account.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/menu/new_account.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/AccountsActivity.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/EnterActivity.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/MainActivity.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/menu/accounts.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/menu/accounts.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_overview.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_overview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/build/res/all/debug/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StudentBudgetApplication.iws" />
@@ -98,9 +85,9 @@
       <file leaf-file-name="AccountsActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="59" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.124087594" vertical-offset="213" max-vertical-offset="1050">
+            <state line="41" column="23" selection-start="1388" selection-end="1388" vertical-scroll-proportion="0.55350554" vertical-offset="90" max-vertical-offset="1395">
               <folding>
-                <element signature="e#1188#1196#0" expanded="true" />
+                <element signature="e#1969#1977#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,7 +96,16 @@
       <file leaf-file-name="NewAccountActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/NewAccountActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="31" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1095">
+            <state line="55" column="36" selection-start="1751" selection-end="1751" vertical-scroll-proportion="0.0" vertical-offset="483" max-vertical-offset="1095">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SQLiteHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="13" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2880">
               <folding />
             </state>
           </provider>
@@ -118,7 +114,7 @@
       <file leaf-file-name="AdapterListener.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AdapterListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="40" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1350">
+            <state line="69" column="24" selection-start="2483" selection-end="2518" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1350">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -191,7 +187,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_item.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_accounts.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/BudgetsFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/Account.java" />
@@ -206,6 +201,7 @@
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_accounts.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_new_account.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/NewAccountActivity.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AdapterListener.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java" />
       </list>
     </option>
@@ -1056,7 +1052,11 @@
       <created>1392201065764</created>
       <updated>1392201065764</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="- Added new account activity for creating new accounts.&#10;- Added an Add button to link between AccountsActivity and NewAccountActivity &#10;- Added functionality to hold down and remove an account on AccountsActivity listView.">
+      <created>1392214483222</created>
+      <updated>1392214483222</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1075,14 +1075,14 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282353" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977778" sideWeight="0.67058825" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3119002" sideWeight="0.67058825" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.11764706" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39882353" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1108,7 +1108,8 @@
     <MESSAGE value="Implemented SQLiteHelper class to help with creating, updating, deleting and viewing the Account database." />
     <MESSAGE value="- Added Account activity to manage accounts&#10;- Account activity reads from database and then passes account id to the main activity." />
     <MESSAGE value="- Changed Account object to be serializable so that it can be passed between Activities.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Changed Account object to be serializable so that it can be passed between Activities.&#10;" />
+    <MESSAGE value="- Added new account activity for creating new accounts.&#10;- Added an Add button to link between AccountsActivity and NewAccountActivity &#10;- Added functionality to hold down and remove an account on AccountsActivity listView." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added new account activity for creating new accounts.&#10;- Added an Add button to link between AccountsActivity and NewAccountActivity &#10;- Added functionality to hold down and remove an account on AccountsActivity listView." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1208,20 +1209,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="371" selection-end="371" vertical-scroll-proportion="0.1480959" vertical-offset="0" max-vertical-offset="2880">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/NewAccountActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="31" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1095">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_new_account.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -1232,20 +1219,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2880">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AdapterListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="40" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1410">
+        <state line="69" column="24" selection-start="2483" selection-end="2518" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1350">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/NewAccountActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="36" selection-start="1751" selection-end="1751" vertical-scroll-proportion="0.0" vertical-offset="483" max-vertical-offset="1095">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="59" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.124087594" vertical-offset="213" max-vertical-offset="1050">
+        <state line="41" column="23" selection-start="1388" selection-end="1388" vertical-scroll-proportion="0.55350554" vertical-offset="90" max-vertical-offset="1395">
           <folding>
-            <element signature="e#1188#1196#0" expanded="true" />
+            <element signature="e#1969#1977#0" expanded="true" />
           </folding>
         </state>
       </provider>
