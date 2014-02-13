@@ -77,7 +77,7 @@ public class AccountsActivity extends ListActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == 0){
+        if(resultCode == 1){
             switch (requestCode){
                 case 0:
                     Account account = (Account) data.getExtras().getSerializable("newAcc");
@@ -85,6 +85,8 @@ public class AccountsActivity extends ListActivity {
                     adapter.add(account.getAccountName());
                     db.addAccount(account);
                     adapter.notifyDataSetInvalidated();
+                    break;
+
             }
         }
     }

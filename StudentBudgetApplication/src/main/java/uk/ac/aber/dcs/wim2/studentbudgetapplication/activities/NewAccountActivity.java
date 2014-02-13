@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
@@ -37,10 +38,16 @@ public class NewAccountActivity extends Activity implements View.OnClickListener
 
         //set on click listeners
         create.setOnClickListener(this);
-        create.setOnClickListener(this);
+        cancel.setOnClickListener(this);
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(0);
+        this.finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,13 +67,13 @@ public class NewAccountActivity extends Activity implements View.OnClickListener
                                     Float.parseFloat(newAccOverD.getText().toString()));
                     Intent data = new Intent();
                     data.putExtra("newAcc", newAcc);
-                    setResult(0, data);
+                    setResult(1, data);
                     this.finish();
                 }
                 break;
 
             case R.id.cancelButton:
-                setResult(1);
+                setResult(0);
                 this.finish();
                 break;
         }
