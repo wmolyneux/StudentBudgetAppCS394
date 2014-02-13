@@ -58,13 +58,15 @@ public class NewAccountActivity extends Activity implements View.OnClickListener
                             new Account(newAccName.getText().toString(),
                                     Float.parseFloat(newAccBal.getText().toString()),
                                     Float.parseFloat(newAccOverD.getText().toString()));
-                    SQLiteHelper db = new SQLiteHelper(this);
-                    db.addAccount(newAcc);
+                    Intent data = new Intent();
+                    data.putExtra("newAcc", newAcc);
+                    setResult(0, data);
                     this.finish();
                 }
                 break;
 
             case R.id.cancelButton:
+                setResult(1);
                 this.finish();
                 break;
         }

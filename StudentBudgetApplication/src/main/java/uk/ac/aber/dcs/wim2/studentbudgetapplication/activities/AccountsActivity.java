@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -26,33 +28,10 @@ public class AccountsActivity extends ListActivity {
 
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        if(db.getAllAccounts().size() > 0){
-            Account newAcc = db.getAllAccounts().get(db.getAllAccounts().size() -1);
-            Toast.makeText(this, newAcc.getAccountName(), Toast.LENGTH_LONG).show();
-            boolean check = false;
-            for(int i = 0; i < accounts.size(); i++){
-                if(accounts.get(i).getAccountName() == newAcc.getAccountName()){
-                    check = true;
-                    break;
-                }
-
-            }
-            if(!check){
-                accounts.add(newAcc);
-                adapter.add(newAcc.getAccountName());
-                adapter.notifyDataSetInvalidated();
-            }
-        }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accounts);
 
-        //connect to database and retrieve all accounts
         db = new SQLiteHelper(this);
         accounts = db.getAllAccounts();
 
@@ -62,7 +41,7 @@ public class AccountsActivity extends ListActivity {
             values.add(accounts.get(i).getAccountName());
         }
 
-        //setup list adapter
+        //setup adapter items
         adapter =
                 new ArrayAdapter<String>(this, R.layout.listview_accounts, values);
         setListAdapter(adapter);
@@ -76,8 +55,6 @@ public class AccountsActivity extends ListActivity {
 
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -88,8 +65,10 @@ public class AccountsActivity extends ListActivity {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     Intent intent = new Intent(context, NewAccountActivity.class);
-                    context.startActivity(intent);
+//                    context.startActivity(intent);
 
+
+                    startActivityForResult(intent, 0);
                     return true;
                 }
             });
@@ -99,6 +78,19 @@ public class AccountsActivity extends ListActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == 0){
+            switch (requestCode){
+                case 0:
+                    Account account = (Account) data.getExtras().getSerializable("newAcc");
+                    accounts.add(account);
+                    adapter.add(account.getAccountName());
+                    db.addAccount(account);
+                    adapter.notifyDataSetInvalidated();
+            }
+        }
+    }
 
 
 
