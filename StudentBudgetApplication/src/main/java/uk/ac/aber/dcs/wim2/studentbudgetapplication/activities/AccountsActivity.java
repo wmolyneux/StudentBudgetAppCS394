@@ -65,9 +65,6 @@ public class AccountsActivity extends ListActivity {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     Intent intent = new Intent(context, NewAccountActivity.class);
-//                    context.startActivity(intent);
-
-
                     startActivityForResult(intent, 0);
                     return true;
                 }
