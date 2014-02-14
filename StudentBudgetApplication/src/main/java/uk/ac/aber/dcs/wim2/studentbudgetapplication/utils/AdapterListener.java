@@ -67,6 +67,7 @@ public class AdapterListener implements OnItemLongClickListener, OnItemClickList
                         // current activity
                         db.deleteAccount(accounts.get(accountToRemove));
                         adapter.remove(accounts.get(accountToRemove).getAccountName());
+                        accounts.remove(accountToRemove);
                         adapter.notifyDataSetInvalidated();
                         dialog.cancel();
                     }

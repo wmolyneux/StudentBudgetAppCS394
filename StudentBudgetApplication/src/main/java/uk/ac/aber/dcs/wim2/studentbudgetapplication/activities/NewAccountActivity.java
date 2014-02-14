@@ -80,7 +80,18 @@ public class NewAccountActivity extends Activity implements View.OnClickListener
     }
 
     private boolean valudateInput() {
-
+        if(newAccName.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter a valid account name!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(newAccBal.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter a valid balance!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(newAccOverD.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter a valid balance!", Toast.LENGTH_LONG).show();
+            return false;
+        }
 
         return true;
     }
