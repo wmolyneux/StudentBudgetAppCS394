@@ -28,9 +28,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String KEY_TRANSACTION_ID = "id";
     private static final String KEY_TRANSACTION_ACCOUNTID = "accountId";
     private static final String KEY_TRANSACTION_AMOUNT = "amount";
+    private static final String KEY_TRANSACTION_CATEGORY = "category";
+    private static final String KEY_TRANSACTION_DATE = "date";
 
     private static final String[] ACCOUNT_COLUMNS = {KEY_ACCOUNT_ID, KEY_ACCOUNT_NAME, KEY_ACCOUNT_BALANCE, KEY_ACCOUNT_OVERDRAFT};
-    private static final String[] TRANSACTION_COLUMNS = {KEY_TRANSACTION_ID, KEY_TRANSACTION_ACCOUNTID, KEY_TRANSACTION_AMOUNT};
+    private static final String[] TRANSACTION_COLUMNS = {KEY_TRANSACTION_ID, KEY_TRANSACTION_ACCOUNTID, KEY_TRANSACTION_AMOUNT, KEY_TRANSACTION_CATEGORY, KEY_TRANSACTION_DATE};
 
 
     // Database Version
@@ -59,7 +61,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String CREATE_TRANSACTION_TABLE = "CREATE TABLE transactions ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "accountId INTEGER, "+
-                "amount REAL)";
+                "amount REAL, "+
+                "category TEXT, "+
+                "date TEXT)";
 
         // create transactions table
         db.execSQL(CREATE_TRANSACTION_TABLE);
@@ -245,6 +249,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TRANSACTION_ACCOUNTID, transaction.getAccountId());
         values.put(KEY_TRANSACTION_AMOUNT, transaction.getAmount());
+        values.put(KEY_TRANSACTION_CATEGORY, transaction.getCategory());
+        values.put(KEY_TRANSACTION_DATE, transaction.getDate());
 
         //insert into database .insert(tablename, columnhack,
         // key/value -> keys = columns names/ values = column values)
@@ -279,6 +285,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         trans.setId(Integer.parseInt(cursor.getString(0)));
         trans.setAccountId(Integer.parseInt(cursor.getString(1)));
         trans.setAmount(Float.parseFloat(cursor.getString(2)));
+        trans.setCategory(cursor.getString(3));
+        trans.setDate(cursor.getString(4));
 
         //return account
         return trans;
@@ -309,6 +317,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 trans.setId(Integer.parseInt(cursor.getString(0)));
                 trans.setAccountId(Integer.parseInt(cursor.getString(1)));
                 trans.setAmount(Float.parseFloat(cursor.getString(2)));
+                trans.setCategory(cursor.getString(3));
+                trans.setDate(cursor.getString(4));
 
 
                 transactions.add(trans);
@@ -337,6 +347,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TRANSACTION_ACCOUNTID, transaction.getAccountId());
         values.put(KEY_TRANSACTION_AMOUNT, transaction.getAmount());
+        values.put(KEY_TRANSACTION_CATEGORY, transaction.getCategory());
+        values.put(KEY_TRANSACTION_DATE, transaction.getDate());
+
 
         //update the row in the table
         //in the format .update(tablename, column/value, selections, selection args)

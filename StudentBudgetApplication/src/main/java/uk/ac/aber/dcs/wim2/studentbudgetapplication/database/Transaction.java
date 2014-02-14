@@ -11,18 +11,22 @@ public class Transaction implements Serializable{
     private int id;
     private int accountId;
     private Float amount;
+    private String category;
+    private String date; //dd/mm/yyyy
 
     public Transaction(){}
 
-    public Transaction(int accountIden, Float amount){
+    public Transaction(int accountIden, Float amount, String cat, String date){
         super();
         this.accountId = accountIden;
         this.amount = amount;
+        this.category = cat;
+        this.date = date;
     }
 
     @Override
     public String toString() {
-        return "Transaction [id="+id+", accountId="+accountId+", amount="+amount+"]";
+        return "Transaction [id="+id+", accountId="+accountId+", amount="+amount+", category="+category+", date="+date+"]";
     }
 
     public int getId() {
@@ -37,6 +41,14 @@ public class Transaction implements Serializable{
         return amount;
     }
 
+    public String getCategory(){
+        return category;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -49,5 +61,11 @@ public class Transaction implements Serializable{
         this.amount = amount;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
