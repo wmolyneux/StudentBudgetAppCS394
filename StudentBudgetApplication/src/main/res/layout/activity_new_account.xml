@@ -52,7 +52,7 @@
         <EditText
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
+                android:inputType="numberDecimal|numberSigned"
                 android:ems="10"
                 android:id="@+id/newBalanceField"
                 android:layout_marginLeft="-8dp"/>

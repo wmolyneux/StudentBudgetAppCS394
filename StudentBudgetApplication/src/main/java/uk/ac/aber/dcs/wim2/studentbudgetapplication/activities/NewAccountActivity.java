@@ -92,6 +92,11 @@ public class NewAccountActivity extends Activity implements View.OnClickListener
             Toast.makeText(this, "Please enter a valid balance!", Toast.LENGTH_LONG).show();
             return false;
         }
+        if(Float.valueOf(newAccOverD.getText().toString()) + Float.valueOf(newAccBal.getText().toString()) < 0){
+            Toast.makeText(this, "Balance is lower than overdraft allows!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
 
         return true;
     }
