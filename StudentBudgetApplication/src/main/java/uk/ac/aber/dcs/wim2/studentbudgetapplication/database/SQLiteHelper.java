@@ -28,13 +28,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String KEY_TRANSACTION_ID = "id";
     private static final String KEY_TRANSACTION_ACCOUNTID = "accountId";
     private static final String KEY_TRANSACTION_AMOUNT = "amount";
+    private static final String KEY_TRANSACTION_SHORTDESC = "shortDesc";
+    private static final String KEY_TRANSACTION_TYPE = "type";
     private static final String KEY_TRANSACTION_CATEGORY = "category";
     private static final String KEY_TRANSACTION_DATE = "date";
 
     private static final String[] ACCOUNT_COLUMNS = {KEY_ACCOUNT_ID, KEY_ACCOUNT_NAME, KEY_ACCOUNT_BALANCE, KEY_ACCOUNT_OVERDRAFT};
-    private static final String[] TRANSACTION_COLUMNS = {KEY_TRANSACTION_ID, KEY_TRANSACTION_ACCOUNTID, KEY_TRANSACTION_AMOUNT, KEY_TRANSACTION_CATEGORY, KEY_TRANSACTION_DATE};
 
 
+    private static final String[] TRANSACTION_COLUMNS = {KEY_TRANSACTION_ID, KEY_TRANSACTION_ACCOUNTID,
+            KEY_TRANSACTION_AMOUNT, KEY_TRANSACTION_SHORTDESC, KEY_TRANSACTION_TYPE,
+            KEY_TRANSACTION_CATEGORY, KEY_TRANSACTION_DATE};
     // Database Version
     private static final int DATABASE_VERSION = 1;
     // Database Name
@@ -62,6 +66,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "accountId INTEGER, "+
                 "amount REAL, "+
+                "shortDesc TEXT, "+
+                "type TEXT, "+
                 "category TEXT, "+
                 "date TEXT)";
 
@@ -75,7 +81,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS accounts");
 
         // Drop older transactions table if existed
-        db.execSQL("DROP TABLE IF EXISTS transaction");
+        db.execSQL("DROP TABLE IF EXISTS transactions");
 
         // create fresh accounts table
         this.onCreate(db);
@@ -249,6 +255,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TRANSACTION_ACCOUNTID, transaction.getAccountId());
         values.put(KEY_TRANSACTION_AMOUNT, transaction.getAmount());
+        values.put(KEY_TRANSACTION_SHORTDESC, transaction.getShortDesc());
+        values.put(KEY_TRANSACTION_TYPE, transaction.getType());
         values.put(KEY_TRANSACTION_CATEGORY, transaction.getCategory());
         values.put(KEY_TRANSACTION_DATE, transaction.getDate());
 
@@ -285,8 +293,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         trans.setId(Integer.parseInt(cursor.getString(0)));
         trans.setAccountId(Integer.parseInt(cursor.getString(1)));
         trans.setAmount(Float.parseFloat(cursor.getString(2)));
-        trans.setCategory(cursor.getString(3));
-        trans.setDate(cursor.getString(4));
+        trans.setShortDesc(cursor.getString(3));
+        trans.setType(cursor.getString(4));
+        trans.setCategory(cursor.getString(5));
+        trans.setDate(cursor.getString(6));
 
         //return account
         return trans;
@@ -317,11 +327,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 trans.setId(Integer.parseInt(cursor.getString(0)));
                 trans.setAccountId(Integer.parseInt(cursor.getString(1)));
                 trans.setAmount(Float.parseFloat(cursor.getString(2)));
-                trans.setCategory(cursor.getString(3));
-                trans.setDate(cursor.getString(4));
+                trans.setShortDesc(cursor.getString(3));
+                trans.setType(cursor.getString(4));
+                trans.setCategory(cursor.getString(5));
+                trans.setDate(cursor.getString(6));
 
 
                 transactions.add(trans);
+
 
             }while(cursor.moveToNext());
 
@@ -347,6 +360,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TRANSACTION_ACCOUNTID, transaction.getAccountId());
         values.put(KEY_TRANSACTION_AMOUNT, transaction.getAmount());
+        values.put(KEY_TRANSACTION_SHORTDESC, transaction.getShortDesc());
+        values.put(KEY_TRANSACTION_TYPE, transaction.getType());
         values.put(KEY_TRANSACTION_CATEGORY, transaction.getCategory());
         values.put(KEY_TRANSACTION_DATE, transaction.getDate());
 

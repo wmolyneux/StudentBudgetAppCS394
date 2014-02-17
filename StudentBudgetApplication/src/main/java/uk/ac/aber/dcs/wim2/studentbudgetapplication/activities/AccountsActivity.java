@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.AdapterListener;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.AccountAdapterListener;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
@@ -37,8 +34,8 @@ public class AccountsActivity extends ListActivity {
 
         //prepare values for including in the listView
         ArrayList<String> values = new ArrayList<String>();
-        for (int i = 0; i < accounts.size(); i++){
-            values.add(accounts.get(i).getAccountName());
+        for (Account account : accounts) {
+            values.add(account.getAccountName());
         }
 
         //setup adapter items
@@ -47,7 +44,7 @@ public class AccountsActivity extends ListActivity {
         setListAdapter(adapter);
 
         //setup onclick listeners using adapter listener.
-        AdapterListener listen = new AdapterListener(context, accounts, db, adapter);
+        AccountAdapterListener listen = new AccountAdapterListener(context, accounts, db, adapter);
         this.getListView().setLongClickable(true);
         this.getListView().setOnItemLongClickListener(listen);
         this.getListView().setOnItemClickListener(listen);

@@ -11,22 +11,26 @@ public class Transaction implements Serializable{
     private int id;
     private int accountId;
     private Float amount;
+    private String shortDesc;
+    private String type;
     private String category;
     private String date; //dd/mm/yyyy
 
     public Transaction(){}
 
-    public Transaction(int accountIden, Float amount, String cat, String date){
+    public Transaction(int accountIden, Float amount, String desc, String type, String cat, String date){
         super();
         this.accountId = accountIden;
         this.amount = amount;
+        this.shortDesc = desc;
+        this.type = type;
         this.category = cat;
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return "Transaction [id="+id+", accountId="+accountId+", amount="+amount+", category="+category+", date="+date+"]";
+        return "Transaction [id="+id+", accountId="+accountId+", amount="+amount+", shortDesc="+shortDesc+", type="+type+", category="+category+", date="+date+"]";
     }
 
     public int getId() {
@@ -39,6 +43,14 @@ public class Transaction implements Serializable{
 
     public Float getAmount() {
         return amount;
+    }
+
+    public String getShortDesc() {
+        return shortDesc;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getCategory(){
@@ -61,11 +73,19 @@ public class Transaction implements Serializable{
         this.amount = amount;
     }
 
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
+    }
+
     public void setCategory(String category) {
         this.category = category;
     }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

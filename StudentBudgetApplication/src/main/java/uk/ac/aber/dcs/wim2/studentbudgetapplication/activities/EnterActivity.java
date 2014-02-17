@@ -6,8 +6,11 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
 public class EnterActivity extends Activity implements View.OnClickListener{
 

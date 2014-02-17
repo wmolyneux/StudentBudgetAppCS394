@@ -21,14 +21,14 @@ import static android.widget.AdapterView.OnItemLongClickListener;
 /**
  * Created by wim2 on 12/02/2014.
  */
-public class AdapterListener implements OnItemLongClickListener, OnItemClickListener{
+public class AccountAdapterListener implements OnItemLongClickListener, OnItemClickListener{
 
     Context context;
     List<Account> accounts;
     SQLiteHelper db;
     ArrayAdapter<String> adapter;
 
-    public AdapterListener(Context con, List<Account> acc, SQLiteHelper database, ArrayAdapter<String> adap){
+    public AccountAdapterListener(Context con, List<Account> acc, SQLiteHelper database, ArrayAdapter<String> adap){
         context = con;
         accounts = acc;
         db = database;

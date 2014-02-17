@@ -1,12 +1,14 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +16,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
@@ -31,6 +36,7 @@ public class MainActivity extends FragmentActivity {
     private ListView drawerListView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,13 +116,15 @@ public class MainActivity extends FragmentActivity {
     public void manageFragments(Fragment newFrag, int oldFragId){
         Bundle bundle = new Bundle();
         bundle.putSerializable("ACCOUNT", currentAccount);
-        FragmentManager manager = getFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         newFrag.setArguments(bundle);
         transaction.replace(oldFragId, newFrag);
         transaction.commit();
 
     }
+
+
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -134,6 +142,7 @@ public class MainActivity extends FragmentActivity {
                     break;
                 case 3:
                     frag = new HistoryFragment();
+
                     break;
                 case 4:
                     frag = new TransactionsFragment();
@@ -143,11 +152,10 @@ public class MainActivity extends FragmentActivity {
 
 
             drawerLayout.closeDrawer(drawerListView);
-
-
-
         }
     }
+
+
 
     public Account getCurrentAccount(){
         return currentAccount;
