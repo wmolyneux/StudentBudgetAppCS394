@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TransactionAdapterListener;
@@ -27,12 +28,14 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     View context;
     ListView list;
     ArrayList<String> values;
+    Account currentAcc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_history, container, false);
         context = inflate;
         db = new SQLiteHelper(getActivity());
+        currentAcc = (Account) getArguments().getSerializable("ACCOUNT");
         setupTabHost();
 
         return inflate;
@@ -89,7 +92,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         if(tabHost.getCurrentTab()==0){
             transactions = new ArrayList<Transaction>();
             for (Transaction transaction : db.getAllTransactions()){
-                if(!transaction.getType().equalsIgnoreCase("minus")){
+                if(transaction.getAccountId()==currentAcc.getId() && !transaction.getType().equalsIgnoreCase("minus")){
                     values.add(transaction.getAmount().toString());
                     transactions.add(transaction);
                 }
@@ -98,7 +101,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         else{
             transactions = new ArrayList<Transaction>();
             for (Transaction transaction : db.getAllTransactions()){
-                if(transaction.getType().equalsIgnoreCase("minus")){
+                if(transaction.getAccountId()==currentAcc.getId() && transaction.getType().equalsIgnoreCase("minus")){
                     values.add("-"+transaction.getAmount().toString());
                     transactions.add(transaction);
                 }
