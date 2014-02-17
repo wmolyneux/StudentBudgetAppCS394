@@ -13,11 +13,11 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AccountAdapterListener.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AccountAdapterListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StudentBudgetApplication.iws" />
@@ -100,10 +100,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HistoryFragment.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="HistoryFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="5" selection-start="1450" selection-end="1450" vertical-scroll-proportion="0.38432837" vertical-offset="169" max-vertical-offset="1545">
+            <state line="40" column="23" selection-start="1444" selection-end="1444" vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="1545">
               <folding />
             </state>
           </provider>
@@ -114,6 +114,17 @@
           <provider selected="true" editor-type-id="text-editor">
             <state line="65" column="26" selection-start="2265" selection-end="2265" vertical-scroll-proportion="0.0" vertical-offset="439" max-vertical-offset="1245">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountAdapterListener.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AccountAdapterListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="16" selection-start="3680" selection-end="3680" vertical-scroll-proportion="0.7761194" vertical-offset="724" max-vertical-offset="1305">
+              <folding>
+                <element signature="e#2044#2086#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -210,7 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AccountAdapterListener.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AdapterListener.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_history.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteHelper.java" />
@@ -226,6 +236,7 @@
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AccountAdapterListener.java" />
       </list>
     </option>
   </component>
@@ -1213,7 +1224,11 @@
       <created>1392655311284</created>
       <updated>1392655311284</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="- History fragment now only displays transactions for the current account">
+      <created>1392655782199</created>
+      <updated>1392655782199</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1255,7 +1270,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added skeleton activity for the entry screen." />
     <MESSAGE value="Added skeleton FragmentActivity containing navigation side bar to join between different fragment pages." />
     <MESSAGE value="Enter button links from EnterActivity to MainActivity when clicked" />
     <MESSAGE value="Added first fragment and code necessary to make the navigation slider display the fragment." />
@@ -1280,7 +1294,8 @@
     <MESSAGE value="- Implemented transaction activity to view information about transactions when clicked on historyFragments list view&#10;- Fixed few other bugs" />
     <MESSAGE value="- Fixed bug where balance was not actually updated in the database" />
     <MESSAGE value="Fixed bug where going back to the Accounts page wasnt refreshing the databases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug where going back to the Accounts page wasnt refreshing the databases" />
+    <MESSAGE value="- History fragment now only displays transactions for the current account" />
+    <option name="LAST_COMMIT_MESSAGE" value="- History fragment now only displays transactions for the current account" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1325,13 +1340,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AccountAdapterListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="24" selection-start="1290" selection-end="1439" vertical-scroll-proportion="0.0" vertical-offset="145" max-vertical-offset="1125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.6585366" vertical-offset="0" max-vertical-offset="615" />
@@ -1365,13 +1373,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="26" selection-start="2265" selection-end="2265" vertical-scroll-proportion="0.0" vertical-offset="439" max-vertical-offset="1245">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TransactionAdapterListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="59" column="73" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
@@ -1395,8 +1396,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="5" selection-start="1450" selection-end="1450" vertical-scroll-proportion="0.38432837" vertical-offset="169" max-vertical-offset="1545">
+        <state line="40" column="23" selection-start="1444" selection-end="1444" vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="1545">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AccountsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="26" selection-start="2265" selection-end="2265" vertical-scroll-proportion="0.0" vertical-offset="439" max-vertical-offset="1245">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/AccountAdapterListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="16" selection-start="3680" selection-end="3680" vertical-scroll-proportion="0.7761194" vertical-offset="724" max-vertical-offset="1305">
+          <folding>
+            <element signature="e#2044#2086#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

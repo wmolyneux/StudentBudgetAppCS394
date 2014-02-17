@@ -14,6 +14,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.MainActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
 import static android.widget.AdapterView.OnItemClickListener;
 import static android.widget.AdapterView.OnItemLongClickListener;
@@ -65,10 +66,12 @@ public class AccountAdapterListener implements OnItemLongClickListener, OnItemCl
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, close
                         // current activity
+                        removeAccountsTransactions(accounts.get(accountToRemove));
                         db.deleteAccount(accounts.get(accountToRemove));
                         adapter.remove(accounts.get(accountToRemove).getAccountName());
                         accounts.remove(accountToRemove);
                         adapter.notifyDataSetInvalidated();
+                        
                         dialog.cancel();
                     }
                 })
@@ -85,5 +88,15 @@ public class AccountAdapterListener implements OnItemLongClickListener, OnItemCl
 
         // show it
         alertDialog.show();
+    }
+
+    private void removeAccountsTransactions(Account account) {
+        for(Transaction transaction : db.getAllTransactions()){
+            System.out.println(transaction.getAccountId());
+            if(transaction.getAccountId()==account.getId()){
+                db.deleteTransaction(transaction);
+                
+            }
+        }
     }
 }
