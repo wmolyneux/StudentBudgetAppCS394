@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -64,12 +65,22 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // if this button is clicked, close
-                        // current activity
-                        db.deleteTransaction(transactions.get(transactionToRemove));
-                        adapter.remove(transactions.get(transactionToRemove).getAmount().toString());
-                        transactions.remove(transactionToRemove);
+                        // if this button is clicked, close current activity
+                        String item = adapter.getItem(transactionToRemove);
+                        for(Transaction transaction : transactions){
+                            if(transaction.getAmount().toString() == item){
+                                db.deleteTransaction(transaction);
+                                adapter.remove(transaction.getAmount().toString());
+                                transactions.remove(transaction);
+                            }
+                        }
                         adapter.notifyDataSetInvalidated();
+
+//                        Toast.makeText(context, ""+adapter.getItem(transactionToRemove), Toast.LENGTH_LONG).show();
+//                        db.deleteTransaction(transactions.get(transactionToRemove));
+//                        adapter.remove(transactions.get(transactionToRemove).getAmount().toString());
+//                        transactions.remove(transactionToRemove);
+//                        adapter.notifyDataSetInvalidated();
                         dialog.cancel();
                     }
                 })

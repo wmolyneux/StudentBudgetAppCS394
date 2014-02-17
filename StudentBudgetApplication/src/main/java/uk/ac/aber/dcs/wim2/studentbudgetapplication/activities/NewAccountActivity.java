@@ -7,12 +7,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 
 public class NewAccountActivity extends Activity implements View.OnClickListener{
 
@@ -60,7 +58,7 @@ public class NewAccountActivity extends Activity implements View.OnClickListener
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.createAccountButton:
-                if(valudateInput()){
+                if(validateInput()){
                     Account newAcc =
                             new Account(newAccName.getText().toString(),
                                     Float.parseFloat(newAccBal.getText().toString()),
@@ -79,7 +77,7 @@ public class NewAccountActivity extends Activity implements View.OnClickListener
         }
     }
 
-    private boolean valudateInput() {
+    private boolean validateInput() {
         if(newAccName.getText().toString().isEmpty()){
             Toast.makeText(this, "Please enter a valid account name!", Toast.LENGTH_LONG).show();
             return false;

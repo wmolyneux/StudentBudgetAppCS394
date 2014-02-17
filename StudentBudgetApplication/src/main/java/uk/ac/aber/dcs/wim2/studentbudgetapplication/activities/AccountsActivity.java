@@ -45,7 +45,7 @@ public class AccountsActivity extends ListActivity {
 
         //setup onclick listeners using adapter listener.
         AccountAdapterListener listen = new AccountAdapterListener(context, accounts, db, adapter);
-        this.getListView().setLongClickable(true);
+
         this.getListView().setOnItemLongClickListener(listen);
         this.getListView().setOnItemClickListener(listen);
 

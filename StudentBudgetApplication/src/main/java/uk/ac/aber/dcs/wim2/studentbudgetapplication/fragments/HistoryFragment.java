@@ -18,6 +18,7 @@ import java.util.List;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TransactionAdapterListener;
 
 public class HistoryFragment extends ListFragment implements TabHost.OnTabChangeListener {//} implements View.OnClickListener{
 
@@ -26,6 +27,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     SQLiteHelper db;
     ArrayAdapter<String> adapter;
     View context;
+    ListView list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,12 +46,14 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         TabHost.TabSpec tab1 = tabHost.newTabSpec("income");
         TabHost.TabSpec tab2 = tabHost.newTabSpec("expenses");
 
+        //setup onclick listeners using adapter listener.
+        final TransactionAdapterListener listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter);
+
         tab1.setIndicator("Income");
         tab1.setContent(new TabHost.TabContentFactory() {
             @Override
             public View createTabContent(String s) {
-                ListView list = (ListView)context.findViewById(android.R.id.list);
-
+                list = (ListView)context.findViewById(android.R.id.list);
                 return list;
             }
         });
@@ -58,21 +62,26 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         tab2.setContent(new TabHost.TabContentFactory() {
             @Override
             public View createTabContent(String s) {
-                ListView list = (ListView)context.findViewById(android.R.id.list);
-
+                list = (ListView)context.findViewById(android.R.id.list);
                 return list;
             }
         });
+
 
         tabHost.addTab(tab1);
         tabHost.addTab(tab2);
         tabHost.setOnTabChangedListener(this);
 
+
+
         //messy hack to get the tabs to display correct information
         tabHost.setCurrentTab(1);
         tabHost.setCurrentTab(0);
 
+
+
     }
+
 
 
     @Override
@@ -94,6 +103,11 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
             }
         }
         adapter = new ArrayAdapter<String>(getActivity(), R.layout.listview_accounts, values);
+        //setup onclick listeners using adapter listener.
+        TransactionAdapterListener listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter);
+        list.setOnItemLongClickListener(listen);
+        list.setOnItemClickListener(listen);
+
         setListAdapter(adapter);
     }
 }
