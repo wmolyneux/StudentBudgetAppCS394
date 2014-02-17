@@ -31,27 +31,6 @@ public class AccountsActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accounts);
 
-        db = new SQLiteHelper(this);
-        accounts = db.getAllAccounts();
-
-        //prepare values for including in the listView
-        values = new ArrayList<String>();
-        for (Account account : accounts) {
-            values.add(account.getAccountName());
-        }
-
-        //setup adapter items
-        adapter =
-                new ArrayAdapter<String>(this, R.layout.listview_accounts, values);
-        setListAdapter(adapter);
-
-        //setup onclick listeners using adapter listener.
-        AccountAdapterListener listen = new AccountAdapterListener(context, accounts, db, adapter);
-
-        this.getListView().setOnItemLongClickListener(listen);
-        this.getListView().setOnItemClickListener(listen);
-
-
     }
 
     @Override
@@ -93,17 +72,24 @@ public class AccountsActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        db = new SQLiteHelper(this);
         accounts = db.getAllAccounts();
-        for(Account account : accounts){
-            System.out.println(account.getBalance()+" is the balance");
-        }
-
 
         //prepare values for including in the listView
         values = new ArrayList<String>();
         for (Account account : accounts) {
             values.add(account.getAccountName());
         }
-        adapter.notifyDataSetChanged();
+
+        //setup adapter items
+        adapter =
+                new ArrayAdapter<String>(this, R.layout.listview_accounts, values);
+        setListAdapter(adapter);
+
+        //setup onclick listeners using adapter listener.
+        AccountAdapterListener listen = new AccountAdapterListener(context, accounts, db, adapter);
+
+        this.getListView().setOnItemLongClickListener(listen);
+        this.getListView().setOnItemClickListener(listen);
     }
 }
