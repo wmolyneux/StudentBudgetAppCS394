@@ -23,6 +23,7 @@ public class AccountsActivity extends ListActivity {
     Context context =  this;
     SQLiteHelper db;
     ArrayAdapter<String> adapter;
+    ArrayList<String> values;
 
 
     @Override
@@ -34,7 +35,7 @@ public class AccountsActivity extends ListActivity {
         accounts = db.getAllAccounts();
 
         //prepare values for including in the listView
-        ArrayList<String> values = new ArrayList<String>();
+        values = new ArrayList<String>();
         for (Account account : accounts) {
             values.add(account.getAccountName());
         }
@@ -92,19 +93,17 @@ public class AccountsActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(this, "hellooooo", Toast.LENGTH_LONG).show();
         accounts = db.getAllAccounts();
+        for(Account account : accounts){
+            System.out.println(account.getBalance()+" is the balance");
+        }
+
 
         //prepare values for including in the listView
-        ArrayList<String> values = new ArrayList<String>();
+        values = new ArrayList<String>();
         for (Account account : accounts) {
             values.add(account.getAccountName());
         }
-
-        //setup adapter items
-        adapter =
-                new ArrayAdapter<String>(this, R.layout.listview_accounts, values);
-        setListAdapter(adapter);
-        adapter.notifyDataSetInvalidated();
+        adapter.notifyDataSetChanged();
     }
 }

@@ -76,6 +76,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
                     else{
                         currentAcc.setBalance(currentAcc.getBalance()+Float.valueOf(amount.getText().toString()));
                     }
+                    db.updateAccount(currentAcc);
                     Toast.makeText(getActivity(), "Transaction added", Toast.LENGTH_LONG).show();
                 }
                 break;
