@@ -24,5 +24,6 @@
     <string name="title_activity_accounts">AccountsActivity</string>
     <string name="remove_warning">Account will be permanently deleted!</string>
     <string name="title_activity_new_account">NewAccountActivity</string>
+    <string name="title_activity_transaction">TransactionActivity</string>
 
 </resources>

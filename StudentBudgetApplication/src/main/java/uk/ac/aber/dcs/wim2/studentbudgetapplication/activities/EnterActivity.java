@@ -45,19 +45,7 @@ public class EnterActivity extends Activity implements View.OnClickListener{
                 if(db.getAllAccounts().size() == 0){
                     db.addAccount(new Account("Savings", Float.valueOf(2000), Float.valueOf(200)));
                 }
-                if(db.getAllTransactions().size()==0){
-                    db.addTransaction(new Transaction(0, Float.valueOf("1"), "minus1", "minus", "food", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("2"), "minus2", "minus", "food", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("3"), "minus3", "minus", "food", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("4"), "minus4", "minus", "food", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("5"), "minus5", "minus", "food", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("1"), "plus1", "plus", "birthday", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("2"), "plus2", "plus", "birthday", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("3"), "plus3", "plus", "birthday", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("4"), "plus4", "plus", "birthday", "12/12/2001"));
-                    db.addTransaction(new Transaction(0, Float.valueOf("5"), "plus5", "plus", "birthday", "12/12/2001"));
 
-                }
 
                 Intent intent = new Intent(this, AccountsActivity.class);
                 startActivity(intent);

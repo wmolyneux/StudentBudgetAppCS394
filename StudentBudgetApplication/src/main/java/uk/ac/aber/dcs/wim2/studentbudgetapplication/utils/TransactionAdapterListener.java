@@ -14,6 +14,7 @@ import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.MainActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
@@ -43,10 +44,9 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//        Intent intent = new Intent(context, MainActivity.class);
-//
-//        intent.putExtra("TRANSACTION", transactions.get(i));
-//        context.startActivity(intent);
+        Intent intent = new Intent(context, TransactionActivity.class);
+        intent.putExtra("TRANSACTION", transactions.get(i));
+        context.startActivity(intent);
     }
 
     @Override

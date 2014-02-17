@@ -157,8 +157,5 @@ public class MainActivity extends FragmentActivity {
 
 
 
-    public Account getCurrentAccount(){
-        return currentAccount;
-    }
 
 }

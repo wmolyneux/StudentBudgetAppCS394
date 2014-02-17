@@ -69,6 +69,13 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
                                     shortDesc.getText().toString(), tmpType, category.getText().toString(), date.getText().toString());
                     SQLiteHelper db = new SQLiteHelper(getActivity());
                     db.addTransaction(newTrans);
+                    if(tmpType.equalsIgnoreCase("minus")){
+                        currentAcc.setBalance(currentAcc.getBalance()-Float.valueOf(amount.getText().toString()));
+
+                    }
+                    else{
+                        currentAcc.setBalance(currentAcc.getBalance()+Float.valueOf(amount.getText().toString()));
+                    }
                     Toast.makeText(getActivity(), "Transaction added", Toast.LENGTH_LONG).show();
                 }
                 break;

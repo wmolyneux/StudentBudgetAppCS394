@@ -26,6 +26,7 @@
     <string name="title_activity_new_account">NewAccountActivity</string>
     <string name="title_activity_overview_fragment">OverviewFragment</string>
     <string name="title_activity_report_fragment">ReportFragment</string>
+    <string name="title_activity_transaction">TransactionActivity</string>
     <string name="title_activity_transactions_fragment">TransactionsFragment</string>
     <!-- From: file:/aber/wim2/major%20project/StudentBudgetApplicationProject/StudentBudgetApplication/src/main/res/values/styles.xml -->
     <style name="AppBaseTheme" parent="android:Theme.Light">

@@ -7,13 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
 public class OverviewFragment extends Fragment {
 
     Account currentAccount = null;
-    TextView balance;
+    TextView balanceText;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -21,12 +27,15 @@ public class OverviewFragment extends Fragment {
 
         Bundle bundle = getArguments();
         currentAccount = (Account)bundle.getSerializable("ACCOUNT");
-        balance = (TextView)inflate.findViewById(R.id.balanceNum);
 
+        balanceText = (TextView)inflate.findViewById(R.id.balanceNum);
 
-        balance.setText("£"+currentAccount.getBalance().toString());
+        balanceText.setText("£"+currentAccount.getBalance().toString());
         return inflate;
     }
+
+
+
 
 
 }

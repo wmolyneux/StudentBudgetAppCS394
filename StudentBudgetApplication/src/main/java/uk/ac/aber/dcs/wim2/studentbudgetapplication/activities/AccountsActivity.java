@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +89,22 @@ public class AccountsActivity extends ListActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "hellooooo", Toast.LENGTH_LONG).show();
+        accounts = db.getAllAccounts();
 
+        //prepare values for including in the listView
+        ArrayList<String> values = new ArrayList<String>();
+        for (Account account : accounts) {
+            values.add(account.getAccountName());
+        }
 
+        //setup adapter items
+        adapter =
+                new ArrayAdapter<String>(this, R.layout.listview_accounts, values);
+        setListAdapter(adapter);
+        adapter.notifyDataSetInvalidated();
+    }
 }
