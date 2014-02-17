@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TransactionAdapterListener;
 
-public class HistoryFragment extends ListFragment implements TabHost.OnTabChangeListener {//} implements View.OnClickListener{
+public class HistoryFragment extends ListFragment implements TabHost.OnTabChangeListener {
 
     TabHost tabHost;
     List<Transaction> transactions = null;
@@ -28,13 +26,13 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     ArrayAdapter<String> adapter;
     View context;
     ListView list;
+    ArrayList<String> values;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_history, container, false);
         context = inflate;
         db = new SQLiteHelper(getActivity());
-        transactions = db.getAllTransactions();
         setupTabHost();
 
         return inflate;
@@ -47,7 +45,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         TabHost.TabSpec tab2 = tabHost.newTabSpec("expenses");
 
         //setup onclick listeners using adapter listener.
-        final TransactionAdapterListener listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter);
+
 
         tab1.setIndicator("Income");
         tab1.setContent(new TabHost.TabContentFactory() {
@@ -86,25 +84,30 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
 
     @Override
     public void onTabChanged(String s) {
-        ArrayList<String> values = new ArrayList<String>();
+        values = new ArrayList<String>();
 
         if(tabHost.getCurrentTab()==0){
-            for (Transaction transaction : transactions){
+            transactions = new ArrayList<Transaction>();
+            for (Transaction transaction : db.getAllTransactions()){
                 if(!transaction.getType().equalsIgnoreCase("minus")){
                     values.add(transaction.getAmount().toString());
+                    transactions.add(transaction);
                 }
             }
         }
         else{
-            for (Transaction transaction : transactions){
+            transactions = new ArrayList<Transaction>();
+            for (Transaction transaction : db.getAllTransactions()){
                 if(transaction.getType().equalsIgnoreCase("minus")){
                     values.add("-"+transaction.getAmount().toString());
+                    transactions.add(transaction);
                 }
             }
         }
+
         adapter = new ArrayAdapter<String>(getActivity(), R.layout.listview_accounts, values);
         //setup onclick listeners using adapter listener.
-        TransactionAdapterListener listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter);
+        TransactionAdapterListener listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
 

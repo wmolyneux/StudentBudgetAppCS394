@@ -34,6 +34,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     String tmpType;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_transactions, container, false);

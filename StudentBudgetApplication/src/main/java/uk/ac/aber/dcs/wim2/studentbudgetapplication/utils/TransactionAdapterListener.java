@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
@@ -29,12 +30,15 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
     List<Transaction> transactions;
     SQLiteHelper db;
     ArrayAdapter<String> adapter;
+    ArrayList<String> values;
 
-    public TransactionAdapterListener(Context con, List<Transaction> trans, SQLiteHelper database, ArrayAdapter<String> adap){
+    public TransactionAdapterListener(Context con, List<Transaction> trans, SQLiteHelper database, ArrayAdapter<String> adap, ArrayList<String> vals){
         context = con;
         transactions = trans;
         db = database;
         adapter = adap;
+        values = vals;
+
     }
 
     @Override
@@ -61,26 +65,17 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
 
         // set dialog message
         alertDialogBuilder
-                .setMessage(context.getString(R.string.remove_warning))
+                .setMessage("Transaction will be permanently removed!")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // if this button is clicked, close current activity
-                        String item = adapter.getItem(transactionToRemove);
-                        for(Transaction transaction : transactions){
-                            if(transaction.getAmount().toString() == item){
-                                db.deleteTransaction(transaction);
-                                adapter.remove(transaction.getAmount().toString());
-                                transactions.remove(transaction);
-                            }
-                        }
-                        adapter.notifyDataSetInvalidated();
+                        //remove the selected item from the necessary arrays and database
+                        values.remove(transactionToRemove);
+                        db.deleteTransaction(transactions.get(transactionToRemove));
+                        transactions.remove(transactionToRemove);
 
-//                        Toast.makeText(context, ""+adapter.getItem(transactionToRemove), Toast.LENGTH_LONG).show();
-//                        db.deleteTransaction(transactions.get(transactionToRemove));
-//                        adapter.remove(transactions.get(transactionToRemove).getAmount().toString());
-//                        transactions.remove(transactionToRemove);
-//                        adapter.notifyDataSetInvalidated();
+                        //re-validate the adapter and close the dialog
+                        adapter.notifyDataSetInvalidated();
                         dialog.cancel();
                     }
                 })
