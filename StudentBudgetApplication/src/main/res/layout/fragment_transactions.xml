@@ -83,23 +83,26 @@
 
     <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
             android:layout_alignLeft="@+id/linearLayout2"
             android:id="@+id/linearLayout3">
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Category:"
-                android:id="@+id/cateText"/>
+                android:id="@+id/cateText"
+                android:layout_marginTop="3dp"/>
 
-        <EditText
-                android:layout_width="fill_parent"
+        <Spinner
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/categoryField"
-                android:layout_marginLeft="105dp"/>
+                android:id="@+id/categorySpinner"
+                android:layout_marginLeft="98dp"
+                android:spinnerMode="dialog"/>
+
     </LinearLayout>
 
     <LinearLayout

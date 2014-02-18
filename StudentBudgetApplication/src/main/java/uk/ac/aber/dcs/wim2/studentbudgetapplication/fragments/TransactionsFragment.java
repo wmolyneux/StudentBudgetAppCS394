@@ -6,23 +6,29 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
-public class TransactionsFragment extends Fragment implements View.OnClickListener{
+public class TransactionsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     //views from the layout
     EditText amount;
     EditText shortDesc;
     ToggleButton type;
-    EditText category;
+    Spinner category;
     EditText date;
     Button clear;
     Button create;
@@ -32,6 +38,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
     //values for new transaction
     String tmpType;
+    SQLiteHelper db;
 
 
 
@@ -48,7 +55,26 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         amount = (EditText) inflate.findViewById(R.id.amountField);
         shortDesc = (EditText) inflate.findViewById(R.id.descField);
         type = (ToggleButton) inflate.findViewById(R.id.typeButton);
-        category = (EditText) inflate.findViewById(R.id.categoryField);
+        category = (Spinner) inflate.findViewById(R.id.categorySpinner);
+
+        db = new SQLiteHelper(getActivity());
+        ArrayList<String> tempCategories = new ArrayList<String>();
+        for (Category cat : db.getAllCategories()){
+            tempCategories.add(cat.getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (getActivity(), android.R.layout.simple_spinner_item, tempCategories);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        category.setAdapter(adapter);
+
+        category.setOnItemSelectedListener(this);
+
+
+
+
         date = (EditText) inflate.findViewById(R.id.dateField);
 
         clear = (Button) inflate.findViewById(R.id.clearButton);
@@ -66,7 +92,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
                     Transaction newTrans =
                             new Transaction(currentAcc.getId(), Float.valueOf(amount.getText().toString()),
-                                    shortDesc.getText().toString(), tmpType, category.getText().toString(), date.getText().toString());
+                                    shortDesc.getText().toString(), tmpType, category.getSelectedItem().toString(), date.getText().toString());
                     SQLiteHelper db = new SQLiteHelper(getActivity());
                     db.addTransaction(newTrans);
                     adjustBalance(db);
@@ -96,7 +122,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         amount.setText("");
         shortDesc.setText("");
         type.setChecked(true);
-        category.setText("");
+        category.setSelection(0);
         date.setText("");
 
     }
@@ -115,7 +141,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         if(shortDesc.getText().toString().isEmpty()){
             return false;
         }
-        if(category.getText().toString().isEmpty()){
+        if(category.getSelectedItem().toString().isEmpty()){
             return false;
         }
         if(date.getText().toString().isEmpty()){
@@ -123,5 +149,15 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         }
 
         return true;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        category.setSelection(i);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
