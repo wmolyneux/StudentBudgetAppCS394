@@ -44,6 +44,7 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(context, "rawr", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(context, TransactionActivity.class);
         intent.putExtra("TRANSACTION", transactions.get(i));
         context.startActivity(intent);

@@ -14,6 +14,16 @@
         <item>New Transaction</item>
     </string-array>
 
+    <string-array name="categories">
+        <item>Food</item>
+        <item>Booze</item>
+        <item>Sports</item>
+        <item>University</item>
+        <item>Travel</item>
+        <item>Clothing</item>
+        <item>Other</item>
+    </string-array>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_overview_fragment">OverviewFragment</string>

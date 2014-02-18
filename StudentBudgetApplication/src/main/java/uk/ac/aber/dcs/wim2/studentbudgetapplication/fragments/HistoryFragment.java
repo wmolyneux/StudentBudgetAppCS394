@@ -114,6 +114,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
 
+
         setListAdapter(adapter);
     }
 }

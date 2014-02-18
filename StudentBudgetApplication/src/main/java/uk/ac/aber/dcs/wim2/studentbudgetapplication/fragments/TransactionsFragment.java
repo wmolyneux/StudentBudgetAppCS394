@@ -24,7 +24,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     ToggleButton type;
     EditText category;
     EditText date;
-    Button cancel;
+    Button clear;
     Button create;
 
     //saved instance account
@@ -51,7 +51,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         category = (EditText) inflate.findViewById(R.id.categoryField);
         date = (EditText) inflate.findViewById(R.id.dateField);
 
-        cancel = (Button) inflate.findViewById(R.id.cancelButton);
+        clear = (Button) inflate.findViewById(R.id.clearButton);
         create = (Button) inflate.findViewById(R.id.createTransButton);
 
         create.setOnClickListener(this);
@@ -77,12 +77,23 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
                         currentAcc.setBalance(currentAcc.getBalance()+Float.valueOf(amount.getText().toString()));
                     }
                     db.updateAccount(currentAcc);
+                    cleanForm();
                     Toast.makeText(getActivity(), "Transaction added", Toast.LENGTH_LONG).show();
                 }
                 break;
-            case R.id.cancelButton:
+            case R.id.clearButton:
+                cleanForm();
                 break;
         }
+
+    }
+
+    public void cleanForm(){
+        amount.setText("");
+        shortDesc.setText("");
+        type.setChecked(true);
+        category.setText("");
+        date.setText("");
 
     }
 
