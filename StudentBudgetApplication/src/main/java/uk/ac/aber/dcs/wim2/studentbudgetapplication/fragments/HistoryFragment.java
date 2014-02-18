@@ -46,7 +46,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         currentAcc = (Account) getArguments().getSerializable("ACCOUNT");
         setupTabHost();
 
-        listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter, values);
+        listen = new TransactionAdapterListener(getActivity(), currentAcc, transactions, db, adapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
     }
@@ -120,7 +120,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
 
         adapter = new ArrayAdapter<String>(getActivity(), R.layout.listview_accounts, values);
         //setup onclick listeners using adapter listener.
-        listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter, values);
+        listen = new TransactionAdapterListener(getActivity(), currentAcc, transactions, db, adapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
 

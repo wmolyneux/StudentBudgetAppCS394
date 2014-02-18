@@ -32,19 +32,21 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
     SQLiteHelper db;
     ArrayAdapter<String> adapter;
     ArrayList<String> values;
+    Account current;
 
-    public TransactionAdapterListener(Context con, List<Transaction> trans, SQLiteHelper database, ArrayAdapter<String> adap, ArrayList<String> vals){
+    public TransactionAdapterListener(Context con, Account account,
+                List<Transaction> trans, SQLiteHelper database, ArrayAdapter<String> adap, ArrayList<String> vals){
         context = con;
         transactions = trans;
         db = database;
         adapter = adap;
         values = vals;
+        current = account;
 
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(context, "rawr", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(context, TransactionActivity.class);
         intent.putExtra("TRANSACTION", transactions.get(i));
         context.startActivity(intent);
@@ -73,7 +75,10 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
                         //remove the selected item from the necessary arrays and database
                         values.remove(transactionToRemove);
                         db.deleteTransaction(transactions.get(transactionToRemove));
+                        Transaction trans = transactions.get(transactionToRemove);
+                        adjustBalance(db, trans.getType(), trans.getAmount());
                         transactions.remove(transactionToRemove);
+
 
                         //re-validate the adapter and close the dialog
                         adapter.notifyDataSetInvalidated();
@@ -93,5 +98,16 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
 
         // show it
         alertDialog.show();
+    }
+
+    private void adjustBalance(SQLiteHelper db, String type, Float amount) {
+        if(type.equalsIgnoreCase("minus")){
+            current.setBalance(current.getBalance()+Float.valueOf(amount.toString()));
+
+        }
+        else{
+            current.setBalance(current.getBalance()-Float.valueOf(amount.toString()));
+        }
+        db.updateAccount(current);
     }
 }

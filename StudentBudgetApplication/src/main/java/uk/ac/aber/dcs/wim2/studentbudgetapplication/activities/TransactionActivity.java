@@ -40,10 +40,6 @@ public class TransactionActivity extends Activity implements View.OnClickListene
         //Enter the transaction information into the layout
         enterTransactionInformation(current);
 
-
-
-
-
     }
 
     private void enterTransactionInformation(Account current) {
