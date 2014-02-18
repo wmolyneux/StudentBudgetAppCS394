@@ -17,6 +17,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     // Table nameS
     private static final String TABLE_ACCOUNTS = "accounts";
     private static final String TABLE_TRANSACTIONS = "transactions";
+    private static final String TABLE_CATEGORIES = "categories";
 
     // Account Table Columns names
     private static final String KEY_ACCOUNT_ID = "id";
@@ -33,12 +34,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String KEY_TRANSACTION_CATEGORY = "category";
     private static final String KEY_TRANSACTION_DATE = "date";
 
+    //Category table column names
+    private static final String KEY_CATEGORY_ID = "id";
+    private static final String KEY_CATEGORY_NAME = "name";
+
+
     private static final String[] ACCOUNT_COLUMNS = {KEY_ACCOUNT_ID, KEY_ACCOUNT_NAME, KEY_ACCOUNT_BALANCE, KEY_ACCOUNT_OVERDRAFT};
 
 
     private static final String[] TRANSACTION_COLUMNS = {KEY_TRANSACTION_ID, KEY_TRANSACTION_ACCOUNTID,
             KEY_TRANSACTION_AMOUNT, KEY_TRANSACTION_SHORTDESC, KEY_TRANSACTION_TYPE,
             KEY_TRANSACTION_CATEGORY, KEY_TRANSACTION_DATE};
+
+    private static final String[] CATEGORY_COLUMNS = {KEY_CATEGORY_ID, KEY_CATEGORY_NAME};
+
     // Database Version
     private static final int DATABASE_VERSION = 1;
     // Database Name
@@ -73,6 +82,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         // create transactions table
         db.execSQL(CREATE_TRANSACTION_TABLE);
+
+        //SQL statement to create categories table
+        String CREATE_CATEGORY_TABLE = "CREATE TABLE categories ( "+
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "name TEXT)";
+
+        //create categories table
+        db.execSQL(CREATE_CATEGORY_TABLE);
     }
 
     @Override
@@ -383,6 +400,142 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         //delete account
         db.delete(TABLE_TRANSACTIONS, KEY_TRANSACTION_ID +" = ?", new String[]{String.valueOf(transaction.getId())});
+
+        //close connection to database
+        db.close();
+
+    }
+
+    /**
+     *
+     * ################################################
+     * CODE FOR CATEGORY DATABASE OPERATIONS IS HERE
+     * ################################################
+     *
+     *
+     *
+     */
+
+
+
+    /**
+     * Function takes an transaction object and adds it into the database.
+     * @param category -  transaction object to be added to the database.
+     */
+    public void addCategory(Category category){
+        //get reference to writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to add key to column/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_CATEGORY_NAME, category.getName());
+
+        //insert into database .insert(tablename, columnhack,
+        // key/value -> keys = columns names/ values = column values)
+        db.insert(TABLE_CATEGORIES, null, values);
+
+        //close db connection
+        db.close();
+
+    }
+
+    /**
+     * query database for an transaction using the given id parameter. creates a transaction object using the values
+     * from the first returned item from the query.
+     * @param id - id of the transaction to be found
+     * @return - returns first transaction object returned from database query
+     */
+    public Category getCategory(int id){
+        //get the database reference
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //construct query using Cursor class which allows read/write access to returned query set
+        Cursor cursor = //query format .query(table name, column names, selections, selection args, group by, having, order by, limit)
+                db.query(TABLE_CATEGORIES, CATEGORY_COLUMNS, " id = ?", new String[] {String.valueOf(id)}, null, null, null, null);
+
+        //if we got results, get the first one
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+
+        //construct account using values returned from query
+        Category cat = new Category();
+        cat.setId(Integer.parseInt(cursor.getString(0)));
+        cat.setName(cursor.getString(1));
+
+        //return account
+        return cat;
+
+
+    }
+
+    /**
+     * Queries the transaction table for all transactions and returns them all in a linkedlist
+     *
+     * @return - Linked list of all transactions in the table
+     */
+    public List<Category> getAllCategories(){
+        List<Category> categories = new LinkedList<Category>();
+
+        //build query
+        String query = "SELECT * FROM "+TABLE_CATEGORIES;
+
+        //get reference to database
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        //go over each row, build an account item and add it to the list.
+        Category cats = null;
+        if(cursor.moveToFirst()){
+            do{
+                cats = new Category();
+                cats.setId(Integer.parseInt(cursor.getString(0)));
+                cats.setName(cursor.getString(1));
+
+                categories.add(cats);
+
+
+            }while(cursor.moveToNext());
+
+        }
+
+        db.close();
+
+        return categories;
+    }
+
+    /**
+     * takes a category and updates them via its id
+     *
+     * @param category - category to update
+     * @return - number of rows affected
+     */
+    public int updateCategory(Category category){
+
+        //get reference to database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create contentValues to add key to column/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_CATEGORY_NAME, category.getName());
+
+        //update the row in the table
+        //in the format .update(tablename, column/value, selections, selection args)
+        int rowsAffected = db.update(TABLE_CATEGORIES, values, KEY_CATEGORY_ID +" = ?", new String[] {String.valueOf(category.getId())});
+
+        //close connection to the database
+        db.close();
+
+        return rowsAffected;
+    }
+
+
+    public void deleteCategory(Category category){
+        //get reference to the database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //delete account
+        db.delete(TABLE_CATEGORIES, KEY_CATEGORY_ID +" = ?", new String[]{String.valueOf(category.getId())});
 
         //close connection to database
         db.close();

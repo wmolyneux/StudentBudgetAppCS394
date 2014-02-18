@@ -29,16 +29,26 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     ListView list;
     ArrayList<String> values;
     Account currentAcc;
+    TransactionAdapterListener listen;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_history, container, false);
         context = inflate;
+
+        return inflate;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         db = new SQLiteHelper(getActivity());
         currentAcc = (Account) getArguments().getSerializable("ACCOUNT");
         setupTabHost();
 
-        return inflate;
+        listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter, values);
+        list.setOnItemLongClickListener(listen);
+        list.setOnItemClickListener(listen);
     }
 
     private void setupTabHost() {
@@ -110,7 +120,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
 
         adapter = new ArrayAdapter<String>(getActivity(), R.layout.listview_accounts, values);
         //setup onclick listeners using adapter listener.
-        TransactionAdapterListener listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter, values);
+        listen = new TransactionAdapterListener(getActivity(), transactions, db, adapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
 

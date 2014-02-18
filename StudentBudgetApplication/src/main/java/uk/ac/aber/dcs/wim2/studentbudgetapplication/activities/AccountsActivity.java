@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.AccountAdapterListener;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
@@ -73,6 +74,10 @@ public class AccountsActivity extends ListActivity {
     protected void onResume() {
         super.onResume();
         db = new SQLiteHelper(this);
+
+        //create categories if they dont exist
+        populateCategoryTable();
+
         accounts = db.getAllAccounts();
 
         //prepare values for including in the listView
@@ -92,4 +97,18 @@ public class AccountsActivity extends ListActivity {
         this.getListView().setOnItemLongClickListener(listen);
         this.getListView().setOnItemClickListener(listen);
     }
+
+    private void populateCategoryTable() {
+        if(db.getAllTransactions().size()==0){
+            db.addCategory(new Category("Food"));
+            db.addCategory(new Category("Booze"));
+            db.addCategory(new Category("Sport"));
+            db.addCategory(new Category("University"));
+            db.addCategory(new Category("Travel"));
+            db.addCategory(new Category("Clothing"));
+            db.addCategory(new Category("Other"));
+        }
+    }
+
+
 }
