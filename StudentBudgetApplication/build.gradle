@@ -24,4 +24,8 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:13.0.0'
+    compile files('libs/sqlcipher.jar')
+    compile files('libs/guava-r09.jar')
+    compile files('libs/commons-codec.jar')
+    compile files('libs/armeabizip.jar')
 }

@@ -5,7 +5,7 @@
     <string-array name="items">
         <item>Overview</item>
         <item>Report</item>
-        <item>Budgets</item>
+        <item>New Budget</item>
         <item>History</item>
         <item>New Transaction</item>
     </string-array>

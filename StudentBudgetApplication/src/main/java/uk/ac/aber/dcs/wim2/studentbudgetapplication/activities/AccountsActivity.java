@@ -99,7 +99,7 @@ public class AccountsActivity extends ListActivity {
     }
 
     private void populateCategoryTable() {
-        if(db.getAllTransactions().size()==0){
+        if(db.getAllCategories().size()==0){
             db.addCategory(new Category("Food"));
             db.addCategory(new Category("Booze"));
             db.addCategory(new Category("Sport"));
