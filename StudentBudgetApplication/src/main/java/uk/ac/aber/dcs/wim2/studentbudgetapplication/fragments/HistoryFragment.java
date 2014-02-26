@@ -17,18 +17,20 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TransactionAdapterListener;
 
 public class HistoryFragment extends ListFragment implements TabHost.OnTabChangeListener {
 
     TabHost tabHost;
     List<Transaction> transactions = null;
-    SQLiteHelper db;
+    SQLiteDatabaseHelper db;
     ArrayAdapter<String> adapter;
     View context;
     ListView list;
     ArrayList<String> values;
-    Account currentAcc;
+    Detail detail;
     TransactionAdapterListener listen;
 
     @Override
@@ -42,11 +44,12 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        db = new SQLiteHelper(getActivity());
-        currentAcc = (Account) getArguments().getSerializable("ACCOUNT");
+        db = new SQLiteDatabaseHelper(getActivity());
+        detail = (Detail) getArguments().getSerializable("detail");
+
         setupTabHost();
 
-        listen = new TransactionAdapterListener(getActivity(), currentAcc, transactions, db, adapter, values);
+        listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, adapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
     }
@@ -102,7 +105,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         if(tabHost.getCurrentTab()==0){
             transactions = new ArrayList<Transaction>();
             for (Transaction transaction : db.getAllTransactions()){
-                if(transaction.getAccountId()==currentAcc.getId() && !transaction.getType().equalsIgnoreCase("minus")){
+                if(!transaction.getType().equalsIgnoreCase("minus")){
                     values.add(transaction.getAmount().toString());
                     transactions.add(transaction);
                 }
@@ -111,7 +114,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         else{
             transactions = new ArrayList<Transaction>();
             for (Transaction transaction : db.getAllTransactions()){
-                if(transaction.getAccountId()==currentAcc.getId() && transaction.getType().equalsIgnoreCase("minus")){
+                if(transaction.getType().equalsIgnoreCase("minus")){
                     values.add("-"+transaction.getAmount().toString());
                     transactions.add(transaction);
                 }
@@ -120,7 +123,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
 
         adapter = new ArrayAdapter<String>(getActivity(), R.layout.listview_accounts, values);
         //setup onclick listeners using adapter listener.
-        listen = new TransactionAdapterListener(getActivity(), currentAcc, transactions, db, adapter, values);
+        listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, adapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
 

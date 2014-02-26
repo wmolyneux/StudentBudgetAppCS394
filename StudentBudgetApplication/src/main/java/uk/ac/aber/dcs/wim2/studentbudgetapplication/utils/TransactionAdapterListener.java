@@ -18,6 +18,8 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivi
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
 
 import static android.widget.AdapterView.OnItemClickListener;
 import static android.widget.AdapterView.OnItemLongClickListener;
@@ -29,19 +31,19 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
 
     Context context;
     List<Transaction> transactions;
-    SQLiteHelper db;
+    SQLiteDatabaseHelper db;
     ArrayAdapter<String> adapter;
     ArrayList<String> values;
-    Account current;
+    Detail detail;
 
-    public TransactionAdapterListener(Context con, Account account,
-                List<Transaction> trans, SQLiteHelper database, ArrayAdapter<String> adap, ArrayList<String> vals){
+    public TransactionAdapterListener(Context con, Detail det,
+                List<Transaction> trans, SQLiteDatabaseHelper database, ArrayAdapter<String> adap, ArrayList<String> vals){
         context = con;
         transactions = trans;
         db = database;
         adapter = adap;
         values = vals;
-        current = account;
+        detail = det;
 
     }
 
@@ -100,14 +102,16 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
         alertDialog.show();
     }
 
-    private void adjustBalance(SQLiteHelper db, String type, Float amount) {
-        if(type.equalsIgnoreCase("minus")){
-            current.setBalance(current.getBalance()+Float.valueOf(amount.toString()));
+    private void adjustBalance(SQLiteDatabaseHelper db, String type, Float amount) {
 
-        }
-        else{
-            current.setBalance(current.getBalance()-Float.valueOf(amount.toString()));
-        }
-        db.updateAccount(current);
+        //currently doing nothing
+//        if(type.equalsIgnoreCase("minus")){
+//            current.setBalance(current.getBalance()+Float.valueOf(amount.toString()));
+//
+//        }
+//        else{
+//            current.setBalance(current.getBalance()-Float.valueOf(amount.toString()));
+//        }
+//        db.updateAccount(current);
     }
 }

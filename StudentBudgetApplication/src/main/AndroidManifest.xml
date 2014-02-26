@@ -35,8 +35,24 @@
             android:label="@string/title_activity_new_account" >
         </activity>
         <activity
-            android:name=".activities.TransactionActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity"
             android:label="@string/title_activity_transaction" >
+        </activity>
+        <activity
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.IncomeActivity"
+            android:label="@string/title_activity_income" >
+        </activity>
+        <activity
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.ExpenseActivity"
+            android:label="@string/title_activity_expense" >
+        </activity>
+        <activity
+            android:name=".newActivities.AcademicYearActivity"
+            android:label="@string/title_activity_term" >
+        </activity>
+        <activity
+            android:name=".newActivities.DetailActivity"
+            android:label="@string/title_activity_detail" >
         </activity>
     </application>
 

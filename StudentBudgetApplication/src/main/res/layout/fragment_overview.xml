@@ -22,18 +22,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Balance:"
-            android:id="@+id/balanceText"
+            android:text="Weekly income:"
+            android:id="@+id/incometext"
             android:layout_marginTop="21dp"
             android:layout_below="@+id/textView"
-            android:layout_toLeftOf="@+id/textView"
-            android:layout_marginRight="11dp"/>
+            />
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/balanceNum"
-            android:layout_alignTop="@+id/balanceText"
-            android:layout_alignLeft="@+id/textView"/>
+            android:id="@+id/incomeNum"
+            android:layout_alignTop="@+id/incometext"
+            android:layout_toRightOf="@+id/incometext"
+            android:layout_marginLeft="15dp"/>
 </RelativeLayout>

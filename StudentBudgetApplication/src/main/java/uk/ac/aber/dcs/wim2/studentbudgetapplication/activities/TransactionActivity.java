@@ -12,10 +12,10 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
 
 public class TransactionActivity extends Activity implements View.OnClickListener{
 
-    TextView account;
     TextView amount;
     TextView shortDesc;
     TextView type;
@@ -35,16 +35,15 @@ public class TransactionActivity extends Activity implements View.OnClickListene
 
         transaction = (Transaction)getIntent().getSerializableExtra("TRANSACTION");
         SQLiteHelper db = new SQLiteHelper(this);
-        Account current = db.getAccount(transaction.getAccountId());
 
         //Enter the transaction information into the layout
-        enterTransactionInformation(current);
+        enterTransactionInformation();
 
     }
 
-    private void enterTransactionInformation(Account current) {
-        Toast.makeText(this, current.getId()+"", Toast.LENGTH_LONG).show();
-        account.setText(current.getAccountName());
+    private void enterTransactionInformation() {
+
+
         amount.setText(transaction.getAmount().toString());
         shortDesc.setText(transaction.getShortDesc());
         if(!transaction.getType().equalsIgnoreCase("minus")){
@@ -58,7 +57,6 @@ public class TransactionActivity extends Activity implements View.OnClickListene
     }
 
     private void initialiseViews() {
-        account = (TextView) findViewById(R.id.accountValue);
         amount = (TextView) findViewById(R.id.amountValue);
         shortDesc = (TextView) findViewById(R.id.descValue);
         type = (TextView) findViewById(R.id.typeValue);

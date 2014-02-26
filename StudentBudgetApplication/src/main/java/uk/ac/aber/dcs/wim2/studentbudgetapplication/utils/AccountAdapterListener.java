@@ -91,12 +91,12 @@ public class AccountAdapterListener implements OnItemLongClickListener, OnItemCl
     }
 
     private void removeAccountsTransactions(Account account) {
-        for(Transaction transaction : db.getAllTransactions()){
-            System.out.println(transaction.getAccountId());
-            if(transaction.getAccountId()==account.getId()){
-                db.deleteTransaction(transaction);
-
-            }
-        }
+//        for(Transaction transaction : db.getAllTransactions()){
+//            System.out.println(transaction.getAccountId());
+//            if(transaction.getAccountId()==account.getId()){
+//                db.deleteTransaction(transaction);
+//
+//            }
+//        }
     }
 }

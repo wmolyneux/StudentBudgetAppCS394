@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
@@ -54,6 +55,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
         for (Category cat : db.getAllCategories()){
             tempCategories.add(cat.getName());
         }
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (getActivity(), android.R.layout.simple_spinner_item, tempCategories);

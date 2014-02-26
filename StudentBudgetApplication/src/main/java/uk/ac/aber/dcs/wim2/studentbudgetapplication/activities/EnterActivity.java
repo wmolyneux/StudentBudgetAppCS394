@@ -1,26 +1,23 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import net.sqlcipher.database.SQLiteDatabase;
-
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.SQLCipher.AccountDataSQLHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.AcademicYearActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.DetailActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
 
 public class EnterActivity extends Activity implements View.OnClickListener{
 
     Button entryButton;
+    SQLiteDatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +50,58 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 //                Toast.makeText(this, db.getAllAccounts().size()+"", Toast.LENGTH_LONG).show();
 //
 
-                SQLiteHelper db = new SQLiteHelper(this);
-                if(db.getAllAccounts().size() == 0){
-                    db.addAccount(new Account("Savings", Float.valueOf(2000), Float.valueOf(200)));
+
+
+//code before changes
+//                SQLiteHelper db = new SQLiteHelper(this);
+//                if(db.getAllAccounts().size() == 0){
+//                    db.addAccount(new Account("Savings", Float.valueOf(2000), Float.valueOf(200)));
+//                }
+//
+//
+//                Intent intent = new Intent(this, AccountsActivity.class);
+//                startActivity(intent);
+
+
+                //new code
+
+//                SQLiteHelper db = new SQLiteHelper(this);
+
+//                if(db.getAllAccounts().size()==0){
+                db = new SQLiteDatabaseHelper(this);
+                populateCategoryTable();
+
+                Detail detail = null;
+                for(Detail det : db.getAllDetails()){
+                    detail = det;
                 }
+                if(detail==null){
+                    Intent intent = new Intent(this, AcademicYearActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(this, DetailActivity.class);
+                    startActivity(intent);
+                }
+//                }
 
-
-                Intent intent = new Intent(this, AccountsActivity.class);
-                startActivity(intent);
         }
+
+
     }
 
 
-
+    private void populateCategoryTable() {
+        if(db.getAllCategories().size()==0){
+            db.addCategory(new Category("Food"));
+            db.addCategory(new Category("Booze"));
+            db.addCategory(new Category("Sport"));
+            db.addCategory(new Category("University"));
+            db.addCategory(new Category("Travel"));
+            db.addCategory(new Category("Clothing"));
+            db.addCategory(new Category("Other"));
+        }
+    }
 
 
 }

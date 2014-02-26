@@ -9,7 +9,6 @@ import java.io.Serializable;
 public class Transaction implements Serializable{
 
     private int id;
-    private int accountId;
     private Float amount;
     private String shortDesc;
     private String type;
@@ -18,9 +17,8 @@ public class Transaction implements Serializable{
 
     public Transaction(){}
 
-    public Transaction(int accountIden, Float amount, String desc, String type, String cat, String date){
+    public Transaction(Float amount, String desc, String type, String cat, String date){
         super();
-        this.accountId = accountIden;
         this.amount = amount;
         this.shortDesc = desc;
         this.type = type;
@@ -30,15 +28,11 @@ public class Transaction implements Serializable{
 
     @Override
     public String toString() {
-        return "Transaction [id="+id+", accountId="+accountId+", amount="+amount+", shortDesc="+shortDesc+", type="+type+", category="+category+", date="+date+"]";
+        return "Transaction [id="+id+", amount="+amount+", shortDesc="+shortDesc+", type="+type+", category="+category+", date="+date+"]";
     }
 
     public int getId() {
         return id;
-    }
-
-    public int getAccountId() {
-        return accountId;
     }
 
     public Float getAmount() {
@@ -63,10 +57,6 @@ public class Transaction implements Serializable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
     }
 
     public void setAmount(Float amount) {

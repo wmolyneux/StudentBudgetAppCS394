@@ -14,6 +14,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
 
 public class OverviewFragment extends Fragment {
 
@@ -24,13 +25,17 @@ public class OverviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_overview, container, false);
-
         Bundle bundle = getArguments();
-        currentAccount = (Account)bundle.getSerializable("ACCOUNT");
-
-        balanceText = (TextView)inflate.findViewById(R.id.balanceNum);
-
-        balanceText.setText("£"+currentAccount.getBalance().toString());
+        Detail detail = (Detail) bundle.getSerializable("detail");
+        balanceText = (TextView) inflate.findViewById(R.id.incomeNum);
+        balanceText.setText(detail.getWeeklyIncome().toString());
+//
+//        Bundle bundle = getArguments();
+//        currentAccount = (Account)bundle.getSerializable("ACCOUNT");
+//
+//        balanceText = (TextView)inflate.findViewById(R.id.balanceNum);
+//
+//        balanceText.setText("£"+currentAccount.getBalance().toString());
         return inflate;
     }
 

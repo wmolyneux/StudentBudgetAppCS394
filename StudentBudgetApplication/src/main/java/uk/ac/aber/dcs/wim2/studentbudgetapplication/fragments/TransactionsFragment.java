@@ -21,6 +21,8 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
 
 public class TransactionsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
@@ -34,11 +36,11 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     Button create;
 
     //saved instance account
-    Account currentAcc;
+    Detail detail;
 
     //values for new transaction
     String tmpType;
-    SQLiteHelper db;
+    SQLiteDatabaseHelper db;
 
 
 
@@ -47,7 +49,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         View inflate = inflater.inflate(R.layout.fragment_transactions, container, false);
         registerViews(inflate);
 
-        currentAcc = (Account) getArguments().getSerializable("ACCOUNT");
+        detail = (Detail) getArguments().getSerializable("detail");
         return inflate;
     }
 
@@ -57,7 +59,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         type = (ToggleButton) inflate.findViewById(R.id.typeButton);
         category = (Spinner) inflate.findViewById(R.id.categorySpinner);
 
-        db = new SQLiteHelper(getActivity());
+        db = new SQLiteDatabaseHelper(getActivity());
         ArrayList<String> tempCategories = new ArrayList<String>();
         for (Category cat : db.getAllCategories()){
             tempCategories.add(cat.getName());
@@ -91,9 +93,9 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
                 if(validateInput()){
 
                     Transaction newTrans =
-                            new Transaction(currentAcc.getId(), Float.valueOf(amount.getText().toString()),
+                            new Transaction(Float.valueOf(amount.getText().toString()),
                                     shortDesc.getText().toString(), tmpType, category.getSelectedItem().toString(), date.getText().toString());
-                    SQLiteHelper db = new SQLiteHelper(getActivity());
+                    SQLiteDatabaseHelper db = new SQLiteDatabaseHelper(getActivity());
                     db.addTransaction(newTrans);
                     adjustBalance(db);
                     cleanForm();
@@ -107,15 +109,16 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
     }
 
-    private void adjustBalance(SQLiteHelper db) {
-        if(tmpType.equalsIgnoreCase("minus")){
-            currentAcc.setBalance(currentAcc.getBalance()-Float.valueOf(amount.getText().toString()));
-
-        }
-        else{
-            currentAcc.setBalance(currentAcc.getBalance()+Float.valueOf(amount.getText().toString()));
-        }
-        db.updateAccount(currentAcc);
+    private void adjustBalance(SQLiteDatabaseHelper db) {
+        //needs to imeplement new things
+//        if(tmpType.equalsIgnoreCase("minus")){
+//            currentAcc.setBalance(currentAcc.getBalance()-Float.valueOf(amount.getText().toString()));
+//
+//        }
+//        else{
+//            currentAcc.setBalance(currentAcc.getBalance()+Float.valueOf(amount.getText().toString()));
+//        }
+//        db.updateAccount(currentAcc);
     }
 
     public void cleanForm(){

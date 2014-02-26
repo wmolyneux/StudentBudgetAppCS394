@@ -287,152 +287,152 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      */
 
 
-
-    /**
-     * Function takes an transaction object and adds it into the database.
-     * @param transaction -  transaction object to be added to the database.
-     */
-    public void addTransaction(Transaction transaction){
-        //get reference to writable database
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        //create content values to add key to column/value
-        ContentValues values = new ContentValues();
-        values.put(KEY_TRANSACTION_ACCOUNTID, transaction.getAccountId());
-        values.put(KEY_TRANSACTION_AMOUNT, transaction.getAmount());
-        values.put(KEY_TRANSACTION_SHORTDESC, transaction.getShortDesc());
-        values.put(KEY_TRANSACTION_TYPE, transaction.getType());
-        values.put(KEY_TRANSACTION_CATEGORY, transaction.getCategory());
-        values.put(KEY_TRANSACTION_DATE, transaction.getDate());
-
-        //insert into database .insert(tablename, columnhack,
-        // key/value -> keys = columns names/ values = column values)
-        db.insert(TABLE_TRANSACTIONS, null, values);
-
-        //close db connection
-        db.close();
-
-    }
-
-    /**
-     * query database for an transaction using the given id parameter. creates a transaction object using the values
-     * from the first returned item from the query.
-     * @param id - id of the transaction to be found
-     * @return - returns first transaction object returned from database query
-     */
-    public Transaction getTransaction(int id){
-        //get the database reference
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        //construct query using Cursor class which allows read/write access to returned query set
-        Cursor cursor = //query format .query(table name, column names, selections, selection args, group by, having, order by, limit)
-                db.query(TABLE_TRANSACTIONS, TRANSACTION_COLUMNS, " id = ?", new String[] {String.valueOf(id)}, null, null, null, null);
-
-        //if we got results, get the first one
-        if(cursor != null){
-            cursor.moveToFirst();
-        }
-
-        //construct account using values returned from query
-        Transaction trans = new Transaction();
-        trans.setId(Integer.parseInt(cursor.getString(0)));
-        trans.setAccountId(Integer.parseInt(cursor.getString(1)));
-        trans.setAmount(Float.parseFloat(cursor.getString(2)));
-        trans.setShortDesc(cursor.getString(3));
-        trans.setType(cursor.getString(4));
-        trans.setCategory(cursor.getString(5));
-        trans.setDate(cursor.getString(6));
-
-        //return account
-        return trans;
-
-
-    }
-
-    /**
-     * Queries the transaction table for all transactions and returns them all in a linkedlist
-     *
-     * @return - Linked list of all transactions in the table
-     */
-    public List<Transaction> getAllTransactions(){
-        List<Transaction> transactions = new LinkedList<Transaction>();
-
-        //build query
-        String query = "SELECT * FROM "+TABLE_TRANSACTIONS;
-
-        //get reference to database
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        //go over each row, build an account item and add it to the list.
-        Transaction trans = null;
-        if(cursor.moveToFirst()){
-            do{
-                trans = new Transaction();
-                trans.setId(Integer.parseInt(cursor.getString(0)));
-                trans.setAccountId(Integer.parseInt(cursor.getString(1)));
-                trans.setAmount(Float.parseFloat(cursor.getString(2)));
-                trans.setShortDesc(cursor.getString(3));
-                trans.setType(cursor.getString(4));
-                trans.setCategory(cursor.getString(5));
-                trans.setDate(cursor.getString(6));
-
-
-                transactions.add(trans);
-
-
-            }while(cursor.moveToNext());
-
-        }
-
-        db.close();
-
-        return transactions;
-    }
-
-    /**
-     * takes a transaction and updates them via its id
-     *
-     * @param transaction - transaction to update
-     * @return - number of rows affected
-     */
-    public int updateTransaction(Transaction transaction){
-
-        //get reference to database
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        //create contentValues to add key to column/value
-        ContentValues values = new ContentValues();
-        values.put(KEY_TRANSACTION_ACCOUNTID, transaction.getAccountId());
-        values.put(KEY_TRANSACTION_AMOUNT, transaction.getAmount());
-        values.put(KEY_TRANSACTION_SHORTDESC, transaction.getShortDesc());
-        values.put(KEY_TRANSACTION_TYPE, transaction.getType());
-        values.put(KEY_TRANSACTION_CATEGORY, transaction.getCategory());
-        values.put(KEY_TRANSACTION_DATE, transaction.getDate());
-
-
-        //update the row in the table
-        //in the format .update(tablename, column/value, selections, selection args)
-        int rowsAffected = db.update(TABLE_TRANSACTIONS, values, KEY_TRANSACTION_ID +" = ?", new String[] {String.valueOf(transaction.getId())});
-
-        //close connection to the database
-        db.close();
-
-        return rowsAffected;
-    }
-
-
-    public void deleteTransaction(Transaction transaction){
-        //get reference to the database
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        //delete account
-        db.delete(TABLE_TRANSACTIONS, KEY_TRANSACTION_ID +" = ?", new String[]{String.valueOf(transaction.getId())});
-
-        //close connection to database
-        db.close();
-
-    }
+//
+//    /**
+//     * Function takes an transaction object and adds it into the database.
+//     * @param transaction -  transaction object to be added to the database.
+//     */
+//    public void addTransaction(Transaction transaction){
+//        //get reference to writable database
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        //create content values to add key to column/value
+//        ContentValues values = new ContentValues();
+//        values.put(KEY_TRANSACTION_ACCOUNTID, transaction.getAccountId());
+//        values.put(KEY_TRANSACTION_AMOUNT, transaction.getAmount());
+//        values.put(KEY_TRANSACTION_SHORTDESC, transaction.getShortDesc());
+//        values.put(KEY_TRANSACTION_TYPE, transaction.getType());
+//        values.put(KEY_TRANSACTION_CATEGORY, transaction.getCategory());
+//        values.put(KEY_TRANSACTION_DATE, transaction.getDate());
+//
+//        //insert into database .insert(tablename, columnhack,
+//        // key/value -> keys = columns names/ values = column values)
+//        db.insert(TABLE_TRANSACTIONS, null, values);
+//
+//        //close db connection
+//        db.close();
+//
+//    }
+//
+//    /**
+//     * query database for an transaction using the given id parameter. creates a transaction object using the values
+//     * from the first returned item from the query.
+//     * @param id - id of the transaction to be found
+//     * @return - returns first transaction object returned from database query
+//     */
+//    public Transaction getTransaction(int id){
+//        //get the database reference
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        //construct query using Cursor class which allows read/write access to returned query set
+//        Cursor cursor = //query format .query(table name, column names, selections, selection args, group by, having, order by, limit)
+//                db.query(TABLE_TRANSACTIONS, TRANSACTION_COLUMNS, " id = ?", new String[] {String.valueOf(id)}, null, null, null, null);
+//
+//        //if we got results, get the first one
+//        if(cursor != null){
+//            cursor.moveToFirst();
+//        }
+//
+//        //construct account using values returned from query
+//        Transaction trans = new Transaction();
+//        trans.setId(Integer.parseInt(cursor.getString(0)));
+//        trans.setAccountId(Integer.parseInt(cursor.getString(1)));
+//        trans.setAmount(Float.parseFloat(cursor.getString(2)));
+//        trans.setShortDesc(cursor.getString(3));
+//        trans.setType(cursor.getString(4));
+//        trans.setCategory(cursor.getString(5));
+//        trans.setDate(cursor.getString(6));
+//
+//        //return account
+//        return trans;
+//
+//
+//    }
+//
+//    /**
+//     * Queries the transaction table for all transactions and returns them all in a linkedlist
+//     *
+//     * @return - Linked list of all transactions in the table
+//     */
+//    public List<Transaction> getAllTransactions(){
+//        List<Transaction> transactions = new LinkedList<Transaction>();
+//
+//        //build query
+//        String query = "SELECT * FROM "+TABLE_TRANSACTIONS;
+//
+//        //get reference to database
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery(query, null);
+//
+//        //go over each row, build an account item and add it to the list.
+//        Transaction trans = null;
+//        if(cursor.moveToFirst()){
+//            do{
+//                trans = new Transaction();
+//                trans.setId(Integer.parseInt(cursor.getString(0)));
+//                trans.setAccountId(Integer.parseInt(cursor.getString(1)));
+//                trans.setAmount(Float.parseFloat(cursor.getString(2)));
+//                trans.setShortDesc(cursor.getString(3));
+//                trans.setType(cursor.getString(4));
+//                trans.setCategory(cursor.getString(5));
+//                trans.setDate(cursor.getString(6));
+//
+//
+//                transactions.add(trans);
+//
+//
+//            }while(cursor.moveToNext());
+//
+//        }
+//
+//        db.close();
+//
+//        return transactions;
+//    }
+//
+//    /**
+//     * takes a transaction and updates them via its id
+//     *
+//     * @param transaction - transaction to update
+//     * @return - number of rows affected
+//     */
+//    public int updateTransaction(Transaction transaction){
+//
+//        //get reference to database
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        //create contentValues to add key to column/value
+//        ContentValues values = new ContentValues();
+//        values.put(KEY_TRANSACTION_ACCOUNTID, transaction.getAccountId());
+//        values.put(KEY_TRANSACTION_AMOUNT, transaction.getAmount());
+//        values.put(KEY_TRANSACTION_SHORTDESC, transaction.getShortDesc());
+//        values.put(KEY_TRANSACTION_TYPE, transaction.getType());
+//        values.put(KEY_TRANSACTION_CATEGORY, transaction.getCategory());
+//        values.put(KEY_TRANSACTION_DATE, transaction.getDate());
+//
+//
+//        //update the row in the table
+//        //in the format .update(tablename, column/value, selections, selection args)
+//        int rowsAffected = db.update(TABLE_TRANSACTIONS, values, KEY_TRANSACTION_ID +" = ?", new String[] {String.valueOf(transaction.getId())});
+//
+//        //close connection to the database
+//        db.close();
+//
+//        return rowsAffected;
+//    }
+//
+//
+//    public void deleteTransaction(Transaction transaction){
+//        //get reference to the database
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        //delete account
+//        db.delete(TABLE_TRANSACTIONS, KEY_TRANSACTION_ID +" = ?", new String[]{String.valueOf(transaction.getId())});
+//
+//        //close connection to database
+//        db.close();
+//
+//    }
 
     /**
      *

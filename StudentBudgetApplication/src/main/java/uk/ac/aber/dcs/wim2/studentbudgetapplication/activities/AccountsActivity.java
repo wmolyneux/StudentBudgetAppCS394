@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.AccountAdapterListener;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
@@ -22,7 +23,7 @@ public class AccountsActivity extends ListActivity {
 
     List<Account> accounts = null;
     Context context =  this;
-    SQLiteHelper db;
+    SQLiteDatabaseHelper db;
     ArrayAdapter<String> adapter;
     ArrayList<String> values;
 
@@ -56,46 +57,46 @@ public class AccountsActivity extends ListActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == 1){
-            switch (requestCode){
-                case 0:
-                    Account account = (Account) data.getExtras().getSerializable("newAcc");
-                    accounts.add(account);
-                    adapter.add(account.getAccountName());
-                    db.addAccount(account);
-                    adapter.notifyDataSetInvalidated();
-                    break;
-
-            }
-        }
+//        if(resultCode == 1){
+//            switch (requestCode){
+//                case 0:
+//                    Account account = (Account) data.getExtras().getSerializable("newAcc");
+//                    accounts.add(account);
+//                    adapter.add(account.getAccountName());
+//                    db.addAccount(account);
+//                    adapter.notifyDataSetInvalidated();
+//                    break;
+//
+//            }
+//        }
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
-        db = new SQLiteHelper(this);
-
-        //create categories if they dont exist
-        populateCategoryTable();
-
-        accounts = db.getAllAccounts();
-
-        //prepare values for including in the listView
-        values = new ArrayList<String>();
-        for (Account account : accounts) {
-            values.add(account.getAccountName());
-        }
-
-        //setup adapter items
-        adapter =
-                new ArrayAdapter<String>(this, R.layout.listview_accounts, values);
-        setListAdapter(adapter);
-
-        //setup onclick listeners using adapter listener.
-        AccountAdapterListener listen = new AccountAdapterListener(context, accounts, db, adapter);
-
-        this.getListView().setOnItemLongClickListener(listen);
-        this.getListView().setOnItemClickListener(listen);
+//        super.onResume();
+//        db = new SQLiteHelper(this);
+//
+//        //create categories if they dont exist
+//        populateCategoryTable();
+//
+//        accounts = db.getAllAccounts();
+//
+//        //prepare values for including in the listView
+//        values = new ArrayList<String>();
+//        for (Account account : accounts) {
+//            values.add(account.getAccountName());
+//        }
+//
+//        //setup adapter items
+//        adapter =
+//                new ArrayAdapter<String>(this, R.layout.listview_accounts, values);
+//        setListAdapter(adapter);
+//
+//        //setup onclick listeners using adapter listener.
+//        AccountAdapterListener listen = new AccountAdapterListener(context, accounts, db, adapter);
+//
+//        this.getListView().setOnItemLongClickListener(listen);
+//        this.getListView().setOnItemClickListener(listen);
     }
 
     private void populateCategoryTable() {
