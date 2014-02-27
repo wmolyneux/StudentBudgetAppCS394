@@ -14,6 +14,7 @@ public class Constant implements Serializable{
     public Constant(){}
 
     public Constant(String type, Float amount, String recurr) {
+        super();
         this.type = type;
         this.amount = amount;
         this.recurr = recurr;

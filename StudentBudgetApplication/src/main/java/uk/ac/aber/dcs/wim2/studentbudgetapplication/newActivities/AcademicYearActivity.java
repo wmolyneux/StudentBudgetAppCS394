@@ -70,7 +70,7 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
                 break;
             case R.id.DateToIncomeButton:
                 if(validate()){
-                    Detail det = new Detail("", "", 0, Float.valueOf(0), Float.valueOf(0), Float.valueOf(0));
+                    Detail det = new Detail("", "", 0, Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0));
                     det.setStartDate(startDate.getText().toString());
                     det.setEndDate(endDate.getText().toString());
 

@@ -13,32 +13,36 @@ public class Detail implements Serializable {
     private Float weeklyIncome;
     private Float weeklyExpense;
     private Float weeklyBalance;
+    private Float balance;
 
     public Detail(){}
 
     public Detail(String startDate, String endDate, int weeksRemaining, Float weeklyIncome,
-                  Float weeklyExpense, Float weeklyBalance) {
+                  Float weeklyExpense, Float weeklyBalance, Float balance) {
+        super();
         this.startDate = startDate;
         this.endDate = endDate;
         this.weeksRemaining = weeksRemaining;
         this.weeklyIncome = weeklyIncome;
         this.weeklyExpense = weeklyExpense;
         this.weeklyBalance = weeklyBalance;
+        this.balance = balance;
     }
+
 
     @Override
     public String toString() {
         return "Detail{" +
-                "startDate='" + startDate + '\'' +
+                "id=" + id +
+                ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", weeksRemaining=" + weeksRemaining +
                 ", weeklyIncome=" + weeklyIncome +
                 ", weeklyExpense=" + weeklyExpense +
                 ", weeklyBalance=" + weeklyBalance +
+                ", balance=" + balance +
                 '}';
     }
-
-
 
     /**
      * Gets and sets
@@ -97,5 +101,13 @@ public class Detail implements Serializable {
 
     public void setWeeklyBalance(Float weeklyBalance) {
         this.weeklyBalance = weeklyBalance;
+    }
+
+    public Float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Float balance) {
+        this.balance = balance;
     }
 }

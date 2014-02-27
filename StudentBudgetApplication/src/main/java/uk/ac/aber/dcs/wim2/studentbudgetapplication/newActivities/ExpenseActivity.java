@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 
 public class ExpenseActivity extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener, TextWatcher {
@@ -39,6 +40,7 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
 
     private Detail detail;
     private SQLiteDatabaseHelper db;
+
 
 
     @Override
@@ -137,8 +139,23 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         db.addConstant(other);
 
         detail.setWeeklyExpense(Float.valueOf(weeklyExpense.getText().toString()));
+        calculateBalance();
+
+
         db.addDetail(detail);
 
+    }
+
+    private void calculateBalance() {
+        //calculate the balance
+        for (Constant con : db.getAllConstants()){
+            if(con.getType().equalsIgnoreCase("income")){
+                detail.setBalance(detail.getBalance()+con.getAmount());
+            }
+            else{
+                detail.setBalance(detail.getBalance()+con.getAmount());
+            }
+        }
     }
 
     private boolean validate() {
