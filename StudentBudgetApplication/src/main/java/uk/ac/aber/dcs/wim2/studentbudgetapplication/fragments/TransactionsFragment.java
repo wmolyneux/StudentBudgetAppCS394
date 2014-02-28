@@ -69,7 +69,6 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         else{
             date.setText(day+"-"+(month+1)+"-"+year);
         }
-//        detail = (Detail) getArguments().getSerializable("detail");
         return inflate;
     }
 
