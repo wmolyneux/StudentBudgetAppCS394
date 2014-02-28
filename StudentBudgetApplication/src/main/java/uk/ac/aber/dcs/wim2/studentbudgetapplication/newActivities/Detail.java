@@ -9,24 +9,28 @@ public class Detail implements Serializable {
     private int id;
     private String startDate;
     private String endDate;
+    private int totalWeeks;
     private int weeksRemaining;
     private Float weeklyIncome;
     private Float weeklyExpense;
     private Float weeklyBalance;
     private Float balance;
+    private String flag;
 
     public Detail(){}
 
-    public Detail(String startDate, String endDate, int weeksRemaining, Float weeklyIncome,
-                  Float weeklyExpense, Float weeklyBalance, Float balance) {
+    public Detail(String startDate, String endDate,int totalWeeks, int weeksRemaining, Float weeklyIncome,
+                  Float weeklyExpense, Float weeklyBalance, Float balance, String flag) {
         super();
         this.startDate = startDate;
         this.endDate = endDate;
+        this.totalWeeks = totalWeeks;
         this.weeksRemaining = weeksRemaining;
         this.weeklyIncome = weeklyIncome;
         this.weeklyExpense = weeklyExpense;
         this.weeklyBalance = weeklyBalance;
         this.balance = balance;
+        this.flag = flag;
     }
 
 
@@ -36,11 +40,13 @@ public class Detail implements Serializable {
                 "id=" + id +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
+                ", totalWeeks=" + totalWeeks +
                 ", weeksRemaining=" + weeksRemaining +
                 ", weeklyIncome=" + weeklyIncome +
                 ", weeklyExpense=" + weeklyExpense +
                 ", weeklyBalance=" + weeklyBalance +
                 ", balance=" + balance +
+                ", flag=" + flag +
                 '}';
     }
 
@@ -69,6 +75,14 @@ public class Detail implements Serializable {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public int getTotalWeeks() {
+        return totalWeeks;
+    }
+
+    public void setTotalWeeks(int totalWeeks) {
+        this.totalWeeks = totalWeeks;
     }
 
     public int getWeeksRemaining() {
@@ -109,5 +123,13 @@ public class Detail implements Serializable {
 
     public void setBalance(Float balance) {
         this.balance = balance;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 }

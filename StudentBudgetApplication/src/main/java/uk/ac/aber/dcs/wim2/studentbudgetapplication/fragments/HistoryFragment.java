@@ -45,7 +45,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
-        detail = (Detail) getArguments().getSerializable("detail");
+        detail = db.getAllDetails().get(0);// (Detail) getArguments().getSerializable("detail");
 
         setupTabHost();
 

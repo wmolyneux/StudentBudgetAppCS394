@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.AcademicYearActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.DetailActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
@@ -18,6 +20,7 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 
     Button entryButton;
     SQLiteDatabaseHelper db;
+    Button clear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,9 @@ public class EnterActivity extends Activity implements View.OnClickListener{
         entryButton = (Button)findViewById(R.id.enterButton);
         entryButton.setOnClickListener(this);
 
+        //testing purposes remove!!!!
+        clear = (Button) findViewById(R.id.clearDB);
+        clear.setOnClickListener(this);
 
 
     }
@@ -49,45 +55,32 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 //                db.addAccount(new Account("awdwadwdwd", Float.valueOf(2000), Float.valueOf(200)));
 //                Toast.makeText(this, db.getAllAccounts().size()+"", Toast.LENGTH_LONG).show();
 //
-
-
-
-//code before changes
-//                SQLiteHelper db = new SQLiteHelper(this);
-//                if(db.getAllAccounts().size() == 0){
-//                    db.addAccount(new Account("Savings", Float.valueOf(2000), Float.valueOf(200)));
-//                }
-//
-//
-//                Intent intent = new Intent(this, AccountsActivity.class);
-//                startActivity(intent);
-
-
-                //new code
-
-//                SQLiteHelper db = new SQLiteHelper(this);
-
-//                if(db.getAllAccounts().size()==0){
                 db = new SQLiteDatabaseHelper(this);
                 populateCategoryTable();
 
-                Detail detail = null;
-                for(Detail det : db.getAllDetails()){
-                    detail = det;
-                }
-                if(detail==null){
-                    Intent intent = new Intent(this, AcademicYearActivity.class);
-                    startActivity(intent);
-                }
-                else{
+                try{
+                    Detail detail = db.getAllDetails().get(0);
                     Intent intent = new Intent(this, DetailActivity.class);
                     startActivity(intent);
                 }
-//                }
+                catch(IndexOutOfBoundsException e){
+                    Intent intent = new Intent(this, AcademicYearActivity.class);
+                    startActivity(intent);
+                }
+                break;
 
+            case R.id.clearDB:
+                db = new SQLiteDatabaseHelper(this);
+                for (Detail det : db.getAllDetails()){
+                    db.deleteDetail(det);
+                }
+                for (Constant con : db.getAllConstants()){
+                    db.deleteConstant(con);
+                }
+                for (Transaction trans : db.getAllTransactions()){
+                    db.deleteTransaction(trans);
+                }
         }
-
-
     }
 
 

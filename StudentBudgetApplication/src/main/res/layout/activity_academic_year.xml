@@ -60,7 +60,29 @@
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:id="@+id/DateToIncomeButton"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="150dp"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Weeks in academic year:   "
+                android:id="@+id/textView3"
+                android:layout_marginLeft="38dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="0"
+                android:id="@+id/weeks"/>
     </LinearLayout>
 </RelativeLayout>

@@ -27,12 +27,12 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragme
 
 public class DetailActivity extends FragmentActivity {
 
-    private Detail detail;
+//    private Detail detail;
     private String[] drawerListViewItems;
     private ListView drawerListView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    private SQLiteDatabaseHelper db;
+//    private SQLiteDatabaseHelper db;
 
     @Override
     public void onBackPressed() {}
@@ -42,9 +42,9 @@ public class DetailActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        db = new SQLiteDatabaseHelper(this);
+//        db = new SQLiteDatabaseHelper(this);
 
-        detail = db.getAllDetails().get(0);
+//        detail = db.getAllDetails().get(0);
 
 
         manageFragments(new OverviewFragment(), R.id.content_frame);
@@ -112,11 +112,11 @@ public class DetailActivity extends FragmentActivity {
     }
 
     public void manageFragments(Fragment newFrag, int oldFragId){
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("detail", detail);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("detail", detail);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        newFrag.setArguments(bundle);
+//        newFrag.setArguments(bundle);
         transaction.replace(oldFragId, newFrag);
         transaction.commit();
 
@@ -150,5 +150,7 @@ public class DetailActivity extends FragmentActivity {
             drawerLayout.closeDrawer(drawerListView);
         }
     }
+
+
     
 }

@@ -10,7 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.joda.time.DateTime;
+import org.joda.time.Weeks;
 
 import java.util.Calendar;
 
@@ -26,7 +30,10 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
     private Calendar cal;
     private String startOrEnd;
     private Button next;
-    private SQLiteDatabaseHelper db;
+    private DateTime start;
+    private DateTime end;
+    TextView weeksText;
+    int weeks;
 
 
     @Override
@@ -47,6 +54,9 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
 
         next = (Button) findViewById(R.id.DateToIncomeButton);
         next.setOnClickListener(this);
+
+        weeksText = (TextView) findViewById(R.id.weeks);
+        
     }
 
 
@@ -70,10 +80,10 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
                 break;
             case R.id.DateToIncomeButton:
                 if(validate()){
-                    Detail det = new Detail("", "", 0, Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0));
+                    Detail det = new Detail("", "", 0, 0, Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), "Y");
                     det.setStartDate(startDate.getText().toString());
                     det.setEndDate(endDate.getText().toString());
-
+                    det.setTotalWeeks(weeks);
 
                     Intent intent = new Intent(this, IncomeActivity.class);
                     intent.putExtra("detail", det);
@@ -92,6 +102,10 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
             Toast.makeText(this, "Please select term end date", Toast.LENGTH_LONG).show();
             return false;
         }
+        if(weeks<=0){
+            Toast.makeText(this, "Please select valid term dates", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 
@@ -105,14 +119,24 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
             if(startOrEnd.equalsIgnoreCase("start")){
-                startDate.setText(selectedDay + " / " + (selectedMonth + 1) + " / "
+                startDate.setText(selectedDay + "-" + (selectedMonth + 1) + "-"
                         + selectedYear);
+                start = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
             }
             else{
-                endDate.setText(selectedDay + " / " + (selectedMonth + 1) + " / "
+                endDate.setText(selectedDay + "-" + (selectedMonth + 1) + "-"
                         + selectedYear);
+                end = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
             }
+            calculateWeeks();
         }
     };
+
+    private void calculateWeeks() {
+        if(!startDate.getText().toString().isEmpty() && !endDate.getText().toString().isEmpty()){
+            weeks = Weeks.weeksBetween(start, end).getWeeks();
+            weeksText.setText(weeks+"");
+        }
+    }
 
 }

@@ -33,11 +33,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_DETAIL_ID = "id";
     private static final String KEY_DETAIL_STARTDATE = "startDate";
     private static final String KEY_DETAIL_ENDDATE = "endDate";
+    private static final String KEY_DETAIL_TOTALWEEKS = "totalWeeks";
     private static final String KEY_DETAIL_WEEKSREMAINING = "weeksRemaining";
     private static final String KEY_DETAIL_WEEKLYINCOME = "weeklyIncome";
     private static final String KEY_DETAIL_WEEKLYEXPENSE = "weeklyExpense";
     private static final String KEY_DETAIL_WEEKLYBALANCE = "weeklyBalance";
     private static final String KEY_DETAIL_BALANCE = "balance";
+    private static final String KEY_DETAIL_FLAG = "flag";
 
     //Transaction table column names
     private static final String KEY_TRANSACTION_ID = "id";
@@ -51,8 +53,8 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CATEGORY_ID = "id";
     private static final String KEY_CATEGORY_NAME = "name";
 
-    private static final String[] DETAIL_COLUMNS = {KEY_DETAIL_ID, KEY_DETAIL_STARTDATE, KEY_DETAIL_ENDDATE, KEY_DETAIL_WEEKSREMAINING,
-                KEY_DETAIL_WEEKLYINCOME, KEY_DETAIL_WEEKLYEXPENSE, KEY_DETAIL_WEEKLYBALANCE, KEY_DETAIL_BALANCE};
+    private static final String[] DETAIL_COLUMNS = {KEY_DETAIL_ID, KEY_DETAIL_STARTDATE, KEY_DETAIL_ENDDATE, KEY_DETAIL_TOTALWEEKS, KEY_DETAIL_WEEKSREMAINING,
+                KEY_DETAIL_WEEKLYINCOME, KEY_DETAIL_WEEKLYEXPENSE, KEY_DETAIL_WEEKLYBALANCE, KEY_DETAIL_BALANCE, KEY_DETAIL_FLAG};
 
     private static final String[] CONSTANT_COLUMNS = {KEY_CONSTANT_ID, KEY_CONSTANT_TYPE, KEY_CONSTANT_AMOUNT, KEY_CONSTANT_RECURR};
 
@@ -77,11 +79,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "startDate TEXT, "+
                 "endDate TEXT, "+
+                "totalWeeks REAL, "+
                 "weeksRemaining REAL, "+
                 "weeklyIncome REAL, "+
                 "weeklyExpense REAL, "+
                 "weeklyBalance REAL, "+
-                "balance REAL)";
+                "balance REAL, "+
+                "flag TEXT)";
 
         db.execSQL(CREATE_DETAIL_TABLE);
 
@@ -148,11 +152,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_DETAIL_STARTDATE, detail.getStartDate());
         values.put(KEY_DETAIL_ENDDATE, detail.getEndDate());
+        values.put(KEY_DETAIL_TOTALWEEKS, detail.getTotalWeeks());
         values.put(KEY_DETAIL_WEEKSREMAINING, detail.getWeeksRemaining());
         values.put(KEY_DETAIL_WEEKLYINCOME, detail.getWeeklyIncome());
         values.put(KEY_DETAIL_WEEKLYEXPENSE, detail.getWeeklyExpense());
         values.put(KEY_DETAIL_WEEKLYBALANCE, detail.getWeeklyBalance());
         values.put(KEY_DETAIL_BALANCE, detail.getBalance());
+        values.put(KEY_DETAIL_FLAG, detail.getFlag());
 
 
         //insert into database .insert(tablename, columnhack,
@@ -188,11 +194,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         detail.setId(Integer.parseInt(cursor.getString(0)));
         detail.setStartDate(cursor.getString(1));
         detail.setEndDate(cursor.getString(2));
-        detail.setWeeksRemaining(Integer.parseInt(cursor.getString(3)));
-        detail.setWeeklyIncome(Float.valueOf(cursor.getString(4)));
-        detail.setWeeklyExpense(Float.valueOf(cursor.getString(5)));
-        detail.setWeeklyBalance(Float.valueOf(cursor.getString(6)));
-        detail.setBalance(Float.valueOf(cursor.getString(7)));
+        detail.setTotalWeeks(Integer.parseInt(cursor.getString(3)));
+        detail.setWeeksRemaining(Integer.parseInt(cursor.getString(4)));
+        detail.setWeeklyIncome(Float.valueOf(cursor.getString(5)));
+        detail.setWeeklyExpense(Float.valueOf(cursor.getString(6)));
+        detail.setWeeklyBalance(Float.valueOf(cursor.getString(7)));
+        detail.setBalance(Float.valueOf(cursor.getString(8)));
+        detail.setFlag(cursor.getString(9));
 
 
         //return account
@@ -224,11 +232,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 detail.setId(Integer.parseInt(cursor.getString(0)));
                 detail.setStartDate(cursor.getString(1));
                 detail.setEndDate(cursor.getString(2));
-                detail.setWeeksRemaining(Integer.parseInt(cursor.getString(3)));
-                detail.setWeeklyIncome(Float.valueOf(cursor.getString(4)));
-                detail.setWeeklyExpense(Float.valueOf(cursor.getString(5)));
-                detail.setWeeklyBalance(Float.valueOf(cursor.getString(6)));
-                detail.setBalance(Float.valueOf(cursor.getString(7)));
+                detail.setTotalWeeks(Integer.parseInt(cursor.getString(3)));
+                detail.setWeeksRemaining(Integer.parseInt(cursor.getString(4)));
+                detail.setWeeklyIncome(Float.valueOf(cursor.getString(5)));
+                detail.setWeeklyExpense(Float.valueOf(cursor.getString(6)));
+                detail.setWeeklyBalance(Float.valueOf(cursor.getString(7)));
+                detail.setBalance(Float.valueOf(cursor.getString(8)));
+                detail.setFlag(cursor.getString(9));
                 details.add(detail);
 
 
@@ -257,11 +267,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_DETAIL_STARTDATE, detail.getStartDate());
         values.put(KEY_DETAIL_ENDDATE, detail.getEndDate());
+        values.put(KEY_DETAIL_TOTALWEEKS, detail.getTotalWeeks());
         values.put(KEY_DETAIL_WEEKSREMAINING, detail.getWeeksRemaining());
         values.put(KEY_DETAIL_WEEKLYINCOME, detail.getWeeklyIncome());
         values.put(KEY_DETAIL_WEEKLYEXPENSE, detail.getWeeklyExpense());
         values.put(KEY_DETAIL_WEEKLYBALANCE, detail.getWeeklyBalance());
         values.put(KEY_DETAIL_BALANCE, detail.getBalance());
+        values.put(KEY_DETAIL_FLAG, detail.getFlag());
 
         //update the row in the table
         //in the format .update(tablename, column/value, selections, selection args)

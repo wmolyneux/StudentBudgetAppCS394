@@ -26,5 +26,13 @@
             android:layout_marginTop="30dp"
             android:layout_below="@+id/welcomeText"
             android:layout_centerHorizontal="true"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="clear database"
+            android:id="@+id/clearDB"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
 </RelativeLayout>
 <!-- From: file:/aber/wim2/major%20project/StudentBudgetApplicationProject/StudentBudgetApplication/src/main/res/layout/activity_enter.xml -->

@@ -15,6 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import org.joda.time.DateTime;
+
+import java.util.Date;
+
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 
 public class ExpenseActivity extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener, TextWatcher {
@@ -38,6 +42,7 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
     private TextView weeklyExpense;
     private Button finish;
 
+
     private Detail detail;
     private SQLiteDatabaseHelper db;
 
@@ -49,6 +54,7 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         setContentView(R.layout.activity_expense);
         detail = (Detail) getIntent().getSerializableExtra("detail");
         registerViews();
+
     }
 
     public void registerViews(){
@@ -139,24 +145,13 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         db.addConstant(other);
 
         detail.setWeeklyExpense(Float.valueOf(weeklyExpense.getText().toString()));
-        calculateBalance();
-
-
+        System.out.println(detail.toString());
         db.addDetail(detail);
+        System.out.println(db.getAllDetails().size()+"");
 
     }
 
-    private void calculateBalance() {
-        //calculate the balance
-        for (Constant con : db.getAllConstants()){
-            if(con.getType().equalsIgnoreCase("income")){
-                detail.setBalance(detail.getBalance()+con.getAmount());
-            }
-            else{
-                detail.setBalance(detail.getBalance()+con.getAmount());
-            }
-        }
-    }
+
 
     private boolean validate() {
         if(rentAmount.getText().toString().isEmpty()){

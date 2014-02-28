@@ -1,6 +1,8 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,17 +11,20 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import org.joda.time.DateTime;
+import org.joda.time.Weeks;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
@@ -42,6 +47,10 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     String tmpType;
     SQLiteDatabaseHelper db;
 
+    int day;
+    int month;
+    int year;
+
 
 
     @Override
@@ -49,7 +58,18 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         View inflate = inflater.inflate(R.layout.fragment_transactions, container, false);
         registerViews(inflate);
 
-        detail = (Detail) getArguments().getSerializable("detail");
+        Calendar cal = Calendar.getInstance();
+        day = cal.get(Calendar.DAY_OF_MONTH);
+        month = cal.get(Calendar.MONTH);
+        year = cal.get(Calendar.YEAR);
+
+        if(month < 10){
+            date.setText(day+"-0"+(month+1)+"-"+year);
+        }
+        else{
+            date.setText(day+"-"+(month+1)+"-"+year);
+        }
+//        detail = (Detail) getArguments().getSerializable("detail");
         return inflate;
     }
 
@@ -60,6 +80,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         category = (Spinner) inflate.findViewById(R.id.categorySpinner);
 
         db = new SQLiteDatabaseHelper(getActivity());
+        detail = db.getAllDetails().get(0);
         ArrayList<String> tempCategories = new ArrayList<String>();
         for (Category cat : db.getAllCategories()){
             tempCategories.add(cat.getName());
@@ -78,6 +99,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
 
         date = (EditText) inflate.findViewById(R.id.dateField);
+        date.setOnClickListener(this);
 
         clear = (Button) inflate.findViewById(R.id.clearButton);
         create = (Button) inflate.findViewById(R.id.createTransButton);
@@ -97,7 +119,6 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
                                     shortDesc.getText().toString(), tmpType, category.getSelectedItem().toString(), date.getText().toString());
                     SQLiteDatabaseHelper db = new SQLiteDatabaseHelper(getActivity());
                     db.addTransaction(newTrans);
-                    adjustBalance(db);
                     cleanForm();
                     Toast.makeText(getActivity(), "Transaction added", Toast.LENGTH_LONG).show();
                 }
@@ -105,21 +126,26 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
             case R.id.clearButton:
                 cleanForm();
                 break;
+            case R.id.dateField:
+//                getActivity().showDialog(0);
+
         }
 
     }
 
-    private void adjustBalance(SQLiteDatabaseHelper db) {
-        //needs to imeplement new things
-//        if(tmpType.equalsIgnoreCase("minus")){
-//            currentAcc.setBalance(currentAcc.getBalance()-Float.valueOf(amount.getText().toString()));
-//
-//        }
-//        else{
-//            currentAcc.setBalance(currentAcc.getBalance()+Float.valueOf(amount.getText().toString()));
-//        }
-//        db.updateAccount(currentAcc);
+
+    @Deprecated
+    protected Dialog onCreateDialog(int id) {
+        return new DatePickerDialog(getActivity(), datePickerListener, year, month, day);
     }
+
+    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int selectedYear,
+                              int selectedMonth, int selectedDay) {
+            date.setText(selectedDay+"/"+(selectedMonth+1)+"/"+selectedYear);
+        }
+    };
+
 
     public void cleanForm(){
         amount.setText("");
@@ -147,7 +173,8 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         if(category.getSelectedItem().toString().isEmpty()){
             return false;
         }
-        if(date.getText().toString().isEmpty()){
+        if(date.getText().toString().isEmpty() || !date.getText().toString().matches("\\d{2}-\\d{2}-\\d{4}")){
+            Toast.makeText(getActivity(), "Please enter valid date in the format dd-mm-yyyy", Toast.LENGTH_LONG).show();
             return false;
         }
 
