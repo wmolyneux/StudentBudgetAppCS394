@@ -64,12 +64,16 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         month = cal.get(Calendar.MONTH);
         year = cal.get(Calendar.YEAR);
 
-        if(month < 10){
-            todaysDate = day+"-0"+(month+1)+"-"+year;
+        String zeroDay = "";
+        String zeroMonth = "";
+
+        if((month+1) < 10){
+            zeroMonth = "0";
         }
-        else{
-            todaysDate = day+"-"+(month+1)+"-"+year;
+        if(day < 10){
+            zeroDay = "0";
         }
+        todaysDate = zeroDay+day+"-"+zeroMonth+(month+1)+"-"+year;
         date.setText(todaysDate);
         return inflate;
     }
@@ -120,8 +124,10 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
                                     shortDesc.getText().toString(), tmpType, category.getSelectedItem().toString(), date.getText().toString());
                     SQLiteDatabaseHelper db = new SQLiteDatabaseHelper(getActivity());
                     db.addTransaction(newTrans);
-                    cleanForm();
+
                     Toast.makeText(getActivity(), "Transaction added", Toast.LENGTH_LONG).show();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, new OverviewFragment()).commit();
                 }
                 break;
             case R.id.clearButton:

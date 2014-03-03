@@ -82,46 +82,16 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
         }
 
         //setup loan spinner and amount with value from constant
-        if(tempIncomes.get(0).getRecurr().equalsIgnoreCase("monthly")){
-            loanSpinner.setSelection(0);
-        }
-        else{
-            loanSpinner.setSelection(1);
-        }
-        loanAmount.setText(tempIncomes.get(0).getAmount().toString());
+        FragmentUtilities.resetMonthYearSpinnerAndAmount(tempIncomes.get(0), loanSpinner, loanAmount);
 
         //setup grant spinner and amount with value from constant
-        if(tempIncomes.get(1).getRecurr().equalsIgnoreCase("monthly")){
-            grantSpinner.setSelection(0);
-        }
-        else{
-            grantSpinner.setSelection(1);
-        }
-        grantAmount.setText(tempIncomes.get(1).getAmount().toString());
+        FragmentUtilities.resetMonthYearSpinnerAndAmount(tempIncomes.get(1), grantSpinner, grantAmount);
 
         //setup wage spinner and amount with value from constant
-        if(tempIncomes.get(2).getRecurr().equalsIgnoreCase("weekly")){
-            wageSpinner.setSelection(0);
-        }
-        else if(tempIncomes.get(2).getRecurr().equalsIgnoreCase("monthly")){
-            wageSpinner.setSelection(1);
-        }
-        else{
-            wageSpinner.setSelection(2);
-        }
-        wageAmount.setText(tempIncomes.get(2).getAmount().toString());
+        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempIncomes.get(2), wageSpinner, wageAmount);
 
         //setup other spinner and amount with value from constant
-        if(tempIncomes.get(3).getRecurr().equalsIgnoreCase("weekly")){
-            otherSpinner.setSelection(0);
-        }
-        else if(tempIncomes.get(3).getRecurr().equalsIgnoreCase("monthly")){
-            otherSpinner.setSelection(1);
-        }
-        else{
-            otherSpinner.setSelection(2);
-        }
-        otherAmount.setText(tempIncomes.get(3).getAmount().toString());
+        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempIncomes.get(3), otherSpinner, otherAmount);
 
     }
 
@@ -211,31 +181,18 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
     public void itemChanged(){
         Float income = new Float(0);
         if(!loanAmount.getText().toString().isEmpty()){
-            income += checkSpinner(loanSpinner.getSelectedItem().toString(), loanAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(loanSpinner.getSelectedItem().toString(), loanAmount.getText().toString());
         }
         if(!grantAmount.getText().toString().isEmpty()){
-            income += checkSpinner(grantSpinner.getSelectedItem().toString(), grantAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(grantSpinner.getSelectedItem().toString(), grantAmount.getText().toString());
         }
         if(!wageAmount.getText().toString().isEmpty()){
-            income += checkSpinner(wageSpinner.getSelectedItem().toString(), wageAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(wageSpinner.getSelectedItem().toString(), wageAmount.getText().toString());
         }
         if(!otherAmount.getText().toString().isEmpty()){
-            income += checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
         }
         weeklyIncome.setText(""+income);
     }
 
-    public Float checkSpinner(String spinnerText, String input){
-        Float value = (float) 0;
-        if(spinnerText.equalsIgnoreCase("weekly")){
-            value += Float.valueOf(input);
-        }
-        else if(spinnerText.equalsIgnoreCase("monthly")){
-            value += (Float.valueOf(input)/4);
-        }
-        else{
-            value += (Float.valueOf(input)/52);
-        }
-        return value;
-    }
 }
