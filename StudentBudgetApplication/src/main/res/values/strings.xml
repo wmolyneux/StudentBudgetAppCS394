@@ -12,6 +12,8 @@
         <item>New Budget</item>
         <item>History</item>
         <item>New Transaction</item>
+        <item>Manage Incomes</item>
+        <item>Manage Expenses</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
@@ -44,5 +46,7 @@
     </string-array>
 
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_income_fragment">IncomeFragment</string>
+    <string name="title_activity_expense_fragment">ExpenseFragment</string>
 
 </resources>

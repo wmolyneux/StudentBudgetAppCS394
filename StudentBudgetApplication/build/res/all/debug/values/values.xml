@@ -8,6 +8,8 @@
         <item>New Budget</item>
         <item>History</item>
         <item>New Transaction</item>
+        <item>Manage Incomes</item>
+        <item>Manage Expenses</item>
     </string-array>
     <string-array name="monthly_yearly">
         <item>Monthly</item>
@@ -37,7 +39,9 @@
     <string name="title_activity_budgets_fragments">BudgetsFragments</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_expense">ExpenseActivity</string>
+    <string name="title_activity_expense_fragment">ExpenseFragment</string>
     <string name="title_activity_income">IncomeActivity</string>
+    <string name="title_activity_income_fragment">IncomeFragment</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_new_account">NewAccountActivity</string>
     <string name="title_activity_overview_fragment">OverviewFragment</string>

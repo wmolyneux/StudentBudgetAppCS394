@@ -47,12 +47,20 @@
             android:label="@string/title_activity_expense" >
         </activity>
         <activity
-            android:name=".newActivities.AcademicYearActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.AcademicYearActivity"
             android:label="@string/title_activity_term" >
         </activity>
         <activity
-            android:name=".newActivities.DetailActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.DetailActivity"
             android:label="@string/title_activity_detail" >
+        </activity>
+        <activity
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.IncomeFragment"
+            android:label="@string/title_activity_income_fragment" >
+        </activity>
+        <activity
+            android:name=".newActivities.ExpenseFragment"
+            android:label="@string/title_activity_expense_fragment" >
         </activity>
     </application>
 

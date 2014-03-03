@@ -50,6 +50,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     int day;
     int month;
     int year;
+    String todaysDate;
 
 
 
@@ -64,11 +65,12 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         year = cal.get(Calendar.YEAR);
 
         if(month < 10){
-            date.setText(day+"-0"+(month+1)+"-"+year);
+            todaysDate = day+"-0"+(month+1)+"-"+year;
         }
         else{
-            date.setText(day+"-"+(month+1)+"-"+year);
+            todaysDate = day+"-"+(month+1)+"-"+year;
         }
+        date.setText(todaysDate);
         return inflate;
     }
 
@@ -132,26 +134,12 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
     }
 
-
-    @Deprecated
-    protected Dialog onCreateDialog(int id) {
-        return new DatePickerDialog(getActivity(), datePickerListener, year, month, day);
-    }
-
-    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int selectedYear,
-                              int selectedMonth, int selectedDay) {
-            date.setText(selectedDay+"/"+(selectedMonth+1)+"/"+selectedYear);
-        }
-    };
-
-
     public void cleanForm(){
         amount.setText("");
         shortDesc.setText("");
         type.setChecked(true);
         category.setSelection(0);
-        date.setText("");
+        date.setText(todaysDate);
 
     }
 

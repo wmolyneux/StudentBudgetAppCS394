@@ -112,11 +112,8 @@ public class DetailActivity extends FragmentActivity {
     }
 
     public void manageFragments(Fragment newFrag, int oldFragId){
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("detail", detail);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-//        newFrag.setArguments(bundle);
         transaction.replace(oldFragId, newFrag);
         transaction.commit();
 
@@ -138,10 +135,15 @@ public class DetailActivity extends FragmentActivity {
                     break;
                 case 3:
                     frag = new HistoryFragment();
-
                     break;
                 case 4:
                     frag = new TransactionsFragment();
+                    break;
+                case 5:
+                    frag = new IncomeFragment();
+                    break;
+                case 6:
+                    frag = new ExpenseFragment();
                     break;
             }
             manageFragments(frag, R.id.content_frame);
