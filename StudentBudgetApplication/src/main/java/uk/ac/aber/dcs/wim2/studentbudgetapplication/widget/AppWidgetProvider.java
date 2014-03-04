@@ -11,8 +11,10 @@ import android.widget.RemoteViews;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 
 public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
 
@@ -51,7 +53,6 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
             //setup the submit button for on click
             PendingIntent pendingSubmit;
             Intent submitIntent;
-            System.out.println(dbSize+" is the database size");
             if(dbSize==0){
                 submitIntent = new Intent(context, EnterActivity.class);
                 pendingSubmit = PendingIntent.getActivity(context, 0, submitIntent, 0);
@@ -60,6 +61,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
                 submitIntent = new Intent(SUBMIT_BUTTON);
                 pendingSubmit = PendingIntent.getBroadcast(context, 0,
                         submitIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                revalidateBalance(views);
             }
 
             views.setOnClickPendingIntent(R.id.widgetSubmit, pendingSubmit);
@@ -68,6 +70,12 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
 
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
+    }
+
+    private void revalidateBalance(RemoteViews views) {
+        Detail detail = db.getAllDetails().get(0);
+        BalanceUtilities.recalculateBalance(detail, db);
+        views.setTextViewText(R.id.widgetRemainingWeekly, detail.getWeeklyBalance().toString());
     }
 
 
@@ -92,6 +100,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
             String today = day+"/"+(month+1)+"/"+year;
             Transaction trans = new Transaction(value, "Micro transaction", "minus", "Micro Transaction", today);
             db.addTransaction(trans);
+            revalidateBalance(views);
         }
 
         pushUpdate(context, views);
