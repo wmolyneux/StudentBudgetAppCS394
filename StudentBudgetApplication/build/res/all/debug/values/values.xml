@@ -5,9 +5,9 @@
     <string-array name="items">
         <item>Home</item>
         <item>New Transaction</item>
+        <item>History</item>
         <item>Report</item>
         <item>New Budget</item>
-        <item>History</item>
         <item>Manage Incomes</item>
         <item>Manage Expenses</item>
     </string-array>

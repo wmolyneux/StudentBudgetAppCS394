@@ -78,7 +78,7 @@
                 android:layout_marginTop="7dp"
                 android:textOn="Income"
                 android:textOff="Expense"
-                android:checked="true"/>
+                android:checked="false"/>
     </LinearLayout>
 
     <LinearLayout

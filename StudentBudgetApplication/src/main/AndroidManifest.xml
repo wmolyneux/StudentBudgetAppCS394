@@ -35,7 +35,7 @@
             android:label="@string/title_activity_new_account" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity"
+            android:name=".activities.TransactionActivity"
             android:label="@string/title_activity_transaction" >
         </activity>
         <activity
@@ -54,6 +54,16 @@
             android:name=".activities.DetailActivity"
             android:label="@string/title_activity_detail" >
         </activity>
+
+        <receiver android:name=".widget.AppWidgetProvider" android:label="Student budget widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name=".widget.INCREMENT_AMOUNT_BUTTON" />
+                <action android:name=".widget.DECREMENT_AMOUNT_BUTTON" />
+                <action android:name=".widget.SUBMIT_BUTTON" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_attributes" />
+        </receiver>
     </application>
 
 </manifest>

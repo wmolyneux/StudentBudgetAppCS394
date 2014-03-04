@@ -1,5 +1,7 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,6 +22,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
 public class ExpenseActivity extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener, TextWatcher {
 
@@ -145,9 +148,14 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         db.addConstant(other);
 
         detail.setWeeklyExpense(Float.valueOf(weeklyExpense.getText().toString()));
-        System.out.println(detail.toString());
         db.addDetail(detail);
-        System.out.println(db.getAllDetails().size()+"");
+
+        Intent intent = new Intent(this, AppWidgetProvider.class);
+        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        int ids[] = AppWidgetManager.getInstance(getApplication())
+                .getAppWidgetIds(new ComponentName(getApplication(), AppWidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        sendBroadcast(intent);
 
     }
 
