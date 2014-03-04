@@ -1,9 +1,9 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities;
 
-
-import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.app.Activity;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,41 +16,38 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TabHost;
-import android.widget.Toast;
-
-import java.util.HashMap;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.HistoryFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment;
 
-public class MainActivity extends FragmentActivity {
+public class DetailActivity extends FragmentActivity {
 
-    private Account currentAccount;
+//    private Detail detail;
     private String[] drawerListViewItems;
     private ListView drawerListView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+//    private SQLiteDatabaseHelper db;
 
+    @Override
+    public void onBackPressed() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_detail);
 
+//        db = new SQLiteDatabaseHelper(this);
 
-        //retrieve serializable object passed from intent
-        currentAccount = (Account) getIntent().getSerializableExtra("ACCOUNT");
+//        detail = db.getAllDetails().get(0);
+
 
         manageFragments(new OverviewFragment(), R.id.content_frame);
-
-        //debug print statement
-        Toast.makeText(this, currentAccount.toString(), Toast.LENGTH_LONG).show();
 
         // get list items from strings.xml
         drawerListViewItems = getResources().getStringArray(R.array.items);
@@ -79,6 +76,8 @@ public class MainActivity extends FragmentActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         drawerListView.setOnItemClickListener(new DrawerItemClickListener());
+
+
     }
 
     @Override
@@ -108,23 +107,17 @@ public class MainActivity extends FragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.detail, menu);
         return true;
     }
 
-
     public void manageFragments(Fragment newFrag, int oldFragId){
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("ACCOUNT", currentAccount);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        newFrag.setArguments(bundle);
         transaction.replace(oldFragId, newFrag);
         transaction.commit();
 
     }
-
-
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -142,10 +135,15 @@ public class MainActivity extends FragmentActivity {
                     break;
                 case 3:
                     frag = new HistoryFragment();
-
                     break;
                 case 4:
                     frag = new TransactionsFragment();
+                    break;
+                case 5:
+                    frag = new IncomeFragment();
+                    break;
+                case 6:
+                    frag = new ExpenseFragment();
                     break;
             }
             manageFragments(frag, R.id.content_frame);
@@ -156,6 +154,5 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-
-
+    
 }

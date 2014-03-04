@@ -8,13 +8,150 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".TransactionsFragment">
 
-    <TextView
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Transactions"
-            android:id="@+id/textView"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="17dp"/>
+            android:layout_alignParentLeft="true"
+            android:id="@+id/linearLayout">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Amount:"
+                android:id="@+id/amountText"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/amountField"
+                android:layout_marginLeft="113dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginTop="35dp"
+            android:layout_alignParentLeft="true">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Short description:"
+                android:id="@+id/descText"/>
+
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/descField"
+                android:layout_marginLeft="24dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginTop="95dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/linearLayout2">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Type:"
+                android:id="@+id/textView2"
+                android:layout_marginTop="18dp"/>
+
+        <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="New ToggleButton"
+                android:id="@+id/typeButton"
+                android:layout_marginLeft="188dp"
+                android:layout_marginTop="7dp"
+                android:textOn="Income"
+                android:textOff="Expense"
+                android:checked="true"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/linearLayout2"
+            android:id="@+id/linearLayout3">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Category:"
+                android:id="@+id/cateText"
+                android:layout_marginTop="3dp"/>
+
+        <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/categorySpinner"
+                android:layout_marginLeft="98dp"
+                android:spinnerMode="dialog"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:layout_below="@+id/linearLayout3"
+            android:layout_alignLeft="@+id/linearLayout3"
+            android:id="@+id/linearLayout4">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Date:"
+                android:id="@+id/dateText"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateField"
+                android:layout_weight="2.64"
+                android:layout_marginLeft="147dp"
+                android:hint="dd/mm/yyyy"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/linearLayout4"
+            android:layout_alignLeft="@+id/linearLayout4"
+            android:layout_marginTop="11dp">
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear"
+                android:id="@+id/clearButton"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginLeft="43dp"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create"
+                android:id="@+id/createTransButton"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginLeft="82dp"/>
+    </LinearLayout>
+
 </RelativeLayout>

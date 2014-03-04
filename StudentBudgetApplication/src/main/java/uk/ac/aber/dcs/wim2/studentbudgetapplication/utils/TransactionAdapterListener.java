@@ -7,13 +7,19 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.MainActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
 
 import static android.widget.AdapterView.OnItemClickListener;
 import static android.widget.AdapterView.OnItemLongClickListener;
@@ -21,25 +27,30 @@ import static android.widget.AdapterView.OnItemLongClickListener;
 /**
  * Created by wim2 on 12/02/2014.
  */
-public class AdapterListener implements OnItemLongClickListener, OnItemClickListener{
+public class TransactionAdapterListener implements OnItemLongClickListener, OnItemClickListener{
 
     Context context;
-    List<Account> accounts;
-    SQLiteHelper db;
+    List<Transaction> transactions;
+    SQLiteDatabaseHelper db;
     ArrayAdapter<String> adapter;
+    ArrayList<String> values;
+    Detail detail;
 
-    public AdapterListener(Context con, List<Account> acc, SQLiteHelper database, ArrayAdapter<String> adap){
+    public TransactionAdapterListener(Context con, Detail det,
+                List<Transaction> trans, SQLiteDatabaseHelper database, ArrayAdapter<String> adap, ArrayList<String> vals){
         context = con;
-        accounts = acc;
+        transactions = trans;
         db = database;
         adapter = adap;
+        values = vals;
+        detail = det;
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(context, MainActivity.class);
-
-        intent.putExtra("ACCOUNT", accounts.get(i));
+        Intent intent = new Intent(context, TransactionActivity.class);
+        intent.putExtra("TRANSACTION", transactions.get(i));
         context.startActivity(intent);
     }
 
@@ -50,24 +61,28 @@ public class AdapterListener implements OnItemLongClickListener, OnItemClickList
         return true;
     }
 
-    private void deleteAlert(final int accountToRemove) {
+    private void deleteAlert(final int transactionToRemove) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 context);
 
         // set title
-        alertDialogBuilder.setTitle("Remove "+accounts.get(accountToRemove).getAccountName()+"?");
+        alertDialogBuilder.setTitle("Remove "+transactions.get(transactionToRemove).getShortDesc()+"?");
 
         // set dialog message
         alertDialogBuilder
-                .setMessage(context.getString(R.string.remove_warning))
+                .setMessage("Transaction will be permanently removed!")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // if this button is clicked, close
-                        // current activity
-                        db.deleteAccount(accounts.get(accountToRemove));
-                        adapter.remove(accounts.get(accountToRemove).getAccountName());
-                        accounts.remove(accountToRemove);
+                        //remove the selected item from the necessary arrays and database
+                        values.remove(transactionToRemove);
+                        db.deleteTransaction(transactions.get(transactionToRemove));
+                        Transaction trans = transactions.get(transactionToRemove);
+                        adjustBalance(db, trans.getType(), trans.getAmount());
+                        transactions.remove(transactionToRemove);
+
+
+                        //re-validate the adapter and close the dialog
                         adapter.notifyDataSetInvalidated();
                         dialog.cancel();
                     }
@@ -85,5 +100,18 @@ public class AdapterListener implements OnItemLongClickListener, OnItemClickList
 
         // show it
         alertDialog.show();
+    }
+
+    private void adjustBalance(SQLiteDatabaseHelper db, String type, Float amount) {
+
+        //currently doing nothing
+//        if(type.equalsIgnoreCase("minus")){
+//            current.setBalance(current.getBalance()+Float.valueOf(amount.toString()));
+//
+//        }
+//        else{
+//            current.setBalance(current.getBalance()-Float.valueOf(amount.toString()));
+//        }
+//        db.updateAccount(current);
     }
 }

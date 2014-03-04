@@ -1,0 +1,280 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".ExpenseActivity">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Rent:"
+                    android:id="@+id/textView"/>
+
+            <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="37dp"
+                    android:id="@+id/rentSpinner"
+                    android:entries="@array/monthly_yearly"
+                    android:layout_marginLeft="80dp"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/rentAmount"
+                    android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout2"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Electricity:"
+                    android:id="@+id/textView2"/>
+
+            <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="37dp"
+                    android:id="@+id/electricitySpinner"
+                    android:layout_marginLeft="26dp"
+                    android:entries="@array/weekly_monthly"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/electricityAmount"
+                    android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout3"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Heating:"
+                    android:id="@+id/textView3"/>
+
+            <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="37dp"
+                    android:id="@+id/heatingSpinner"
+                    android:layout_marginLeft="44dp"
+                    android:entries="@array/weekly_monthly"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/heatingAmount"
+                    android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout4"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Internet:"
+                    android:id="@+id/textView4"/>
+
+            <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="37dp"
+                    android:id="@+id/internetSpinner"
+                    android:layout_marginLeft="48dp"
+                    android:entries="@array/monthly_yearly"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/internetAmount"
+                    android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout5"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Food:"
+                    android:id="@+id/textView5"/>
+
+            <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="37dp"
+                    android:id="@+id/foodSpinner"
+                    android:layout_marginLeft="72dp"
+                    android:entries="@array/weekly_monthly_yearly"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/foodAmount"
+                    android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout6"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Transport:"
+                    android:id="@+id/textView6"/>
+
+            <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="37dp"
+                    android:id="@+id/transportSpinner"
+                    android:layout_marginLeft="27dp"
+                    android:entries="@array/weekly_monthly_yearly"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/transportAmount"
+                    android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout7"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Mobile:"
+                    android:id="@+id/textView7"/>
+
+            <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="37dp"
+                    android:id="@+id/mobileSpinner"
+                    android:layout_marginLeft="58dp"
+                    android:entries="@array/monthly_yearly"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/mobileAmount"
+                    android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout8"
+                android:layout_marginBottom="10dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Other:"
+                    android:id="@+id/textView8"/>
+
+            <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="37dp"
+                    android:id="@+id/otherSpinner"
+                    android:layout_marginLeft="72dp"
+                    android:entries="@array/weekly_monthly_yearly"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/otherAmount"
+                    android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:id="@+id/linearLayout9">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Weekly Expense: "
+                    android:id="@+id/textView9"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="66dp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="0"
+                    android:id="@+id/ExpenseWeeklyExp"
+                    android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finish"
+                android:id="@+id/finishButton"
+                android:layout_gravity="center"/>
+    </LinearLayout>
+</RelativeLayout>

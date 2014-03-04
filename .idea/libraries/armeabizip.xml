@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="armeabizip">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/StudentBudgetApplication/libs/armeabizip.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

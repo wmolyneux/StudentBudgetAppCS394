@@ -9,9 +9,11 @@
     <string-array name="items">
         <item>Overview</item>
         <item>Report</item>
-        <item>Budgets</item>
+        <item>New Budget</item>
         <item>History</item>
         <item>New Transaction</item>
+        <item>Manage Incomes</item>
+        <item>Manage Expenses</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
@@ -24,5 +26,27 @@
     <string name="title_activity_accounts">AccountsActivity</string>
     <string name="remove_warning">Account will be permanently deleted!</string>
     <string name="title_activity_new_account">NewAccountActivity</string>
+    <string name="title_activity_transaction">TransactionActivity</string>
+    <string name="title_activity_income">IncomeActivity</string>
+    <string name="title_activity_expense">ExpenseActivity</string>
+    <string name="title_activity_term">TermActivity</string>
+
+    <string-array name="weekly_monthly">
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
+    <string-array name="weekly_monthly_yearly">
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+    <string-array name="monthly_yearly">
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_income_fragment">IncomeFragment</string>
+    <string name="title_activity_expense_fragment">ExpenseFragment</string>
 
 </resources>
