@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,6 +12,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Account;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Budget;
 
 /**
  * Created by wim2 on 05/02/2014.

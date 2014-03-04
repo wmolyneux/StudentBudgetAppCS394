@@ -15,9 +15,9 @@ import java.util.Calendar;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Constant;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 
 public class OverviewFragment extends Fragment {
 

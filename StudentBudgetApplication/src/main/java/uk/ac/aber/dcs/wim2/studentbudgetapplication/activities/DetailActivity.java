@@ -1,9 +1,7 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -18,12 +16,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.HistoryFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ExpenseFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.IncomeFragment;
 
 public class DetailActivity extends FragmentActivity {
 
@@ -122,16 +121,16 @@ public class DetailActivity extends FragmentActivity {
                     frag = new OverviewFragment();
                     break;
                 case 1:
-                    frag = new ReportFragment();
+                    frag = new TransactionsFragment();
                     break;
                 case 2:
-                    frag = new BudgetsFragment();
-                    break;
-                case 3:
                     frag = new HistoryFragment();
                     break;
+                case 3:
+                    frag = new ReportFragment();
+                    break;
                 case 4:
-                    frag = new TransactionsFragment();
+                    frag = new BudgetsFragment();
                     break;
                 case 5:
                     frag = new IncomeFragment();

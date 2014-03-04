@@ -14,7 +14,7 @@ import net.sqlcipher.database.SQLiteOpenHelper;
 import java.util.LinkedList;
 import java.util.List;
 
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Account;
 
 /**
  * Created by wim2 on 05/02/2014.

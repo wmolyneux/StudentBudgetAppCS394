@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode;
 
 import java.io.Serializable;
 

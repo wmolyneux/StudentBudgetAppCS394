@@ -11,10 +11,9 @@ import android.widget.ArrayAdapter;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.MainActivity;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.MainActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Account;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.SQLiteHelper;
 
 import static android.widget.AdapterView.OnItemClickListener;
 import static android.widget.AdapterView.OnItemLongClickListener;

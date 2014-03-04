@@ -7,11 +7,11 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string-array name="items">
-        <item>Overview</item>
+        <item>Home</item>
+        <item>New Transaction</item>
+        <item>History</item>
         <item>Report</item>
         <item>New Budget</item>
-        <item>History</item>
-        <item>New Transaction</item>
         <item>Manage Incomes</item>
         <item>Manage Expenses</item>
     </string-array>

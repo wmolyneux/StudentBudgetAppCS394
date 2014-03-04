@@ -1,21 +1,15 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
 
 public class TransactionActivity extends Activity implements View.OnClickListener{
 

@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
 
 public class NewAccountActivity extends Activity implements View.OnClickListener{
 

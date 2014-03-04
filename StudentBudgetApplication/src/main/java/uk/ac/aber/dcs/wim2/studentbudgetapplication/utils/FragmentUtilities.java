@@ -1,8 +1,10 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 
 /**
  * Created by wim2 on 03/03/2014.

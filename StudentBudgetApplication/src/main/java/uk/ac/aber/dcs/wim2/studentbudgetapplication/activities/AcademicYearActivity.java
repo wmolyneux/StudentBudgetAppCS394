@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -20,6 +20,7 @@ import org.joda.time.Weeks;
 import java.util.Calendar;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 
 public class AcademicYearActivity extends Activity implements View.OnClickListener, View.OnTouchListener {
 

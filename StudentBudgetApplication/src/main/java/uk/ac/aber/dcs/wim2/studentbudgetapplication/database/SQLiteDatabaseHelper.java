@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
 /**

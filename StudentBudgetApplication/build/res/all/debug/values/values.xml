@@ -3,11 +3,11 @@
 
     <!-- From: file:/aber/wim2/major%20project/StudentBudgetApplicationProject/StudentBudgetApplication/src/main/res/values/strings.xml -->
     <string-array name="items">
-        <item>Overview</item>
+        <item>Home</item>
+        <item>New Transaction</item>
         <item>Report</item>
         <item>New Budget</item>
         <item>History</item>
-        <item>New Transaction</item>
         <item>Manage Incomes</item>
         <item>Manage Expenses</item>
     </string-array>

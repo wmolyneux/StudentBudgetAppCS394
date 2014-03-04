@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -7,17 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.AccountAdapterListener;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 
 public class AccountsActivity extends ListActivity {
 

@@ -1,4 +1,4 @@
-package uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities;
+package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 
 public class IncomeActivity extends Activity implements View.OnClickListener, TextWatcher, AdapterView.OnItemSelectedListener {
 

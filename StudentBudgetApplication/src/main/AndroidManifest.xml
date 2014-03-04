@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.MainActivity"
+            android:name=".oldCode.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.AccountsActivity"
+            android:name=".oldCode.AccountsActivity"
             android:label="@string/title_activity_accounts" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.NewAccountActivity"
+            android:name=".oldCode.NewAccountActivity"
             android:label="@string/title_activity_new_account" >
         </activity>
         <activity
@@ -39,28 +39,20 @@
             android:label="@string/title_activity_transaction" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.IncomeActivity"
+            android:name=".activities.IncomeActivity"
             android:label="@string/title_activity_income" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.ExpenseActivity"
+            android:name=".activities.ExpenseActivity"
             android:label="@string/title_activity_expense" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.AcademicYearActivity"
+            android:name=".activities.AcademicYearActivity"
             android:label="@string/title_activity_term" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.DetailActivity"
+            android:name=".activities.DetailActivity"
             android:label="@string/title_activity_detail" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.IncomeFragment"
-            android:label="@string/title_activity_income_fragment" >
-        </activity>
-        <activity
-            android:name=".newActivities.ExpenseFragment"
-            android:label="@string/title_activity_expense_fragment" >
         </activity>
     </application>
 
