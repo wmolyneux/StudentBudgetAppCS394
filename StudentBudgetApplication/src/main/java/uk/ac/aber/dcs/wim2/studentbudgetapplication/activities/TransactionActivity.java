@@ -1,10 +1,13 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,7 @@ public class TransactionActivity extends Activity implements View.OnClickListene
         transaction = (Transaction)getIntent().getSerializableExtra("TRANSACTION");
         SQLiteHelper db = new SQLiteHelper(this);
 
+
         //Enter the transaction information into the layout
         enterTransactionInformation();
 
@@ -62,6 +66,7 @@ public class TransactionActivity extends Activity implements View.OnClickListene
         type = (TextView) findViewById(R.id.typeValue);
         category = (TextView) findViewById(R.id.categoryValue);
         date = (TextView) findViewById(R.id.dateValue);
+
 
         doneButton = (Button) findViewById(R.id.doneButton);
         doneButton.setOnClickListener(this);

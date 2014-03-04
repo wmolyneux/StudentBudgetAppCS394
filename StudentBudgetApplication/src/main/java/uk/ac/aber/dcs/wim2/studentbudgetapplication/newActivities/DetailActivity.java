@@ -42,11 +42,6 @@ public class DetailActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-//        db = new SQLiteDatabaseHelper(this);
-
-//        detail = db.getAllDetails().get(0);
-
-
         manageFragments(new OverviewFragment(), R.id.content_frame);
 
         // get list items from strings.xml
@@ -116,7 +111,6 @@ public class DetailActivity extends FragmentActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(oldFragId, newFrag);
         transaction.commit();
-
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {

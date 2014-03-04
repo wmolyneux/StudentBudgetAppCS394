@@ -189,45 +189,32 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         return true;
     }
 
-    public Float checkSpinner(String spinnerText, String input){
-        Float value = (float) 0;
-        if(spinnerText.equalsIgnoreCase("weekly")){
-            value += Float.valueOf(input);
-        }
-        else if(spinnerText.equalsIgnoreCase("monthly")){
-            value += (Float.valueOf(input)/4);
-        }
-        else{
-            value += (Float.valueOf(input)/52);
-        }
-        return value;
-    }
 
     public void itemChanged(){
         Float income = new Float(0);
         if(!rentAmount.getText().toString().isEmpty()){
-            income += checkSpinner(rentSpinner.getSelectedItem().toString(), rentAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(rentSpinner.getSelectedItem().toString(), rentAmount.getText().toString());
         }
         if(!electricityAmount.getText().toString().isEmpty()){
-            income += checkSpinner(electricitySpinner.getSelectedItem().toString(), electricityAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(electricitySpinner.getSelectedItem().toString(), electricityAmount.getText().toString());
         }
         if(!heatingAmount.getText().toString().isEmpty()){
-            income += checkSpinner(heatingSpinner.getSelectedItem().toString(), heatingAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(heatingSpinner.getSelectedItem().toString(), heatingAmount.getText().toString());
         }
         if(!internetAmount.getText().toString().isEmpty()){
-            income += checkSpinner(internetSpinner.getSelectedItem().toString(), internetAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(internetSpinner.getSelectedItem().toString(), internetAmount.getText().toString());
         }
         if(!foodAmount.getText().toString().isEmpty()){
-            income += checkSpinner(foodSpinner.getSelectedItem().toString(), foodAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(foodSpinner.getSelectedItem().toString(), foodAmount.getText().toString());
         }
         if(!transportAmount.getText().toString().isEmpty()){
-            income += checkSpinner(transportSpinner.getSelectedItem().toString(), transportAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(transportSpinner.getSelectedItem().toString(), transportAmount.getText().toString());
         }
         if(!mobileAmount.getText().toString().isEmpty()){
-            income += checkSpinner(mobileSpinner.getSelectedItem().toString(), mobileAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(mobileSpinner.getSelectedItem().toString(), mobileAmount.getText().toString());
         }
         if(!otherAmount.getText().toString().isEmpty()){
-            income += checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
         }
         weeklyExpense.setText(""+income);
     }

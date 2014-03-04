@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,7 +30,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
 
-public class TransactionsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener{
+public class TransactionsFragment extends Fragment implements View.OnTouchListener, View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     //views from the layout
     EditText amount;
@@ -52,6 +53,8 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     int year;
     String todaysDate;
 
+    DatePickerDialog dateDialog;
+
 
 
     @Override
@@ -64,18 +67,23 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         month = cal.get(Calendar.MONTH);
         year = cal.get(Calendar.YEAR);
 
-        String zeroDay = "";
-        String zeroMonth = "";
-
-        if((month+1) < 10){
-            zeroMonth = "0";
-        }
-        if(day < 10){
-            zeroDay = "0";
-        }
-        todaysDate = zeroDay+day+"-"+zeroMonth+(month+1)+"-"+year;
+        todaysDate = day+"/"+(month+1)+"/"+year;
         date.setText(todaysDate);
         return inflate;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int selYear, int selMonth, int selDay) {
+                date.setText(selDay+"/"+(1+selMonth)+"/"+selYear);
+            }
+        };
+
+        dateDialog = new DatePickerDialog(getActivity(), listener, year, month, day);
     }
 
     private void registerViews(View inflate) {
@@ -100,11 +108,9 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
         category.setOnItemSelectedListener(this);
 
-
-
-
         date = (EditText) inflate.findViewById(R.id.dateField);
-        date.setOnClickListener(this);
+        date.setOnTouchListener(this);
+
 
         clear = (Button) inflate.findViewById(R.id.clearButton);
         create = (Button) inflate.findViewById(R.id.createTransButton);
@@ -133,9 +139,6 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
             case R.id.clearButton:
                 cleanForm();
                 break;
-            case R.id.dateField:
-//                getActivity().showDialog(0);
-
         }
 
     }
@@ -166,11 +169,6 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         if(category.getSelectedItem().toString().isEmpty()){
             return false;
         }
-        if(date.getText().toString().isEmpty() || !date.getText().toString().matches("\\d{2}-\\d{2}-\\d{4}")){
-            Toast.makeText(getActivity(), "Please enter valid date in the format dd-mm-yyyy", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
         return true;
     }
 
@@ -182,5 +180,16 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (view.getId()){
+            case R.id.dateField:
+                dateDialog.show();
+                break;
+        }
+
+        return false;
     }
 }

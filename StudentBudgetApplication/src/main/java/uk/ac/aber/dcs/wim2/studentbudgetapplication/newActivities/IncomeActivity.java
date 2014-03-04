@@ -125,33 +125,19 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         return true;
     }
 
-    public Float checkSpinner(String spinnerText, String input){
-        Float value = (float) 0;
-        if(spinnerText.equalsIgnoreCase("weekly")){
-            value += Float.valueOf(input);
-        }
-        else if(spinnerText.equalsIgnoreCase("monthly")){
-            value += (Float.valueOf(input)/4);
-        }
-        else{
-            value += (Float.valueOf(input)/52);
-        }
-        return value;
-    }
-
     public void itemChanged(){
         Float income = new Float(0);
         if(!loanAmount.getText().toString().isEmpty()){
-            income += checkSpinner(loanSpinner.getSelectedItem().toString(), loanAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(loanSpinner.getSelectedItem().toString(), loanAmount.getText().toString());
         }
         if(!grantAmount.getText().toString().isEmpty()){
-            income += checkSpinner(grantSpinner.getSelectedItem().toString(), grantAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(grantSpinner.getSelectedItem().toString(), grantAmount.getText().toString());
         }
         if(!wageAmount.getText().toString().isEmpty()){
-            income += checkSpinner(wageSpinner.getSelectedItem().toString(), wageAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(wageSpinner.getSelectedItem().toString(), wageAmount.getText().toString());
         }
         if(!otherAmount.getText().toString().isEmpty()){
-            income += checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
+            income += FragmentUtilities.checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
         }
         weeklyIncome.setText(""+income);
     }

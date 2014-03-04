@@ -77,8 +77,6 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
                         //remove the selected item from the necessary arrays and database
                         values.remove(transactionToRemove);
                         db.deleteTransaction(transactions.get(transactionToRemove));
-                        Transaction trans = transactions.get(transactionToRemove);
-                        adjustBalance(db, trans.getType(), trans.getAmount());
                         transactions.remove(transactionToRemove);
 
 
@@ -102,16 +100,4 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
         alertDialog.show();
     }
 
-    private void adjustBalance(SQLiteDatabaseHelper db, String type, Float amount) {
-
-        //currently doing nothing
-//        if(type.equalsIgnoreCase("minus")){
-//            current.setBalance(current.getBalance()+Float.valueOf(amount.toString()));
-//
-//        }
-//        else{
-//            current.setBalance(current.getBalance()-Float.valueOf(amount.toString()));
-//        }
-//        db.updateAccount(current);
-    }
 }

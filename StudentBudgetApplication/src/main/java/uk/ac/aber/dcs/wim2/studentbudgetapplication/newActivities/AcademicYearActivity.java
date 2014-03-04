@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,7 +21,7 @@ import java.util.Calendar;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 
-public class AcademicYearActivity extends Activity implements View.OnClickListener {
+public class AcademicYearActivity extends Activity implements View.OnClickListener, View.OnTouchListener {
 
     private int day;
     private int month;
@@ -49,8 +50,8 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
         month = cal.get(Calendar.MONTH);
         year = cal.get(Calendar.YEAR);
 
-        startDate.setOnClickListener(this);
-        endDate.setOnClickListener(this);
+        startDate.setOnTouchListener(this);
+        endDate.setOnTouchListener(this);
 
         next = (Button) findViewById(R.id.DateToIncomeButton);
         next.setOnClickListener(this);
@@ -70,14 +71,6 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         switch(view.getId()){
-            case R.id.termStartDate:
-                startOrEnd = "start";
-                showDialog(0);
-                break;
-            case R.id.termEndDate:
-                startOrEnd = "end";
-                showDialog(0);
-                break;
             case R.id.DateToIncomeButton:
                 if(validate()){
                     Detail det = new Detail("", "", 0, 0, Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), "Y");
@@ -119,12 +112,12 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
             if(startOrEnd.equalsIgnoreCase("start")){
-                startDate.setText(selectedDay + "-" + (selectedMonth + 1) + "-"
+                startDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/"
                         + selectedYear);
                 start = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
             }
             else{
-                endDate.setText(selectedDay + "-" + (selectedMonth + 1) + "-"
+                endDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/"
                         + selectedYear);
                 end = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
             }
@@ -139,4 +132,19 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
         }
     }
 
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (view.getId()){
+            case R.id.termStartDate:
+                startOrEnd = "start";
+                showDialog(0);
+                break;
+            case R.id.termEndDate:
+                startOrEnd = "end";
+                showDialog(0);
+                break;
+        }
+
+        return false;
+    }
 }

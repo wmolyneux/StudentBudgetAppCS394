@@ -126,7 +126,7 @@
                 android:id="@+id/dateField"
                 android:layout_weight="2.64"
                 android:layout_marginLeft="147dp"
-                android:hint="dd/mm/yyyy"/>
+                android:editable="false"/>
 
     </LinearLayout>
 

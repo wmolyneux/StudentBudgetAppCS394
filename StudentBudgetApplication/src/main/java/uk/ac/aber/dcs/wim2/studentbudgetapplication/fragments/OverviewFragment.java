@@ -101,12 +101,12 @@ public class OverviewFragment extends Fragment {
     private void calculateBalanceWithTransactionsOnDifferentWeeks(int weeks) {
         for(Transaction trans : db.getAllTransactions()){
             //date object for transaction date
-            String[] split = trans.getDate().split("-");
+            String[] split = trans.getDate().split("/");
             DateTime transDate = new DateTime(Integer.valueOf(split[2]),
                     Integer.valueOf(split[1]), Integer.valueOf(split[0]), 0, 0);
 
             //date object for end of year
-            String[] endSplit = detail.getEndDate().split("-");
+            String[] endSplit = detail.getEndDate().split("/");
             DateTime end = new DateTime(Integer.valueOf(endSplit[2]),
                     Integer.valueOf(endSplit[1]), Integer.valueOf(endSplit[0]), 0, 0);
 
@@ -138,7 +138,7 @@ public class OverviewFragment extends Fragment {
     }
 
     private int calculateWeeksTillEndOfYear() {
-        String[] startSplit = detail.getStartDate().split("-");
+        String[] startSplit = detail.getStartDate().split("/");
         DateTime start = new DateTime(Integer.valueOf(startSplit[2]),
                 Integer.valueOf(startSplit[1]), Integer.valueOf(startSplit[0]), 0, 0);
 
@@ -151,7 +151,7 @@ public class OverviewFragment extends Fragment {
             start = today;
         }
 
-        String[] endSplit = detail.getEndDate().split("-");
+        String[] endSplit = detail.getEndDate().split("/");
         DateTime end = new DateTime(Integer.valueOf(endSplit[2]),
                 Integer.valueOf(endSplit[1]), Integer.valueOf(endSplit[0]), 0, 0);
 
@@ -191,7 +191,6 @@ public class OverviewFragment extends Fragment {
 
 
             }
-//
         }
 
     }
