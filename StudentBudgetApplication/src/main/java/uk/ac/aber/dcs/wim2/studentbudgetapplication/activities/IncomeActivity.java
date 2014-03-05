@@ -17,6 +17,7 @@ import android.widget.Toast;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 
@@ -143,7 +144,7 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         if(!otherAmount.getText().toString().isEmpty()){
             income += FragmentUtilities.checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
         }
-        weeklyIncome.setText(""+income);
+        weeklyIncome.setText(BalanceUtilities.getValueAs2dpString(income));
     }
 
     @Override

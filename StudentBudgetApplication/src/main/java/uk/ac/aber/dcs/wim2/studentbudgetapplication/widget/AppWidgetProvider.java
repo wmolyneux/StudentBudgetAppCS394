@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.DetailActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
@@ -51,20 +52,13 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
 
 
             //setup the submit button for on click
-            PendingIntent pendingSubmit;
-            Intent submitIntent;
-            if(dbSize==0){
-                submitIntent = new Intent(context, EnterActivity.class);
-                pendingSubmit = PendingIntent.getActivity(context, 0, submitIntent, 0);
-            }
-            else{
-                submitIntent = new Intent(SUBMIT_BUTTON);
-                pendingSubmit = PendingIntent.getBroadcast(context, 0,
-                        submitIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                revalidateBalance(views);
-            }
+            PendingIntent pendingSubmit = setupSubmitButton(context, views);
+
+            //setup the image button for on click
+            PendingIntent pendingApp = setupAppButton(context, views);
 
             views.setOnClickPendingIntent(R.id.widgetSubmit, pendingSubmit);
+            views.setOnClickPendingIntent(R.id.logoWidgetButton, pendingApp);
             views.setOnClickPendingIntent(R.id.widgetAddButton, pendingIncrement);
             views.setOnClickPendingIntent(R.id.widgetMinusButton, pendingDecrement);
 
@@ -72,10 +66,40 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         }
     }
 
-    private void revalidateBalance(RemoteViews views) {
+    private PendingIntent setupSubmitButton(Context context, RemoteViews views) {
+        PendingIntent pendingSubmit;
+        Intent submitIntent;
+        if(dbSize==0){
+            submitIntent = new Intent(context, EnterActivity.class);
+            pendingSubmit = PendingIntent.getActivity(context, 0, submitIntent, 0);
+        }
+        else{
+            submitIntent = new Intent(SUBMIT_BUTTON);
+            pendingSubmit = PendingIntent.getBroadcast(context, 0,
+                    submitIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            validateBalance(views);
+        }
+        return pendingSubmit;
+    }
+
+    private PendingIntent setupAppButton(Context context, RemoteViews views){
+        PendingIntent pendingApp;
+        Intent appIntent;
+        if(dbSize==0){
+            appIntent = new Intent(context, EnterActivity.class);
+        }
+        else{
+            appIntent = new Intent(context, DetailActivity.class);
+        }
+        pendingApp = PendingIntent.getActivity(context, 0, appIntent, 0);
+        return pendingApp;
+    }
+
+    private void validateBalance(RemoteViews views) {
         Detail detail = db.getAllDetails().get(0);
         BalanceUtilities.recalculateBalance(detail, db);
-        views.setTextViewText(R.id.widgetRemainingWeekly, detail.getWeeklyBalance().toString());
+        views.setTextViewText(R.id.widgetRemainingWeekly,
+                "Weekly balance: £"+BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
     }
 
 
@@ -85,12 +109,16 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_simple);
         db = new SQLiteDatabaseHelper(context);
         if(INCREMENT_BUTTON.equals(intent.getAction())){
-            value += (float)0.5;
-            views.setTextViewText(R.id.widgetValueField, value+"");
+            if(value<10){
+                value += (float)0.5;
+                views.setTextViewText(R.id.widgetValueField, "-"+BalanceUtilities.getValueAs2dpString(value));
+            }
         }
         else if(DECREMENT_BUTTON.equals(intent.getAction())){
-            value -= (float)0.5;
-            views.setTextViewText(R.id.widgetValueField, value+"");
+            if(value>0.5){
+                value -= (float)0.5;
+                views.setTextViewText(R.id.widgetValueField, "-"+BalanceUtilities.getValueAs2dpString(value));
+            }
         }
         else if(SUBMIT_BUTTON.equals(intent.getAction())){
             Calendar cal = Calendar.getInstance();
@@ -100,7 +128,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
             String today = day+"/"+(month+1)+"/"+year;
             Transaction trans = new Transaction(value, "Micro transaction", "minus", "Micro Transaction", today);
             db.addTransaction(trans);
-            revalidateBalance(views);
+            validateBalance(views);
         }
 
         pushUpdate(context, views);
@@ -115,32 +143,5 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     }
 }
 
-
-
-/**
- * code for launching an activity from the app
- */
-// Create an Intent to launch ExampleActivity
-//            Intent intent = new Intent(context, EnterActivity.class);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-
-
-/**
- * code for getting views by layout and setting on click listeners
- */
-// Get the layout for the App Widget and attach an on-click listener
-// to the button
-//            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_simple);
-//            views.setOnClickPendingIntent(R.id.button, pendingIntent);
-
-/**
- * code to update
- */
-// To update a label
-//            views.setTextViewText(R.id.widget1label, df.format(new Date()));
-
-// Tell the AppWidgetManager to perform an update on the current app
-// widget
-//            appWidgetManager.updateAppWidget(appWidgetId, views);
 
 

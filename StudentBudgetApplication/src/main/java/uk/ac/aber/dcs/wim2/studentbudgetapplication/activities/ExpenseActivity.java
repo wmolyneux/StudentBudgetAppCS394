@@ -1,7 +1,5 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,9 +18,9 @@ import android.widget.Toast;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
 public class ExpenseActivity extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener, TextWatcher {
 
@@ -150,15 +148,10 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         detail.setWeeklyExpense(Float.valueOf(weeklyExpense.getText().toString()));
         db.addDetail(detail);
 
-        Intent intent = new Intent(this, AppWidgetProvider.class);
-        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-        int ids[] = AppWidgetManager.getInstance(getApplication())
-                .getAppWidgetIds(new ComponentName(getApplication(), AppWidgetProvider.class));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-        sendBroadcast(intent);
+        BalanceUtilities.updateWidget(this);
+
 
     }
-
 
 
     private boolean validate() {
@@ -199,32 +192,32 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
 
 
     public void itemChanged(){
-        Float income = new Float(0);
+        Float expense = new Float(0);
         if(!rentAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(rentSpinner.getSelectedItem().toString(), rentAmount.getText().toString());
+            expense += FragmentUtilities.checkSpinner(rentSpinner.getSelectedItem().toString(), rentAmount.getText().toString());
         }
         if(!electricityAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(electricitySpinner.getSelectedItem().toString(), electricityAmount.getText().toString());
+            expense += FragmentUtilities.checkSpinner(electricitySpinner.getSelectedItem().toString(), electricityAmount.getText().toString());
         }
         if(!heatingAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(heatingSpinner.getSelectedItem().toString(), heatingAmount.getText().toString());
+            expense += FragmentUtilities.checkSpinner(heatingSpinner.getSelectedItem().toString(), heatingAmount.getText().toString());
         }
         if(!internetAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(internetSpinner.getSelectedItem().toString(), internetAmount.getText().toString());
+            expense += FragmentUtilities.checkSpinner(internetSpinner.getSelectedItem().toString(), internetAmount.getText().toString());
         }
         if(!foodAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(foodSpinner.getSelectedItem().toString(), foodAmount.getText().toString());
+            expense += FragmentUtilities.checkSpinner(foodSpinner.getSelectedItem().toString(), foodAmount.getText().toString());
         }
         if(!transportAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(transportSpinner.getSelectedItem().toString(), transportAmount.getText().toString());
+            expense += FragmentUtilities.checkSpinner(transportSpinner.getSelectedItem().toString(), transportAmount.getText().toString());
         }
         if(!mobileAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(mobileSpinner.getSelectedItem().toString(), mobileAmount.getText().toString());
+            expense += FragmentUtilities.checkSpinner(mobileSpinner.getSelectedItem().toString(), mobileAmount.getText().toString());
         }
         if(!otherAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
+            expense += FragmentUtilities.checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
         }
-        weeklyExpense.setText(""+income);
+        weeklyExpense.setText(BalanceUtilities.getValueAs2dpString(expense));
     }
 
 

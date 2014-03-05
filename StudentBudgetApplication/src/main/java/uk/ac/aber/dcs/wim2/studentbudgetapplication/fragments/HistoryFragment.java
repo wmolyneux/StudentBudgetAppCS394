@@ -17,6 +17,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TransactionAdapterListener;
 
 public class HistoryFragment extends ListFragment implements TabHost.OnTabChangeListener {
@@ -43,7 +44,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
-        detail = db.getAllDetails().get(0);// (Detail) getArguments().getSerializable("detail");
+        detail = db.getAllDetails().get(0);
 
         setupTabHost();
 
@@ -104,7 +105,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
             transactions = new ArrayList<Transaction>();
             for (Transaction transaction : db.getAllTransactions()){
                 if(!transaction.getType().equalsIgnoreCase("minus")){
-                    values.add(transaction.getAmount().toString());
+                    values.add(BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
                     transactions.add(transaction);
                 }
             }
@@ -113,7 +114,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
             transactions = new ArrayList<Transaction>();
             for (Transaction transaction : db.getAllTransactions()){
                 if(transaction.getType().equalsIgnoreCase("minus")){
-                    values.add("-"+transaction.getAmount().toString());
+                    values.add("-"+BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
                     transactions.add(transaction);
                 }
             }

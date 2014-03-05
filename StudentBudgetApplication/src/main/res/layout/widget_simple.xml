@@ -1,43 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_margin="4dp"
-        android:background="@xml/background">
+        android:background="@xml/background"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
-    <TextView
-            android:layout_width="wrap_content"
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="£0"
-            android:id="@+id/widgetRemainingWeekly"/>
+            android:gravity="center"
+            android:layout_margin="4dp"
+            >
 
-    <Button
+        <ImageButton
+                android:src="@drawable/ic_launcher"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:id="@+id/logoWidgetButton"
+                android:layout_marginLeft="-20dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Weekly Balance: £0"
+                android:id="@+id/widgetRemainingWeekly"
+                android:layout_marginLeft="10dp"
+                />
+
+    </LinearLayout>
+
+    <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:id="@+id/widgetMinusButton"/>
+            android:layout_height="wrap_content">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="5"
-            android:id="@+id/widgetValueField"/>
+        <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="-"
+                android:id="@+id/widgetMinusButton"
+                />
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+"
-            android:id="@+id/widgetAddButton"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="-5.00"
+                android:id="@+id/widgetValueField"/>
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:id="@+id/widgetSubmit"/>
+        <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="+"
+                android:id="@+id/widgetAddButton"/>
 
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/widgetSubmit"
+                />
+    </LinearLayout>
 </LinearLayout>

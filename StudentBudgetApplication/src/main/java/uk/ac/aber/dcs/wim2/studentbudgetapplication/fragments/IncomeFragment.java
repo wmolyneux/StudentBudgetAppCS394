@@ -20,7 +20,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class IncomeFragment extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, View.OnClickListener {
@@ -196,7 +196,7 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
         if(!otherAmount.getText().toString().isEmpty()){
             income += FragmentUtilities.checkSpinner(otherSpinner.getSelectedItem().toString(), otherAmount.getText().toString());
         }
-        weeklyIncome.setText(""+income);
+        weeklyIncome.setText(BalanceUtilities.getValueAs2dpString(income));
     }
 
 }

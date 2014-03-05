@@ -3,6 +3,8 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
 
 import java.io.Serializable;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+
 /**
  * Created by wim2 on 13/02/2014.
  */
@@ -13,7 +15,7 @@ public class Transaction implements Serializable{
     private String shortDesc;
     private String type;
     private String category;
-    private String date; //dd/mm/yyyy
+    private String date;
 
     public Transaction(){}
 

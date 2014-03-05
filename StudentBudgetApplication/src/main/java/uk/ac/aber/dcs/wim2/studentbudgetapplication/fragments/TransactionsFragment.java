@@ -2,8 +2,12 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
 
 import android.app.DatePickerDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +29,8 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
 public class TransactionsFragment extends Fragment implements View.OnTouchListener, View.OnClickListener, AdapterView.OnItemSelectedListener{
 
@@ -126,6 +132,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
                                     shortDesc.getText().toString(), tmpType, category.getSelectedItem().toString(), date.getText().toString());
                     SQLiteDatabaseHelper db = new SQLiteDatabaseHelper(getActivity());
                     db.addTransaction(newTrans);
+                    BalanceUtilities.updateWidget(getActivity());
 
                     Toast.makeText(getActivity(), "Transaction added", Toast.LENGTH_LONG).show();
                     getActivity().getSupportFragmentManager().beginTransaction()
@@ -147,6 +154,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         date.setText(todaysDate);
 
     }
+
 
     private boolean validateInput() {
         if(type.isChecked()){
@@ -188,4 +196,6 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
 
         return false;
     }
+
+
 }

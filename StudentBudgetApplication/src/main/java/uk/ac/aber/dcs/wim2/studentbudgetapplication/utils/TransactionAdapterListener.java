@@ -1,6 +1,8 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +17,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivi
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
 import static android.widget.AdapterView.OnItemClickListener;
 import static android.widget.AdapterView.OnItemLongClickListener;
@@ -73,7 +76,6 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
                         values.remove(transactionToRemove);
                         db.deleteTransaction(transactions.get(transactionToRemove));
                         transactions.remove(transactionToRemove);
-
 
                         //re-validate the adapter and close the dialog
                         adapter.notifyDataSetInvalidated();

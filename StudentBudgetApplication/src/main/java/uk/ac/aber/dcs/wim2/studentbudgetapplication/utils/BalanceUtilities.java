@@ -1,15 +1,24 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
+import android.app.Activity;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+
 import org.joda.time.DateTime;
 import org.joda.time.Weeks;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
 /**
  * Created by wim2 on 04/03/2014.
@@ -17,6 +26,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 public class BalanceUtilities {
 
     private static Detail staticDetail;
+    private static DecimalFormat df;
 
 
     public static Detail recalculateBalance(Detail detail, SQLiteDatabaseHelper db){
@@ -151,5 +161,18 @@ public class BalanceUtilities {
             }
         }
 
+    }
+
+    public static void updateWidget(Activity activity) {
+        Intent intent = new Intent(activity, AppWidgetProvider.class);
+        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        int ids[] = AppWidgetManager.getInstance(activity.getApplication())
+                .getAppWidgetIds(new ComponentName(activity.getApplication(), AppWidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        activity.sendBroadcast(intent);
+    }
+
+    public static String getValueAs2dpString(Float value){
+        return String.format("%.2f", value);
     }
 }

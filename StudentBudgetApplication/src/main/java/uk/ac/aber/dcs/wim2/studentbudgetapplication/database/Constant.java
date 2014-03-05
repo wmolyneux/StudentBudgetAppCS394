@@ -2,6 +2,8 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
 
 import java.io.Serializable;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+
 /**
  * Created by wim2 on 26/02/2014.
  */
