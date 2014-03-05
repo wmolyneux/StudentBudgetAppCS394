@@ -43,6 +43,11 @@ public class OverviewFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
         detail = db.getAllDetails().get(0);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         setup();
     }
 
