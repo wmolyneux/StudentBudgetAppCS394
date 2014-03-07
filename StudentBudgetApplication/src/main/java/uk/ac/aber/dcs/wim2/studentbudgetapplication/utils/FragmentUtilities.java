@@ -60,7 +60,7 @@ public class FragmentUtilities {
         else if(spinnerText.equalsIgnoreCase("monthly")){
             value += (Float.valueOf(input)/4);
         }
-        else{
+        else if(spinnerText.equalsIgnoreCase("yearly")){
             value += (Float.valueOf(input)/52);
         }
         return value;

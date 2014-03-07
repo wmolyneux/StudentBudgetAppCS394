@@ -112,8 +112,7 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
     }
 
     private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int selectedYear,
-                              int selectedMonth, int selectedDay) {
+        public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
             endDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/"+ selectedYear);
             end = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
             calculateWeeks();
@@ -134,7 +133,6 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
                 showDialog(0);
                 break;
         }
-
         return false;
     }
 }

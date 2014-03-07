@@ -48,13 +48,13 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
     }
 
     public void registerViews(){
-        loanSpinner = (Spinner) findViewById(R.id.loanSpinner);
-        loanSpinner.setOnItemSelectedListener(this);
+//        loanSpinner = (Spinner) findViewById(R.id.loanSpinner);
+//        loanSpinner.setOnItemSelectedListener(this);
         loanAmount = (EditText) findViewById(R.id.loanAmount);
         loanAmount.addTextChangedListener(this);
 
-        grantSpinner = (Spinner) findViewById(R.id.grantSpinner);
-        grantSpinner.setOnItemSelectedListener(this);
+//        grantSpinner = (Spinner) findViewById(R.id.grantSpinner);
+//        grantSpinner.setOnItemSelectedListener(this);
         grantAmount = (EditText) findViewById(R.id.grantAmount);
         grantAmount.addTextChangedListener(this);
 
@@ -98,8 +98,8 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
 
     private void addValuesToDatabase() {
         detail.setWeeklyIncome(Float.valueOf(weeklyIncome.getText().toString()));
-        Constant loan = new Constant("income", Float.valueOf(loanAmount.getText().toString()), loanSpinner.getSelectedItem().toString());
-        Constant grant = new Constant("income", Float.valueOf(grantAmount.getText().toString()), grantSpinner.getSelectedItem().toString());
+        Constant loan = new Constant("income", Float.valueOf(loanAmount.getText().toString()), "remaining");
+        Constant grant = new Constant("income", Float.valueOf(grantAmount.getText().toString()), "remaining");
         Constant wage = new Constant("income", Float.valueOf(wageAmount.getText().toString()), wageSpinner.getSelectedItem().toString());
         Constant other = new Constant("income", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
         db = new SQLiteDatabaseHelper(this);
@@ -133,10 +133,12 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
     public void itemChanged(){
         Float income = new Float(0);
         if(!loanAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(loanSpinner.getSelectedItem().toString(), loanAmount.getText().toString());
+            income += (Float.valueOf(loanAmount.getText().toString())/detail.getTotalWeeks());
+//            income += FragmentUtilities.checkSpinner("remaining", loanAmount.getText().toString());
         }
         if(!grantAmount.getText().toString().isEmpty()){
-            income += FragmentUtilities.checkSpinner(grantSpinner.getSelectedItem().toString(), grantAmount.getText().toString());
+            income += (Float.valueOf(grantAmount.getText().toString())/detail.getTotalWeeks());
+//            income += FragmentUtilities.checkSpinner("remaining", grantAmount.getText().toString());
         }
         if(!wageAmount.getText().toString().isEmpty()){
             income += FragmentUtilities.checkSpinner(wageSpinner.getSelectedItem().toString(), wageAmount.getText().toString());

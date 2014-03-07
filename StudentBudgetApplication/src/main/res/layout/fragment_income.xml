@@ -22,15 +22,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Loan:"
+                    android:text="Remaining loans:"
                     android:id="@+id/textView"/>
-
-            <Spinner
-                    android:layout_width="150dp"
-                    android:layout_height="37dp"
-                    android:id="@+id/updateLoanSpinner"
-                    android:entries="@array/monthly_yearly"
-                    android:layout_marginLeft="33dp"/>
 
             <EditText
                     android:layout_width="wrap_content"
@@ -38,7 +31,7 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/updateLoanAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="78dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -51,15 +44,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Grant:"
+                    android:text="Remaining grants:"
                     android:id="@+id/textView2"/>
-
-            <Spinner
-                    android:layout_width="150dp"
-                    android:layout_height="37dp"
-                    android:id="@+id/updateGrantSpinner"
-                    android:layout_marginLeft="26dp"
-                    android:entries="@array/monthly_yearly"/>
 
             <EditText
                     android:layout_width="wrap_content"
@@ -67,7 +53,7 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/updateGrantAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="72dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -80,14 +66,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Wage:"
+                    android:text="Salary:"
                     android:id="@+id/textView3"/>
 
             <Spinner
                     android:layout_width="150dp"
                     android:layout_height="37dp"
                     android:id="@+id/updateWageSpinner"
-                    android:layout_marginLeft="26dp"
+                    android:layout_marginLeft="19dp"
                     android:entries="@array/weekly_monthly_yearly"/>
 
             <EditText

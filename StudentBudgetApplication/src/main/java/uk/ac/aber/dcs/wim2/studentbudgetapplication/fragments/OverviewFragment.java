@@ -20,6 +20,7 @@ public class OverviewFragment extends Fragment {
     TextView weeklyExpense;
     TextView weeklyBalance;
     TextView totalBalance;
+    TextView debug;
 
 
 
@@ -36,6 +37,7 @@ public class OverviewFragment extends Fragment {
         weeklyExpense = (TextView) view.findViewById(R.id.overWeeklyExpense);
         weeklyBalance = (TextView) view.findViewById(R.id.overWeeklyBalance);
         totalBalance = (TextView) view.findViewById(R.id.totalBalance);
+        debug = (TextView) view.findViewById(R.id.debugText);
     }
 
     @Override
@@ -43,6 +45,8 @@ public class OverviewFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
         detail = db.getAllDetails().get(0);
+        debug.setText(detail.toString());
+
     }
 
     @Override

@@ -139,6 +139,11 @@ public class BalanceUtilities {
                     temp = temp*weeks;
                     staticDetail.setBalance(staticDetail.getBalance()+temp);
                 }
+                else if(con.getRecurr().equalsIgnoreCase("yearly")){
+                    Float temp = (con.getAmount()/52);
+                    temp = temp*weeks;
+                    staticDetail.setBalance(staticDetail.getBalance()+temp);
+                }
                 else{
                     staticDetail.setBalance(staticDetail.getBalance()+con.getAmount());
                 }
@@ -153,8 +158,10 @@ public class BalanceUtilities {
                     temp = temp*weeks;
                     staticDetail.setBalance(staticDetail.getBalance()-temp);
                 }
-                else{
-                    staticDetail.setBalance(staticDetail.getBalance()-con.getAmount());
+                else if(con.getRecurr().equalsIgnoreCase("yearly")){
+                    Float temp = con.getAmount()/52;
+                    temp = temp*weeks;
+                    staticDetail.setBalance(staticDetail.getBalance()-temp);
                 }
 
 
