@@ -51,14 +51,16 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
         month = cal.get(Calendar.MONTH);
         year = cal.get(Calendar.YEAR);
 
-        startDate.setOnTouchListener(this);
+        startDate.setText(day + "/" + (month + 1) + "/"+ year);
+        start = new DateTime(year, month+1, day, 0, 0);
+
         endDate.setOnTouchListener(this);
 
         next = (Button) findViewById(R.id.DateToIncomeButton);
         next.setOnClickListener(this);
 
         weeksText = (TextView) findViewById(R.id.weeks);
-        
+
     }
 
 
@@ -112,16 +114,8 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
     private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
-            if(startOrEnd.equalsIgnoreCase("start")){
-                startDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/"
-                        + selectedYear);
-                start = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
-            }
-            else{
-                endDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/"
-                        + selectedYear);
-                end = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
-            }
+            endDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/"+ selectedYear);
+            end = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
             calculateWeeks();
         }
     };
@@ -136,12 +130,7 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()){
-            case R.id.termStartDate:
-                startOrEnd = "start";
-                showDialog(0);
-                break;
             case R.id.termEndDate:
-                startOrEnd = "end";
                 showDialog(0);
                 break;
         }
