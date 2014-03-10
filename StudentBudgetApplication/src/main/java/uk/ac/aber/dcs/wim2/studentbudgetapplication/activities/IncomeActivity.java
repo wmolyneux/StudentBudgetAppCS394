@@ -23,6 +23,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 
 public class IncomeActivity extends Activity implements View.OnClickListener, TextWatcher, AdapterView.OnItemSelectedListener {
 
+    private EditText balanceAmount;
     private Spinner loanSpinner;
     private EditText loanAmount;
     private Spinner grantSpinner;
@@ -48,6 +49,9 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
     }
 
     public void registerViews(){
+        balanceAmount = (EditText)findViewById(R.id.balanceAmount);
+        balanceAmount.addTextChangedListener(this);
+
 //        loanSpinner = (Spinner) findViewById(R.id.loanSpinner);
 //        loanSpinner.setOnItemSelectedListener(this);
         loanAmount = (EditText) findViewById(R.id.loanAmount);
@@ -98,11 +102,13 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
 
     private void addValuesToDatabase() {
         detail.setWeeklyIncome(Float.valueOf(weeklyIncome.getText().toString()));
+        Constant balance = new Constant("income", Float.valueOf(balanceAmount.getText().toString()), "balance");
         Constant loan = new Constant("income", Float.valueOf(loanAmount.getText().toString()), "remaining");
         Constant grant = new Constant("income", Float.valueOf(grantAmount.getText().toString()), "remaining");
         Constant wage = new Constant("income", Float.valueOf(wageAmount.getText().toString()), wageSpinner.getSelectedItem().toString());
         Constant other = new Constant("income", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
         db = new SQLiteDatabaseHelper(this);
+        db.addConstant(balance);
         db.addConstant(loan);
         db.addConstant(grant);
         db.addConstant(wage);
@@ -111,6 +117,10 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
     }
 
     private boolean validate() {
+        if(balanceAmount.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter balance amount", Toast.LENGTH_LONG).show();
+            return false;
+        }
         if(loanAmount.getText().toString().isEmpty()){
             Toast.makeText(this, "Please enter loan amount", Toast.LENGTH_LONG).show();
             return false;
@@ -132,6 +142,9 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
 
     public void itemChanged(){
         Float income = new Float(0);
+        if(!balanceAmount.getText().toString().isEmpty()){
+            income+= (Float.valueOf(balanceAmount.getText().toString())/detail.getTotalWeeks());
+        }
         if(!loanAmount.getText().toString().isEmpty()){
             income += (Float.valueOf(loanAmount.getText().toString())/detail.getTotalWeeks());
 //            income += FragmentUtilities.checkSpinner("remaining", loanAmount.getText().toString());

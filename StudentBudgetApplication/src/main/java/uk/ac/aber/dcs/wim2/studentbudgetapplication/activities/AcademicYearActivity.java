@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.Weeks;
 
 import java.util.Calendar;
@@ -41,7 +42,7 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_academic_year);
+        setContentView(R.layout.activity_budget_dates);
 
         startDate = (EditText) findViewById(R.id.termStartDate);
         endDate = (EditText) findViewById(R.id.termEndDate);
@@ -122,7 +123,7 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
     private void calculateWeeks() {
         if(!startDate.getText().toString().isEmpty() && !endDate.getText().toString().isEmpty()){
             weeks = Weeks.weeksBetween(start, end).getWeeks();
-            weeksText.setText(weeks+"");
+            weeksText.setText(weeks + "");
         }
     }
 
@@ -135,4 +136,8 @@ public class AcademicYearActivity extends Activity implements View.OnClickListen
         }
         return false;
     }
+
+
+    // mon-10 11 12 13 14 15 16 11mon-17 18 19 20 21 22 23 mon-24
+
 }

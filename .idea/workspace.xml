@@ -17,15 +17,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_academic_year.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_budget_dates.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AcademicYearActivity.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AcademicYearActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/BalanceUtilities.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/BalanceUtilities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/FragmentUtilities.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/FragmentUtilities.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/IncomeActivity.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/IncomeActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/IncomeFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/IncomeFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_income.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_income.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_income.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_income.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_overview.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_overview.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StudentBudgetApplication.iws" />
@@ -94,64 +92,7 @@
       <file leaf-file-name="AcademicYearActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AcademicYearActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="134" column="9" selection-start="4429" selection-end="4429" vertical-scroll-proportion="1.0" vertical-offset="1187" max-vertical-offset="1830">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OverviewFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="43" selection-start="2097" selection-end="2097" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="1125">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BalanceUtilities.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/BalanceUtilities.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="63" selection-start="6544" selection-end="6544" vertical-scroll-proportion="0.0" vertical-offset="1540" max-vertical-offset="2595">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FragmentUtilities.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/FragmentUtilities.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="8" selection-start="2107" selection-end="2107" vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="1125">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_income.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_income.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2355">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IncomeFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/IncomeFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="194" column="113" selection-start="7914" selection-end="7914" vertical-scroll-proportion="0.0" vertical-offset="2895" max-vertical-offset="3180">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EnterActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="13" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1560">
+            <state line="124" column="62" selection-start="4188" selection-end="4188" vertical-scroll-proportion="0.537037" vertical-offset="1254" max-vertical-offset="1890">
               <folding />
             </state>
           </provider>
@@ -163,19 +104,49 @@
             <state />
           </provider>
           <provider editor-type-id="text-editor">
-            <state line="27" column="12" selection-start="1141" selection-end="1141" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="2340">
+            <state line="51" column="12" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="2700">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_expense.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_expense.xml">
-          <provider editor-type-id="android-designer">
+      <file leaf-file-name="fragment_income.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_income.xml">
+          <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2700">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_budget_dates.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_budget_dates.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state line="32" column="47" selection-start="1412" selection-end="1412" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1410">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IncomeFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/IncomeFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="58" selection-start="1394" selection-end="1400" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="4290">
+            <state line="145" column="6" selection-start="5468" selection-end="5468" vertical-scroll-proportion="0.0" vertical-offset="1532" max-vertical-offset="3105">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BalanceUtilities.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/BalanceUtilities.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="125" column="57" selection-start="5332" selection-end="5332" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="2595">
               <folding />
             </state>
           </provider>
@@ -247,22 +218,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ExpenseFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/widget/AppWidgetProvider.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_academic_year.xml" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AcademicYearActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_expense.xml" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_income.xml" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_income.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/FragmentUtilities.java" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/IncomeActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_overview.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/IncomeFragment.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/IncomeActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/BalanceUtilities.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_income.xml" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_income.xml" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/IncomeFragment.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_budget_dates.xml" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AcademicYearActivity.java" />
       </list>
     </option>
   </component>
@@ -298,7 +269,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -395,36 +365,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentBudgetApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentBudgetApplicationProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StudentBudgetApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -888,6 +828,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1273,7 +1214,11 @@
       <created>1394201792604</created>
       <updated>1394201792604</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="calculations for weekly values were slightly incorrect, seems to be fixed now">
+      <created>1394205474165</created>
+      <updated>1394205474165</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1292,14 +1237,14 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30941176" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3938679" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3938679" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977778" sideWeight="0.67058825" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30501932" sideWeight="0.6143868" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3856132" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30501932" sideWeight="0.6061321" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22051887" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1362,17 +1307,43 @@
         <state line="228" column="21" selection-start="10349" selection-end="10349" vertical-scroll-proportion="0.09375" vertical-offset="3045" max-vertical-offset="3960" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_academic_year.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="47" selection-start="1410" selection-end="1410" vertical-scroll-proportion="-17.777779" vertical-offset="0" max-vertical-offset="1410" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="14" selection-start="1791" selection-end="1797" vertical-scroll-proportion="0.0" vertical-offset="277" max-vertical-offset="870">
+        <state line="40" column="14" selection-start="1791" selection-end="1797" vertical-scroll-proportion="0.0" vertical-offset="277" max-vertical-offset="870" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_overview.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="41" selection-start="2339" selection-end="2339" vertical-scroll-proportion="1.3590263" vertical-offset="170" max-vertical-offset="990">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/FragmentUtilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="8" selection-start="2107" selection-end="2107" vertical-scroll-proportion="0.69574034" vertical-offset="572" max-vertical-offset="1065">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="672" selection-end="672" vertical-scroll-proportion="0.030425964" vertical-offset="45" max-vertical-offset="1380">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/IncomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="145" column="96" selection-start="5782" selection-end="5782" vertical-scroll-proportion="3.8336713" vertical-offset="0" max-vertical-offset="2640">
           <folding />
         </state>
       </provider>
@@ -1382,7 +1353,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="58" selection-start="1394" selection-end="1400" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="4290">
+        <state line="32" column="58" selection-start="1394" selection-end="1400" vertical-scroll-proportion="0.03218884" vertical-offset="465" max-vertical-offset="4290">
           <folding />
         </state>
       </provider>
@@ -1392,7 +1363,7 @@
         <state />
       </provider>
       <provider editor-type-id="text-editor">
-        <state line="27" column="12" selection-start="1141" selection-end="1141" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="2340">
+        <state line="51" column="12" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="2700">
           <folding />
         </state>
       </provider>
@@ -1407,61 +1378,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java">
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/BalanceUtilities.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_overview.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="43" selection-start="2097" selection-end="2097" vertical-scroll-proportion="0.0" vertical-offset="382" max-vertical-offset="975">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/IncomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="12" selection-start="5207" selection-end="5289" vertical-scroll-proportion="0.25925925" vertical-offset="1614" max-vertical-offset="2445">
+        <state line="125" column="57" selection-start="5332" selection-end="5332" vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="2595">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/IncomeFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="194" column="113" selection-start="7914" selection-end="7914" vertical-scroll-proportion="0.0" vertical-offset="2379" max-vertical-offset="2865">
+        <state line="145" column="6" selection-start="5468" selection-end="5468" vertical-scroll-proportion="0.0" vertical-offset="1532" max-vertical-offset="3105">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/FragmentUtilities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="8" selection-start="2107" selection-end="2107" vertical-scroll-proportion="0.0" vertical-offset="472" max-vertical-offset="1065">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/activity_budget_dates.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/BalanceUtilities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="63" selection-start="6544" selection-end="6544" vertical-scroll-proportion="0.0" vertical-offset="1540" max-vertical-offset="2595">
+      <provider editor-type-id="text-editor">
+        <state line="32" column="47" selection-start="1412" selection-end="1412" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1725">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/AcademicYearActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="9" selection-start="4429" selection-end="4429" vertical-scroll-proportion="1.0" vertical-offset="1187" max-vertical-offset="1830">
+        <state line="124" column="62" selection-start="4188" selection-end="4188" vertical-scroll-proportion="0.537037" vertical-offset="1254" max-vertical-offset="1890">
           <folding />
         </state>
       </provider>

@@ -45,7 +45,7 @@ public class OverviewFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
         detail = db.getAllDetails().get(0);
-        debug.setText(detail.toString());
+
 
     }
 
@@ -64,6 +64,7 @@ public class OverviewFragment extends Fragment {
         totalBalance.setText(BalanceUtilities.getValueAs2dpString(detail.getBalance()));
         weeklyBalance.setText(BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
         db.updateDetail(detail);
+        debug.setText(detail.toString());
     }
     
 }

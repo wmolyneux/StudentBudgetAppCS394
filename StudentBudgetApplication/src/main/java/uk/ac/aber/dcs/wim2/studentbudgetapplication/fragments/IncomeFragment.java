@@ -25,6 +25,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class IncomeFragment extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, View.OnClickListener {
 
+    private EditText balanceAmount;
     private Spinner loanSpinner;
     private EditText loanAmount;
     private Spinner grantSpinner;
@@ -46,6 +47,9 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
     }
 
     private void registerViews(View inflate) {
+
+        balanceAmount = (EditText)inflate.findViewById(R.id.updateBalanceAmount);
+        balanceAmount.addTextChangedListener(this);
 //        loanSpinner = (Spinner) inflate.findViewById(R.id.updateLoanSpinner);
 //        loanSpinner.setOnItemSelectedListener(this);
         loanAmount = (EditText) inflate.findViewById(R.id.updateLoanAmount);
@@ -85,19 +89,22 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
             }
         }
 
-        //setup loan spinner and amount with value from constant
-        loanAmount.setText(tempIncomes.get(0).getAmount().toString());
+        //setup balance amount with value from constant
+        balanceAmount.setText(tempIncomes.get(0).getAmount().toString());
+
+        //setup loan amount with value from constant
+        loanAmount.setText(tempIncomes.get(1).getAmount().toString());
 //        FragmentUtilities.resetMonthYearSpinnerAndAmount(tempIncomes.get(0), loanSpinner, loanAmount);
 
         //setup grant spinner and amount with value from constant
-        grantAmount.setText(tempIncomes.get(1).getAmount().toString());
+        grantAmount.setText(tempIncomes.get(2).getAmount().toString());
 //        FragmentUtilities.resetMonthYearSpinnerAndAmount(tempIncomes.get(1), grantSpinner, grantAmount);
 
         //setup wage spinner and amount with value from constant
-        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempIncomes.get(2), wageSpinner, wageAmount);
+        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempIncomes.get(3), wageSpinner, wageAmount);
 
         //setup other spinner and amount with value from constant
-        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempIncomes.get(3), otherSpinner, otherAmount);
+        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempIncomes.get(4), otherSpinner, otherAmount);
 
     }
 
@@ -152,10 +159,12 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
         }
 
         detail.setWeeklyIncome(Float.valueOf(weeklyIncome.getText().toString()));
+        Constant balance = new Constant("income", Float.valueOf(balanceAmount.getText().toString()), "balance");
         Constant loan = new Constant("income", Float.valueOf(loanAmount.getText().toString()), "remaining");
         Constant grant = new Constant("income", Float.valueOf(grantAmount.getText().toString()), "remaining");
         Constant wage = new Constant("income", Float.valueOf(wageAmount.getText().toString()), wageSpinner.getSelectedItem().toString());
         Constant other = new Constant("income", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
+        db.addConstant(balance);
         db.addConstant(loan);
         db.addConstant(grant);
         db.addConstant(wage);
@@ -165,6 +174,10 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
     }
 
     private boolean validate() {
+        if(balanceAmount.getText().toString().isEmpty()){
+            Toast.makeText(getActivity(), "Please enter balance amount", Toast.LENGTH_LONG).show();
+            return false;
+        }
         if(loanAmount.getText().toString().isEmpty()){
             Toast.makeText(getActivity(), "Please enter loan amount", Toast.LENGTH_LONG).show();
             return false;
@@ -186,6 +199,9 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
 
     public void itemChanged(){
         Float income = new Float(0);
+        if(!balanceAmount.getText().toString().isEmpty()){
+            income += (Float.valueOf(balanceAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks());
+        }
         if(!loanAmount.getText().toString().isEmpty()){
 //            income += FragmentUtilities.checkSpinner(loanSpinner.getSelectedItem().toString(), loanAmount.getText().toString());
             income += (Float.valueOf(loanAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks());

@@ -22,7 +22,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Term Start Date:"
+                    android:text="Budget Start Date:"
                     android:id="@+id/textView"/>
 
             <EditText
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Term End Date:"
+                    android:text="Budget End Date:"
                     android:id="@+id/textView2"/>
 
             <EditText
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Weeks in academic year:   "
+                android:text="Weeks in budget period:   "
                 android:id="@+id/textView3"
                 android:layout_marginLeft="38dp"/>
 
