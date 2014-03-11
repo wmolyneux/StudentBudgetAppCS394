@@ -23,7 +23,7 @@ import java.util.Calendar;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 
-public class AcademicYearActivity extends Activity implements View.OnClickListener, View.OnTouchListener {
+public class BudgetPeriodActivity extends Activity implements View.OnClickListener, View.OnTouchListener {
 
     private int day;
     private int month;

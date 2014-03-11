@@ -47,7 +47,7 @@
             android:label="@string/title_activity_expense" >
         </activity>
         <activity
-            android:name=".activities.AcademicYearActivity"
+            android:name=".activities.BudgetPeriodActivity"
             android:label="@string/title_activity_term" >
         </activity>
         <activity

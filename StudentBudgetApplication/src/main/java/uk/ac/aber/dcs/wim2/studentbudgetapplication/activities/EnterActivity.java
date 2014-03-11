@@ -1,6 +1,7 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -62,7 +63,7 @@ public class EnterActivity extends Activity implements View.OnClickListener{
                     startActivity(intent);
                 }
                 catch(IndexOutOfBoundsException e){
-                    Intent intent = new Intent(this, AcademicYearActivity.class);
+                    Intent intent = new Intent(this, BudgetPeriodActivity.class);
                     startActivity(intent);
                 }
                 break;
@@ -84,13 +85,13 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 
     private void populateCategoryTable() {
         if(db.getAllCategories().size()==0){
-            db.addCategory(new Category("Food"));
-            db.addCategory(new Category("Booze"));
-            db.addCategory(new Category("Sport"));
-            db.addCategory(new Category("University"));
-            db.addCategory(new Category("Travel"));
-            db.addCategory(new Category("Clothing"));
-            db.addCategory(new Category("Other"));
+            db.addCategory(new Category("Food", "cyan"));
+            db.addCategory(new Category("Booze", "green"));
+            db.addCategory(new Category("Sport", "magenta"));
+            db.addCategory(new Category("University", "yellow"));
+            db.addCategory(new Category("Travel", "red"));
+            db.addCategory(new Category("Clothing", "blue"));
+            db.addCategory(new Category("Other", "ltgray"));
         }
     }
 

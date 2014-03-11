@@ -54,6 +54,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     //Category table column names
     private static final String KEY_CATEGORY_ID = "id";
     private static final String KEY_CATEGORY_NAME = "name";
+    private static final String KEY_CATEGORY_COLOR = "color";
 
     private static final String[] DETAIL_COLUMNS = {KEY_DETAIL_ID, KEY_DETAIL_STARTDATE, KEY_DETAIL_ENDDATE, KEY_DETAIL_TOTALWEEKS, KEY_DETAIL_WEEKSREMAINING,
                 KEY_DETAIL_WEEKLYINCOME, KEY_DETAIL_WEEKLYEXPENSE, KEY_DETAIL_WEEKLYBALANCE, KEY_DETAIL_BALANCE, KEY_DETAIL_FLAG};
@@ -64,7 +65,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             KEY_TRANSACTION_AMOUNT, KEY_TRANSACTION_SHORTDESC, KEY_TRANSACTION_TYPE,
             KEY_TRANSACTION_CATEGORY, KEY_TRANSACTION_DATE};
 
-    private static final String[] CATEGORY_COLUMNS = {KEY_CATEGORY_ID, KEY_CATEGORY_NAME};
+    private static final String[] CATEGORY_COLUMNS = {KEY_CATEGORY_ID, KEY_CATEGORY_NAME, KEY_CATEGORY_COLOR};
 
     private static final int DATABASE_VERSION = 1;
 
@@ -103,7 +104,8 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         //SQL statement to create categories table
         String CREATE_CATEGORY_TABLE = "CREATE TABLE categories ( "+
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                "name TEXT)";
+                "name TEXT, "+
+                "color REAL)";
 
         //create categories table
         db.execSQL(CREATE_CATEGORY_TABLE);
@@ -304,7 +306,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
      *
      *
      *
-     * CODE FOR DETAIL DATABASE OPERATIONS IS HERE
+     * CODE FOR Constant DATABASE OPERATIONS IS HERE
      *
      *
      *
@@ -621,6 +623,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         //create content values to add key to column/value
         ContentValues values = new ContentValues();
         values.put(KEY_CATEGORY_NAME, category.getName());
+        values.put(KEY_CATEGORY_COLOR, category.getColor());
 
         //insert into database .insert(tablename, columnhack,
         // key/value -> keys = columns names/ values = column values)
@@ -654,6 +657,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         Category cat = new Category();
         cat.setId(Integer.parseInt(cursor.getString(0)));
         cat.setName(cursor.getString(1));
+        cat.setColor(cursor.getString(2));
 
         //return account
         return cat;
@@ -683,6 +687,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 cats = new Category();
                 cats.setId(Integer.parseInt(cursor.getString(0)));
                 cats.setName(cursor.getString(1));
+                cats.setColor(cursor.getString(2));
 
                 categories.add(cats);
 
@@ -710,6 +715,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         //create contentValues to add key to column/value
         ContentValues values = new ContentValues();
         values.put(KEY_CATEGORY_NAME, category.getName());
+        values.put(KEY_CATEGORY_COLOR, category.getColor());
 
         //update the row in the table
         //in the format .update(tablename, column/value, selections, selection args)

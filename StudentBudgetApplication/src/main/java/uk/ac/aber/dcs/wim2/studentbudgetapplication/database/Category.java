@@ -10,17 +10,19 @@ public class Category implements Serializable{
 
     private int id;
     private String name;
+    private String color;
 
     public Category(){}
 
-    public Category(String category){
+    public Category(String category, String color){
         super();
         this.name = category;
+        this.color = color;
     }
 
     @Override
     public String toString() {
-        return "Account [id="+id+", name="+name+"]";
+        return "Account [id="+id+", name="+name+", color="+color+"]";
     }
 
     public int getId() {
@@ -37,5 +39,13 @@ public class Category implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
