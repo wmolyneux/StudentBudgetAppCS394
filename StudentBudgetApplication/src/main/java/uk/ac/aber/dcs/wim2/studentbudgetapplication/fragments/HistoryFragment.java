@@ -22,15 +22,15 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TransactionAdapterList
 
 public class HistoryFragment extends ListFragment implements TabHost.OnTabChangeListener {
 
-    TabHost tabHost;
-    List<Transaction> transactions = null;
-    SQLiteDatabaseHelper db;
-    ArrayAdapter<String> adapter;
-    View context;
-    ListView list;
-    ArrayList<String> values;
-    Detail detail;
-    TransactionAdapterListener listen;
+    private TabHost tabHost;
+    private List<Transaction> transactions = null;
+    private SQLiteDatabaseHelper db;
+    private ArrayAdapter<String> adapter;
+    private View context;
+    private ListView list;
+    private ArrayList<String> values;
+    private Detail detail;
+    private TransactionAdapterListener listen;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

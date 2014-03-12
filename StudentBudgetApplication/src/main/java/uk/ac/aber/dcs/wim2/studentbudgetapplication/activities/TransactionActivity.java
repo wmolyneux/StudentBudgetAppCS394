@@ -13,14 +13,14 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
 public class TransactionActivity extends Activity implements View.OnClickListener{
 
-    TextView amount;
-    TextView shortDesc;
-    TextView type;
-    TextView category;
-    TextView date;
-    Button doneButton;
+    private TextView amount;
+    private TextView shortDesc;
+    private TextView type;
+    private TextView category;
+    private TextView date;
+    private Button doneButton;
 
-    Transaction transaction;
+    private Transaction transaction;
 
 
 

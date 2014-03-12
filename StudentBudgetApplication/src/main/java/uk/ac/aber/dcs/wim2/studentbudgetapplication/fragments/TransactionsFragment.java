@@ -35,27 +35,28 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 public class TransactionsFragment extends Fragment implements View.OnTouchListener, View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     //views from the layout
-    EditText amount;
-    EditText shortDesc;
-    ToggleButton type;
-    Spinner category;
-    EditText date;
-    Button clear;
-    Button create;
+    private EditText amount;
+    private EditText shortDesc;
+    private ToggleButton type;
+    private Spinner category;
+    private EditText date;
+    private Button clear;
+    private Button create;
 
     //saved instance account
-    Detail detail;
+    private Detail detail;
 
     //values for new transaction
-    String tmpType;
-    SQLiteDatabaseHelper db;
+    private String tmpType;
+    private SQLiteDatabaseHelper db;
 
-    int day;
-    int month;
-    int year;
-    String todaysDate;
+    private int day;
+    private int month;
+    private int year;
+    private String todaysDate;
 
-    DatePickerDialog dateDialog;
+    private DatePickerDialog dateDialog;
+    private String description;
 
 
 
@@ -118,6 +119,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         create = (Button) inflate.findViewById(R.id.createTransButton);
 
         create.setOnClickListener(this);
+        clear.setOnClickListener(this);
     }
 
 
@@ -126,10 +128,9 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         switch (view.getId()){
             case R.id.createTransButton:
                 if(validateInput()){
-
                     Transaction newTrans =
                             new Transaction(Float.valueOf(amount.getText().toString()),
-                                    shortDesc.getText().toString(), tmpType, category.getSelectedItem().toString(), date.getText().toString());
+                                    description, tmpType, category.getSelectedItem().toString(), date.getText().toString());
                     SQLiteDatabaseHelper db = new SQLiteDatabaseHelper(getActivity());
                     db.addTransaction(newTrans);
                     BalanceUtilities.updateWidget(getActivity());
@@ -163,11 +164,13 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         else{
             tmpType = "minus";
         }
-
-        if(amount.getText().toString().isEmpty()){
-            return false;
-        }
         if(shortDesc.getText().toString().isEmpty()){
+            description = "No Description";
+        }
+        else{
+            description = shortDesc.getText().toString();
+        }
+        if(amount.getText().toString().isEmpty()){
             return false;
         }
         if(category.getSelectedItem().toString().isEmpty()){

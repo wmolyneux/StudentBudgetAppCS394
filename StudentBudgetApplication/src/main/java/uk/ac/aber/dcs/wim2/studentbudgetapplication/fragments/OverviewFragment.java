@@ -14,13 +14,13 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 
 public class OverviewFragment extends Fragment {
 
-    Detail detail = null;
-    SQLiteDatabaseHelper db;
-    TextView weeklyIncome;
-    TextView weeklyExpense;
-    TextView weeklyBalance;
-    TextView totalBalance;
-    TextView debug;
+    private Detail detail = null;
+    private SQLiteDatabaseHelper db;
+    private TextView weeklyIncome;
+    private TextView weeklyExpense;
+    private TextView weeklyBalance;
+    private TextView totalBalance;
+    private TextView debug;
 
 
 

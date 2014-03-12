@@ -17,9 +17,9 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 
 public class EnterActivity extends Activity implements View.OnClickListener{
 
-    Button entryButton;
-    SQLiteDatabaseHelper db;
-    Button clear;
+    private Button entryButton;
+    private SQLiteDatabaseHelper db;
+    private Button clear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

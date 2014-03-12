@@ -17,12 +17,11 @@ public class Detail implements Serializable {
     private Float weeklyExpense;
     private Float weeklyBalance;
     private Float balance;
-    private String flag;
 
     public Detail(){}
 
     public Detail(String startDate, String endDate,int totalWeeks, int weeksRemaining, Float weeklyIncome,
-                  Float weeklyExpense, Float weeklyBalance, Float balance, String flag) {
+                  Float weeklyExpense, Float weeklyBalance, Float balance) {
         super();
         this.startDate = startDate;
         this.endDate = endDate;
@@ -32,7 +31,6 @@ public class Detail implements Serializable {
         this.weeklyExpense = weeklyExpense;
         this.weeklyBalance = weeklyBalance;
         this.balance = balance;
-        this.flag = flag;
     }
 
 
@@ -48,7 +46,6 @@ public class Detail implements Serializable {
                 ", weeklyExpense=" + weeklyExpense +
                 ", weeklyBalance=" + weeklyBalance +
                 ", balance=" + balance +
-                ", flag=" + flag +
                 '}';
     }
 
@@ -127,11 +124,4 @@ public class Detail implements Serializable {
         this.balance = balance;
     }
 
-    public String getFlag() {
-        return flag;
-    }
-
-    public void setFlag(String flag) {
-        this.flag = flag;
-    }
 }

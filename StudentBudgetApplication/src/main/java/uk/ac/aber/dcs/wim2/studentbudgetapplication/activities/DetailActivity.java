@@ -26,12 +26,11 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.IncomeFragment;
 
 public class DetailActivity extends FragmentActivity {
 
-//    private Detail detail;
     private String[] drawerListViewItems;
     private ListView drawerListView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-//    private SQLiteDatabaseHelper db;
+
 
     @Override
     public void onBackPressed() {}

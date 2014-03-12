@@ -16,20 +16,21 @@ import java.util.ArrayList;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.SQLiteHelper;
 
 public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelectedListener, SeekBar.OnSeekBarChangeListener {
 
-    Spinner categories;
-    SeekBar weeklySlide;
-    SeekBar monthlySlide;
-    TextView currWeekMin;
-    TextView currWeekMax;
-    TextView currMonthMin;
-    TextView currMonthMax;
-    TextView remainingWeek;
-    TextView remainingMonth;
-    SQLiteHelper db;
+    private Spinner categories;
+    private SeekBar weeklySlide;
+    private SeekBar monthlySlide;
+    private TextView currWeekMin;
+    private TextView currWeekMax;
+    private TextView currMonthMin;
+    private TextView currMonthMax;
+    private TextView remainingWeek;
+    private TextView remainingMonth;
+    private SQLiteDatabaseHelper db;
 
 
 
@@ -48,7 +49,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
 
     public void registerView(View view){
         categories = (Spinner) view.findViewById(R.id.budgetCategorySpinner);
-        db = new SQLiteHelper(getActivity());
+        db = new SQLiteDatabaseHelper(getActivity());
         ArrayList<String> tempCategories = new ArrayList<String>();
         for (Category cat : db.getAllCategories()){
             tempCategories.add(cat.getName());
@@ -93,6 +94,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
     int min = 20;
     int max = 50;
     int diff = 30;
+
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         weeklySlide.setMax(diff);

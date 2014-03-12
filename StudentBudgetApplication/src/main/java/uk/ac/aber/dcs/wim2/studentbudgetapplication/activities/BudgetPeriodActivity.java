@@ -35,8 +35,8 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
     private Button next;
     private DateTime start;
     private DateTime end;
-    TextView weeksText;
-    int weeks;
+    private TextView weeksText;
+    private int weeks;
 
 
     @Override
@@ -77,7 +77,7 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
         switch(view.getId()){
             case R.id.DateToIncomeButton:
                 if(validate()){
-                    Detail det = new Detail("", "", 0, 0, Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), "Y");
+                    Detail det = new Detail("", "", 0, 0, Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0));
                     det.setStartDate(startDate.getText().toString());
                     det.setEndDate(endDate.getText().toString());
                     det.setTotalWeeks(weeks);

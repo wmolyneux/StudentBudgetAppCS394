@@ -41,7 +41,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_DETAIL_WEEKLYEXPENSE = "weeklyExpense";
     private static final String KEY_DETAIL_WEEKLYBALANCE = "weeklyBalance";
     private static final String KEY_DETAIL_BALANCE = "balance";
-    private static final String KEY_DETAIL_FLAG = "flag";
 
     //Transaction table column names
     private static final String KEY_TRANSACTION_ID = "id";
@@ -57,7 +56,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CATEGORY_COLOR = "color";
 
     private static final String[] DETAIL_COLUMNS = {KEY_DETAIL_ID, KEY_DETAIL_STARTDATE, KEY_DETAIL_ENDDATE, KEY_DETAIL_TOTALWEEKS, KEY_DETAIL_WEEKSREMAINING,
-                KEY_DETAIL_WEEKLYINCOME, KEY_DETAIL_WEEKLYEXPENSE, KEY_DETAIL_WEEKLYBALANCE, KEY_DETAIL_BALANCE, KEY_DETAIL_FLAG};
+                KEY_DETAIL_WEEKLYINCOME, KEY_DETAIL_WEEKLYEXPENSE, KEY_DETAIL_WEEKLYBALANCE, KEY_DETAIL_BALANCE};
 
     private static final String[] CONSTANT_COLUMNS = {KEY_CONSTANT_ID, KEY_CONSTANT_TYPE, KEY_CONSTANT_AMOUNT, KEY_CONSTANT_RECURR};
 
@@ -87,8 +86,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 "weeklyIncome REAL, "+
                 "weeklyExpense REAL, "+
                 "weeklyBalance REAL, "+
-                "balance REAL, "+
-                "flag TEXT)";
+                "balance REAL)";
 
         db.execSQL(CREATE_DETAIL_TABLE);
 
@@ -162,7 +160,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_DETAIL_WEEKLYEXPENSE, detail.getWeeklyExpense());
         values.put(KEY_DETAIL_WEEKLYBALANCE, detail.getWeeklyBalance());
         values.put(KEY_DETAIL_BALANCE, detail.getBalance());
-        values.put(KEY_DETAIL_FLAG, detail.getFlag());
 
 
         //insert into database .insert(tablename, columnhack,
@@ -204,7 +201,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         detail.setWeeklyExpense(Float.valueOf(cursor.getString(6)));
         detail.setWeeklyBalance(Float.valueOf(cursor.getString(7)));
         detail.setBalance(Float.valueOf(cursor.getString(8)));
-        detail.setFlag(cursor.getString(9));
 
 
         //return account
@@ -242,7 +238,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 detail.setWeeklyExpense(Float.valueOf(cursor.getString(6)));
                 detail.setWeeklyBalance(Float.valueOf(cursor.getString(7)));
                 detail.setBalance(Float.valueOf(cursor.getString(8)));
-                detail.setFlag(cursor.getString(9));
                 details.add(detail);
 
 
@@ -277,7 +272,6 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_DETAIL_WEEKLYEXPENSE, detail.getWeeklyExpense());
         values.put(KEY_DETAIL_WEEKLYBALANCE, detail.getWeeklyBalance());
         values.put(KEY_DETAIL_BALANCE, detail.getBalance());
-        values.put(KEY_DETAIL_FLAG, detail.getFlag());
 
         //update the row in the table
         //in the format .update(tablename, column/value, selections, selection args)
