@@ -32,6 +32,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
     private ArrayList<String> itemNames;
     private ArrayList<Integer> itemColor;
     private ArrayList<Float> itemValues;
+    private ArrayList<String> itemPercent;
     private SQLiteDatabaseHelper db;
 
 
@@ -46,6 +47,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
 
     private int month;
     private int year;
+    private Float total;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,21 +78,23 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
     private void setupData() {
         mRenderer = new DefaultRenderer();
         mRenderer.setApplyBackgroundColor(false);
-        mRenderer.setChartTitleTextSize(45);
         mRenderer.setLabelsTextSize(30);
-        mRenderer.setLegendTextSize(30);
+//        mRenderer.setLegendTextSize(30);
         mRenderer.setZoomEnabled(false);
         mRenderer.setLabelsColor(Color.BLACK);
-        mRenderer.setMargins(new int[] {20, 30, 15, 0});
+        mRenderer.setMargins(new int[]{20, 30, 15, 0});
         mRenderer.setZoomButtonsVisible(false);
         mRenderer.setStartAngle(90);
         mRenderer.setPanEnabled(false);
+        mRenderer.setShowLegend(false);
+
+
 
         itemNames = new ArrayList<String>();
         itemColor = new ArrayList<Integer>();
         itemValues = new ArrayList<Float>();
 
-
+        total = (float) 0;
         for(Transaction transaction : db.getAllTransactions()){
             String[] split = transaction.getDate().split("/");
             if((today.monthOfYear().get()) == Integer.valueOf(split[1]) && today.year().get() == Integer.valueOf(split[2])){
@@ -107,15 +111,19 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
                 if((today.monthOfYear().get()) == Integer.valueOf(split[1]) && today.year().get() == Integer.valueOf(split[2])){
                     if(trans.getCategory().equalsIgnoreCase(name) && trans.getType().equalsIgnoreCase("minus")){
                       value += trans.getAmount();
+
                     }
                 }
             }
+            total += value;
             itemValues.add(value);
         }
 
+
+
         for(String name : itemNames){
             if(name.equalsIgnoreCase("micro transaction")){
-                itemColor.add(Color.GRAY);
+                itemColor.add(Color.rgb(235, 155, 59));
                 continue;
             }
             for(Category cat : db.getAllCategories()){
@@ -129,10 +137,13 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
 
         mSeries = new CategorySeries("");
         for(int i = 0; i < itemValues.size(); i++){
-            mSeries.add(itemNames.get(i) +" " +itemValues.get(i)+"  ", itemValues.get(i));
+            int percent = (int)((itemValues.get(i)/total)*100);
+            mSeries.add(percent+"%   ", percent);
+            setLegendText(i, "•"+itemNames.get(i)+" "+itemValues.get(i), itemColor.get(i));
             SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
             renderer.setColor(itemColor.get(i));
             mRenderer.addSeriesRenderer(renderer);
+
         }
 
         if(mChartView != null){
@@ -142,25 +153,25 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
 
     private void selectColor(Category cat) {
         if(cat.getColor().equalsIgnoreCase("cyan")){
-            itemColor.add(Color.CYAN);
+            itemColor.add(Color.rgb(34, 212, 200));
         }
         else if(cat.getColor().equalsIgnoreCase("green")){
-            itemColor.add(Color.GREEN);
+            itemColor.add(Color.rgb(77, 204, 31));
         }
         else if(cat.getColor().equalsIgnoreCase("red")){
-            itemColor.add(Color.RED);
+            itemColor.add(Color.rgb(204, 10, 10));
         }
         else if(cat.getColor().equalsIgnoreCase("yellow")){
-            itemColor.add(Color.YELLOW);
+            itemColor.add(Color.rgb(219, 216, 37));
         }
         else if(cat.getColor().equalsIgnoreCase("blue")){
-            itemColor.add(Color.BLUE);
+            itemColor.add(Color.rgb(28, 68, 230));
         }
-        else if(cat.getColor().equalsIgnoreCase("ltgray")){
-            itemColor.add(Color.LTGRAY);
+        else if(cat.getColor().equalsIgnoreCase("purple")){
+            itemColor.add(Color.rgb(148, 108, 196));
         }
         else if(cat.getColor().equalsIgnoreCase("magenta")){
-            itemColor.add(Color.MAGENTA);
+            itemColor.add(Color.rgb(188, 25, 209));
         }
     }
 
@@ -220,5 +231,38 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
             current = current.minusMonths(1);
         }
         return current;
+    }
+
+    public void setLegendText(int position, String text, int color){
+        int value = 0;
+        if(position == 0){
+            value = R.id.legend;
+        }
+        else if(position ==1){
+            value = R.id.legend1;
+        }
+        else if(position ==2){
+            value = R.id.legend2;
+        }
+        else if(position ==3){
+            value = R.id.legend3;
+        }
+        else if(position ==4){
+            value = R.id.legend4;
+        }
+        else if(position ==5){
+            value = R.id.legend5;
+        }
+        else if(position ==6){
+            value = R.id.legend6;
+        }
+        else if(position ==7){
+            value = R.id.legend7;
+        }
+
+        TextView legendItem = (TextView)view.findViewById(value);
+        legendItem.setText(text+"  ");
+        legendItem.setTextColor(color);
+        legendItem.setTextSize(15);
     }
 }

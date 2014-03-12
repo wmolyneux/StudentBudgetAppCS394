@@ -91,7 +91,7 @@ public class EnterActivity extends Activity implements View.OnClickListener{
             db.addCategory(new Category("University", "yellow"));
             db.addCategory(new Category("Travel", "red"));
             db.addCategory(new Category("Clothing", "blue"));
-            db.addCategory(new Category("Other", "ltgray"));
+            db.addCategory(new Category("Other", "purple"));
         }
     }
 

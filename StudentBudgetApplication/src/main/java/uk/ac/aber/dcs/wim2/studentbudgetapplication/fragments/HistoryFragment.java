@@ -6,12 +6,9 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
-
 import org.joda.time.DateTime;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +36,6 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_history, container, false);
         context = inflate;
-
         return inflate;
     }
 
@@ -48,9 +44,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
         detail = db.getAllDetails().get(0);
-
         setupTabHost();
-
         listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, listAdapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
@@ -63,8 +57,6 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         TabHost.TabSpec tab2 = tabHost.newTabSpec("expenses");
 
         //setup onclick listeners using adapter listener.
-
-
         tab1.setIndicator("Income");
         tab1.setContent(new TabHost.TabContentFactory() {
             @Override
@@ -88,13 +80,9 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         tabHost.addTab(tab2);
         tabHost.setOnTabChangedListener(this);
 
-
-
         //messy hack to get the tabs to display correct information
         tabHost.setCurrentTab(1);
-
     }
-
 
 
     @Override
