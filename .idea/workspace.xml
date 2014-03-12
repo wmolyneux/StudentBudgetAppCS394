@@ -17,9 +17,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/HistoryArrayAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TransactionAdapterListener.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TransactionAdapterListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/booze.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/clothing.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/foodbig.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/ic_food.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/microtrans.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/other.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/sports.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/travel.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/university.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ExpenseFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ExpenseFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/HistoryArrayAdapter.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/HistoryArrayAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_transactions.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_transactions.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -85,61 +93,7 @@
     <favorites_list name="StudentBudgetApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="HistoryArrayAdapter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/HistoryArrayAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="71" selection-start="1515" selection-end="1515" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="765">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HistoryFragment.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="36" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.28723404" vertical-offset="0" max-vertical-offset="1740">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransactionAdapterListener.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TransactionAdapterListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="28" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="listview_transactions.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_transactions.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="51" selection-start="1300" selection-end="1300" vertical-scroll-proportion="-10.0" vertical-offset="195" max-vertical-offset="705">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_history.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_history.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="41" selection-start="669" selection-end="669" vertical-scroll-proportion="-6.111111" vertical-offset="60" max-vertical-offset="1005">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -205,8 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_report.xml" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/TransactionActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/DetailActivity.java" />
@@ -217,10 +169,12 @@
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/BudgetPeriodActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_history.xml" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_transactions.xml" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/HistoryArrayAdapter.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TransactionAdapterListener.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/listview_transactions.xml" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/ExpenseActivity.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ExpenseFragment.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/HistoryArrayAdapter.java" />
       </list>
     </option>
   </component>
@@ -1308,12 +1262,16 @@
       <created>1394620136666</created>
       <updated>1394620136666</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="- Implemented HistoryArrayAdapter for use with the HistoryFragment list of transactions&#10;- changed the ArrayAdapter in HistoryFragment to show more information for each transaction in the list">
+      <created>1394622005696</created>
+      <updated>1394622005696</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1156" height="968" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1321,26 +1279,26 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24433498" sideWeight="0.67058825" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13325472" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30306605" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39740565" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39740565" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977778" sideWeight="0.67058825" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4054054" sideWeight="0.6025943" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21933962" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4054054" sideWeight="0.7806604" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21933962" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1351,8 +1309,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="- Fixed bug where listitems in the income tab were not clickable unless tabs had been changed since loading the activity" />
-    <MESSAGE value="Fixed bug where balance doesn't change when a transaction is deleted" />
     <MESSAGE value="Implemented initial spinner box for category choice on a new transaction" />
     <MESSAGE value="implementing budget database and encryption" />
     <MESSAGE value="Making changes to overall functionality" />
@@ -1376,29 +1332,17 @@
     <MESSAGE value="- Implemented arrows to change the date for ReportFragment allowing the user to change what transactions are being displayed&#10;- Refreshed the piechart displaed when month changed" />
     <MESSAGE value="Fixed bug where category totals were being calculated incorrectly" />
     <MESSAGE value="- Refactored variables in most classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Refactored variables in most classes" />
+    <MESSAGE value="- Implemented HistoryArrayAdapter for use with the HistoryFragment list of transactions&#10;- changed the ArrayAdapter in HistoryFragment to show more information for each transaction in the list" />
+    <MESSAGE value="Items in the ListView of HistoryFragment now contain specific icons matching categories" />
+    <option name="LAST_COMMIT_MESSAGE" value="Items in the ListView of HistoryFragment now contain specific icons matching categories" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/Category.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="21" selection-start="832" selection-end="832" vertical-scroll-proportion="1.3664596" vertical-offset="0" max-vertical-offset="855">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/IncomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="13" selection-start="902" selection-end="902" vertical-scroll-proportion="0.12765957" vertical-offset="0" max-vertical-offset="2640">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/ExpenseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="903" selection-end="903" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="3510">
           <folding />
         </state>
       </provider>
@@ -1413,13 +1357,6 @@
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/DetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="0" selection-start="1450" selection-end="1450" vertical-scroll-proportion="0.310559" vertical-offset="0" max-vertical-offset="2010">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ExpenseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="13" selection-start="951" selection-end="951" vertical-scroll-proportion="-7.180851" vertical-offset="3435" max-vertical-offset="3960">
           <folding />
         </state>
       </provider>
@@ -1461,12 +1398,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_history.xml">
-      <provider editor-type-id="android-designer">
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TransactionAdapterListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="28" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/booze.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ExpenseFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="41" selection-start="669" selection-end="669" vertical-scroll-proportion="-6.111111" vertical-offset="60" max-vertical-offset="1005">
+        <state line="208" column="70" selection-start="9521" selection-end="9521" vertical-scroll-proportion="2.2657006" vertical-offset="1398" max-vertical-offset="3960">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/HistoryArrayAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="41" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.92753625" vertical-offset="174" max-vertical-offset="1275">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/ExpenseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="65" selection-start="7381" selection-end="7381" vertical-scroll-proportion="0.28341386" vertical-offset="2134" max-vertical-offset="3510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="46" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.36231884" vertical-offset="0" max-vertical-offset="1740">
           <folding />
         </state>
       </provider>
@@ -1476,30 +1445,17 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="51" selection-start="1300" selection-end="1300" vertical-scroll-proportion="-10.0" vertical-offset="195" max-vertical-offset="705">
+        <state line="30" column="52" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.7413509" vertical-offset="0" max-vertical-offset="690">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/HistoryArrayAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="71" selection-start="1515" selection-end="1515" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="765">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_history.xml">
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TransactionAdapterListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="28" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/HistoryFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="36" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.28723404" vertical-offset="0" max-vertical-offset="1740">
+        <state line="15" column="41" selection-start="669" selection-end="669" vertical-scroll-proportion="0.27182865" vertical-offset="60" max-vertical-offset="1005">
           <folding />
         </state>
       </provider>

@@ -128,7 +128,7 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         //setup the internet spinner and amount
         FragmentUtilities.resetMonthYearSpinnerAndAmount(tempExpenses.get(3), internetSpinner, internetAmount);
 
-        //setup the food spinner and amount
+        //setup the ic_food spinner and amount
         FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempExpenses.get(4), foodSpinner, foodAmount);
 
         //setup the transport spinner and amount
