@@ -18,6 +18,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.HistoryArrayAdapter;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TransactionAdapterListener;
 
 public class HistoryFragment extends ListFragment implements TabHost.OnTabChangeListener {
@@ -25,7 +26,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     private TabHost tabHost;
     private List<Transaction> transactions = null;
     private SQLiteDatabaseHelper db;
-    private ArrayAdapter<String> adapter;
+    private HistoryArrayAdapter listAdapter;
     private View context;
     private ListView list;
     private ArrayList<String> values;
@@ -48,7 +49,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
 
         setupTabHost();
 
-        listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, adapter, values);
+        listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, listAdapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
     }
@@ -120,13 +121,14 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
             }
         }
 
-        adapter = new ArrayAdapter<String>(getActivity(), R.layout.listview_accounts, values);
+//        adapter = new ArrayAdapter<String>(getActivity(), R.layout.listview_accounts, values);
+        listAdapter = new HistoryArrayAdapter(getActivity(), transactions);
         //setup onclick listeners using adapter listener.
-        listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, adapter, values);
+        listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, listAdapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
 
 
-        setListAdapter(adapter);
+        setListAdapter(listAdapter);
     }
 }

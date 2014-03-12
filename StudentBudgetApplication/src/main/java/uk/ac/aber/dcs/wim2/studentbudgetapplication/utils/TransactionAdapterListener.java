@@ -30,12 +30,12 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
     Context context;
     List<Transaction> transactions;
     SQLiteDatabaseHelper db;
-    ArrayAdapter<String> adapter;
+    HistoryArrayAdapter adapter;
     ArrayList<String> values;
     Detail detail;
 
     public TransactionAdapterListener(Context con, Detail det,
-                List<Transaction> trans, SQLiteDatabaseHelper database, ArrayAdapter<String> adap, ArrayList<String> vals){
+                List<Transaction> trans, SQLiteDatabaseHelper database, HistoryArrayAdapter adap, ArrayList<String> vals){
         context = con;
         transactions = trans;
         db = database;
