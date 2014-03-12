@@ -8,17 +8,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.model.CategorySeries;
-import org.achartengine.model.SeriesSelection;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.joda.time.DateTime;
-import org.joda.time.Weeks;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,7 +27,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
-public class ReportFragment extends Fragment {
+public class ReportFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<String> itemNames;
     private ArrayList<Integer> itemColor;
@@ -37,15 +36,26 @@ public class ReportFragment extends Fragment {
 
 
     private CategorySeries mSeries;
-
+    private DateTime today;
     private DefaultRenderer mRenderer;
     private GraphicalView mChartView;
     private View view;
+    private TextView date;
+    private ImageButton next;
+    private ImageButton back;
+
+    private int month;
+    private int year;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_report, container, false);
         view = inflate;
+        date = (TextView) view.findViewById(R.id.dateForReport);
+        next = (ImageButton) view.findViewById(R.id.nextDateButton);
+        back = (ImageButton) view.findViewById(R.id.backDateButton);
+        next.setOnClickListener(this);
+        back.setOnClickListener(this);
         return inflate;
     }
 
@@ -53,7 +63,14 @@ public class ReportFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
-//        setupData();
+        Calendar cal = Calendar.getInstance();
+        month = cal.get(Calendar.MONTH);
+        year = cal.get(Calendar.YEAR);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        today = new DateTime(year, month+1, day, 0, 0);
+
+        date.setText(today.monthOfYear().getAsText() +" "+today.year().get());
+
     }
 
     private void setupData() {
@@ -73,13 +90,10 @@ public class ReportFragment extends Fragment {
         itemColor = new ArrayList<Integer>();
         itemValues = new ArrayList<Float>();
 
-        Calendar cal = Calendar.getInstance();
-        int month = cal.get(Calendar.MONTH);
-        int year = cal.get(Calendar.YEAR);
 
         for(Transaction transaction : db.getAllTransactions()){
             String[] split = transaction.getDate().split("/");
-            if((month+1) == Integer.valueOf(split[1]) && year == Integer.valueOf(split[2])){
+            if((today.monthOfYear().get()) == Integer.valueOf(split[1]) && today.year().get() == Integer.valueOf(split[2])){
                 if(!itemNames.contains(transaction.getCategory()) && transaction.getType().equalsIgnoreCase("minus")){
                     itemNames.add(transaction.getCategory());
                 }
@@ -150,19 +164,58 @@ public class ReportFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-//        if(mChartView == null){
-            setupData();
-            LinearLayout layout = (LinearLayout)view.findViewById(R.id.chart);
-            layout.removeAllViews();
-            mChartView = ChartFactory.getPieChartView(getActivity(), mSeries, mRenderer);
-            mRenderer.setClickEnabled(false);
-            layout.addView(mChartView, new ActionBar.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
-//        }
-//        else{
-//            System.out.println("repainting");
-//            mChartView.repaint();
-//        }
+        invalidateChart();
     }
 
+    private void invalidateChart() {
+        setupData();
+        LinearLayout layout = (LinearLayout)view.findViewById(R.id.chart);
+        layout.removeAllViews();
+        mChartView = ChartFactory.getPieChartView(getActivity(), mSeries, mRenderer);
+        mRenderer.setClickEnabled(false);
+        layout.addView(mChartView, new ActionBar.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.nextDateButton:
+                today = nextMonth(today);
+                invalidateChart();
+                break;
+            case R.id.backDateButton:
+                today = previousMonth(today);
+                invalidateChart();
+                break;
+        }
+        date.setText(today.monthOfYear().getAsText() +" "+today.year().get());
+    }
+
+    public DateTime nextMonth(DateTime current){
+        int currentMonth = current.monthOfYear().get();
+        int currentYear = current.year().get();
+        if((month+1) == currentMonth && year == currentYear){
+            return current;
+        }
+        if(currentMonth == 12){
+            current = current.plusYears(1);
+            current = current.minusMonths(11);
+        }
+        else{
+            current = current.plusMonths(1);
+        }
+        return current;
+    }
+
+    public DateTime previousMonth(DateTime current){
+        int month = current.monthOfYear().get();
+        if(month == 1){
+            current = current.minusYears(1);
+            current = current.plusMonths(11);
+        }
+        else{
+            current = current.minusMonths(1);
+        }
+        return current;
+    }
 }

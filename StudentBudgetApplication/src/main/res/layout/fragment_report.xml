@@ -17,29 +17,31 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-            <TextView
+            <ImageButton
+                    android:src="@drawable/ic_action_previous_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="left"
-                    android:id="@+id/textView"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="80dp"/>
+                    android:id="@+id/backDateButton"
+                    android:layout_marginLeft="20dp"/>
+
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Month year"
-                    android:id="@+id/dateForReport"/>
+                    android:id="@+id/dateForReport"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:password="false"
+                    />
 
-            <TextView
+            <ImageButton
+                    android:src="@drawable/ic_action_next_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="right"
-                    android:id="@+id/textView3"
-                    android:layout_marginLeft="20dp"/>
+                    android:id="@+id/nextDateButton"/>
+
         </LinearLayout>
         <LinearLayout
                 android:id="@+id/chart"
