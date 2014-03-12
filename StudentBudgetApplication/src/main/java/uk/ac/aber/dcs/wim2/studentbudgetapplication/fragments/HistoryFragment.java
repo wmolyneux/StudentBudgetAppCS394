@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,9 +92,6 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
 
         //messy hack to get the tabs to display correct information
         tabHost.setCurrentTab(1);
-        tabHost.setCurrentTab(0);
-
-
 
     }
 
@@ -102,33 +101,67 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     public void onTabChanged(String s) {
         values = new ArrayList<String>();
 
+        transactions = new ArrayList<Transaction>();
         if(tabHost.getCurrentTab()==0){
-            transactions = new ArrayList<Transaction>();
-            for (Transaction transaction : db.getAllTransactions()){
-                if(!transaction.getType().equalsIgnoreCase("minus")){
-                    values.add(BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
-                    transactions.add(transaction);
-                }
-            }
+            filterIncomeTransactions();
         }
         else{
-            transactions = new ArrayList<Transaction>();
-            for (Transaction transaction : db.getAllTransactions()){
-                if(transaction.getType().equalsIgnoreCase("minus")){
-                    values.add("-"+BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
-                    transactions.add(transaction);
-                }
-            }
+            filterExpenseTransactions();
         }
 
-//        adapter = new ArrayAdapter<String>(getActivity(), R.layout.listview_accounts, values);
+        sortTransactions();
         listAdapter = new HistoryArrayAdapter(getActivity(), transactions);
+
         //setup onclick listeners using adapter listener.
         listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, listAdapter, values);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
 
-
         setListAdapter(listAdapter);
+    }
+
+    private void filterExpenseTransactions() {
+        for (Transaction transaction : db.getAllTransactions()){
+            if(transaction.getType().equalsIgnoreCase("minus")){
+                values.add("-"+ BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
+                transactions.add(transaction);
+            }
+        }
+    }
+
+    private void filterIncomeTransactions() {
+        for (Transaction transaction : db.getAllTransactions()){
+            if(!transaction.getType().equalsIgnoreCase("minus")){
+                values.add(BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
+                transactions.add(transaction);
+            }
+        }
+    }
+
+    private void sortTransactions() {
+        ArrayList<Transaction> temp = new ArrayList<Transaction>();
+        for (Transaction transaction : transactions){
+            if(temp.size() == 0){
+                temp.add(transaction);
+                continue;
+            }
+            String[] transSplit = transaction.getDate().split("/");
+            DateTime currentTrans = new DateTime(Integer.valueOf(transSplit[2]),
+                    Integer.valueOf(transSplit[1]), Integer.valueOf(transSplit[0]), 1, 1);
+            int position = 0;
+            for (int i = 0; i < temp.size(); i++){
+                String[] split = temp.get(i).getDate().split("/");
+                DateTime current = new DateTime(Integer.valueOf(split[2]),
+                        Integer.valueOf(split[1]), Integer.valueOf(split[0]), 0, 0);
+                if(currentTrans.isAfter(current)){
+                    break;
+                }
+                else{
+                    position++;
+                }
+            }
+            temp.add(position, transaction);
+        }
+        transactions = temp;
     }
 }
