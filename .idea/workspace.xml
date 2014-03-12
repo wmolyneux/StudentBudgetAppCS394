@@ -17,10 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/ic_action_next_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/drawable-hdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_report.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_report.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StudentBudgetApplication.iws" />
@@ -89,7 +86,7 @@
       <file leaf-file-name="ReportFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="93" selection-start="3455" selection-end="3455" vertical-scroll-proportion="0.04255319" vertical-offset="1405" max-vertical-offset="3405">
+            <state line="107" column="108" selection-start="4147" selection-end="4147" vertical-scroll-proportion="0.68085104" vertical-offset="1285" max-vertical-offset="3450">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1122,7 +1119,11 @@
       <created>1394545371268</created>
       <updated>1394545371268</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="- Implemented arrows to change the date for ReportFragment allowing the user to change what transactions are being displayed&#10;- Refreshed the piechart displaed when month changed">
+      <created>1394617852760</created>
+      <updated>1394617852760</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1165,7 +1166,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="- History fragment now only displays transactions for the current account" />
     <MESSAGE value="- Transactions for accounts that are about to be deleted are also deleted to stop database filled with unlinked transactions" />
     <MESSAGE value="- After completing a new transaction form, the fields not are cleared upon confirmation" />
     <MESSAGE value="- Fixed bug where listitems in the income tab were not clickable unless tabs had been changed since loading the activity" />
@@ -1190,7 +1190,8 @@
     <MESSAGE value="calculations for weekly values were slightly incorrect, seems to be fixed now" />
     <MESSAGE value="App now takes the users balance into account for their budget period, although presumes that it can factor all of their balance into their budget" />
     <MESSAGE value="- Implemented AChartEngine library to help with charts on the report page.&#10;- Chart is generated on the ReportFragment using transactions which have occured in the same month as today" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Implemented AChartEngine library to help with charts on the report page.&#10;- Chart is generated on the ReportFragment using transactions which have occured in the same month as today" />
+    <MESSAGE value="- Implemented arrows to change the date for ReportFragment allowing the user to change what transactions are being displayed&#10;- Refreshed the piechart displaed when month changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Implemented arrows to change the date for ReportFragment allowing the user to change what transactions are being displayed&#10;- Refreshed the piechart displaed when month changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1289,7 +1290,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="93" selection-start="3455" selection-end="3455" vertical-scroll-proportion="0.04255319" vertical-offset="1405" max-vertical-offset="3405">
+        <state line="107" column="108" selection-start="4147" selection-end="4147" vertical-scroll-proportion="0.68085104" vertical-offset="1285" max-vertical-offset="3450">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

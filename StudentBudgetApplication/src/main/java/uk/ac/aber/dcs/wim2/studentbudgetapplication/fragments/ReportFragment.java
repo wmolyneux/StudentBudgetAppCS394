@@ -103,8 +103,11 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         for(String name : itemNames){
             float value = (float) 0;
             for (Transaction trans : db.getAllTransactions()){
-                if(trans.getCategory().equalsIgnoreCase(name)){
-                    value += trans.getAmount();
+                String[] split = trans.getDate().split("/");
+                if((today.monthOfYear().get()) == Integer.valueOf(split[1]) && today.year().get() == Integer.valueOf(split[2])){
+                    if(trans.getCategory().equalsIgnoreCase(name) && trans.getType().equalsIgnoreCase("minus")){
+                      value += trans.getAmount();
+                    }
                 }
             }
             itemValues.add(value);
