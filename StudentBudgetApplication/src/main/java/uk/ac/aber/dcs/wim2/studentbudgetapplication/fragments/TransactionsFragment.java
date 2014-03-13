@@ -170,7 +170,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         else{
             description = shortDesc.getText().toString();
         }
-        if(amount.getText().toString().isEmpty()){
+        if(amount.getText().toString().isEmpty() || Float.valueOf(amount.getText().toString()) == 0){
             return false;
         }
         if(category.getSelectedItem().toString().isEmpty()){

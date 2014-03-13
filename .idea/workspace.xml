@@ -17,7 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StudentBudgetApplication.iws" />
@@ -83,33 +83,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReportFragment.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java">
+      <file leaf-file-name="TransactionsFragment.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="158" column="29" selection-start="5752" selection-end="5752" vertical-scroll-proportion="0.4057971" vertical-offset="2118" max-vertical-offset="3855">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_report.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_report.xml">
-          <provider editor-type-id="text-editor">
-            <state line="51" column="0" selection-start="2056" selection-end="2056" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="2115">
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EnterActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="0" selection-start="2946" selection-end="2946" vertical-scroll-proportion="0.0" vertical-offset="1230" max-vertical-offset="1575">
+            <state line="172" column="101" selection-start="6001" selection-end="6001" vertical-scroll-proportion="0.2753623" vertical-offset="1929" max-vertical-offset="2670">
               <folding />
             </state>
           </provider>
@@ -185,7 +162,6 @@
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/SQLiteDatabaseHelper.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/BudgetsFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/OverviewFragment.java" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/BudgetPeriodActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_history.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TransactionAdapterListener.java" />
@@ -197,6 +173,7 @@
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout/fragment_report.xml" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java" />
       </list>
     </option>
   </component>
@@ -1301,7 +1278,11 @@
       <created>1394640865882</created>
       <updated>1394640865882</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="- Fixed bug where legend did not refresh correctly when the date is changed on ReportFragment">
+      <created>1394701727599</created>
+      <updated>1394701727599</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1344,7 +1325,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Making changes to overall functionality" />
     <MESSAGE value="Adding joda time library" />
     <MESSAGE value="Small change" />
     <MESSAGE value="- Major refactor of functionality.&#10;- Application no longer stores accounts, now calculates from academic year dates instead&#10;- calculates all the values on the fly depending on the current date compared to the end of the semester." />
@@ -1369,7 +1349,8 @@
     <MESSAGE value="Items in the ListView of HistoryFragment now contain specific icons matching categories" />
     <MESSAGE value="- Sorted transactions on HistoryFragment's listview&#10;- Refactored some code into functions to make it easier to read" />
     <MESSAGE value="- Created own key for items so chart can show percentages.&#10;- Centered the items in the key&#10;- Colored the items in the key&#10;- Changed pallet of colors so more readable" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Created own key for items so chart can show percentages.&#10;- Centered the items in the key&#10;- Colored the items in the key&#10;- Changed pallet of colors so more readable" />
+    <MESSAGE value="- Fixed bug where legend did not refresh correctly when the date is changed on ReportFragment" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed bug where legend did not refresh correctly when the date is changed on ReportFragment" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1416,13 +1397,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="143" column="28" selection-start="5309" selection-end="5309" vertical-scroll-proportion="0.6038647" vertical-offset="1290" max-vertical-offset="2670">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/database/Category.java">
@@ -1475,10 +1449,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java">
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="0" selection-start="2946" selection-end="2946" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1380">
-          <folding />
+        <state line="158" column="29" selection-start="5752" selection-end="5752" vertical-scroll-proportion="0.4057971" vertical-offset="2118" max-vertical-offset="3855">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1492,12 +1468,17 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java">
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/EnterActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="158" column="29" selection-start="5752" selection-end="5752" vertical-scroll-proportion="0.4057971" vertical-offset="2118" max-vertical-offset="3855">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="83" column="0" selection-start="2946" selection-end="2946" vertical-scroll-proportion="0.47949526" vertical-offset="746" max-vertical-offset="1380">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="172" column="101" selection-start="6001" selection-end="6001" vertical-scroll-proportion="0.2753623" vertical-offset="1929" max-vertical-offset="2670">
+          <folding />
         </state>
       </provider>
     </entry>
