@@ -34,6 +34,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
     private ArrayList<Float> itemValues;
     private ArrayList<String> itemPercent;
     private SQLiteDatabaseHelper db;
+    private int[] legends = {R.id.legend, R.id.legend1, R.id.legend2, R.id.legend3, R.id.legend4, R.id.legend5, R.id.legend6, R.id.legend7};
 
 
     private CategorySeries mSeries;
@@ -76,6 +77,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setupData() {
+        clearLegend();
         mRenderer = new DefaultRenderer();
         mRenderer.setApplyBackgroundColor(false);
         mRenderer.setLabelsTextSize(30);
@@ -139,7 +141,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         for(int i = 0; i < itemValues.size(); i++){
             int percent = (int)((itemValues.get(i)/total)*100);
             mSeries.add(percent+"%   ", percent);
-            setLegendText(i, "•"+itemNames.get(i)+" "+itemValues.get(i), itemColor.get(i));
+            setLegendText(legends[i], "• "+itemNames.get(i)+" "+itemValues.get(i), itemColor.get(i));
             SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
             renderer.setColor(itemColor.get(i));
             mRenderer.addSeriesRenderer(renderer);
@@ -149,6 +151,13 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         if(mChartView != null){
             mChartView.repaint();
         }super.onResume();
+    }
+
+    private void clearLegend() {
+        for (int i : legends){
+            TextView item = (TextView)view.findViewById(i);
+            item.setText("");
+        }
     }
 
     private void selectColor(Category cat) {
@@ -233,34 +242,8 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         return current;
     }
 
-    public void setLegendText(int position, String text, int color){
-        int value = 0;
-        if(position == 0){
-            value = R.id.legend;
-        }
-        else if(position ==1){
-            value = R.id.legend1;
-        }
-        else if(position ==2){
-            value = R.id.legend2;
-        }
-        else if(position ==3){
-            value = R.id.legend3;
-        }
-        else if(position ==4){
-            value = R.id.legend4;
-        }
-        else if(position ==5){
-            value = R.id.legend5;
-        }
-        else if(position ==6){
-            value = R.id.legend6;
-        }
-        else if(position ==7){
-            value = R.id.legend7;
-        }
-
-        TextView legendItem = (TextView)view.findViewById(value);
+    public void setLegendText(int legend, String text, int color){
+        TextView legendItem = (TextView)view.findViewById(legend);
         legendItem.setText(text+"  ");
         legendItem.setTextColor(color);
         legendItem.setTextSize(15);
