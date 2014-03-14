@@ -32,7 +32,6 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
     private ArrayList<String> itemNames;
     private ArrayList<Integer> itemColor;
     private ArrayList<Float> itemValues;
-    private ArrayList<String> itemPercent;
     private SQLiteDatabaseHelper db;
     private int[] legends = {R.id.legend, R.id.legend1, R.id.legend2, R.id.legend3, R.id.legend4, R.id.legend5, R.id.legend6, R.id.legend7};
 
@@ -81,7 +80,6 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         mRenderer = new DefaultRenderer();
         mRenderer.setApplyBackgroundColor(false);
         mRenderer.setLabelsTextSize(30);
-//        mRenderer.setLegendTextSize(30);
         mRenderer.setZoomEnabled(false);
         mRenderer.setLabelsColor(Color.BLACK);
         mRenderer.setMargins(new int[]{20, 30, 15, 0});
@@ -139,7 +137,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
 
         mSeries = new CategorySeries("");
         for(int i = 0; i < itemValues.size(); i++){
-            int percent = (int)((itemValues.get(i)/total)*100);
+            float percent = (itemValues.get(i)/total)*100;
             mSeries.add(percent+"%   ", percent);
             setLegendText(legends[i], "• "+itemNames.get(i)+" "+itemValues.get(i), itemColor.get(i));
             SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
@@ -166,6 +164,9 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         }
         else if(cat.getColor().equalsIgnoreCase("green")){
             itemColor.add(Color.rgb(77, 204, 31));
+        }
+        else if(cat.getColor().equalsIgnoreCase("darkgreen")){
+            itemColor.add(Color.rgb(0, 133, 0));
         }
         else if(cat.getColor().equalsIgnoreCase("red")){
             itemColor.add(Color.rgb(204, 10, 10));

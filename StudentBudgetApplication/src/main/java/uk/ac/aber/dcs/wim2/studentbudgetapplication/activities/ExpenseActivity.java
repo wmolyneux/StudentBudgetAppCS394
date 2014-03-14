@@ -32,8 +32,6 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
     private EditText heatingAmount;
     private Spinner internetSpinner;
     private EditText internetAmount;
-    private Spinner foodSpinner;
-    private EditText foodAmount;
     private Spinner transportSpinner;
     private EditText transportAmount;
     private Spinner mobileSpinner;
@@ -78,11 +76,6 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         internetSpinner.setOnItemSelectedListener(this);
         internetAmount = (EditText) findViewById(R.id.internetAmount);
         internetAmount.addTextChangedListener(this);
-
-        foodSpinner = (Spinner) findViewById(R.id.foodSpinner);
-        foodSpinner.setOnItemSelectedListener(this);
-        foodAmount = (EditText) findViewById(R.id.foodAmount);
-        foodAmount.addTextChangedListener(this);
 
         transportSpinner = (Spinner) findViewById(R.id.transportSpinner);
         transportSpinner.setOnItemSelectedListener(this);
@@ -131,7 +124,6 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         Constant electricity = new Constant("expense", Float.valueOf(electricityAmount.getText().toString()), electricitySpinner.getSelectedItem().toString());
         Constant heating = new Constant("expense", Float.valueOf(heatingAmount.getText().toString()), heatingSpinner.getSelectedItem().toString());
         Constant internet = new Constant("expense", Float.valueOf(internetAmount.getText().toString()), internetSpinner.getSelectedItem().toString());
-        Constant food = new Constant("expense", Float.valueOf(foodAmount.getText().toString()), foodSpinner.getSelectedItem().toString());
         Constant transport = new Constant("expense", Float.valueOf(transportAmount.getText().toString()), transportSpinner.getSelectedItem().toString());
         Constant mobile = new Constant("expense", Float.valueOf(mobileAmount.getText().toString()), mobileSpinner.getSelectedItem().toString());
         Constant other = new Constant("expense", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
@@ -140,7 +132,6 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         db.addConstant(electricity);
         db.addConstant(heating);
         db.addConstant(internet);
-        db.addConstant(food);
         db.addConstant(transport);
         db.addConstant(mobile);
         db.addConstant(other);
@@ -169,10 +160,6 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         }
         if(internetAmount.getText().toString().isEmpty()){
             Toast.makeText(this, "Please enter an amount for internet", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if(foodAmount.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please enter an amount for food", Toast.LENGTH_LONG).show();
             return false;
         }
         if(transportAmount.getText().toString().isEmpty()){
@@ -204,9 +191,6 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         }
         if(!internetAmount.getText().toString().isEmpty()){
             expense += FragmentUtilities.checkSpinner(internetSpinner.getSelectedItem().toString(), internetAmount.getText().toString());
-        }
-        if(!foodAmount.getText().toString().isEmpty()){
-            expense += FragmentUtilities.checkSpinner(foodSpinner.getSelectedItem().toString(), foodAmount.getText().toString());
         }
         if(!transportAmount.getText().toString().isEmpty()){
             expense += FragmentUtilities.checkSpinner(transportSpinner.getSelectedItem().toString(), transportAmount.getText().toString());

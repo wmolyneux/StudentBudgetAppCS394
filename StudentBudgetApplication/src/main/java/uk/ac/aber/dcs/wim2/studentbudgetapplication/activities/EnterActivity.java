@@ -86,7 +86,8 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     private void populateCategoryTable() {
         if(db.getAllCategories().size()==0){
             db.addCategory(new Category("Food", "cyan"));
-            db.addCategory(new Category("Booze", "green"));
+            db.addCategory(new Category("Supermarket", "darkGreen"));
+            db.addCategory(new Category("Socialising", "green"));
             db.addCategory(new Category("Sport", "magenta"));
             db.addCategory(new Category("University", "yellow"));
             db.addCategory(new Category("Travel", "red"));

@@ -33,8 +33,6 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
     private EditText heatingAmount;
     private Spinner internetSpinner;
     private EditText internetAmount;
-    private Spinner foodSpinner;
-    private EditText foodAmount;
     private Spinner transportSpinner;
     private EditText transportAmount;
     private Spinner mobileSpinner;
@@ -75,11 +73,6 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         internetAmount = (EditText) inflate.findViewById(R.id.updateInternetAmount);
         internetAmount.addTextChangedListener(this);
 
-        foodSpinner = (Spinner) inflate.findViewById(R.id.updateFoodSpinner);
-        foodSpinner.setOnItemSelectedListener(this);
-        foodAmount = (EditText) inflate.findViewById(R.id.updateFoodAmount);
-        foodAmount.addTextChangedListener(this);
-
         transportSpinner = (Spinner) inflate.findViewById(R.id.updateTransportSpinner);
         transportSpinner.setOnItemSelectedListener(this);
         transportAmount = (EditText) inflate.findViewById(R.id.updateTransportAmount);
@@ -114,8 +107,6 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
             }
         }
 
-
-
         //setup the rent spinner and amount
         FragmentUtilities.resetMonthYearSpinnerAndAmount(tempExpenses.get(0), rentSpinner, rentAmount);
 
@@ -128,17 +119,14 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         //setup the internet spinner and amount
         FragmentUtilities.resetMonthYearSpinnerAndAmount(tempExpenses.get(3), internetSpinner, internetAmount);
 
-        //setup the ic_food spinner and amount
-        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempExpenses.get(4), foodSpinner, foodAmount);
-
         //setup the transport spinner and amount
-        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempExpenses.get(5), transportSpinner, transportAmount);
+        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempExpenses.get(4), transportSpinner, transportAmount);
 
         //setup the mobile spinner and amount
-        FragmentUtilities.resetMonthYearSpinnerAndAmount(tempExpenses.get(6), mobileSpinner, mobileAmount);
+        FragmentUtilities.resetMonthYearSpinnerAndAmount(tempExpenses.get(5), mobileSpinner, mobileAmount);
 
         //setup the other spinner and amount
-        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempExpenses.get(7), otherSpinner, otherAmount);
+        FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempExpenses.get(6), otherSpinner, otherAmount);
     }
 
     @Override
@@ -169,7 +157,6 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         Constant electricity = new Constant("expense", Float.valueOf(electricityAmount.getText().toString()), electricitySpinner.getSelectedItem().toString());
         Constant heating = new Constant("expense", Float.valueOf(heatingAmount.getText().toString()), heatingSpinner.getSelectedItem().toString());
         Constant internet = new Constant("expense", Float.valueOf(internetAmount.getText().toString()), internetSpinner.getSelectedItem().toString());
-        Constant food = new Constant("expense", Float.valueOf(foodAmount.getText().toString()), foodSpinner.getSelectedItem().toString());
         Constant transport = new Constant("expense", Float.valueOf(transportAmount.getText().toString()), transportSpinner.getSelectedItem().toString());
         Constant mobile = new Constant("expense", Float.valueOf(mobileAmount.getText().toString()), mobileSpinner.getSelectedItem().toString());
         Constant other = new Constant("expense", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
@@ -178,7 +165,6 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         db.addConstant(electricity);
         db.addConstant(heating);
         db.addConstant(internet);
-        db.addConstant(food);
         db.addConstant(transport);
         db.addConstant(mobile);
         db.addConstant(other);
@@ -203,10 +189,6 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         }
         if(internetAmount.getText().toString().isEmpty()){
             Toast.makeText(getActivity(), "Please enter an amount for internet", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if(foodAmount.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please enter an amount for food", Toast.LENGTH_LONG).show();
             return false;
         }
         if(transportAmount.getText().toString().isEmpty()){
@@ -237,9 +219,6 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         }
         if(!internetAmount.getText().toString().isEmpty()){
             expense += FragmentUtilities.checkSpinner(internetSpinner.getSelectedItem().toString(), internetAmount.getText().toString());
-        }
-        if(!foodAmount.getText().toString().isEmpty()){
-            expense += FragmentUtilities.checkSpinner(foodSpinner.getSelectedItem().toString(), foodAmount.getText().toString());
         }
         if(!transportAmount.getText().toString().isEmpty()){
             expense += FragmentUtilities.checkSpinner(transportSpinner.getSelectedItem().toString(), transportAmount.getText().toString());

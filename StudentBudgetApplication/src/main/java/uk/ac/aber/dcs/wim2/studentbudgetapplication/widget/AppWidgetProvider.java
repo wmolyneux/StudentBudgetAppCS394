@@ -23,7 +23,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     public static String DECREMENT_BUTTON = ".widget.DECREMENT_AMOUNT_BUTTON";
     public static String SUBMIT_BUTTON = ".widget.SUBMIT_BUTTON";
 
-    private static Float value = new Float(5);
+    private static Float value = new Float(1.5);
     private SQLiteDatabaseHelper db;
     private static int dbSize = 0;
 
@@ -109,7 +109,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_simple);
         db = new SQLiteDatabaseHelper(context);
         if(INCREMENT_BUTTON.equals(intent.getAction())){
-            if(value<10){
+            if(value<3){
                 value += (float)0.5;
                 views.setTextViewText(R.id.widgetValueField, "-"+BalanceUtilities.getValueAs2dpString(value));
             }

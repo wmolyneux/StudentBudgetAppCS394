@@ -208,7 +208,7 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
         }
         if(!grantAmount.getText().toString().isEmpty()){
 //            income += FragmentUtilities.checkSpinner(grantSpinner.getSelectedItem().toString(), grantAmount.getText().toString());
-            income += (Float.valueOf(loanAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks());
+            income += (Float.valueOf(grantAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks());
         }
         if(!wageAmount.getText().toString().isEmpty()){
             income += FragmentUtilities.checkSpinner(wageSpinner.getSelectedItem().toString(), wageAmount.getText().toString());

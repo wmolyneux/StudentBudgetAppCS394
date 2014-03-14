@@ -51,6 +51,9 @@ public class HistoryArrayAdapter extends ArrayAdapter<Transaction> {
         if(cat.equalsIgnoreCase("food")){
             image = R.drawable.ic_food;
         }
+        else if(cat.equalsIgnoreCase("supermarket")){
+            image = R.drawable.supermarket;
+        }
         else if(cat.equalsIgnoreCase("university")){
             image = R.drawable.university;
         }
@@ -66,7 +69,7 @@ public class HistoryArrayAdapter extends ArrayAdapter<Transaction> {
         else if(cat.equalsIgnoreCase("travel")){
             image = R.drawable.travel;
         }
-        else if(cat.equalsIgnoreCase("booze")){
+        else if(cat.equalsIgnoreCase("socialising")){
             image = R.drawable.booze;
         }
         else if(cat.equalsIgnoreCase("micro transaction")){

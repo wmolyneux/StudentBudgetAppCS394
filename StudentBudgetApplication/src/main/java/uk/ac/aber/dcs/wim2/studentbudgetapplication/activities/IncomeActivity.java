@@ -130,7 +130,7 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
             return false;
         }
         if(wageAmount.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please enter wage amount", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter salary amount", Toast.LENGTH_LONG).show();
             return false;
         }
         if(otherAmount.getText().toString().isEmpty()){

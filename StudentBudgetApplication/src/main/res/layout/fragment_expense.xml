@@ -132,35 +132,6 @@
         <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout5"
-                android:layout_marginBottom="10dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Food:"
-                    android:id="@+id/textView5"/>
-
-            <Spinner
-                    android:layout_width="100dp"
-                    android:layout_height="37dp"
-                    android:id="@+id/updateFoodSpinner"
-                    android:layout_marginLeft="72dp"
-                    android:entries="@array/weekly_monthly_yearly"/>
-
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/updateFoodAmount"
-                    android:layout_marginLeft="15dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/linearLayout6"
                 android:layout_marginBottom="10dp">
 
