@@ -39,7 +39,8 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/rentAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -68,7 +69,8 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/electricityAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -97,7 +99,8 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/heatingAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -126,7 +129,8 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/internetAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -155,7 +159,8 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/transportAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -184,7 +189,8 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/mobileAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -213,7 +219,8 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/otherAmount"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:text="0"/>
         </LinearLayout>
 
         <LinearLayout

@@ -1,27 +1,35 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
+
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.List;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Budget;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BudgetAdapterListener;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BudgetArrayAdapter;
 
-public class OverviewFragment extends Fragment {
+public class OverviewFragment extends ListFragment {
 
     private Detail detail = null;
     private SQLiteDatabaseHelper db;
     private TextView weeklyIncome;
     private TextView weeklyExpense;
     private TextView weeklyBalance;
-    private TextView totalBalance;
-    private TextView debug;
-
+    private ListView list;
+    private BudgetArrayAdapter listAdapter;
+    private BudgetAdapterListener listen;
+    private List<Budget> budgets;
 
 
     @Override
@@ -36,8 +44,8 @@ public class OverviewFragment extends Fragment {
         weeklyIncome = (TextView) view.findViewById(R.id.overWeeklyIncome);
         weeklyExpense = (TextView) view.findViewById(R.id.overWeeklyExpense);
         weeklyBalance = (TextView) view.findViewById(R.id.overWeeklyBalance);
-        totalBalance = (TextView) view.findViewById(R.id.totalBalance);
-        debug = (TextView) view.findViewById(R.id.debugText);
+        list = (ListView)view.findViewById(android.R.id.list);
+
     }
 
     @Override
@@ -45,7 +53,6 @@ public class OverviewFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
         detail = db.getAllDetails().get(0);
-
 
     }
 
@@ -60,11 +67,16 @@ public class OverviewFragment extends Fragment {
         weeklyExpense.setText(BalanceUtilities.getValueAs2dpString(detail.getWeeklyExpense()));
 
         detail = BalanceUtilities.recalculateBalance(detail, db);
-
-        totalBalance.setText(BalanceUtilities.getValueAs2dpString(detail.getBalance()));
         weeklyBalance.setText(BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
         db.updateDetail(detail);
-        debug.setText(detail.toString());
+
+        budgets = db.getAllBudgets();
+        listAdapter = new BudgetArrayAdapter(getActivity(), budgets);
+        listen = new BudgetAdapterListener(getActivity(), budgets, db, listAdapter);
+        list.setOnItemLongClickListener(listen);
+        list.setOnItemClickListener(listen);
+
+        setListAdapter(listAdapter);
     }
     
 }

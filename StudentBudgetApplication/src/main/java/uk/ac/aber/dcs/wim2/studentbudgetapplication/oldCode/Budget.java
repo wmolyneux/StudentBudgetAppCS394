@@ -9,20 +9,22 @@ public class Budget implements Serializable{
     private int id;
     private String category;
     private int weekly;
-    private int monthly;
+    private int max;
+    private String date;
 
     public Budget(){}
 
-    public Budget(String cat, int week, int month){
+    public Budget(String cat, int week, int max, String date){
         super();
         this.category = cat;
         this.weekly = week;
-        this.monthly = month;
+        this.max = max;
+        this.date = date;
     }
 
     @Override
     public String toString(){
-        return "Budget [id="+id+", category="+category+", weekly="+weekly+", monthly="+monthly+"]";
+        return "Budget [id="+id+", category="+category+", weekly="+weekly+", max="+max+", date="+date+"]";
     }
 
     public int getId() {
@@ -37,9 +39,6 @@ public class Budget implements Serializable{
         return weekly;
     }
 
-    public int getMonthly() {
-        return monthly;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -53,7 +52,19 @@ public class Budget implements Serializable{
         this.weekly = weekly;
     }
 
-    public void setMonthly(int monthly) {
-        this.monthly = monthly;
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

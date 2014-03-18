@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
 public class TransactionActivity extends Activity implements View.OnClickListener{
@@ -31,7 +30,6 @@ public class TransactionActivity extends Activity implements View.OnClickListene
         initialiseViews();
 
         transaction = (Transaction)getIntent().getSerializableExtra("TRANSACTION");
-        SQLiteHelper db = new SQLiteHelper(this);
 
 
         //Enter the transaction information into the layout

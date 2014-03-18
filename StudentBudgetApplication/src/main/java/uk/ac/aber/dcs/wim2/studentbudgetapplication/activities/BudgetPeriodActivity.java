@@ -92,15 +92,15 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
 
     private boolean validate() {
         if(startDate.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please select term start date", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please select budget start date", Toast.LENGTH_LONG).show();
             return false;
         }
         if(endDate.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please select term end date", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please select budget end date", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(weeks<=0){
-            Toast.makeText(this, "Please select valid term dates", Toast.LENGTH_LONG).show();
+        if(weeks<=7){
+            Toast.makeText(this, "Please select valid budget dates", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -116,9 +116,17 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
         public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
             endDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/"+ selectedYear);
             end = new DateTime(selectedYear, selectedMonth+1, selectedDay, 0, 0);
-            calculateWeeks();
+//            calculateWeeks();
+            calculateDays();
         }
     };
+
+    private void calculateDays() {
+        if(!startDate.getText().toString().isEmpty() && !endDate.getText().toString().isEmpty()){
+            weeks = Days.daysBetween(start, end).getDays()+1;
+            weeksText.setText(weeks+"");
+        }
+    }
 
     private void calculateWeeks() {
         if(!startDate.getText().toString().isEmpty() && !endDate.getText().toString().isEmpty()){

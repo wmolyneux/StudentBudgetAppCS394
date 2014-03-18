@@ -13,6 +13,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Budget;
 
 /**
  * Created by wim2 on 26/02/2014.
@@ -24,6 +25,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_DETAILS = "details";
     private static final String TABLE_TRANSACTIONS = "transactions";
     private static final String TABLE_CATEGORIES = "categories";
+    private static final String TABLE_BUDGETS = "budgets";
 
     //CONSTANT COLUMN NAMES
     private static final String KEY_CONSTANT_ID = "id";
@@ -55,6 +57,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CATEGORY_NAME = "name";
     private static final String KEY_CATEGORY_COLOR = "color";
 
+    //Budget table column names
+    private static final String KEY_BUDGET_ID = "id";
+    private static final String KEY_BUDGET_CATEGORY = "category";
+    private static final String KEY_BUDGET_WEEKLY = "weekly";
+    private static final String KEY_BUDGET_MAX = "max";
+    private static final String KEY_BUDGET_DATE = "date";
+
     private static final String[] DETAIL_COLUMNS = {KEY_DETAIL_ID, KEY_DETAIL_STARTDATE, KEY_DETAIL_ENDDATE, KEY_DETAIL_TOTALWEEKS, KEY_DETAIL_WEEKSREMAINING,
                 KEY_DETAIL_WEEKLYINCOME, KEY_DETAIL_WEEKLYEXPENSE, KEY_DETAIL_WEEKLYBALANCE, KEY_DETAIL_BALANCE};
 
@@ -65,6 +74,8 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             KEY_TRANSACTION_CATEGORY, KEY_TRANSACTION_DATE};
 
     private static final String[] CATEGORY_COLUMNS = {KEY_CATEGORY_ID, KEY_CATEGORY_NAME, KEY_CATEGORY_COLOR};
+
+    private static final String[] BUDGET_COLUMNS = {KEY_BUDGET_ID, KEY_BUDGET_CATEGORY, KEY_BUDGET_WEEKLY, KEY_BUDGET_MAX, KEY_BUDGET_DATE};
 
     private static final int DATABASE_VERSION = 1;
 
@@ -119,6 +130,17 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
         // create transactions table
         db.execSQL(CREATE_TRANSACTION_TABLE);
+
+        // SQL statement to create budgets table
+        String CREATE_BUDGETS_TABLE = "CREATE TABLE budgets ( " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "category TEXT, "+
+                "weekly INTEGER, "+
+                "max INTEGER, "+
+                "date TEXT)";
+
+        // create budgets table
+        db.execSQL(CREATE_BUDGETS_TABLE);
     }
 
     @Override
@@ -127,6 +149,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS constants");
         db.execSQL("DROP TABLE IF EXISTS transactions");
         db.execSQL("DROP TABLE IF EXISTS categories");
+        db.execSQL("DROP TABLE IF EXISTS budgets");
         this.onCreate(db);
     }
 
@@ -728,6 +751,151 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
         //delete account
         db.delete(TABLE_CATEGORIES, KEY_CATEGORY_ID +" = ?", new String[]{String.valueOf(category.getId())});
+
+        //close connection to database
+        db.close();
+
+    }
+
+    /**
+     *
+     *
+     *
+     *
+     * CODE FOR BUDGETS DATABASE OPERATIONS IS HERE
+     *
+     *
+     *
+     *
+     */
+
+    /**
+     * Function takes an budget object and adds it into the database.
+     * @param budget -  budget object to be added to the database.
+     */
+    public void addBudget(Budget budget){
+        //get reference to writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to add key to column/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_BUDGET_CATEGORY, budget.getCategory());
+        values.put(KEY_BUDGET_WEEKLY, budget.getWeekly());
+        values.put(KEY_BUDGET_MAX, budget.getMax());
+        values.put(KEY_BUDGET_DATE, budget.getDate());
+
+        //insert into database .insert(tablename, columnhack,
+        // key/value -> keys = columns names/ values = column values)
+        db.insert(TABLE_BUDGETS, null, values);
+
+        //close db connection
+        db.close();
+
+    }
+
+    /**
+     * query database for an account using the given id parameter. creates a budget object using the values
+     * from the first returned item from the query.
+     * @param id - id of the budget to be found
+     * @return - returns first budget object returned from database query
+     */
+    public Budget getBudget(int id){
+        //get the database reference
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //construct query using Cursor class which allows read/write access to returned query set
+        Cursor cursor = //query format .query(table name, column names, selections, selection args, group by, having, order by, limit)
+                db.query(TABLE_BUDGETS, BUDGET_COLUMNS, " id = ?", new String[] {String.valueOf(id)}, null, null, null, null);
+
+        //if we got results, get the first one
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+
+        //construct budget using values returned from query
+        Budget budget = new Budget();
+        budget.setId(Integer.parseInt(cursor.getString(0)));
+        budget.setCategory(cursor.getString(1));
+        budget.setWeekly(Integer.parseInt(cursor.getString(2)));
+        budget.setMax(Integer.parseInt(cursor.getString(3)));
+        budget.setCategory(cursor.getString(4));
+
+
+        return budget;
+    }
+
+    /**
+     * Queries the budgets table for all budgets and returns them all in a list
+     *
+     * @return - Linked list of all budgets in the table
+     */
+    public List<Budget> getAllBudgets(){
+        List<Budget> budgets = new LinkedList<Budget>();
+
+        //build query
+        String query = "SELECT * FROM "+TABLE_BUDGETS;
+
+        //get reference to database
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        //go over each row, build a budget item and add it to the list.
+        Budget budget = null;
+        if(cursor.moveToFirst()){
+            do{
+                budget = new Budget();
+                budget.setId(Integer.parseInt(cursor.getString(0)));
+                budget.setCategory(cursor.getString(1));
+                budget.setWeekly(Integer.parseInt(cursor.getString(2)));
+                budget.setMax(Integer.parseInt(cursor.getString(3)));
+                budget.setDate(cursor.getString(4));
+                budgets.add(budget);
+
+
+
+            }while(cursor.moveToNext());
+
+        }
+
+        db.close();
+
+        return budgets;
+    }
+
+    /**
+     * takes an budget and updates it via its id
+     *
+     * @param budget - budget to update
+     * @return - number of rows affected
+     */
+    public int updateBudget(Budget budget){
+
+        //get reference to database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to add key to column/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_BUDGET_CATEGORY, budget.getCategory());
+        values.put(KEY_BUDGET_WEEKLY, budget.getWeekly());
+        values.put(KEY_BUDGET_MAX, budget.getMax());
+        values.put(KEY_BUDGET_DATE, budget.getDate());
+
+        //update the row in the table
+        //in the format .update(tablename, column/value, selections, selection args)
+        int rowsAffected = db.update(TABLE_BUDGETS, values, KEY_BUDGET_ID +" = ?", new String[] {String.valueOf(budget.getId())});
+
+        //close connection to the database
+        db.close();
+
+        return rowsAffected;
+    }
+
+    public void deleteBudget(Budget budget){
+        //get reference to the database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //delete constants
+        db.delete(TABLE_BUDGETS, KEY_BUDGET_ID +" = ?", new String[]{String.valueOf(budget.getId())});
 
         //close connection to database
         db.close();

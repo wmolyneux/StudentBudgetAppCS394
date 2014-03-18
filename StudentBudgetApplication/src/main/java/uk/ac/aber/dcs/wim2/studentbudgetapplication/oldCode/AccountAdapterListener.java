@@ -11,9 +11,6 @@ import android.widget.ArrayAdapter;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.MainActivity;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Account;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.SQLiteHelper;
 
 import static android.widget.AdapterView.OnItemClickListener;
 import static android.widget.AdapterView.OnItemLongClickListener;
@@ -25,15 +22,15 @@ public class AccountAdapterListener implements OnItemLongClickListener, OnItemCl
 
     Context context;
     List<Account> accounts;
-    SQLiteHelper db;
+//    SQLiteHelper db;
     ArrayAdapter<String> adapter;
 
-    public AccountAdapterListener(Context con, List<Account> acc, SQLiteHelper database, ArrayAdapter<String> adap){
-        context = con;
-        accounts = acc;
-        db = database;
-        adapter = adap;
-    }
+//    public AccountAdapterListener(Context con, List<Account> acc, SQLiteHelper database, ArrayAdapter<String> adap){
+//        context = con;
+//        accounts = acc;
+//        db = database;
+//        adapter = adap;
+//    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -66,7 +63,7 @@ public class AccountAdapterListener implements OnItemLongClickListener, OnItemCl
                         // if this button is clicked, close
                         // current activity
                         removeAccountsTransactions(accounts.get(accountToRemove));
-                        db.deleteAccount(accounts.get(accountToRemove));
+//                        db.deleteAccount(accounts.get(accountToRemove));
                         adapter.remove(accounts.get(accountToRemove).getAccountName());
                         accounts.remove(accountToRemove);
                         adapter.notifyDataSetInvalidated();

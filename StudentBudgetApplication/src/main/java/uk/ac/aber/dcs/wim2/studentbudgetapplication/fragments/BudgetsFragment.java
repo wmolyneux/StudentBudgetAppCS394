@@ -8,29 +8,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.SQLiteHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Budget;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 
-public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelectedListener, SeekBar.OnSeekBarChangeListener {
+public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelectedListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     private Spinner categories;
     private SeekBar weeklySlide;
-    private SeekBar monthlySlide;
     private TextView currWeekMin;
+    private TextView weeklyText;
     private TextView currWeekMax;
-    private TextView currMonthMin;
-    private TextView currMonthMax;
     private TextView remainingWeek;
-    private TextView remainingMonth;
+    private Button create;
+    private Button clear;
     private SQLiteDatabaseHelper db;
+
+    private Detail detail;
+    private float weeklyBal;
+    private int amount;
 
 
 
@@ -54,7 +64,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
         for (Category cat : db.getAllCategories()){
             tempCategories.add(cat.getName());
         }
-
+        detail = db.getAllDetails().get(0);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (getActivity(), android.R.layout.simple_spinner_item, tempCategories);
@@ -63,21 +73,30 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
         categories.setAdapter(adapter);
         categories.setOnItemSelectedListener(this);
 
+        weeklyBal = detail.getWeeklyBalance();
+
         weeklySlide = (SeekBar) view.findViewById(R.id.weeklyslide);
-        monthlySlide = (SeekBar) view.findViewById(R.id.monthlyslide);
+        weeklyText = (TextView) view.findViewById(R.id.weeklytext);
         currWeekMin = (TextView) view.findViewById(R.id.currentweekmin);
-        //example code!!! remove!!!
-        currWeekMin.setText("£20");
         currWeekMax = (TextView) view.findViewById(R.id.currentweekmax);
 
-        //example code!!! remove!!!
-        currWeekMax.setText("£50");
-        currMonthMin = (TextView) view.findViewById(R.id.currentMonthMin);
-        currMonthMax = (TextView) view.findViewById(R.id.currentmonthmax);
+
         remainingWeek = (TextView) view.findViewById(R.id.remainingweekly);
-        remainingMonth = (TextView) view.findViewById(R.id.remainingmonthly);
+
+        clear = (Button) view.findViewById(R.id.clearBudget);
+        create = (Button) view.findViewById(R.id.createBudget);
+        create.setOnClickListener(this);
+        clear.setOnClickListener(this);
+
+        for(Budget budget : db.getAllBudgets()){
+            weeklyBal -= budget.getWeekly();
+        }
+        remainingWeek.setText(BalanceUtilities.getValueAs2dpString(weeklyBal));
+        currWeekMax.setText(Math.round(weeklyBal)+"");
 
         weeklySlide.setOnSeekBarChangeListener(this);
+        weeklySlide.setMax((int) weeklyBal);
+
 
     }
 
@@ -91,14 +110,11 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
 
     }
 
-    int min = 20;
-    int max = 50;
-    int diff = 30;
-
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        weeklySlide.setMax(diff);
-        remainingWeek.setText("£"+(min+i));
+        amount = i;
+        weeklyText.setText("Amount of weekly budget: "+amount);
+        remainingWeek.setText(""+BalanceUtilities.getValueAs2dpString(weeklyBal-amount));
     }
 
     @Override
@@ -109,5 +125,58 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.clearBudget:
+                weeklyText.setText("Amount of weekly budget: 0");
+                weeklySlide.setProgress(0);
+                remainingWeek.setText(BalanceUtilities.getValueAs2dpString(weeklyBal));
+                break;
+            case R.id.createBudget:
+                boolean flag = checkBudgets();
+                if(flag){
+                    if(weeklySlide.getProgress()!=0){
+                        createBudget();
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "Budget must be more than 0", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else{
+                    Toast.makeText(getActivity(), "Budget for "+categories.getSelectedItem().toString()+" already exists!",
+                            Toast.LENGTH_LONG).show();
+                }
+                break;
+
+        }
+    }
+
+    private boolean checkBudgets() {
+        for(Budget bud : db.getAllBudgets()){
+            if(bud.getCategory().equalsIgnoreCase(categories.getSelectedItem().toString())){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void createBudget() {
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+        DateTime today = new DateTime(year, month+1, day, 0, 0);
+        today = today.withDayOfWeek(1);
+
+
+        String dateString = today.getDayOfMonth()+"/"+today.getMonthOfYear()+"/"+today.getYear();
+        Budget budget = new Budget(categories.getSelectedItem().toString(), amount, (int)weeklyBal, dateString);
+        db.addBudget(budget);
+        Toast.makeText(getActivity(), budget.toString(), Toast.LENGTH_LONG).show();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, new OverviewFragment()).commit();
     }
 }

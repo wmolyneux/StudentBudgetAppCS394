@@ -28,7 +28,6 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     private HistoryArrayAdapter listAdapter;
     private View context;
     private ListView list;
-    private ArrayList<String> values;
     private Detail detail;
     private TransactionAdapterListener listen;
 
@@ -45,7 +44,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         db = new SQLiteDatabaseHelper(getActivity());
         detail = db.getAllDetails().get(0);
         setupTabHost();
-        listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, listAdapter, values);
+        listen = new TransactionAdapterListener(getActivity(), transactions, db, listAdapter);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
     }
@@ -87,8 +86,6 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
 
     @Override
     public void onTabChanged(String s) {
-        values = new ArrayList<String>();
-
         transactions = new ArrayList<Transaction>();
         if(tabHost.getCurrentTab()==0){
             filterIncomeTransactions();
@@ -101,7 +98,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         listAdapter = new HistoryArrayAdapter(getActivity(), transactions);
 
         //setup onclick listeners using adapter listener.
-        listen = new TransactionAdapterListener(getActivity(), detail, transactions, db, listAdapter, values);
+        listen = new TransactionAdapterListener(getActivity(), transactions, db, listAdapter);
         list.setOnItemLongClickListener(listen);
         list.setOnItemClickListener(listen);
 
@@ -111,7 +108,6 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     private void filterExpenseTransactions() {
         for (Transaction transaction : db.getAllTransactions()){
             if(transaction.getType().equalsIgnoreCase("minus")){
-                values.add("-"+ BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
                 transactions.add(transaction);
             }
         }
@@ -120,7 +116,6 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
     private void filterIncomeTransactions() {
         for (Transaction transaction : db.getAllTransactions()){
             if(!transaction.getType().equalsIgnoreCase("minus")){
-                values.add(BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
                 transactions.add(transaction);
             }
         }

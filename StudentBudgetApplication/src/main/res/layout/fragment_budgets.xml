@@ -76,44 +76,6 @@
 
         </LinearLayout>
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Amount of monthly budget:"
-                android:id="@+id/monthlytext"
-                android:layout_marginTop="45dp"
-                android:layout_gravity="center_horizontal"/>
-
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linearLayout"
-                android:layout_alignParentLeft="true"
-                android:id="@+id/linearLayout3"
-                android:layout_marginTop="10dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:id="@+id/currentMonthMin"/>
-
-            <SeekBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/monthlyslide"
-                    android:layout_weight="1.80"
-                    android:indeterminate="false"
-                    />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="100"
-                    android:id="@+id/currentmonthmax"/>
-        </LinearLayout>
-
         <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -139,30 +101,6 @@
 
         <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout4"
-                android:layout_marginTop="20dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Remaining monthly:"
-                    android:id="@+id/remmontext"
-                    android:layout_marginLeft="49dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="£0"
-                    android:id="@+id/remainingmonthly"
-                    android:layout_weight="0.23"
-                    android:layout_marginLeft="34dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
 
             <Button
@@ -177,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Create"
-                    android:id="@+id/createbudget"
+                    android:id="@+id/createBudget"
                     android:layout_gravity="center"
                     android:layout_marginLeft="107dp"/>
         </LinearLayout>

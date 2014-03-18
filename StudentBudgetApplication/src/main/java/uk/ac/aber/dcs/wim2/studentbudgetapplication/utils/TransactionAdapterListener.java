@@ -33,17 +33,12 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
     List<Transaction> transactions;
     SQLiteDatabaseHelper db;
     HistoryArrayAdapter adapter;
-    ArrayList<String> values;
-    Detail detail;
 
-    public TransactionAdapterListener(Context con, Detail det,
-                List<Transaction> trans, SQLiteDatabaseHelper database, HistoryArrayAdapter adap, ArrayList<String> vals){
+    public TransactionAdapterListener(Context con, List<Transaction> trans, SQLiteDatabaseHelper database, HistoryArrayAdapter adap){
         context = con;
         transactions = trans;
         db = database;
         adapter = adap;
-        values = vals;
-        detail = det;
 
     }
 
@@ -75,7 +70,6 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //remove the selected item from the necessary arrays and database
-                        values.remove(transactionToRemove);
                         db.deleteTransaction(transactions.get(transactionToRemove));
                         transactions.remove(transactionToRemove);
 

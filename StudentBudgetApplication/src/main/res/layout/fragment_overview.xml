@@ -11,7 +11,8 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="wrap_content"
+            >
 
         <LinearLayout
                 android:layout_width="fill_parent"
@@ -81,36 +82,14 @@
                     android:layout_marginLeft="36dp"/>
         </LinearLayout>
 
-        <LinearLayout
-                android:layout_width="fill_parent"
+        <ListView
+                android:id="@android:id/list"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:textColor="#000000"
+                android:isScrollContainer="false"
                 android:layout_marginTop="30dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Total balance:"
-                    android:id="@+id/textView3"
-                    android:layout_marginLeft="55dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="0"
-                    android:id="@+id/totalBalance"
-                    android:layout_marginLeft="36dp"/>
-        </LinearLayout>
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/debugText"
-                android:layout_gravity="left|center_vertical"/>
+        </ListView>
 
     </LinearLayout>
 </RelativeLayout>

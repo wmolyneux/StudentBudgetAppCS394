@@ -53,82 +53,89 @@
         </LinearLayout>
 
         <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center">
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical">
 
-            <TextView
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text=" "
-                    android:id="@+id/legend"/>
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center">
 
-            <TextView
-                    android:layout_width="wrap_content"
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=" "
+                        android:id="@+id/legend"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/legend1"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/legend2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text=""
-                    android:id="@+id/legend1"/>
+                    android:id="@+id/linearLayout"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center">
 
-            <TextView
-                    android:layout_width="wrap_content"
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/legend3"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/legend4"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/legend5"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text=""
-                    android:id="@+id/legend2"/>
+                    android:gravity="center">
 
-        </LinearLayout>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/legend6"/>
 
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/linearLayout"
-                android:layout_marginBottom="10dp"
-                android:gravity="center">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text=""
-                    android:id="@+id/legend3"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text=""
-                    android:id="@+id/legend4"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text=""
-                    android:id="@+id/legend5"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text=""
-                    android:id="@+id/legend6"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text=""
-                    android:id="@+id/legend7"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/legend7"/>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

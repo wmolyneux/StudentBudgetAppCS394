@@ -143,14 +143,14 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
     public void itemChanged(){
         Float income = new Float(0);
         if(!balanceAmount.getText().toString().isEmpty()){
-            income+= (Float.valueOf(balanceAmount.getText().toString())/detail.getTotalWeeks());
+            income+= ((Float.valueOf(balanceAmount.getText().toString())/detail.getTotalWeeks())*7);
         }
         if(!loanAmount.getText().toString().isEmpty()){
-            income += (Float.valueOf(loanAmount.getText().toString())/detail.getTotalWeeks());
+            income += ((Float.valueOf(loanAmount.getText().toString())/detail.getTotalWeeks())*7);
 //            income += FragmentUtilities.checkSpinner("remaining", loanAmount.getText().toString());
         }
         if(!grantAmount.getText().toString().isEmpty()){
-            income += (Float.valueOf(grantAmount.getText().toString())/detail.getTotalWeeks());
+            income += ((Float.valueOf(grantAmount.getText().toString())/detail.getTotalWeeks())*7);
 //            income += FragmentUtilities.checkSpinner("remaining", grantAmount.getText().toString());
         }
         if(!wageAmount.getText().toString().isEmpty()){
