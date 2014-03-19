@@ -147,11 +147,9 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         }
         if(!loanAmount.getText().toString().isEmpty()){
             income += ((Float.valueOf(loanAmount.getText().toString())/detail.getTotalWeeks())*7);
-//            income += FragmentUtilities.checkSpinner("remaining", loanAmount.getText().toString());
         }
         if(!grantAmount.getText().toString().isEmpty()){
             income += ((Float.valueOf(grantAmount.getText().toString())/detail.getTotalWeeks())*7);
-//            income += FragmentUtilities.checkSpinner("remaining", grantAmount.getText().toString());
         }
         if(!wageAmount.getText().toString().isEmpty()){
             income += FragmentUtilities.checkSpinner(wageSpinner.getSelectedItem().toString(), wageAmount.getText().toString());

@@ -200,15 +200,13 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
     public void itemChanged(){
         Float income = new Float(0);
         if(!balanceAmount.getText().toString().isEmpty()){
-            income += (Float.valueOf(balanceAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks());
+            income += ((Float.valueOf(balanceAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks())*7);
         }
         if(!loanAmount.getText().toString().isEmpty()){
-//            income += FragmentUtilities.checkSpinner(loanSpinner.getSelectedItem().toString(), loanAmount.getText().toString());
-            income += (Float.valueOf(loanAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks());
+            income += ((Float.valueOf(loanAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks())*7);
         }
         if(!grantAmount.getText().toString().isEmpty()){
-//            income += FragmentUtilities.checkSpinner(grantSpinner.getSelectedItem().toString(), grantAmount.getText().toString());
-            income += (Float.valueOf(grantAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks());
+            income += ((Float.valueOf(grantAmount.getText().toString())/db.getAllDetails().get(0).getTotalWeeks())*7);
         }
         if(!wageAmount.getText().toString().isEmpty()){
             income += FragmentUtilities.checkSpinner(wageSpinner.getSelectedItem().toString(), wageAmount.getText().toString());
