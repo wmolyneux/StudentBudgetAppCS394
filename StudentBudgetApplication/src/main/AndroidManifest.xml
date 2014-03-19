@@ -23,47 +23,61 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".oldCode.MainActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name=".oldCode.AccountsActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.AccountsActivity"
             android:label="@string/title_activity_accounts" >
         </activity>
         <activity
-            android:name=".oldCode.NewAccountActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.NewAccountActivity"
             android:label="@string/title_activity_new_account" >
         </activity>
         <activity
-            android:name=".activities.TransactionActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity"
             android:label="@string/title_activity_transaction" >
         </activity>
         <activity
-            android:name=".activities.IncomeActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.IncomeActivity"
             android:label="@string/title_activity_income" >
         </activity>
         <activity
-            android:name=".activities.ExpenseActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity"
             android:label="@string/title_activity_expense" >
         </activity>
         <activity
-            android:name=".activities.BudgetPeriodActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.BudgetPeriodActivity"
             android:label="@string/title_activity_term" >
         </activity>
         <activity
-            android:name=".activities.DetailActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.DetailActivity"
             android:label="@string/title_activity_detail" >
         </activity>
 
-        <receiver android:name=".widget.AppWidgetProvider" android:label="Student budget widget">
+        <receiver
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider"
+            android:label="Student budget widget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name=".widget.INCREMENT_AMOUNT_BUTTON" />
                 <action android:name=".widget.DECREMENT_AMOUNT_BUTTON" />
                 <action android:name=".widget.SUBMIT_BUTTON" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_attributes" />
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_attributes" />
         </receiver>
+
+        <activity
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".fragments.SettingsFragment"
+            android:label="@string/title_activity_settings_fragment" >
+        </activity>
     </application>
 
 </manifest>

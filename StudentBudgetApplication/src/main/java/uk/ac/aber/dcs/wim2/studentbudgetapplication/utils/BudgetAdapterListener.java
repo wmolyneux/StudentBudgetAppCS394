@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Budget;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
 
 /**
  * Created by wim2 on 18/03/2014.

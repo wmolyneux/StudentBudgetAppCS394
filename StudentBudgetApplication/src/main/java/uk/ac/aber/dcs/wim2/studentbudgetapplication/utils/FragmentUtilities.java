@@ -1,5 +1,8 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -64,6 +67,11 @@ public class FragmentUtilities {
             value += (Float.valueOf(input)/52);
         }
         return value;
+    }
+
+    public static String getCurrency(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString("pref_currency", "");
     }
 
 }

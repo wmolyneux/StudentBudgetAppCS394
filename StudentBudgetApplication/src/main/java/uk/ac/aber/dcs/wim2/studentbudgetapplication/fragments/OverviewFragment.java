@@ -1,7 +1,10 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +17,11 @@ import java.util.List;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Budget;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BudgetAdapterListener;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BudgetArrayAdapter;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class OverviewFragment extends ListFragment {
 
@@ -30,6 +34,7 @@ public class OverviewFragment extends ListFragment {
     private BudgetArrayAdapter listAdapter;
     private BudgetAdapterListener listen;
     private List<Budget> budgets;
+    private String currency;
 
 
     @Override
@@ -60,14 +65,16 @@ public class OverviewFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         setup();
+
     }
 
     private void setup() {
-        weeklyIncome.setText(BalanceUtilities.getValueAs2dpString(detail.getWeeklyIncome()));
-        weeklyExpense.setText(BalanceUtilities.getValueAs2dpString(detail.getWeeklyExpense()));
+        currency = FragmentUtilities.getCurrency(getActivity());
+        weeklyIncome.setText(currency+BalanceUtilities.getValueAs2dpString(detail.getWeeklyIncome()));
+        weeklyExpense.setText(currency+BalanceUtilities.getValueAs2dpString(detail.getWeeklyExpense()));
 
         detail = BalanceUtilities.recalculateBalance(detail, db);
-        weeklyBalance.setText(BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
+        weeklyBalance.setText(currency+BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
         db.updateDetail(detail);
 
         budgets = db.getAllBudgets();
@@ -78,5 +85,6 @@ public class OverviewFragment extends ListFragment {
 
         setListAdapter(listAdapter);
     }
-    
+
+
 }

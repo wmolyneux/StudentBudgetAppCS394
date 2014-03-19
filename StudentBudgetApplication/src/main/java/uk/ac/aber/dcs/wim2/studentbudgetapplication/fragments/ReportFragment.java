@@ -26,6 +26,8 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class ReportFragment extends Fragment implements View.OnClickListener {
 
@@ -139,7 +141,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         for(int i = 0; i < itemValues.size(); i++){
             float percent = (itemValues.get(i)/total)*100;
             mSeries.add(percent+"%   ", percent);
-            setLegendText(legends[i], "• "+itemNames.get(i)+" "+itemValues.get(i), itemColor.get(i));
+            setLegendText(legends[i], "• "+itemNames.get(i)+" "+ FragmentUtilities.getCurrency(getActivity())+itemValues.get(i), itemColor.get(i));
             SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
             renderer.setColor(itemColor.get(i));
             mRenderer.addSeriesRenderer(renderer);

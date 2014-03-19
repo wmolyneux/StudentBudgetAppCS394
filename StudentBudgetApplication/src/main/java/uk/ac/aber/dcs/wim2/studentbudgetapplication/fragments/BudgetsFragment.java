@@ -23,8 +23,9 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Budget;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelectedListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
@@ -41,12 +42,14 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
     private Detail detail;
     private float weeklyBal;
     private int amount;
+    private String currency;
 
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_budgets, container, false);
+
         registerView(inflate);
         return inflate;
     }
@@ -54,6 +57,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
 
     }
 
@@ -91,13 +95,21 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
         for(Budget budget : db.getAllBudgets()){
             weeklyBal -= budget.getWeekly();
         }
-        remainingWeek.setText(BalanceUtilities.getValueAs2dpString(weeklyBal));
-        currWeekMax.setText(Math.round(weeklyBal)+"");
+
+//        remainingWeek.setText(currency+BalanceUtilities.getValueAs2dpString(weeklyBal));
+//        currWeekMax.setText(currency+Math.round(weeklyBal)+"");
 
         weeklySlide.setOnSeekBarChangeListener(this);
         weeklySlide.setMax((int) weeklyBal);
 
 
+    }
+
+    public void reDrawValues(){
+        currency = FragmentUtilities.getCurrency(getActivity());
+        currWeekMax.setText(currency+Math.round(weeklyBal)+"");
+        weeklyText.setText("Amount of weekly budget: "+currency+amount);
+        remainingWeek.setText(currency+BalanceUtilities.getValueAs2dpString(weeklyBal-amount));
     }
 
     @Override
@@ -113,8 +125,9 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         amount = i;
-        weeklyText.setText("Amount of weekly budget: "+amount);
-        remainingWeek.setText(""+BalanceUtilities.getValueAs2dpString(weeklyBal-amount));
+        reDrawValues();
+//        weeklyText.setText("Amount of weekly budget: "+currency+amount);
+//        remainingWeek.setText(currency+BalanceUtilities.getValueAs2dpString(weeklyBal-amount));
     }
 
     @Override
@@ -131,9 +144,11 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.clearBudget:
-                weeklyText.setText("Amount of weekly budget: 0");
+//                weeklyText.setText("Amount of weekly budget: "+currency+"0");
+                amount = 0;
                 weeklySlide.setProgress(0);
-                remainingWeek.setText(BalanceUtilities.getValueAs2dpString(weeklyBal));
+//                remainingWeek.setText(currency+BalanceUtilities.getValueAs2dpString(weeklyBal));
+                reDrawValues();
                 break;
             case R.id.createBudget:
                 boolean flag = checkBudgets();
@@ -142,7 +157,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
                         createBudget();
                     }
                     else{
-                        Toast.makeText(getActivity(), "Budget must be more than 0", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Budget must be more than "+currency+"0", Toast.LENGTH_LONG).show();
                     }
                 }
                 else{
@@ -178,5 +193,11 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
         Toast.makeText(getActivity(), budget.toString(), Toast.LENGTH_LONG).show();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, new OverviewFragment()).commit();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        reDrawValues();
     }
 }

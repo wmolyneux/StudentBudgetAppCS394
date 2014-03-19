@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+            android:title="Application"
+            android:key="pref_key_storage_settings">
+
+        <ListPreference
+                android:key="pref_language"
+                android:summary="Select a language"
+                android:title="Language"
+                android:entries="@array/language_names"
+                android:entryValues="@array/language_codes"
+                android:defaultValue="English"/>
+
+        <ListPreference
+                android:key="pref_currency"
+                android:summary="Select a currency"
+                android:title="Currency"
+                android:entries="@array/currency"
+                android:entryValues="@array/currency"
+                android:defaultValue="£"/>
+    </PreferenceCategory>
+    ...
+</PreferenceScreen>

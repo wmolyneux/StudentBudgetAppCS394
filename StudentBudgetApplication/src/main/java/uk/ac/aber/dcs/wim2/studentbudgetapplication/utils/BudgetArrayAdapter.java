@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ import java.util.List;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.Budget;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
 
 /**
  * Created by wim2 on 12/03/2014.
@@ -50,7 +49,7 @@ public class BudgetArrayAdapter extends ArrayAdapter<Budget> {
         Budget current = budgets.get(position);
         float percentage = calculatePercentage(budgets.get(position));
 
-        category.setText(current.getWeekly()+" "+current.getCategory()+" Budget: ");
+        category.setText(FragmentUtilities.getCurrency(context)+current.getWeekly()+" "+current.getCategory()+" Budget: ");
         if(percentage > 100){
             category.setTextColor(Color.RED);
             percent.setTextColor(Color.RED);

@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
@@ -16,6 +17,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
 
@@ -26,11 +28,13 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     private static Float value = new Float(1.5);
     private SQLiteDatabaseHelper db;
     private static int dbSize = 0;
+    private Context context;
 
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         final int N = appWidgetIds.length;
         db = new SQLiteDatabaseHelper(context);
         dbSize = db.getAllDetails().size();
+        this.context = context;
         // Perform this loop procedure for each App Widget that belongs to this
         // provider
         for (int i = 0; i < N; i++) {
@@ -99,7 +103,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         Detail detail = db.getAllDetails().get(0);
         BalanceUtilities.recalculateBalance(detail, db);
         views.setTextViewText(R.id.widgetRemainingWeekly,
-                "Weekly balance: £"+BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
+                "Weekly balance: "+BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
     }
 
 

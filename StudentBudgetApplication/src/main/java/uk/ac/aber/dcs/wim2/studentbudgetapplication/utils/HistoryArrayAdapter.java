@@ -38,8 +38,8 @@ public class HistoryArrayAdapter extends ArrayAdapter<Transaction> {
         TextView value = (TextView) row.findViewById(R.id.listValueText);
         ImageView icon = (ImageView)row.findViewById(R.id.listIcon);
 
-        category.setText(transactions.get(position).getCategory()
-                +" - "+BalanceUtilities.getValueAs2dpString(Float.valueOf(transactions.get(position).getAmount().toString())));
+        category.setText(transactions.get(position).getCategory()+" - "+FragmentUtilities.getCurrency(context)+
+                BalanceUtilities.getValueAs2dpString(Float.valueOf(transactions.get(position).getAmount().toString())));
         value.setText(transactions.get(position).getDate());
         icon.setImageResource(findImageId(transactions.get(position).getCategory()));
 

@@ -1,7 +1,11 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,6 +18,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
@@ -30,7 +37,7 @@ public class DetailActivity extends FragmentActivity {
     private ListView drawerListView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-
+    private Context context;
 
     @Override
     public void onBackPressed() {}
@@ -38,6 +45,7 @@ public class DetailActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         setContentView(R.layout.activity_detail);
 
         manageFragments(new OverviewFragment(), R.id.content_frame);
@@ -70,7 +78,7 @@ public class DetailActivity extends FragmentActivity {
 
         drawerListView.setOnItemClickListener(new DrawerItemClickListener());
 
-
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     }
 
     @Override
@@ -95,13 +103,6 @@ public class DetailActivity extends FragmentActivity {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         actionBarDrawerToggle.syncState();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.detail, menu);
-        return true;
     }
 
     public void manageFragments(Fragment newFrag, int oldFragId){
@@ -144,6 +145,44 @@ public class DetailActivity extends FragmentActivity {
             drawerLayout.closeDrawer(drawerListView);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.detail, menu);
+        MenuItem settings = menu.findItem(R.id.action_settings);
+        if(settings != null){
+            settings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(context, SettingsActivity.class);
+                    startActivityForResult(intent, 0);
+                    return true;
+                }
+            });
+        }
+        return true;
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String languageToLoad = prefs.getString("pref_language", "en");
+        Locale locale = new Locale(languageToLoad);
+        locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+        Toast.makeText(this, languageToLoad, Toast.LENGTH_LONG).show();
+
+    }
+
 
 
     

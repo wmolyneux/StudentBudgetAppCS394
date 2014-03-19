@@ -2,6 +2,11 @@
 <resources>
 
     <!-- From: file:/aber/wim2/major%20project/StudentBudgetApplicationProject/StudentBudgetApplication/src/main/res/values/strings.xml -->
+    <string-array name="currency">
+        <item>£</item>
+        <item>$</item>
+        <item>€</item>
+    </string-array>
     <string-array name="items">
         <item>Home</item>
         <item>New Transaction</item>
@@ -10,6 +15,14 @@
         <item>New Budget</item>
         <item>Manage Incomes</item>
         <item>Manage Expenses</item>
+    </string-array>
+    <string-array name="language_codes">
+        <item>en</item>
+        <item>cy</item>
+    </string-array>
+    <string-array name="language_names">
+        <item>English</item>
+        <item>Cymraeg</item>
     </string-array>
     <string-array name="monthly_yearly">
         <item>Monthly</item>
@@ -46,6 +59,8 @@
     <string name="title_activity_new_account">NewAccountActivity</string>
     <string name="title_activity_overview_fragment">OverviewFragment</string>
     <string name="title_activity_report_fragment">ReportFragment</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings_fragment">SettingsFragment</string>
     <string name="title_activity_term">TermActivity</string>
     <string name="title_activity_transaction">TransactionActivity</string>
     <string name="title_activity_transactions_fragment">TransactionsFragment</string>
