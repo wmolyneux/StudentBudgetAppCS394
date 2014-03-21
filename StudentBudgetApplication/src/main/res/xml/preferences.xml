@@ -9,7 +9,7 @@
                 android:title="Language"
                 android:entries="@array/language_names"
                 android:entryValues="@array/language_codes"
-                android:defaultValue="English"/>
+                android:defaultValue="en"/>
 
         <ListPreference
                 android:key="pref_currency"

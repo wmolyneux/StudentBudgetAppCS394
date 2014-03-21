@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 
 import org.joda.time.DateTime;
@@ -13,7 +16,9 @@ import org.joda.time.Weeks;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
@@ -189,5 +194,17 @@ public class BalanceUtilities {
 
     public static String getValueAs2dpString(Float value){
         return String.format("%.2f", value);
+    }
+
+    public static void refreshPreferences(Activity activity) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+
+        String languageToLoad = prefs.getString("pref_language", "");
+        Locale locale = new Locale(languageToLoad);
+        locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
     }
 }

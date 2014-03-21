@@ -30,6 +30,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ReportFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ExpenseFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.IncomeFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 
 public class DetailActivity extends FragmentActivity {
 
@@ -45,6 +46,8 @@ public class DetailActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         context = this;
         setContentView(R.layout.activity_detail);
 
@@ -78,7 +81,7 @@ public class DetailActivity extends FragmentActivity {
 
         drawerListView.setOnItemClickListener(new DrawerItemClickListener());
 
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
     }
 
     @Override
@@ -169,17 +172,12 @@ public class DetailActivity extends FragmentActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        BalanceUtilities.refreshPreferences(this);
 
-        String languageToLoad = prefs.getString("pref_language", "en");
-        Locale locale = new Locale(languageToLoad);
-        locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        drawerListViewItems = getResources().getStringArray(R.array.items);
+        drawerListView.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.listview_navigator, drawerListViewItems));
 
-        Toast.makeText(this, languageToLoad, Toast.LENGTH_LONG).show();
 
     }
 

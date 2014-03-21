@@ -2,10 +2,13 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.util.Locale;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 
@@ -73,5 +76,7 @@ public class FragmentUtilities {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString("pref_currency", "");
     }
+
+
 
 }

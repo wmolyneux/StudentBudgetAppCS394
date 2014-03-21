@@ -65,5 +65,8 @@
     <string name="title_activity_expense_fragment">ExpenseFragment</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_settings_fragment">SettingsFragment</string>
+    <string name="overview_income">Weekly income:</string>
+    <string name="overview_expense">Weekly expense:</string>
+    <string name="overview_balance">Weekly balance:</string>
 
 </resources>

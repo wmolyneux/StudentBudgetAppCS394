@@ -7,7 +7,7 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string-array name="items">
-        <item>welsh</item>
+        <item>Home</item>
         <item>New Transaction</item>
         <item>History</item>
         <item>Report</item>
@@ -65,5 +65,8 @@
     <string name="title_activity_expense_fragment">ExpenseFragment</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_settings_fragment">SettingsFragment</string>
+    <string name="overview_income">Welsh income:</string>
+    <string name="overview_expense">Welsh expense:</string>
+    <string name="overview_balance">Welsh balance:</string>
 
 </resources>

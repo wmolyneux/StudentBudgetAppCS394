@@ -14,6 +14,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 
 public class EnterActivity extends Activity implements View.OnClickListener{
 
@@ -24,6 +25,7 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BalanceUtilities.refreshPreferences(this);
         setContentView(R.layout.activity_enter);
         entryButton = (Button)findViewById(R.id.enterButton);
         entryButton.setOnClickListener(this);
@@ -56,13 +58,12 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 //
                 db = new SQLiteDatabaseHelper(this);
                 populateCategoryTable();
-
-                try{
+                if(db.getAllDetails().size()!=0){
                     Detail detail = db.getAllDetails().get(0);
                     Intent intent = new Intent(this, DetailActivity.class);
                     startActivity(intent);
                 }
-                catch(IndexOutOfBoundsException e){
+                else {
                     Intent intent = new Intent(this, BudgetPeriodActivity.class);
                     startActivity(intent);
                 }

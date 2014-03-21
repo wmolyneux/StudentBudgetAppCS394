@@ -49,6 +49,12 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         list.setOnItemClickListener(listen);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        listAdapter.notifyDataSetInvalidated();
+    }
+
     private void setupTabHost() {
         tabHost = (TabHost)context.findViewById(R.id.tabHost);
         tabHost.setup();

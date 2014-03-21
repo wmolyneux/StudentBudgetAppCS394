@@ -65,7 +65,6 @@ public class OverviewFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         setup();
-
     }
 
     private void setup() {

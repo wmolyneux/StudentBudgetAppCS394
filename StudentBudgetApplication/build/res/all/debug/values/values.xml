@@ -47,6 +47,9 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="hello_world">Hello world!</string>
+    <string name="overview_balance">Weekly balance:</string>
+    <string name="overview_expense">Weekly expense:</string>
+    <string name="overview_income">Weekly income:</string>
     <string name="remove_warning">Account will be permanently deleted!</string>
     <string name="title_activity_accounts">AccountsActivity</string>
     <string name="title_activity_budgets_fragments">BudgetsFragments</string>
