@@ -2,6 +2,7 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
 
 import android.app.ActionBar;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -50,6 +51,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
     private int month;
     private int year;
     private Float total;
+    TypedArray categoryArray;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         back = (ImageButton) view.findViewById(R.id.backDateButton);
         next.setOnClickListener(this);
         back.setOnClickListener(this);
+        categoryArray = getResources().obtainTypedArray(R.array.categories);
         return inflate;
     }
 
@@ -96,12 +99,14 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         itemColor = new ArrayList<Integer>();
         itemValues = new ArrayList<Float>();
 
+
+
         total = (float) 0;
         for(Transaction transaction : db.getAllTransactions()){
             String[] split = transaction.getDate().split("/");
             if((today.monthOfYear().get()) == Integer.valueOf(split[1]) && today.year().get() == Integer.valueOf(split[2])){
-                if(!itemNames.contains(transaction.getCategory()) && transaction.getType().equalsIgnoreCase("minus")){
-                    itemNames.add(transaction.getCategory());
+                if(!itemNames.contains(categoryArray.getString(transaction.getCategory())) && transaction.getType().equalsIgnoreCase("minus")){
+                    itemNames.add(categoryArray.getString(transaction.getCategory()));
                 }
             }
         }
@@ -111,7 +116,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
             for (Transaction trans : db.getAllTransactions()){
                 String[] split = trans.getDate().split("/");
                 if((today.monthOfYear().get()) == Integer.valueOf(split[1]) && today.year().get() == Integer.valueOf(split[2])){
-                    if(trans.getCategory().equalsIgnoreCase(name) && trans.getType().equalsIgnoreCase("minus")){
+                    if(categoryArray.getString(trans.getCategory()).equalsIgnoreCase(name) && trans.getType().equalsIgnoreCase("minus")){
                       value += trans.getAmount();
 
                     }
@@ -129,7 +134,7 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
                 continue;
             }
             for(Category cat : db.getAllCategories()){
-                if(cat.getName().equalsIgnoreCase(name)){
+                if(categoryArray.getString(cat.getPosition()).equalsIgnoreCase(name)){
                     selectColor(cat);
                     break;
                 }

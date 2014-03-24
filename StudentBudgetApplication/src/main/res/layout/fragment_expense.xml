@@ -23,7 +23,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Rent:"
+                    android:text="@string/expense_rent"
                     android:id="@+id/textView"/>
 
             <Spinner
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Electricity:"
+                    android:text="@string/expense_electricity"
                     android:id="@+id/textView2"/>
 
             <Spinner
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Heating:"
+                    android:text="@string/expense_heating"
                     android:id="@+id/textView3"/>
 
             <Spinner
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Internet:"
+                    android:text="@string/expense_internet"
                     android:id="@+id/textView4"/>
 
             <Spinner
@@ -139,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Transport:"
+                    android:text="@string/expense_transport"
                     android:id="@+id/textView6"/>
 
             <Spinner
@@ -168,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Mobile:"
+                    android:text="@string/expense_mobile"
                     android:id="@+id/textView7"/>
 
             <Spinner
@@ -197,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Other:"
+                    android:text="@string/expense_other"
                     android:id="@+id/textView8"/>
 
             <Spinner
@@ -227,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Weekly Expense: "
+                    android:text="@string/expense_weekly"
                     android:id="@+id/textView9"
                     android:layout_gravity="center"
                     android:layout_marginLeft="66dp"/>
@@ -244,7 +244,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update"
+                android:text="@string/update_button"
                 android:id="@+id/updateExpenseButton"
                 android:layout_gravity="center"/>
     </LinearLayout>

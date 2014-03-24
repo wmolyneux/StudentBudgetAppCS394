@@ -1,9 +1,12 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -77,6 +80,20 @@ public class FragmentUtilities {
         return prefs.getString("pref_currency", "");
     }
 
+    public static void refreshPreferences(Activity activity) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 
+        String languageToLoad = prefs.getString("pref_language", "en");
+        Locale locale = new Locale(languageToLoad);
+        locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    public static void reloadFragment(FragmentActivity activity, Fragment current){
+        activity.getSupportFragmentManager().beginTransaction().detach(current).attach(current).commit();
+    }
 
 }

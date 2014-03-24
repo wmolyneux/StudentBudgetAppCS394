@@ -7,14 +7,14 @@ import java.io.Serializable;
  */
 public class Budget implements Serializable{
     private int id;
-    private String category;
+    private int category;
     private int weekly;
     private int max;
     private String date;
 
     public Budget(){}
 
-    public Budget(String cat, int week, int max, String date){
+    public Budget(int cat, int week, int max, String date){
         super();
         this.category = cat;
         this.weekly = week;
@@ -31,7 +31,7 @@ public class Budget implements Serializable{
         return id;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
@@ -44,7 +44,7 @@ public class Budget implements Serializable{
         this.id = id;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 

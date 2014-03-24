@@ -23,18 +23,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.MainActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.AccountsActivity"
-            android:label="@string/title_activity_accounts" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.oldCode.NewAccountActivity"
-            android:label="@string/title_activity_new_account" >
-        </activity>
-        <activity
             android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity"
             android:label="@string/title_activity_transaction" >
         </activity>
@@ -73,10 +61,6 @@
         <activity
             android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.SettingsActivity"
             android:label="@string/title_activity_settings" >
-        </activity>
-        <activity
-            android:name=".fragments.SettingsFragment"
-            android:label="@string/title_activity_settings_fragment" >
         </activity>
     </application>
 

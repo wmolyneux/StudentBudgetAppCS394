@@ -1,5 +1,6 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -38,8 +39,6 @@ public class TransactionActivity extends Activity implements View.OnClickListene
     }
 
     private void enterTransactionInformation() {
-
-
         amount.setText(transaction.getAmount().toString());
         shortDesc.setText(transaction.getShortDesc());
         if(!transaction.getType().equalsIgnoreCase("minus")){
@@ -48,7 +47,7 @@ public class TransactionActivity extends Activity implements View.OnClickListene
         else{
             type.setText("Expense");
         }
-        category.setText(transaction.getCategory());
+        category.setText(getResources().obtainTypedArray(R.array.categories).getString(transaction.getCategory()));
         date.setText(transaction.getDate());
     }
 

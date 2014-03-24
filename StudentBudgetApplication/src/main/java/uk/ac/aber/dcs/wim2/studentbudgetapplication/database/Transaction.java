@@ -14,12 +14,12 @@ public class Transaction implements Serializable{
     private Float amount;
     private String shortDesc;
     private String type;
-    private String category;
+    private int category;
     private String date;
 
     public Transaction(){}
 
-    public Transaction(Float amount, String desc, String type, String cat, String date){
+    public Transaction(Float amount, String desc, String type, int cat, String date){
         super();
         this.amount = amount;
         this.shortDesc = desc;
@@ -49,7 +49,7 @@ public class Transaction implements Serializable{
         return type;
     }
 
-    public String getCategory(){
+    public int getCategory(){
         return category;
     }
 
@@ -69,7 +69,7 @@ public class Transaction implements Serializable{
         this.shortDesc = shortDesc;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 

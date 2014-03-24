@@ -130,7 +130,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
             int month = cal.get(Calendar.MONTH);
             int year = cal.get(Calendar.YEAR);
             String today = day+"/"+(month+1)+"/"+year;
-            Transaction trans = new Transaction(value, "Micro transaction", "minus", "Micro Transaction", today);
+            Transaction trans = new Transaction(value, "Micro transaction", "minus", 8, today);
             db.addTransaction(trans);
             validateBalance(views);
         }

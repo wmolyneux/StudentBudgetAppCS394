@@ -1,6 +1,7 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +38,12 @@ public class HistoryArrayAdapter extends ArrayAdapter<Transaction> {
         TextView category = (TextView) row.findViewById(R.id.listCategoryText);
         TextView value = (TextView) row.findViewById(R.id.listValueText);
         ImageView icon = (ImageView)row.findViewById(R.id.listIcon);
-
-        category.setText(transactions.get(position).getCategory()+" - "+FragmentUtilities.getCurrency(context)+
+        TypedArray categoryArray = context.getResources().obtainTypedArray(R.array.categories);
+        String currentCat = categoryArray.getString(transactions.get(position).getCategory());
+        category.setText(currentCat+" - "+FragmentUtilities.getCurrency(context)+
                 BalanceUtilities.getValueAs2dpString(Float.valueOf(transactions.get(position).getAmount().toString())));
         value.setText(transactions.get(position).getDate());
-        icon.setImageResource(findImageId(transactions.get(position).getCategory()));
+        icon.setImageResource(findImageId(currentCat));
 
         return row;
     }

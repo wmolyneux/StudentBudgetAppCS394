@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Balance:"
+                    android:text="@string/income_balance"
                     android:id="@+id/textView6"
                     android:layout_marginTop="5dp"/>
 
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Remaining loans:"
+                    android:text="@string/income_remaining_loans"
                     android:id="@+id/textView"/>
 
             <EditText
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Remaining grants:"
+                    android:text="@string/income_remaining_grants"
                     android:id="@+id/textView2"/>
 
             <EditText
@@ -93,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Salary:"
+                    android:text="@string/income_salary"
                     android:id="@+id/textView3"/>
 
             <Spinner
@@ -123,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Other:"
+                    android:text="@string/income_other"
                     android:id="@+id/textView4"/>
 
             <Spinner
@@ -153,7 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Weekly Income: "
+                    android:text="@string/income_weekly"
                     android:id="@+id/textView5"
                     android:layout_gravity="center"
                     android:layout_marginLeft="66dp"/>
@@ -170,7 +170,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next"
+                android:text="@string/next_button"
                 android:id="@+id/incomeToExpenseButton"
                 android:layout_gravity="center"/>
 

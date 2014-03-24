@@ -22,6 +22,7 @@ import java.util.Calendar;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 
 public class BudgetPeriodActivity extends Activity implements View.OnClickListener, View.OnTouchListener {
 
@@ -91,16 +92,12 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
     }
 
     private boolean validate() {
-        if(startDate.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please select budget start date", Toast.LENGTH_LONG).show();
-            return false;
-        }
         if(endDate.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please select budget end date", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select)+" "+getString(R.string.msg_budget_end), Toast.LENGTH_LONG).show();
             return false;
         }
         if(weeks<=7){
-            Toast.makeText(this, "Please select valid budget dates", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_select)+" "+getString(R.string.msg_budget_valid), Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -124,14 +121,7 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
     private void calculateDays() {
         if(!startDate.getText().toString().isEmpty() && !endDate.getText().toString().isEmpty()){
             weeks = Days.daysBetween(start, end).getDays()+1;
-            weeksText.setText(weeks+"");
-        }
-    }
-
-    private void calculateWeeks() {
-        if(!startDate.getText().toString().isEmpty() && !endDate.getText().toString().isEmpty()){
-            weeks = Weeks.weeksBetween(start, end).getWeeks();
-            weeksText.setText(weeks + "");
+            weeksText.setText(BalanceUtilities.getValueAs2dpString((float)weeks/7));
         }
     }
 
@@ -144,8 +134,5 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
         }
         return false;
     }
-
-
-    // mon-10 11 12 13 14 15 16 11mon-17 18 19 20 21 22 23 mon-24
 
 }

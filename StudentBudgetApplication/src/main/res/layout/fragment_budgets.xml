@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Category:"
+                    android:text="@string/new_transaction_category"
                     android:id="@+id/cateText"
                     android:layout_marginTop="3dp"
                     android:layout_marginLeft="8dp"/>
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/weeklytext"
-                android:text="Amount of weekly budget:"
+                android:text="@string/budget_amount"
                 android:layout_marginTop="40dp"
                 android:layout_gravity="center_horizontal"/>
 
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Remaining weekly:"
+                    android:text="@string/budget_remaining_weekly"
                     android:id="@+id/remweektext"
                     android:layout_marginLeft="49dp"/>
 
@@ -96,7 +96,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="£0"
                     android:id="@+id/remainingweekly"
-                    android:layout_marginLeft="48dp"/>
+                    android:layout_marginLeft="5dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -106,7 +106,7 @@
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Clear"
+                    android:text="@string/clear_button"
                     android:id="@+id/clearBudget"
                     android:layout_gravity="center"
                     android:layout_marginLeft="54dp"/>
@@ -114,7 +114,7 @@
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Create"
+                    android:text="@string/create_button"
                     android:id="@+id/createBudget"
                     android:layout_gravity="center"
                     android:layout_marginLeft="107dp"/>

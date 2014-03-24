@@ -49,7 +49,7 @@ public class BudgetArrayAdapter extends ArrayAdapter<Budget> {
         Budget current = budgets.get(position);
         float percentage = calculatePercentage(budgets.get(position));
 
-        category.setText(FragmentUtilities.getCurrency(context)+current.getWeekly()+" "+current.getCategory()+" Budget: ");
+        category.setText(FragmentUtilities.getCurrency(context)+current.getWeekly()+" "+current.getCategory()+context.getString(R.string.budget_array_text));
         if(percentage > 100){
             category.setTextColor(Color.RED);
             percent.setTextColor(Color.RED);
@@ -63,7 +63,7 @@ public class BudgetArrayAdapter extends ArrayAdapter<Budget> {
     public float calculatePercentage(Budget budget){
         Float amount = (float) 0;
         for (Transaction trans : db.getAllTransactions()){
-            if(trans.getCategory().equalsIgnoreCase(budget.getCategory())
+            if(trans.getCategory() == (budget.getCategory())
                     && trans.getType().equalsIgnoreCase("minus")){
                 String[] transSplit = trans.getDate().split("/");
                 DateTime transDate = new DateTime(Integer.valueOf(transSplit[2]),

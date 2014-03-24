@@ -9,36 +9,28 @@ import java.io.Serializable;
 public class Category implements Serializable{
 
     private int id;
-    private String name;
+    private int position;
     private String color;
 
     public Category(){}
 
-    public Category(String category, String color){
+    public Category(int pos, String color){
         super();
-        this.name = category;
+        this.position = pos;
         this.color = color;
     }
 
     @Override
     public String toString() {
-        return "Account [id="+id+", name="+name+", color="+color+"]";
+        return "Account [id="+id+", position="+position+", color="+color+"]";
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getColor() {
@@ -47,5 +39,13 @@ public class Category implements Serializable{
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

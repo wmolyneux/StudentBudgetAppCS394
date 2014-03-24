@@ -57,17 +57,16 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
     }
 
     private void deleteAlert(final int transactionToRemove) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                context);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         // set title
-        alertDialogBuilder.setTitle("Remove "+transactions.get(transactionToRemove).getShortDesc()+"?");
+        alertDialogBuilder.setTitle(context.getString(R.string.transaction_removed)+" "+transactions.get(transactionToRemove).getShortDesc()+"?");
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("Transaction will be permanently removed!")
+                .setMessage(context.getString(R.string.transaction_remove_msg))
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(context.getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //remove the selected item from the necessary arrays and database
                         db.deleteTransaction(transactions.get(transactionToRemove));
@@ -78,7 +77,7 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
                         dialog.cancel();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(context.getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, just close
                         // the dialog box and do nothing

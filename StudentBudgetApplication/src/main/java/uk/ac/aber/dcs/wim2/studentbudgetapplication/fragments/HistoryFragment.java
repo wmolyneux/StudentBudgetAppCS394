@@ -49,20 +49,14 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
         list.setOnItemClickListener(listen);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        listAdapter.notifyDataSetInvalidated();
-    }
-
     private void setupTabHost() {
         tabHost = (TabHost)context.findViewById(R.id.tabHost);
         tabHost.setup();
-        TabHost.TabSpec tab1 = tabHost.newTabSpec("income");
-        TabHost.TabSpec tab2 = tabHost.newTabSpec("expenses");
+        TabHost.TabSpec tab1 = tabHost.newTabSpec(getString(R.string.history_income_lc));
+        TabHost.TabSpec tab2 = tabHost.newTabSpec(getString(R.string.history_expenses_lc));
 
         //setup onclick listeners using adapter listener.
-        tab1.setIndicator("Income");
+        tab1.setIndicator(getString(R.string.history_income));
         tab1.setContent(new TabHost.TabContentFactory() {
             @Override
             public View createTabContent(String s) {
@@ -71,7 +65,7 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
             }
         });
 
-        tab2.setIndicator("Expenses");
+        tab2.setIndicator(getString(R.string.history_expenses));
         tab2.setContent(new TabHost.TabContentFactory() {
             @Override
             public View createTabContent(String s) {

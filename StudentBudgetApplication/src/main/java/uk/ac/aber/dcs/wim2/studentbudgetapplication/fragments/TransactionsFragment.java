@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -96,10 +97,13 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         category = (Spinner) inflate.findViewById(R.id.categorySpinner);
 
         db = new SQLiteDatabaseHelper(getActivity());
+
         detail = db.getAllDetails().get(0);
+        TypedArray categoryArray = getResources().obtainTypedArray(R.array.categories);
+
         ArrayList<String> tempCategories = new ArrayList<String>();
         for (Category cat : db.getAllCategories()){
-            tempCategories.add(cat.getName());
+            tempCategories.add(categoryArray.getString(cat.getPosition()));
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
@@ -130,12 +134,12 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
                 if(validateInput()){
                     Transaction newTrans =
                             new Transaction(Float.valueOf(amount.getText().toString()),
-                                    description, tmpType, category.getSelectedItem().toString(), date.getText().toString());
+                                    description, tmpType, category.getSelectedItemPosition(), date.getText().toString());
                     SQLiteDatabaseHelper db = new SQLiteDatabaseHelper(getActivity());
                     db.addTransaction(newTrans);
                     BalanceUtilities.updateWidget(getActivity());
 
-                    Toast.makeText(getActivity(), "Transaction added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.transaction_added), Toast.LENGTH_LONG).show();
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.content_frame, new OverviewFragment()).commit();
                 }
@@ -165,7 +169,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
             tmpType = "minus";
         }
         if(shortDesc.getText().toString().isEmpty()){
-            description = "No Description";
+            description = getString(R.string.no_desc);
         }
         else{
             description = shortDesc.getText().toString();

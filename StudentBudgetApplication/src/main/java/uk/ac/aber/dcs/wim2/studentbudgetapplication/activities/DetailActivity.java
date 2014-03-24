@@ -31,6 +31,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.TransactionsFragme
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.ExpenseFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.IncomeFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class DetailActivity extends FragmentActivity {
 
@@ -39,6 +40,7 @@ public class DetailActivity extends FragmentActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private Context context;
+    private Fragment currentFragment;
 
     @Override
     public void onBackPressed() {}
@@ -109,9 +111,10 @@ public class DetailActivity extends FragmentActivity {
     }
 
     public void manageFragments(Fragment newFrag, int oldFragId){
+        currentFragment = newFrag;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(oldFragId, newFrag);
+        transaction.replace(oldFragId, currentFragment);
         transaction.commit();
     }
 
@@ -172,11 +175,14 @@ public class DetailActivity extends FragmentActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        BalanceUtilities.refreshPreferences(this);
+        FragmentUtilities.refreshPreferences(this);
 
         drawerListViewItems = getResources().getStringArray(R.array.items);
         drawerListView.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.listview_navigator, drawerListViewItems));
+
+        FragmentUtilities.reloadFragment(this, currentFragment);
+
 
 
     }

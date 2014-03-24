@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Welcome"
+            android:text="@string/enter_welcome"
             android:id="@+id/welcomeText"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -21,7 +21,7 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enter"
+            android:text="@string/enter_enterbutton"
             android:id="@+id/enterButton"
             android:layout_marginTop="30dp"
             android:layout_below="@+id/welcomeText"

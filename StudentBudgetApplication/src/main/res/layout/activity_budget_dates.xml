@@ -22,7 +22,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Budget Start Date:"
+                    android:text="@string/budgetperiod_start"
                     android:id="@+id/textView"/>
 
             <EditText
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Budget End Date:"
+                    android:text="@string/budgetperiod_end"
                     android:id="@+id/textView2"/>
 
             <EditText
@@ -58,7 +58,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next"
+                android:text="@string/next_button"
                 android:id="@+id/DateToIncomeButton"
                 android:layout_gravity="center"
                 android:layout_marginTop="150dp"/>
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Weeks in budget period:   "
+                android:text="@string/budgetperiod_weeks"
                 android:id="@+id/textView3"
                 android:layout_marginLeft="38dp"/>
 

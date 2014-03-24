@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Amount:"
+                android:text="@string/new_transaction_amount"
                 android:id="@+id/amountText"/>
 
         <EditText
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Short description:"
+                android:text="@string/new_transaction_desc"
                 android:id="@+id/descText"/>
 
         <EditText
@@ -65,19 +65,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Type:"
+                android:text="@string/new_transaction_type"
                 android:id="@+id/textView2"
                 android:layout_marginTop="18dp"/>
 
         <ToggleButton
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="New ToggleButton"
                 android:id="@+id/typeButton"
                 android:layout_marginLeft="188dp"
                 android:layout_marginTop="7dp"
-                android:textOn="Income"
-                android:textOff="Expense"
+                android:textOn="@string/history_income"
+                android:textOff="@string/transaction_expense"
                 android:checked="false"/>
     </LinearLayout>
 
@@ -92,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Category:"
+                android:text="@string/new_transaction_category"
                 android:id="@+id/cateText"
                 android:layout_marginTop="3dp"/>
 
@@ -117,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Date:"
+                android:text="@string/new_transaction_date"
                 android:id="@+id/dateText"/>
 
         <EditText
@@ -140,7 +139,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clear"
+                android:text="@string/clear_button"
                 android:id="@+id/clearButton"
                 android:layout_gravity="center_horizontal|top"
                 android:layout_marginLeft="43dp"/>
@@ -148,7 +147,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create"
+                android:text="@string/create_button"
                 android:id="@+id/createTransButton"
                 android:layout_gravity="center_horizontal|top"
                 android:layout_marginLeft="82dp"/>

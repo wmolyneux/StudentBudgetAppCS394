@@ -118,23 +118,23 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
 
     private boolean validate() {
         if(balanceAmount.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please enter balance amount", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_enter)+" "+getString(R.string.msg_income_balance), Toast.LENGTH_LONG).show();
             return false;
         }
         if(loanAmount.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please enter loan amount", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_enter)+" "+getString(R.string.msg_income_remaining_loans), Toast.LENGTH_LONG).show();
             return false;
         }
         if(grantAmount.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please enter grant amount", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_enter)+" "+getString(R.string.msg_income_remaining_grants), Toast.LENGTH_LONG).show();
             return false;
         }
         if(wageAmount.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please enter salary amount", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_enter)+" "+getString(R.string.msg_income_salary), Toast.LENGTH_LONG).show();
             return false;
         }
         if(otherAmount.getText().toString().isEmpty()){
-            Toast.makeText(this, "Please enter amount for 'other'", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.please_enter)+" "+getString(R.string.msg_income_other), Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
     <string name="app_name">StudentBudgetApplication</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_addAccount">Add Account</string>
     <string name="title_activity_main">MainActivity</string>
-
-    <string-array name="items">
-        <item>Home</item>
-        <item>New Transaction</item>
-        <item>History</item>
-        <item>Report</item>
-        <item>New Budget</item>
-        <item>Manage Incomes</item>
-        <item>Manage Expenses</item>
-    </string-array>
-
+    <string name="title_activity_overview_fragment">OverviewFragment</string>
+    <string name="title_activity_report_fragment">ReportFragment</string>
+    <string name="title_activity_budgets_fragments">BudgetsFragments</string>
+    <string name="title_activity_transactions_fragment">TransactionsFragment</string>
+    <string name="title_activity_transaction">TransactionActivity</string>
+    <string name="title_activity_income">IncomeActivity</string>
+    <string name="title_activity_expense">ExpenseActivity</string>
+    <string name="title_activity_term">TermActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_income_fragment">IncomeFragment</string>
+    <string name="title_activity_expense_fragment">ExpenseFragment</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings_fragment">SettingsFragment</string>
     <string-array name="language_names">
         <item>English</item>
         <item>Cymraeg</item>
@@ -31,20 +33,22 @@
         <item>€</item>
     </string-array>
 
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string name="title_activity_overview_fragment">OverviewFragment</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_report_fragment">ReportFragment</string>
-    <string name="title_activity_budgets_fragments">BudgetsFragments</string>
-    <string name="title_activity_transactions_fragment">TransactionsFragment</string>
-    <string name="title_activity_accounts">AccountsActivity</string>
-    <string name="remove_warning">Account will be permanently deleted!</string>
-    <string name="title_activity_new_account">NewAccountActivity</string>
-    <string name="title_activity_transaction">TransactionActivity</string>
-    <string name="title_activity_income">IncomeActivity</string>
-    <string name="title_activity_expense">ExpenseActivity</string>
-    <string name="title_activity_term">TermActivity</string>
+
+    <!--
+    Translate from here down please!
+    -->
+
+    <string-array name="items">
+        <item>Home</item>
+        <item>New Transaction</item>
+        <item>History</item>
+        <item>Report</item>
+        <item>New Budget</item>
+        <item>Manage Incomes</item>
+        <item>Manage Expenses</item>
+    </string-array>
+
+
 
     <string-array name="weekly_monthly">
         <item>Weekly</item>
@@ -60,13 +64,93 @@
         <item>Yearly</item>
     </string-array>
 
-    <string name="title_activity_detail">DetailActivity</string>
-    <string name="title_activity_income_fragment">IncomeFragment</string>
-    <string name="title_activity_expense_fragment">ExpenseFragment</string>
-    <string name="title_activity_settings">SettingsActivity</string>
-    <string name="title_activity_settings_fragment">SettingsFragment</string>
-    <string name="overview_income">Welsh income:</string>
-    <string name="overview_expense">Welsh expense:</string>
-    <string name="overview_balance">Welsh balance:</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="please_select">Please select </string>
+    <string name="please_enter">Please enter </string>
+    <string name="msg_budget_end">budget start date</string>
+    <string name="msg_budget_valid">valid budget dates</string>
+    <string name="msg_income_balance">balance amount</string>
+    <string name="msg_income_remaining_loans">remaining loans</string>
+    <string name="msg_income_remaining_grants">remaining grants</string>
+    <string name="msg_income_salary">salary amount</string>
+    <string name="msg_income_other">amount for \'other\'</string>
+    <string name="msg_expense_rent">rent amount</string>
+    <string name="msg_expense_electricity">electricity amount</string>
+    <string name="msg_expense_heating">heating amount</string>
+    <string name="msg_expense_internet">internet amount</string>
+    <string name="msg_expense_transport">transport amount</string>
+    <string name="msg_expense_mobile">mobile amount</string>
+    <string name="msg_expense_other">amount for \'other\'</string>
+
+
+    <string name="enter_welcome">Welcome</string>
+    <string name="enter_enterbutton">Enter</string>
+    <string name="budgetperiod_start">Budget Start Date:</string>
+    <string name="budgetperiod_end">Budget End Date:</string>
+    <string name="budgetperiod_weeks">Weeks in budget period: </string>
+    <string name="next_button">Next</string>
+    <string name="income_balance">Balance:</string>
+    <string name="income_remaining_loans">Remaining loans:</string>
+    <string name="income_remaining_grants">Remaining grants:</string>
+    <string name="income_salary">Salary:</string>
+    <string name="income_other">Other:</string>
+    <string name="income_weekly">Weekly Income:</string>
+    <string name="expense_rent">Rent:</string>
+    <string name="expense_electricity">Electricity:</string>
+    <string name="expense_heating">Heating:</string>
+    <string name="expense_internet">Internet:</string>
+    <string name="expense_transport">Transport:</string>
+    <string name="expense_mobile">Mobile:</string>
+    <string name="expense_other">Other:</string>
+    <string name="expense_weekly">Weekly Expense:</string>
+    <string name="finish_button">Finish</string>
+    <string name="overview_income">Weekly income:</string>
+    <string name="overview_expense">Weekly expense:</string>
+    <string name="overview_balance">Weekly balance:</string>
+    <string name="budget_remove_msg">Budget will be permanently removed!</string>
+    <string name="transaction_remove_msg">Transaction will be permanently removed!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="budget_array_text"> Budget: </string>
+    <string name="transaction_added">Transaction added</string>
+    <string name="no_desc">No Description</string>
+    <string name="history_income">"Income"</string>
+    <string name="history_income_lc">"income"</string>
+    <string name="history_expenses">"Expenses"</string>
+    <string name="transaction_expense">"Expense"</string>
+    <string name="history_expenses_lc">"expenses"</string>
+    <string name="new_transaction_amount">Amount:</string>
+    <string name="new_transaction_desc">Short description:</string>
+    <string name="new_transaction_type">Type:</string>
+    <string name="new_transaction_category">Category:</string>
+    <string name="new_transaction_date">Date:</string>
+    <string name="clear_button">Clear</string>
+    <string name="create_button">Create</string>
+    <string name="budget_amount">Amount of weekly budget:</string>
+    <string name="budget_remaining_weekly">Remaining weekly:</string>
+    <string name="update_button">Update</string>
+    <string name="preference_language_summary">Select a language</string>
+    <string name="preference_language_title">Language</string>
+    <string name="preference_currency_summary">Select a currency</string>
+    <string name="preference_currency_title">Currency</string>
+    <string name="done_button">Done</string>
+    <string name="transaction_removed">Remove </string>
+    <string name="settings_title">Application</string>
+
+    <string-array name="categories">
+        <item>Food</item>
+        <item>Supermarket</item>
+        <item>Socialising</item>
+        <item>Sport</item>
+        <item>University</item>
+        <item>Travel</item>
+        <item>Clothing</item>
+        <item>Other</item>
+        <item>Micro Transaction</item>
+    </string-array>
+
+
+
 
 </resources>

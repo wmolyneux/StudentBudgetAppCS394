@@ -176,31 +176,31 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
 
     private boolean validate() {
         if(rentAmount.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please enter an amount for rent", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.please_enter)+" "+getString(R.string.msg_expense_rent), Toast.LENGTH_LONG).show();
             return false;
         }
         if(electricityAmount.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please enter an amount for electricity", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.please_enter)+" "+getString(R.string.msg_expense_electricity), Toast.LENGTH_LONG).show();
             return false;
         }
         if(heatingAmount.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please enter an amount for heating", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.please_enter)+" "+getString(R.string.msg_expense_heating), Toast.LENGTH_LONG).show();
             return false;
         }
         if(internetAmount.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please enter an amount for internet", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.please_enter)+" "+getString(R.string.msg_expense_internet), Toast.LENGTH_LONG).show();
             return false;
         }
         if(transportAmount.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please enter an amount for transport", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.please_enter)+" "+getString(R.string.msg_expense_transport), Toast.LENGTH_LONG).show();
             return false;
         }
         if(mobileAmount.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please enter an amount for mobile", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.please_enter) +" "+ getString(R.string.msg_expense_mobile), Toast.LENGTH_LONG).show();
             return false;
         }
         if(otherAmount.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "Please enter an amount for other", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.please_enter)+" "+getString(R.string.msg_expense_other), Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

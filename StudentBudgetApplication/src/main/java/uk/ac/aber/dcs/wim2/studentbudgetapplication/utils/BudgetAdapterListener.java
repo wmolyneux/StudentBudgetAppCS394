@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 
 import java.util.List;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
 
@@ -45,9 +46,9 @@ public class BudgetAdapterListener implements AdapterView.OnItemLongClickListene
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("Budget will be permanently removed!")
+                .setMessage(context.getString(R.string.budget_remove_msg))
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(context.getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //remove the selected item from the necessary arrays and database
                         db.deleteBudget(budgets.get(budgetToRemove));
@@ -57,7 +58,7 @@ public class BudgetAdapterListener implements AdapterView.OnItemLongClickListene
                         dialog.cancel();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(context.getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, just close
                         // the dialog box and do nothing

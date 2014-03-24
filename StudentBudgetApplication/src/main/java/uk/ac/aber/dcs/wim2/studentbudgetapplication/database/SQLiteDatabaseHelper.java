@@ -48,7 +48,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     //Category table column names
     private static final String KEY_CATEGORY_ID = "id";
-    private static final String KEY_CATEGORY_NAME = "name";
+    private static final String KEY_CATEGORY_POSITION = "position";
     private static final String KEY_CATEGORY_COLOR = "color";
 
     //Budget table column names
@@ -67,7 +67,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             KEY_TRANSACTION_AMOUNT, KEY_TRANSACTION_SHORTDESC, KEY_TRANSACTION_TYPE,
             KEY_TRANSACTION_CATEGORY, KEY_TRANSACTION_DATE};
 
-    private static final String[] CATEGORY_COLUMNS = {KEY_CATEGORY_ID, KEY_CATEGORY_NAME, KEY_CATEGORY_COLOR};
+    private static final String[] CATEGORY_COLUMNS = {KEY_CATEGORY_ID, KEY_CATEGORY_POSITION, KEY_CATEGORY_COLOR};
 
     private static final String[] BUDGET_COLUMNS = {KEY_BUDGET_ID, KEY_BUDGET_CATEGORY, KEY_BUDGET_WEEKLY, KEY_BUDGET_MAX, KEY_BUDGET_DATE};
 
@@ -107,7 +107,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         //SQL statement to create categories table
         String CREATE_CATEGORY_TABLE = "CREATE TABLE categories ( "+
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                "name TEXT, "+
+                "position INTEGER, "+
                 "color REAL)";
 
         //create categories table
@@ -119,7 +119,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 "amount REAL, "+
                 "shortDesc TEXT, "+
                 "type TEXT, "+
-                "category TEXT, "+
+                "category INTEGER, "+
                 "date TEXT)";
 
         // create transactions table
@@ -128,7 +128,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         // SQL statement to create budgets table
         String CREATE_BUDGETS_TABLE = "CREATE TABLE budgets ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "category TEXT, "+
+                "category INTEGER, "+
                 "weekly INTEGER, "+
                 "max INTEGER, "+
                 "date TEXT)";
@@ -519,7 +519,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         trans.setAmount(Float.parseFloat(cursor.getString(1)));
         trans.setShortDesc(cursor.getString(2));
         trans.setType(cursor.getString(3));
-        trans.setCategory(cursor.getString(4));
+        trans.setCategory(Integer.parseInt(cursor.getString(4)));
         trans.setDate(cursor.getString(5));
 
         //return account
@@ -552,7 +552,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 trans.setAmount(Float.parseFloat(cursor.getString(1)));
                 trans.setShortDesc(cursor.getString(2));
                 trans.setType(cursor.getString(3));
-                trans.setCategory(cursor.getString(4));
+                trans.setCategory(Integer.parseInt(cursor.getString(4)));
                 trans.setDate(cursor.getString(5));
 
 
@@ -633,7 +633,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
         //create content values to add key to column/value
         ContentValues values = new ContentValues();
-        values.put(KEY_CATEGORY_NAME, category.getName());
+        values.put(KEY_CATEGORY_POSITION, category.getPosition());
         values.put(KEY_CATEGORY_COLOR, category.getColor());
 
         //insert into database .insert(tablename, columnhack,
@@ -667,7 +667,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         //construct account using values returned from query
         Category cat = new Category();
         cat.setId(Integer.parseInt(cursor.getString(0)));
-        cat.setName(cursor.getString(1));
+        cat.setPosition(Integer.parseInt(cursor.getString(1)));
         cat.setColor(cursor.getString(2));
 
         //return account
@@ -697,7 +697,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             do{
                 cats = new Category();
                 cats.setId(Integer.parseInt(cursor.getString(0)));
-                cats.setName(cursor.getString(1));
+                cats.setPosition(Integer.parseInt(cursor.getString(1)));
                 cats.setColor(cursor.getString(2));
 
                 categories.add(cats);
@@ -725,7 +725,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
         //create contentValues to add key to column/value
         ContentValues values = new ContentValues();
-        values.put(KEY_CATEGORY_NAME, category.getName());
+        values.put(KEY_CATEGORY_POSITION, category.getPosition());
         values.put(KEY_CATEGORY_COLOR, category.getColor());
 
         //update the row in the table
@@ -809,10 +809,10 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         //construct budget using values returned from query
         Budget budget = new Budget();
         budget.setId(Integer.parseInt(cursor.getString(0)));
-        budget.setCategory(cursor.getString(1));
+        budget.setCategory(Integer.parseInt(cursor.getString(1)));
         budget.setWeekly(Integer.parseInt(cursor.getString(2)));
         budget.setMax(Integer.parseInt(cursor.getString(3)));
-        budget.setCategory(cursor.getString(4));
+        budget.setDate(cursor.getString(4));
 
 
         return budget;
@@ -839,7 +839,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             do{
                 budget = new Budget();
                 budget.setId(Integer.parseInt(cursor.getString(0)));
-                budget.setCategory(cursor.getString(1));
+                budget.setCategory(Integer.parseInt(cursor.getString(1)));
                 budget.setWeekly(Integer.parseInt(cursor.getString(2)));
                 budget.setMax(Integer.parseInt(cursor.getString(3)));
                 budget.setDate(cursor.getString(4));

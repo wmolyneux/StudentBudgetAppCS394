@@ -196,15 +196,5 @@ public class BalanceUtilities {
         return String.format("%.2f", value);
     }
 
-    public static void refreshPreferences(Activity activity) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 
-        String languageToLoad = prefs.getString("pref_language", "");
-        Locale locale = new Locale(languageToLoad);
-        locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        activity.getBaseContext().getResources().updateConfiguration(config,
-                activity.getBaseContext().getResources().getDisplayMetrics());
-    }
 }

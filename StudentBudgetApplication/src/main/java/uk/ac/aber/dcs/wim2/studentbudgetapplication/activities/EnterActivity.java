@@ -15,6 +15,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class EnterActivity extends Activity implements View.OnClickListener{
 
@@ -25,7 +26,7 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BalanceUtilities.refreshPreferences(this);
+        FragmentUtilities.refreshPreferences(this);
         setContentView(R.layout.activity_enter);
         entryButton = (Button)findViewById(R.id.enterButton);
         entryButton.setOnClickListener(this);
@@ -59,7 +60,6 @@ public class EnterActivity extends Activity implements View.OnClickListener{
                 db = new SQLiteDatabaseHelper(this);
                 populateCategoryTable();
                 if(db.getAllDetails().size()!=0){
-                    Detail detail = db.getAllDetails().get(0);
                     Intent intent = new Intent(this, DetailActivity.class);
                     startActivity(intent);
                 }
@@ -86,14 +86,14 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 
     private void populateCategoryTable() {
         if(db.getAllCategories().size()==0){
-            db.addCategory(new Category("Food", "cyan"));
-            db.addCategory(new Category("Supermarket", "darkGreen"));
-            db.addCategory(new Category("Socialising", "green"));
-            db.addCategory(new Category("Sport", "magenta"));
-            db.addCategory(new Category("University", "yellow"));
-            db.addCategory(new Category("Travel", "red"));
-            db.addCategory(new Category("Clothing", "blue"));
-            db.addCategory(new Category("Other", "purple"));
+            db.addCategory(new Category(0, "cyan"));
+            db.addCategory(new Category(1, "darkGreen"));
+            db.addCategory(new Category(2, "green"));
+            db.addCategory(new Category(3, "magenta"));
+            db.addCategory(new Category(4, "yellow"));
+            db.addCategory(new Category(5, "red"));
+            db.addCategory(new Category(6, "blue"));
+            db.addCategory(new Category(7, "purple"));
         }
     }
 
