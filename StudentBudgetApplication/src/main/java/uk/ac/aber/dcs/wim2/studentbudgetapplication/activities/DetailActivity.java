@@ -182,9 +182,7 @@ public class DetailActivity extends FragmentActivity {
                 R.layout.listview_navigator, drawerListViewItems));
 
         FragmentUtilities.reloadFragment(this, currentFragment);
-
-
-
+        BalanceUtilities.updateWidget(this);
     }
 
 

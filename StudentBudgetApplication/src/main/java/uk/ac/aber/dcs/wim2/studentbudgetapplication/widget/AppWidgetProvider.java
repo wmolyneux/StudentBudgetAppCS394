@@ -28,13 +28,15 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     private static Float value = new Float(1.5);
     private SQLiteDatabaseHelper db;
     private static int dbSize = 0;
-    private Context context;
+    private static Context context;
+    private static String currency;
 
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         final int N = appWidgetIds.length;
         db = new SQLiteDatabaseHelper(context);
         dbSize = db.getAllDetails().size();
         this.context = context;
+        currency = FragmentUtilities.getCurrency(context);
         // Perform this loop procedure for each App Widget that belongs to this
         // provider
         for (int i = 0; i < N; i++) {
@@ -103,7 +105,8 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         Detail detail = db.getAllDetails().get(0);
         BalanceUtilities.recalculateBalance(detail, db);
         views.setTextViewText(R.id.widgetRemainingWeekly,
-                "Weekly balance: "+BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
+                context.getString(R.string.widget_text)+" "+currency+BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
+        views.setTextViewText(R.id.widgetValueField, currency+"-"+BalanceUtilities.getValueAs2dpString(value));
     }
 
 
@@ -112,16 +115,17 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         super.onReceive(context, intent);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_simple);
         db = new SQLiteDatabaseHelper(context);
+
         if(INCREMENT_BUTTON.equals(intent.getAction())){
             if(value<3){
                 value += (float)0.5;
-                views.setTextViewText(R.id.widgetValueField, "-"+BalanceUtilities.getValueAs2dpString(value));
+                views.setTextViewText(R.id.widgetValueField, currency+"-"+BalanceUtilities.getValueAs2dpString(value));
             }
         }
         else if(DECREMENT_BUTTON.equals(intent.getAction())){
             if(value>0.5){
                 value -= (float)0.5;
-                views.setTextViewText(R.id.widgetValueField, "-"+BalanceUtilities.getValueAs2dpString(value));
+                views.setTextViewText(R.id.widgetValueField, currency+"-"+BalanceUtilities.getValueAs2dpString(value));
             }
         }
         else if(SUBMIT_BUTTON.equals(intent.getAction())){

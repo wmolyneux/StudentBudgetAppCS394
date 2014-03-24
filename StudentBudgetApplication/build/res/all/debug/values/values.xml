@@ -119,6 +119,7 @@
     <string name="preference_language_summary">Select a language</string>
     <string name="preference_language_title">Language</string>
     <string name="settings_title">Application</string>
+    <string name="submit_button">Submit</string>
     <string name="title_activity_budgets_fragments">BudgetsFragments</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_expense">ExpenseActivity</string>
@@ -138,6 +139,7 @@
     <string name="transaction_remove_msg">Transaction will be permanently removed!</string>
     <string name="transaction_removed">Remove </string>
     <string name="update_button">Update</string>
+    <string name="widget_text">Weekly Balance:</string>
     <string name="yes">Yes</string>
     <!-- From: file:/aber/wim2/major%20project/StudentBudgetApplicationProject/StudentBudgetApplication/src/main/res/values/styles.xml -->
     <style name="AppBaseTheme" parent="android:Theme.Light">

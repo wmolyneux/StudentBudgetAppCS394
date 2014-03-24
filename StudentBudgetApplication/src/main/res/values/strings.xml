@@ -150,7 +150,11 @@
         <item>Micro Transaction</item>
     </string-array>
 
+    <!--
+    new Strings below
+    -->
 
-
+    <string name="widget_text">Weekly Balance:</string>
+    <string name="submit_button">Submit</string>
 
 </resources>
