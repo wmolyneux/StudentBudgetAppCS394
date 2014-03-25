@@ -18,6 +18,17 @@
                 android:entries="@array/currency"
                 android:entryValues="@array/currency"
                 android:defaultValue="£"/>
+        <CheckBoxPreference
+                android:key="pref_bool_pin"
+                android:summary="Enable/disable pin lock"
+                android:title="Pin Lock"
+                android:defaultValue="false"/>
+        <Preference
+                android:dependency="pref_bool_pin"
+                android:key="pref_pin"
+                android:title="Pin number"
+                android:summary="Set a pin lock screen"/>
+
     </PreferenceCategory>
     ...
 </PreferenceScreen>

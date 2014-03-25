@@ -3,6 +3,7 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -40,9 +41,9 @@ public class BudgetAdapterListener implements AdapterView.OnItemLongClickListene
     private void deleteAlert(final int budgetToRemove) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 context);
-
+        TypedArray categoryArray = context.getResources().obtainTypedArray(R.array.categories);
         // set title
-        alertDialogBuilder.setTitle("Remove "+budgets.get(budgetToRemove).getCategory()+" budget?");
+        alertDialogBuilder.setTitle("Remove "+categoryArray.getString(budgets.get(budgetToRemove).getCategory())+" budget?");
 
         // set dialog message
         alertDialogBuilder

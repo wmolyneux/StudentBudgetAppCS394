@@ -77,6 +77,7 @@
     <string name="expense_transport">Transport:</string>
     <string name="expense_weekly">Weekly Expense:</string>
     <string name="finish_button">Finish</string>
+    <string name="hello_world">Hello world!</string>
     <string name="history_expenses">"Expenses"</string>
     <string name="history_expenses_lc">"expenses"</string>
     <string name="history_income">"Income"</string>
@@ -128,6 +129,7 @@
     <string name="title_activity_income_fragment">IncomeFragment</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_overview_fragment">OverviewFragment</string>
+    <string name="title_activity_pin">PinActivity</string>
     <string name="title_activity_report_fragment">ReportFragment</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_settings_fragment">SettingsFragment</string>

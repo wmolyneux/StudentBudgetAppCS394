@@ -1,6 +1,7 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,8 +49,9 @@ public class BudgetArrayAdapter extends ArrayAdapter<Budget> {
 
         Budget current = budgets.get(position);
         float percentage = calculatePercentage(budgets.get(position));
+        TypedArray categoryArray = context.getResources().obtainTypedArray(R.array.categories);
 
-        category.setText(FragmentUtilities.getCurrency(context)+current.getWeekly()+" "+current.getCategory()+context.getString(R.string.budget_array_text));
+        category.setText(FragmentUtilities.getCurrency(context)+current.getWeekly()+" "+categoryArray.getString(current.getCategory())+" "+context.getString(R.string.budget_array_text));
         if(percentage > 100){
             category.setTextColor(Color.RED);
             percent.setTextColor(Color.RED);

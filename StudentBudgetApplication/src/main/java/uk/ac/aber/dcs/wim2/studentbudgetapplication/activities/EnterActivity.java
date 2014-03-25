@@ -1,12 +1,21 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Vibrator;
+import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
@@ -22,11 +31,19 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     private Button entryButton;
     private SQLiteDatabaseHelper db;
     private Button clear;
+    String pin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FragmentUtilities.refreshPreferences(this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean hasPin = prefs.getBoolean("pref_bool_pin", false);
+        pin = prefs.getString("pref_pin", "");
+        if(hasPin && pin.length()==4){
+            activateLock();
+        }
+
         setContentView(R.layout.activity_enter);
         entryButton = (Button)findViewById(R.id.enterButton);
         entryButton.setOnClickListener(this);
@@ -37,7 +54,6 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 
 
     }
-
 
 
     @Override
@@ -95,6 +111,49 @@ public class EnterActivity extends Activity implements View.OnClickListener{
             db.addCategory(new Category(6, "blue"));
             db.addCategory(new Category(7, "purple"));
         }
+    }
+
+    private void activateLock() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_pin_dialog);
+        dialog.setTitle("Please enter 4-digit pin");
+        dialog.setCancelable(false);
+
+        final EditText pinField = (EditText)dialog.findViewById(R.id.pin_et);
+        pinField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                if(pinField.getText().toString().length()==4){
+                    if(pinField.getText().toString().equalsIgnoreCase(pin)){
+                        dialog.dismiss();
+                    }
+                    else{
+                        pinField.setText("");
+                        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        v.vibrate(500);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        dialog.show();
+        pinField.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                keyboard.showSoftInput(pinField, 0);
+            }
+        }, 50);
     }
 
 
