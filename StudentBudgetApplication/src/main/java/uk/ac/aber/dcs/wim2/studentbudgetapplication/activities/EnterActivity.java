@@ -31,19 +31,17 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     private Button entryButton;
     private SQLiteDatabaseHelper db;
     private Button clear;
-    String pin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = new SQLiteDatabaseHelper(this);
         FragmentUtilities.refreshPreferences(this);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean hasPin = prefs.getBoolean("pref_bool_pin", false);
-        pin = prefs.getString("pref_pin", "");
-        if(hasPin && pin.length()==4){
-            activateLock();
-        }
 
+
+        if(db.getAllDetails().size()!=0){
+            startDetail();
+        }
         setContentView(R.layout.activity_enter);
         entryButton = (Button)findViewById(R.id.enterButton);
         entryButton.setOnClickListener(this);
@@ -73,11 +71,10 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 //                db.addAccount(new Account("awdwadwdwd", Float.valueOf(2000), Float.valueOf(200)));
 //                Toast.makeText(this, db.getAllAccounts().size()+"", Toast.LENGTH_LONG).show();
 //
-                db = new SQLiteDatabaseHelper(this);
+
                 populateCategoryTable();
                 if(db.getAllDetails().size()!=0){
-                    Intent intent = new Intent(this, DetailActivity.class);
-                    startActivity(intent);
+                    startDetail();
                 }
                 else {
                     Intent intent = new Intent(this, BudgetPeriodActivity.class);
@@ -99,6 +96,11 @@ public class EnterActivity extends Activity implements View.OnClickListener{
         }
     }
 
+    private void startDetail() {
+        Intent intent = new Intent(this, DetailActivity.class);
+        startActivity(intent);
+    }
+
 
     private void populateCategoryTable() {
         if(db.getAllCategories().size()==0){
@@ -113,48 +115,7 @@ public class EnterActivity extends Activity implements View.OnClickListener{
         }
     }
 
-    private void activateLock() {
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.custom_pin_dialog);
-        dialog.setTitle("Please enter 4-digit pin");
-        dialog.setCancelable(false);
 
-        final EditText pinField = (EditText)dialog.findViewById(R.id.pin_et);
-        pinField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                if(pinField.getText().toString().length()==4){
-                    if(pinField.getText().toString().equalsIgnoreCase(pin)){
-                        dialog.dismiss();
-                    }
-                    else{
-                        pinField.setText("");
-                        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        v.vibrate(500);
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        dialog.show();
-        pinField.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                keyboard.showSoftInput(pinField, 0);
-            }
-        }, 50);
-    }
 
 
 }

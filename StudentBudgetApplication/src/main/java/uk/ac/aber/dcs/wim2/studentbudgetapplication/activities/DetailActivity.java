@@ -1,10 +1,12 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -12,11 +14,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +47,7 @@ public class DetailActivity extends FragmentActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private Context context;
     private Fragment currentFragment;
+    private String pin;
 
     @Override
     public void onBackPressed() {}
@@ -49,7 +56,12 @@ public class DetailActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean hasPin = prefs.getBoolean("pref_bool_pin", false);
+        pin = prefs.getString("pref_pin", "");
+        if(hasPin && pin.length()==4){
+            activateLock();
+        }
         context = this;
         setContentView(R.layout.activity_detail);
 
@@ -185,7 +197,48 @@ public class DetailActivity extends FragmentActivity {
         BalanceUtilities.updateWidget(this);
     }
 
+    private void activateLock() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_pin_dialog);
+        dialog.setTitle("Please enter 4-digit pin");
+        dialog.setCancelable(false);
 
+        final EditText pinField = (EditText)dialog.findViewById(R.id.pin_et);
+        pinField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                if(pinField.getText().toString().length()==4){
+                    if(pinField.getText().toString().equalsIgnoreCase(pin)){
+                        dialog.dismiss();
+                    }
+                    else{
+                        pinField.setText("");
+                        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        v.vibrate(500);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        dialog.show();
+        pinField.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                keyboard.showSoftInput(pinField, 0);
+            }
+        }, 50);
+    }
 
     
 }

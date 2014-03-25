@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Vibrator;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -121,7 +122,7 @@ public class SettingsFragment extends PreferenceFragment {
                         setPinPreference();
                     }
                     else{
-                        showMessageDialog("Pin values do not match!");
+                        showMessageDialog("Pin values do not match!", true);
                     }
                 }
             }
@@ -149,11 +150,11 @@ public class SettingsFragment extends PreferenceFragment {
         editor.putString("pref_pin", pin2);
         editor.commit();
 
-        showMessageDialog("Pin set!");
+        showMessageDialog("Pin set!", false);
 
     }
 
-    private void showMessageDialog(String message) {
+    private void showMessageDialog(String message, boolean vibrate) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
         // set title
@@ -173,6 +174,10 @@ public class SettingsFragment extends PreferenceFragment {
 
         // show it
         alertDialog.show();
+        if(vibrate){
+            Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(500);
+        }
     }
 
 }
