@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class TransactionActivity extends Activity implements View.OnClickListener{
 
@@ -39,7 +41,7 @@ public class TransactionActivity extends Activity implements View.OnClickListene
     }
 
     private void enterTransactionInformation() {
-        amount.setText(transaction.getAmount().toString());
+        amount.setText(FragmentUtilities.getCurrency(this)+ BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
         shortDesc.setText(transaction.getShortDesc());
         if(!transaction.getType().equalsIgnoreCase("minus")){
             type.setText("Income");

@@ -13,6 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
+import java.util.Calendar;
 import java.util.List;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
@@ -76,6 +80,7 @@ public class OverviewFragment extends ListFragment {
         weeklyBalance.setText(currency+BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
         db.updateDetail(detail);
 
+        checkBudgets();
         budgets = db.getAllBudgets();
         listAdapter = new BudgetArrayAdapter(getActivity(), budgets);
         listen = new BudgetAdapterListener(getActivity(), budgets, db, listAdapter);
@@ -85,5 +90,20 @@ public class OverviewFragment extends ListFragment {
         setListAdapter(listAdapter);
     }
 
+    private void checkBudgets() {
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+        DateTime today = new DateTime(year, month+1, day, 0, 0);
+        for(Budget budget : db.getAllBudgets()){
+            String[] budgetSplit = budget.getDate().split("/");
+            DateTime budgetDate = new DateTime(Integer.valueOf(budgetSplit[2]),
+                    Integer.valueOf(budgetSplit[1]), Integer.valueOf(budgetSplit[0]), 0, 0);
+            if(Days.daysBetween(budgetDate, today).getDays() > 6){
+                db.deleteBudget(budget);
+            }
+        }
+    }
 
 }
