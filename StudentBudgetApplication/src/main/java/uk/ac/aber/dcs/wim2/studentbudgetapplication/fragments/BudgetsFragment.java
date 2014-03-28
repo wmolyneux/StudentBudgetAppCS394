@@ -186,7 +186,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
         db.addBudget(budget);
         Toast.makeText(getActivity(), budget.toString(), Toast.LENGTH_LONG).show();
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, new OverviewFragment()).commit();
+                .replace(R.id.content_frame, new OverviewFragment(), "overview").commit();
     }
 
 }

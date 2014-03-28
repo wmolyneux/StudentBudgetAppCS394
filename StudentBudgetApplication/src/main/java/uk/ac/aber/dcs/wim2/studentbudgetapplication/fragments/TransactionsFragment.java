@@ -141,7 +141,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
 
                     Toast.makeText(getActivity(), getString(R.string.transaction_added), Toast.LENGTH_LONG).show();
                     getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new OverviewFragment()).commit();
+                            .replace(R.id.content_frame, new OverviewFragment(), "overview").commit();
                 }
                 break;
             case R.id.clearButton:

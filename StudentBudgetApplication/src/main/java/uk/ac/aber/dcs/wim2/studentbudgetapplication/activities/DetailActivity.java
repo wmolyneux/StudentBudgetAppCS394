@@ -65,7 +65,7 @@ public class DetailActivity extends FragmentActivity {
         context = this;
         setContentView(R.layout.activity_detail);
 
-        manageFragments(new OverviewFragment(), R.id.content_frame);
+        manageFragments(new OverviewFragment(), R.id.content_frame, "overview");
 
         // get list items from strings.xml
         drawerListViewItems = getResources().getStringArray(R.array.items);
@@ -122,11 +122,11 @@ public class DetailActivity extends FragmentActivity {
         actionBarDrawerToggle.syncState();
     }
 
-    public void manageFragments(Fragment newFrag, int oldFragId){
+    public void manageFragments(Fragment newFrag, int oldFragId, String tag){
         currentFragment = newFrag;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(oldFragId, currentFragment);
+        transaction.replace(oldFragId, currentFragment, tag);
         transaction.commit();
     }
 
@@ -134,30 +134,38 @@ public class DetailActivity extends FragmentActivity {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             Fragment frag = null;
+            String tag = "";
             switch(position){
                 case 0:
                     frag = new OverviewFragment();
+                    tag = "overview";
                     break;
                 case 1:
                     frag = new TransactionsFragment();
+                    tag = "transaction";
                     break;
                 case 2:
                     frag = new HistoryFragment();
+                    tag = "history";
                     break;
                 case 3:
                     frag = new ReportFragment();
+                    tag = "report";
                     break;
                 case 4:
                     frag = new BudgetsFragment();
+                    tag = "budgets";
                     break;
                 case 5:
                     frag = new IncomeFragment();
+                    tag = "income";
                     break;
                 case 6:
                     frag = new ExpenseFragment();
+                    tag = "expense";
                     break;
             }
-            manageFragments(frag, R.id.content_frame);
+            manageFragments(frag, R.id.content_frame, tag);
 
 
             drawerLayout.closeDrawer(drawerListView);
