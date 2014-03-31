@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TabHost;
 import org.joda.time.DateTime;
+import org.joda.time.IllegalInstantException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,8 +131,15 @@ public class HistoryFragment extends ListFragment implements TabHost.OnTabChange
                 continue;
             }
             String[] transSplit = transaction.getDate().split("/");
-            DateTime currentTrans = new DateTime(Integer.valueOf(transSplit[2]),
+            DateTime currentTrans;
+            try{
+                currentTrans = new DateTime(Integer.valueOf(transSplit[2]),
                     Integer.valueOf(transSplit[1]), Integer.valueOf(transSplit[0]), 1, 1);
+            }
+            catch (IllegalInstantException e){
+                currentTrans = new DateTime(Integer.valueOf(transSplit[2]),
+                        Integer.valueOf(transSplit[1]), Integer.valueOf(transSplit[0]), 2, 1);
+            }
             int position = 0;
             for (int i = 0; i < temp.size(); i++){
                 String[] split = temp.get(i).getDate().split("/");
