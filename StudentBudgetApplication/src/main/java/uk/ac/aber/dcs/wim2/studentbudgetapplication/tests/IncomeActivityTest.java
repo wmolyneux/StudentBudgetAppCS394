@@ -56,24 +56,22 @@ public class IncomeActivityTest extends ActivityInstrumentationTestCase2<EnterAc
         solo.clickOnEditText(1);
         solo.setDatePicker(0, year, month + 1, day);
         solo.clickOnButton(0);
-        solo.waitForActivity(BudgetPeriodActivity.class);
-        activity = solo.getCurrentActivity();
+        solo.waitForDialogToClose();
         solo.clickOnButton(activity.getString(R.string.next_button));
         solo.waitForActivity(IncomeActivity.class);
+        solo.assertCurrentActivity("should be IncomeActivity", IncomeActivity.class);
         activity = solo.getCurrentActivity();
     }
 
 
     public void testContentsOfActivity(){
         getToTestState();
-        solo.searchText(activity.getString(R.string.income_balance));
+        solo.sleep(1000);
         EditText balanceField = (EditText)activity.findViewById(R.id.balanceAmount);//437.50
         EditText loanField = (EditText)activity.findViewById(R.id.loanAmount);//481.25
         EditText grantField = (EditText)activity.findViewById(R.id.grantAmount);//525
         EditText salaryField = (EditText)activity.findViewById(R.id.wageAmount);//550
         EditText otherField = (EditText)activity.findViewById(R.id.otherAmount);//575
-        Spinner salarySpinner = (Spinner)activity.findViewById(R.id.wageSpinner);
-        Spinner otherSpinner = (Spinner)activity.findViewById(R.id.otherSpinner);
         TextView weeklyIncome = (TextView)activity.findViewById(R.id.incomeWeeklyInc);
 
         solo.clearEditText(balanceField);

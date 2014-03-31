@@ -59,11 +59,13 @@ public class BudgetPeriodActivityTest extends ActivityInstrumentationTestCase2<B
 
         solo.clickOnView(endDate);
 
-        solo.setDatePicker(0, year+1, month+2, day+1);
+        solo.setDatePicker(0, year+1, month, 1);
 
         solo.clickOnButton(0);
         solo.waitForActivity(BudgetPeriodActivity.class);
-        solo.getEditText((day+1) + "/" + (month + 3) + "/" + (year+1));
+        EditText editText = solo.getEditText(1);
+        assertNotSame("", editText.getText().toString());
+
 
         assertNotSame(weekText, weeks.getText().toString());
     }

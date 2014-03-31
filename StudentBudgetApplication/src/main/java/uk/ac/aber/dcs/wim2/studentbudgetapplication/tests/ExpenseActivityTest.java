@@ -56,7 +56,6 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         solo.setDatePicker(0, year, month + 1, day);
         solo.clickOnButton(0);
         solo.waitForDialogToClose();
-//        activity = solo.getCurrentActivity();
         solo.clickOnButton(activity.getString(R.string.next_button));
         solo.waitForActivity(IncomeActivity.class);
         activity = solo.getCurrentActivity();
@@ -75,7 +74,7 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         EditText mobile = (EditText)activity.findViewById(R.id.mobileAmount);
         EditText other = (EditText)activity.findViewById(R.id.otherAmount);
         TextView weeklyExpense = (TextView)activity.findViewById(R.id.ExpenseWeeklyExp);
-
+        solo.waitForText("Rent");
         solo.clearEditText(rent);
         solo.enterText(rent, "100");
         assertEquals("25.00", weeklyExpense.getText().toString());

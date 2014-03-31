@@ -136,6 +136,12 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         db.addConstant(mobile);
         db.addConstant(other);
 
+        db.addConstant((Constant)getIntent().getSerializableExtra("balance"));
+        db.addConstant((Constant)getIntent().getSerializableExtra("loan"));
+        db.addConstant((Constant)getIntent().getSerializableExtra("grant"));
+        db.addConstant((Constant)getIntent().getSerializableExtra("wage"));
+        db.addConstant((Constant)getIntent().getSerializableExtra("other"));
+
         detail.setWeeklyExpense(Float.valueOf(weeklyExpense.getText().toString()));
         db.addDetail(detail);
 

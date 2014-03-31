@@ -1,9 +1,10 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.tests;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.res.TypedArray;
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.robotium.solo.Solo;
 
@@ -15,19 +16,16 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.DetailActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.IncomeActivity;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TestingUtilities;
 
 /**
- * Created by wim2 on 28/03/2014.
+ * Created by wim2 on 31/03/2014.
  */
-public class OverviewFragmentTest extends ActivityInstrumentationTestCase2<EnterActivity>{
+public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<EnterActivity> {
+
     private Solo solo;
     private Activity activity;
 
-    public OverviewFragmentTest(){
+    public TransactionFragmentTest(){
         super(EnterActivity.class);
     }
 
@@ -65,21 +63,48 @@ public class OverviewFragmentTest extends ActivityInstrumentationTestCase2<Enter
         else{
             activity = solo.getCurrentActivity();
         }
+        System.out.println("should be clicking the menu");
+        solo.clickOnImage(0);
+        TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
+        solo.clickOnText(typedArray.getString(1));
 
+        solo.waitForFragmentByTag("transaction");
     }
 
-    public void testCheckCorrectActivityAndFragmentAreDisplayed(){
+    public void testTransactionIsSuccessfullyCreatedAndAppendsBalance(){
         getToTestState();
-        solo.assertCurrentActivity("Should be the detail activity", DetailActivity.class);
-        DetailActivity det = (DetailActivity)solo.getCurrentActivity();
-        assertNotNull(det.getSupportFragmentManager().findFragmentByTag("overview"));
+
+        TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
+        solo.clickOnImage(0);
+        solo.clickOnText(typedArray.getString(0));
+        solo.waitForFragmentByTag("overview");
+        TextView weeklyBalance = (TextView)activity.findViewById(R.id.overWeeklyBalance);
+        Float beforeBalance = Float.valueOf(weeklyBalance.getText().toString().substring(1, weeklyBalance.getText().toString().length()));
 
         solo.clickOnImage(0);
-        TypedArray itemArray = activity.getResources().obtainTypedArray(R.array.items);
-        solo.waitForText(itemArray.getString(0));
-        solo.clickOnText(itemArray.getString(0));
+        solo.clickOnText(typedArray.getString(1));
+        solo.waitForFragmentByTag("transaction");
 
+        EditText amountEdit = (EditText)activity.findViewById(R.id.amountField);
+        EditText descEdit = (EditText)activity.findViewById(R.id.descField);
+
+        solo.enterText(amountEdit, "10");
+        solo.enterText(descEdit, "Iceland");
+        solo.pressSpinnerItem(0, 1);
+        solo.clickOnEditText(2);
+        solo.waitForDialogToOpen();
+        solo.clickOnButton(0);
+        solo.waitForDialogToClose();
+        solo.clickOnButton(2);
+
+
+        solo.waitForText(activity.getString(R.string.transaction_added));
+        solo.waitForFragmentByTag("overview");
+
+        weeklyBalance = (TextView)activity.findViewById(R.id.overWeeklyBalance);
+        Float afterBalance = Float.valueOf(weeklyBalance.getText().toString().substring(1, weeklyBalance.getText().toString().length()));
+
+        assertEquals((beforeBalance-10), afterBalance);
     }
-
 
 }

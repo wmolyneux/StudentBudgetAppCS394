@@ -91,9 +91,14 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         switch (view.getId()){
             case R.id.incomeToExpenseButton:
                 if(validate()){
-                    addValuesToDatabase();
+                    detail.setWeeklyIncome(Float.valueOf(weeklyIncome.getText().toString()));
                     Intent intent = new Intent(this, ExpenseActivity.class);
                     intent.putExtra("detail", detail);
+                    intent.putExtra("balance", new Constant("income", Float.valueOf(balanceAmount.getText().toString()), "remaining"));
+                    intent.putExtra("loan", new Constant("income", Float.valueOf(loanAmount.getText().toString()), "remaining"));
+                    intent.putExtra("grant", new Constant("income", Float.valueOf(grantAmount.getText().toString()), "remaining"));
+                    intent.putExtra("wage", new Constant("income", Float.valueOf(wageAmount.getText().toString()), wageSpinner.getSelectedItem().toString()));
+                    intent.putExtra("other", new Constant("income", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString()));
                     startActivity(intent);
                 }
                 break;
