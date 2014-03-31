@@ -153,6 +153,13 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
 
         }
 
+        if(itemNames.size()==0){
+            TextView legendItem = (TextView)view.findViewById(legends[0]);
+            legendItem.setText(R.string.report_no_data);
+            legendItem.setTextColor(Color.BLACK);
+            legendItem.setTextSize(20);
+        }
+
         if(mChartView != null){
             mChartView.repaint();
         }super.onResume();

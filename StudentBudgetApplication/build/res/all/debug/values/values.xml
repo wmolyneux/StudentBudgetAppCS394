@@ -119,6 +119,7 @@
     <string name="preference_currency_title">Currency</string>
     <string name="preference_language_summary">Select a language</string>
     <string name="preference_language_title">Language</string>
+    <string name="report_no_data">No Data!</string>
     <string name="settings_title">Application</string>
     <string name="submit_button">Submit</string>
     <string name="title_activity_budgets_fragments">BudgetsFragments</string>

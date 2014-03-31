@@ -31,25 +31,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6c930e-6fe5-43fe-9fe6-59787a8d4195" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/achartengine-1.1.0.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/armeabizip.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/commons-codec.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/guava-r09.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/joda-time-2.3-sources.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/robotium-solo-5.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/sqlcipher.jar" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/apk/StudentBudgetApplication-debug-unaligned.apk" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/EnterActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R$menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/classes/debug/uk/ac/aber/dcs/aber/studentbudgetapplication/R.class" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/x86/libdatabase_sqlcipher.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/x86/libsqlcipher_android.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StudentBudgetApplication/libs/x86/libstlport_shared.so" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StudentBudgetApplication/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/StudentBudgetApplication/build/res/all/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StudentBudgetApplication.iws" />
@@ -115,10 +102,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="OverviewFragmentTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/tests/OverviewFragmentTest.java">
+      <file leaf-file-name="ReportFragment.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="33" selection-start="1514" selection-end="1514" vertical-scroll-proportion="0.4379562" vertical-offset="0" max-vertical-offset="1110">
+            <state line="159" column="37" selection-start="6163" selection-end="6163" vertical-scroll-proportion="0.6525096" vertical-offset="1642" max-vertical-offset="3675">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="148" column="51" selection-start="7032" selection-end="7032" vertical-scroll-proportion="0.0" vertical-offset="1113" max-vertical-offset="2385">
               <folding />
             </state>
           </provider>
@@ -190,8 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/instrumentTest/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/activities/tests/EnterActivityTest.java" />
-        <option value="$PROJECT_DIR$/StudentBudgetApplication/build.gradle" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/tests/ExampleEnterActivityTest.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/tests/EnterActivityTest.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/utils/TestingUtilities.java" />
@@ -206,6 +200,8 @@
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/tests/ExpenseActivityTest.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/tests/IncomeActivityTest.java" />
         <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/tests/OverviewFragmentTest.java" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java" />
       </list>
     </option>
   </component>
@@ -1013,7 +1009,7 @@
       <recent name="$PROJECT_DIR$/StudentBudgetApplication/src/main/res/layout" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Tests.IncomeActivityTest">
+  <component name="RunManager" selected="Android Application.StudentBudgetApplication">
     <configuration default="false" name="ExampleEnterActivityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="StudentBudgetApplication" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1653,7 +1649,11 @@
       <created>1396274146491</created>
       <updated>1396274146492</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="- added libraries">
+      <created>1396274397798</created>
+      <updated>1396274397799</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1677,8 +1677,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23114488" sideWeight="0.64117646" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35798123" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23114488" sideWeight="0.64235294" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35764706" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1725,7 +1725,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="- Implemented AChartEngine library to help with charts on the report page.&#10;- Chart is generated on the ReportFragment using transactions which have occured in the same month as today" />
     <MESSAGE value="- Implemented arrows to change the date for ReportFragment allowing the user to change what transactions are being displayed&#10;- Refreshed the piechart displaed when month changed" />
     <MESSAGE value="Fixed bug where category totals were being calculated incorrectly" />
     <MESSAGE value="- Refactored variables in most classes" />
@@ -1750,26 +1749,13 @@
     <MESSAGE value="- Fixed bug with time zone issues, daylight savings time caused the application to crash because it uses 1am a set time for some calculations of dates which didnt exist on days such as the 30th of March 2014" />
     <MESSAGE value="- Fixed problems with some automation tests" />
     <MESSAGE value="- testing VCS" />
-    <option name="LAST_COMMIT_MESSAGE" value="- testing VCS" />
+    <MESSAGE value="- added libraries" />
+    <option name="LAST_COMMIT_MESSAGE" value="- added libraries" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/TransactionsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="87" selection-start="3523" selection-end="3602" vertical-scroll-proportion="0.37717602" vertical-offset="825" max-vertical-offset="2715">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/BudgetsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="188" column="90" selection-start="6918" selection-end="6918" vertical-scroll-proportion="0.84139264" vertical-offset="2010" max-vertical-offset="2595">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values-cy/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="122" column="18" selection-start="5472" selection-end="5472" vertical-scroll-proportion="0.3326886" vertical-offset="1658" max-vertical-offset="2430">
@@ -1898,7 +1884,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/tests/OverviewFragmentTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="33" selection-start="1514" selection-end="1514" vertical-scroll-proportion="0.4379562" vertical-offset="0" max-vertical-offset="1110">
+        <state line="79" column="49" selection-start="3095" selection-end="3095" vertical-scroll-proportion="1.1131387" vertical-offset="0" max-vertical-offset="1110">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="51" selection-start="7032" selection-end="7032" vertical-scroll-proportion="0.0" vertical-offset="1113" max-vertical-offset="2385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StudentBudgetApplication/src/main/java/uk/ac/aber/dcs/wim2/studentbudgetapplication/fragments/ReportFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="37" selection-start="6163" selection-end="6163" vertical-scroll-proportion="0.6525096" vertical-offset="1642" max-vertical-offset="3675">
           <folding />
         </state>
       </provider>
