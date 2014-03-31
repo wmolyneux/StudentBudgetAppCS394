@@ -61,6 +61,7 @@ public class OverviewFragmentTest extends ActivityInstrumentationTestCase2<Enter
             solo.clickOnButton(0);
             solo.waitForActivity(DetailActivity.class);
             activity = solo.getCurrentActivity();
+
         }
         else{
             activity = solo.getCurrentActivity();
