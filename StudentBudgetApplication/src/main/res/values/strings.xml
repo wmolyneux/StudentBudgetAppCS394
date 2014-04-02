@@ -147,7 +147,7 @@
     <string name="submit_button">Submit</string>
     <string name="title_activity_pin">PinActivity</string>
     <string name="report_no_data">No Data!</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello world!</string><string name="arrow_symbol"><![CDATA[-->]]></string><string name="overviewMainBudget">Overall Budget progress:</string>
 
 
 </resources>
