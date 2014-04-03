@@ -63,7 +63,6 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         else{
             activity = solo.getCurrentActivity();
         }
-        System.out.println("should be clicking the menu");
         solo.clickOnImage(0);
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnText(typedArray.getString(1));
@@ -105,6 +104,25 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         Float afterBalance = Float.valueOf(weeklyBalance.getText().toString().substring(1, weeklyBalance.getText().toString().length()));
 
         assertEquals((beforeBalance-10), afterBalance);
+    }
+
+    public void testTransactionValidation(){
+        getToTestState();
+        EditText amountEdit = (EditText)activity.findViewById(R.id.amountField);
+        EditText descEdit = (EditText)activity.findViewById(R.id.descField);
+
+
+        solo.enterText(descEdit, "Iceland");
+        solo.pressSpinnerItem(0, 1);
+        solo.clickOnEditText(2);
+        solo.waitForDialogToOpen();
+        solo.clickOnButton(0);
+        solo.waitForDialogToClose();
+        solo.clickOnButton(2);
+
+        solo.enterText(amountEdit, "5");
+        solo.clickOnToggleButton(activity.getString(R.string.transaction_expense));
+        solo.clickOnButton(2);
     }
 
 }
