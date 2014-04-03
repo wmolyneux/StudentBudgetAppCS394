@@ -1,6 +1,7 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.tests;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
 
     private Solo solo;
     private Activity activity;
+    private Intent newIntent;
 
     public ExpenseActivityTest(){
         super(EnterActivity.class);
@@ -32,6 +34,7 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
     public void setUp(){
         solo = new Solo(getInstrumentation());
         activity = getActivity();
+        newIntent = new Intent(activity, EnterActivity.class);
     }
 
     public void tearDown(){
@@ -42,10 +45,11 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         if(solo.waitForActivity(DetailActivity.class, 1000)){
             solo.assertCurrentActivity("Should be DetailActivity", DetailActivity.class);
             TestingUtilities.checkDatabase(solo);
-            solo.finishOpenedActivities();
-            this.launchActivity("uk.ac.aber.dcs.wim2.studentbudgetapplication", EnterActivity.class, null);
-
-            solo.sleep(1000);
+            activity.startActivity(newIntent);
+//            solo.finishOpenedActivities();
+//            this.launchActivity("uk.ac.aber.dcs.wim2.studentbudgetapplication", EnterActivity.class, null);
+//
+//            solo.sleep(1000);
         }
         solo.clickOnButton(0);
         Calendar cal = Calendar.getInstance();

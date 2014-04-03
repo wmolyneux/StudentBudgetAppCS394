@@ -101,12 +101,6 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
 
     }
 
-//    public void reDrawValues(){
-//        currency = FragmentUtilities.getCurrency(getActivity());
-//        currWeekMax.setText(currency+Math.round(weeklyBal)+"");
-//        weeklyText.setText("Amount of weekly budget: "+currency+amount);
-//        remainingWeek.setText(currency+BalanceUtilities.getValueAs2dpString(weeklyBal-amount));
-//    }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -184,7 +178,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
         String dateString = today.getDayOfMonth()+"/"+today.getMonthOfYear()+"/"+today.getYear();
         Budget budget = new Budget(categories.getSelectedItemPosition(), amount, (int)weeklyBal, dateString);
         db.addBudget(budget);
-        Toast.makeText(getActivity(), budget.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), getActivity().getString(R.string.create_budget), Toast.LENGTH_LONG).show();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, new OverviewFragment(), "overview").commit();
     }

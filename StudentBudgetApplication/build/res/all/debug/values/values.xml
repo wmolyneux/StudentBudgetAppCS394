@@ -63,6 +63,7 @@
     <string name="budgetperiod_start">Budget Start Date:</string>
     <string name="budgetperiod_weeks">Weeks in budget period: </string>
     <string name="clear_button">Clear</string>
+    <string name="create_budget">Personal budget created!</string>
     <string name="create_button">Create</string>
     <string name="done_button">Done</string>
     <string name="drawer_close">Close navigation drawer</string>
