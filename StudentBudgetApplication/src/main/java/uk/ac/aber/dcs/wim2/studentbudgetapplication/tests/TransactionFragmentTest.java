@@ -111,7 +111,6 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         EditText amountEdit = (EditText)activity.findViewById(R.id.amountField);
         EditText descEdit = (EditText)activity.findViewById(R.id.descField);
 
-
         solo.enterText(descEdit, "Iceland");
         solo.pressSpinnerItem(0, 1);
         solo.clickOnEditText(2);
