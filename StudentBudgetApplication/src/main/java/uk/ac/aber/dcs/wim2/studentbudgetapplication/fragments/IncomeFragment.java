@@ -50,13 +50,9 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
 
         balanceAmount = (EditText)inflate.findViewById(R.id.updateBalanceAmount);
         balanceAmount.addTextChangedListener(this);
-//        loanSpinner = (Spinner) inflate.findViewById(R.id.updateLoanSpinner);
-//        loanSpinner.setOnItemSelectedListener(this);
         loanAmount = (EditText) inflate.findViewById(R.id.updateLoanAmount);
         loanAmount.addTextChangedListener(this);
 
-//        grantSpinner = (Spinner) inflate.findViewById(R.id.updateGrantSpinner);
-//        grantSpinner.setOnItemSelectedListener(this);
         grantAmount = (EditText) inflate.findViewById(R.id.updateGrantAmount);
         grantAmount.addTextChangedListener(this);
 

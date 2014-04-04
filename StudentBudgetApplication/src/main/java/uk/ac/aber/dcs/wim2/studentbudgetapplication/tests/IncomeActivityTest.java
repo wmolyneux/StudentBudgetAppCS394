@@ -76,31 +76,29 @@ public class IncomeActivityTest extends ActivityInstrumentationTestCase2<EnterAc
 
         solo.clearEditText(balanceField);
         solo.enterText(balanceField, "2000");
-        assertEquals("437.50", weeklyIncome.getText().toString());
+        assertEquals("2000", balanceField.getText().toString());
 
         solo.clearEditText(loanField);
         solo.enterText(loanField, "200");
-        assertEquals("481.25", weeklyIncome.getText().toString());
+        assertEquals("200", loanField.getText().toString());
 
         solo.clearEditText(grantField);
         solo.enterText(grantField, "200");
-        assertEquals("525.00", weeklyIncome.getText().toString());
+        assertEquals("200", grantField.getText().toString());
 
         solo.clearEditText(salaryField);
         solo.enterText(salaryField, "100");
-        assertEquals("625.00", weeklyIncome.getText().toString());
+        assertEquals("100", salaryField.getText().toString());
         solo.pressSpinnerItem(0, 1);
         solo.waitForDialogToClose();
-        assertEquals("550.00", weeklyIncome.getText().toString());
         assertEquals("Spinner is not selected to monthly", true, solo.isSpinnerTextSelected(0, "Monthly"));
 
 
         solo.clearEditText(otherField);
         solo.enterText(otherField, "100");
-        assertEquals("650.00", weeklyIncome.getText().toString());
+        assertEquals("100", otherField.getText().toString());
         solo.pressSpinnerItem(1, 1);
         solo.waitForDialogToClose();
-        assertEquals("575.00", weeklyIncome.getText().toString());
         assertEquals("Spinner is not selected to monthly", true, solo.isSpinnerTextSelected(1, "Monthly"));
 
     }
