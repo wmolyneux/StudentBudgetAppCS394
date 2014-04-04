@@ -133,7 +133,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.clearBudget:
-                weeklyText.setText("Amount of weekly budget: "+currency+"0");
+                weeklyText.setText(getActivity().getString(R.string.budget_amount)+" "+currency+"0");
                 amount = 0;
                 weeklySlide.setProgress(0);
                 remainingWeek.setText(currency+BalanceUtilities.getValueAs2dpString(weeklyBal));
