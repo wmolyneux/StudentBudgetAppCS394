@@ -151,6 +151,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="arrow_symbol"><![CDATA[-->]]></string>
     <string name="overviewMainBudget">Overall Budget progress:</string>
+    <string name="budget_exists">"budget already exists!"</string>
+    <string name="budget_must_be_more_than">Budget must be more than</string>
 
 
 </resources>

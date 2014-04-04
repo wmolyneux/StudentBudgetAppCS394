@@ -57,6 +57,8 @@
     <string name="arrow_symbol"><![CDATA[-->]]></string>
     <string name="budget_amount">Amount of weekly budget:</string>
     <string name="budget_array_text"> Budget: </string>
+    <string name="budget_exists">"budget already exists!"</string>
+    <string name="budget_must_be_more_than">Budget must be more than</string>
     <string name="budget_remaining_weekly">Remaining weekly:</string>
     <string name="budget_remove_msg">Budget will be permanently removed!</string>
     <string name="budgetperiod_end">Budget End Date:</string>

@@ -115,7 +115,7 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         amount = i;
-        weeklyText.setText("Amount of weekly budget: "+currency+amount);
+        weeklyText.setText(getActivity().getString(R.string.budget_amount)+" "+currency+amount);
         remainingWeek.setText(currency+BalanceUtilities.getValueAs2dpString(weeklyBal-amount));
     }
 
@@ -145,11 +145,11 @@ public class BudgetsFragment extends Fragment implements AdapterView.OnItemSelec
                         createBudget();
                     }
                     else{
-                        Toast.makeText(getActivity(), "Budget must be more than "+currency+"0", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), getActivity().getString(R.string.budget_must_be_more_than)+" "+currency+"0", Toast.LENGTH_LONG).show();
                     }
                 }
                 else{
-                    Toast.makeText(getActivity(), "Budget for "+categories.getSelectedItem().toString()+" already exists!",
+                    Toast.makeText(getActivity(), categories.getSelectedItem().toString()+" "+getActivity().getString(R.string.budget_exists),
                             Toast.LENGTH_LONG).show();
                 }
                 break;

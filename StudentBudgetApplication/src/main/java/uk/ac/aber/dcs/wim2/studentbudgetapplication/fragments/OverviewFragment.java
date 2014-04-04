@@ -74,9 +74,6 @@ public class OverviewFragment extends ListFragment {
 
     private void setup() {
         currency = FragmentUtilities.getCurrency(getActivity());
-//        weeklyIncome.setText(currency+BalanceUtilities.getValueAs2dpString(detail.getWeeklyIncome()));
-//        weeklyExpense.setText(currency+BalanceUtilities.getValueAs2dpString(detail.getWeeklyExpense()));
-
         setStartAndEndDates();
 
 
@@ -111,7 +108,7 @@ public class OverviewFragment extends ListFragment {
 
         float percent = ((Days.daysBetween(startDate, today).getDays()+1) * 100)/Float.valueOf(detail.getTotalWeeks());
 
-        overviewPercent.setText(BalanceUtilities.getValueAs2dpString(percent)+"%");
+        overviewPercent.setText(BalanceUtilities.getValueAs0dpString(percent)+"%");
         overviewProgress.setProgress((int)percent);
 
 

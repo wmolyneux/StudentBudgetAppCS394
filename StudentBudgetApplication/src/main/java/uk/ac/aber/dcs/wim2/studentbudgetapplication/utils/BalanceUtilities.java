@@ -196,5 +196,8 @@ public class BalanceUtilities {
         return String.format("%.2f", value);
     }
 
+    public static String getValueAs0dpString(Float value){
+        return String.format("%.0f", value);
+    }
 
 }

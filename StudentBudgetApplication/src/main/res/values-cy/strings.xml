@@ -144,13 +144,16 @@
 <!--     new Strings below -->
 
     <string name="widget_text">Balans wythnosol:</string>
-    <string name="submit_button">Submit</string>
+    <string name="submit_button">Cyflwyno</string>
     <string name="title_activity_pin">PinActivity</string>
-    <string name="report_no_data">No Data!</string>
-    <string name="create_budget">Personal budget created!</string>
+    <string name="report_no_data">Dim data!</string>
+    <string name="create_budget">Cyllideb bersonol a grëwyd!</string>
     <string name="hello_world">Hello world!</string>
     <string name="arrow_symbol"><![CDATA[-->]]></string>
-    <string name="overviewMainBudget">Overall Budget progress:</string>
+    <string name="overviewMainBudget">Cynnydd cyffredinol y gyllideb:</string>
+    <string name="budget_exists">"cyllideb eisoes yn bodoli"</string>
+    <string name="budget_must_be_more_than">Mae\'n rhaid i gyllideb fod yn fwy na</string>
+
 
 
 </resources>
