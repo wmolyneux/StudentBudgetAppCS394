@@ -44,10 +44,10 @@ public class TransactionActivity extends Activity implements View.OnClickListene
         amount.setText(FragmentUtilities.getCurrency(this)+ BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
         shortDesc.setText(transaction.getShortDesc());
         if(!transaction.getType().equalsIgnoreCase("minus")){
-            type.setText("Income");
+            type.setText(this.getString(R.string.transaction_expense));
         }
         else{
-            type.setText("Expense");
+            type.setText(this.getString(R.string.history_income));
         }
         category.setText(getResources().obtainTypedArray(R.array.categories).getString(transaction.getCategory()));
         date.setText(transaction.getDate());

@@ -2,10 +2,12 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,7 @@ import java.util.Calendar;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class BudgetPeriodActivity extends Activity implements View.OnClickListener, View.OnTouchListener {
 
@@ -38,12 +41,14 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
     private DateTime end;
     private TextView weeksText;
     private int weeks;
+    private Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_dates);
+        context = this;
 
         startDate = (EditText) findViewById(R.id.termStartDate);
         endDate = (EditText) findViewById(R.id.termEndDate);
@@ -67,9 +72,30 @@ public class BudgetPeriodActivity extends Activity implements View.OnClickListen
 
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        FragmentUtilities.refreshPreferences(this);
+        Intent i = getIntent();
+        finish();
+        startActivity(i);
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.term, menu);
+        getMenuInflater().inflate(R.menu.detail, menu);
+        MenuItem settings = menu.findItem(R.id.action_settings);
+        if(settings != null){
+            settings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(context, SettingsActivity.class);
+                    startActivityForResult(intent, 0);
+                    return true;
+                }
+            });
+        }
         return true;
     }
 

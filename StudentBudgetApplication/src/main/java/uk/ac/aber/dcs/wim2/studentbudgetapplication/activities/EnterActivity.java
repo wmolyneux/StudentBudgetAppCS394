@@ -12,8 +12,10 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -37,13 +39,14 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     private Button entryButton;
     private SQLiteDatabaseHelper db;
     private Button clear;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = new SQLiteDatabaseHelper(this);
         FragmentUtilities.refreshPreferences(this);
-
+        context = this;
 
         if(db.getAllDetails().size()!=0){
             startDetail();
@@ -59,13 +62,31 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        FragmentUtilities.refreshPreferences(this);
+        Intent i = getIntent();
+        finish();
+        startActivity(i);
+    }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.enter, menu);
+        getMenuInflater().inflate(R.menu.detail, menu);
+        MenuItem settings = menu.findItem(R.id.action_settings);
+        if(settings != null){
+            settings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(context, SettingsActivity.class);
+                    startActivityForResult(intent, 0);
+                    return true;
+                }
+            });
+        }
         return true;
     }
 
@@ -73,13 +94,6 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.enterButton:
-                //temp code REMOVE!!!
-
-//                AccountDataSQLHelper db = new AccountDataSQLHelper(this);
-//                db.addAccount(new Account("awdwadwdwd", Float.valueOf(2000), Float.valueOf(200)));
-//                Toast.makeText(this, db.getAllAccounts().size()+"", Toast.LENGTH_LONG).show();
-//
-
                 populateCategoryTable();
                 if(db.getAllDetails().size()!=0){
                     startDetail();

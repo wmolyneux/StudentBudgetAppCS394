@@ -20,27 +20,28 @@
                 android:layout_marginBottom="10dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/expense_rent"
-                    android:id="@+id/textView"/>
+                    android:id="@+id/textView"
+                    android:layout_weight="1.3"/>
 
             <Spinner
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/rentSpinner"
                     android:entries="@array/monthly_yearly"
-                    android:layout_marginLeft="80dp"/>
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/rentAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -50,27 +51,28 @@
                 android:layout_marginBottom="10dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/expense_electricity"
-                    android:id="@+id/textView2"/>
+                    android:id="@+id/textView2"
+                    android:layout_weight="1.3"/>
 
             <Spinner
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/electricitySpinner"
-                    android:layout_marginLeft="26dp"
-                    android:entries="@array/weekly_monthly"/>
+                    android:entries="@array/weekly_monthly"
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/electricityAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -80,27 +82,28 @@
                 android:layout_marginBottom="10dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/expense_heating"
-                    android:id="@+id/textView3"/>
+                    android:id="@+id/textView3"
+                    android:layout_weight="1.3"/>
 
             <Spinner
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/heatingSpinner"
-                    android:layout_marginLeft="44dp"
-                    android:entries="@array/weekly_monthly"/>
+                    android:entries="@array/weekly_monthly"
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/heatingAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -110,27 +113,28 @@
                 android:layout_marginBottom="10dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/expense_internet"
-                    android:id="@+id/textView4"/>
+                    android:id="@+id/textView4"
+                    android:layout_weight="1.3"/>
 
             <Spinner
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/internetSpinner"
-                    android:layout_marginLeft="48dp"
-                    android:entries="@array/monthly_yearly"/>
+                    android:entries="@array/monthly_yearly"
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/internetAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -140,27 +144,29 @@
                 android:layout_marginBottom="10dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/expense_transport"
-                    android:id="@+id/textView6"/>
+                    android:id="@+id/textView6"
+                    android:layout_weight="1.3"
+                    />
 
             <Spinner
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/transportSpinner"
-                    android:layout_marginLeft="27dp"
-                    android:entries="@array/weekly_monthly_yearly"/>
+                    android:entries="@array/weekly_monthly_yearly"
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/transportAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -170,27 +176,28 @@
                 android:layout_marginBottom="10dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/expense_mobile"
-                    android:id="@+id/textView7"/>
+                    android:id="@+id/textView7"
+                    android:layout_weight="1.3"/>
 
             <Spinner
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/mobileSpinner"
-                    android:layout_marginLeft="58dp"
-                    android:entries="@array/monthly_yearly"/>
+                    android:entries="@array/monthly_yearly"
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/mobileAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -200,27 +207,28 @@
                 android:layout_marginBottom="10dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/expense_other"
-                    android:id="@+id/textView8"/>
+                    android:id="@+id/textView8"
+                    android:layout_weight="1.3"/>
 
             <Spinner
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/otherSpinner"
-                    android:layout_marginLeft="72dp"
-                    android:entries="@array/weekly_monthly_yearly"/>
+                    android:entries="@array/weekly_monthly_yearly"
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/otherAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout

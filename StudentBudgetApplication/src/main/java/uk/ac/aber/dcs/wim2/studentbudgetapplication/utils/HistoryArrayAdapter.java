@@ -43,38 +43,38 @@ public class HistoryArrayAdapter extends ArrayAdapter<Transaction> {
         category.setText(currentCat+" - "+FragmentUtilities.getCurrency(context)+
                 BalanceUtilities.getValueAs2dpString(Float.valueOf(transactions.get(position).getAmount().toString())));
         value.setText(transactions.get(position).getDate());
-        icon.setImageResource(findImageId(currentCat));
+        icon.setImageResource(findImageId(transactions.get(position).getCategory()));
 
         return row;
     }
 
-    public int findImageId(String cat){
+    public int findImageId(int cat){
         int image = 0;
-        if(cat.equalsIgnoreCase("food")){
+        if(cat == 0){
             image = R.drawable.ic_food;
         }
-        else if(cat.equalsIgnoreCase("supermarket")){
+        else if(cat == 1){
             image = R.drawable.supermarket;
         }
-        else if(cat.equalsIgnoreCase("university")){
+        else if(cat == 2){
             image = R.drawable.university;
         }
-        else if(cat.equalsIgnoreCase("clothing")){
+        else if(cat == 3){
             image = R.drawable.clothing;
         }
-        else if(cat.equalsIgnoreCase("other")){
+        else if(cat == 4){
             image = R.drawable.other;
         }
-        else if(cat.equalsIgnoreCase("sport")){
+        else if(cat == 5){
             image = R.drawable.sports;
         }
-        else if(cat.equalsIgnoreCase("travel")){
+        else if(cat == 6){
             image = R.drawable.travel;
         }
-        else if(cat.equalsIgnoreCase("socialising")){
+        else if(cat == 7){
             image = R.drawable.booze;
         }
-        else if(cat.equalsIgnoreCase("micro transaction")){
+        else if(cat == 8){
             image = R.drawable.microtrans;
         }
         return image;

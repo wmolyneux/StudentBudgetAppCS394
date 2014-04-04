@@ -1,11 +1,13 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -44,6 +46,7 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
 
     private Detail detail;
     private SQLiteDatabaseHelper db;
+    private Context context;
 
 
 
@@ -51,6 +54,7 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
+        context = this;
         detail = (Detail) getIntent().getSerializableExtra("detail");
         registerViews();
 
@@ -99,9 +103,30 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        FragmentUtilities.refreshPreferences(this);
+        Intent i = getIntent();
+        finish();
+        startActivity(i);
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.expense, menu);
+        getMenuInflater().inflate(R.menu.detail, menu);
+        MenuItem settings = menu.findItem(R.id.action_settings);
+        if(settings != null){
+            settings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(context, SettingsActivity.class);
+                    startActivityForResult(intent, 0);
+                    return true;
+                }
+            });
+        }
         return true;
     }
 

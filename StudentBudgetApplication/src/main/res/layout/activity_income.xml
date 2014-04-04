@@ -21,21 +21,22 @@
                 >
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/income_balance"
                     android:id="@+id/textView6"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="3"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/balanceAmount"
-                    android:layout_marginLeft="162dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1.3"/>
         </LinearLayout>
 
         <LinearLayout
@@ -44,20 +45,21 @@
                 android:layout_marginTop="30dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/income_remaining_loans"
-                    android:id="@+id/textView"/>
+                    android:id="@+id/textView"
+                    android:layout_weight="3"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/loanAmount"
-                    android:layout_marginLeft="76dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1.3"/>
         </LinearLayout>
 
         <LinearLayout
@@ -67,20 +69,21 @@
                 android:layout_marginTop="30dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/income_remaining_grants"
-                    android:id="@+id/textView2"/>
+                    android:id="@+id/textView2"
+                    android:layout_weight="3"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/grantAmount"
-                    android:layout_marginLeft="66dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1.3"/>
         </LinearLayout>
 
         <LinearLayout
@@ -90,27 +93,28 @@
                 android:layout_marginTop="30dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/income_salary"
-                    android:id="@+id/textView3"/>
+                    android:id="@+id/textView3"
+                    android:layout_weight="1"/>
 
             <Spinner
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/wageSpinner"
-                    android:layout_marginLeft="17dp"
-                    android:entries="@array/weekly_monthly_yearly"/>
+                    android:entries="@array/weekly_monthly_yearly"
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/wageAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -120,27 +124,28 @@
                 android:layout_marginTop="30dp">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/income_other"
-                    android:id="@+id/textView4"/>
+                    android:id="@+id/textView4"
+                    android:layout_weight="1"/>
 
             <Spinner
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="37dp"
                     android:id="@+id/otherSpinner"
-                    android:layout_marginLeft="30dp"
-                    android:entries="@array/weekly_monthly_yearly"/>
+                    android:entries="@array/weekly_monthly_yearly"
+                    android:layout_weight="1.4"/>
 
             <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/otherAmount"
-                    android:layout_marginLeft="15dp"
-                    android:text="0"/>
+                    android:text="0"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout

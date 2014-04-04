@@ -21,20 +21,19 @@
                 android:layout_alignParentLeft="true">
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/new_transaction_category"
                     android:id="@+id/cateText"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="8dp"/>
+                    android:layout_weight="3"/>
 
             <Spinner
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/budgetCategorySpinner"
-                    android:layout_marginLeft="98dp"
-                    android:spinnerMode="dialog"/>
+                    android:spinnerMode="dialog"
+                    android:layout_weight="1.5"/>
         </LinearLayout>
 
         <TextView
@@ -44,7 +43,8 @@
                 android:id="@+id/weeklytext"
                 android:text="@string/budget_amount"
                 android:layout_marginTop="40dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"/>
 
         <LinearLayout
                 android:layout_width="fill_parent"
@@ -83,20 +83,20 @@
                 >
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/budget_remaining_weekly"
                     android:id="@+id/remweektext"
-                    android:layout_marginLeft="49dp"/>
+                    android:layout_weight="3"/>
 
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="£0"
                     android:id="@+id/remainingweekly"
-                    android:layout_marginLeft="5dp"/>
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
