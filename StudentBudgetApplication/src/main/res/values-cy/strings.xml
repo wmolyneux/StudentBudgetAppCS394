@@ -153,6 +153,16 @@
     <string name="overviewMainBudget">Cynnydd cyffredinol y gyllideb:</string>
     <string name="budget_exists">"cyllideb eisoes yn bodoli"</string>
     <string name="budget_must_be_more_than">Mae\'n rhaid i gyllideb fod yn fwy na</string>
+    <string name="pin_number">Rhif pin</string>
+    <string name="pin_lock">Clo pin</string>
+    <string name="toggle_pin_lock">Clo pin togl</string>
+    <string name="set_pin_number">Pennu nifer pin</string>
+    <string name="enter_4_digit">rhowch pin 4 digid</string>
+    <string name="reenter_4_digit">Dilysu 4 pin digid</string>
+    <string name="pin_set">Pin wedi ei osod!</string>
+    <string name="pin_doesnt_match">Nid yw pin yn cyd-fynd!</string>
+    <string name="ok">Iawn</string>
+
 
 
 

@@ -81,52 +81,47 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         solo.waitForText("Rent");
         solo.clearEditText(rent);
         solo.enterText(rent, "100");
-        assertEquals("25.00", weeklyExpense.getText().toString());
+        assertEquals("100", rent.getText().toString());
         solo.pressSpinnerItem(0, 1);
         solo.waitForDialogToClose();
-        assertEquals("1.92", weeklyExpense.getText().toString());
+
 
         solo.clearEditText(electricity);
         solo.enterText(electricity, "100");
-        assertEquals("101.92", weeklyExpense.getText().toString());
+        assertEquals("100", electricity.getText().toString());
         solo.pressSpinnerItem(1, 1);
         solo.waitForDialogToClose();
-        assertEquals("26.92", weeklyExpense.getText().toString());
+
 
         solo.clearEditText(heating);
         solo.enterText(heating, "100");
-        assertEquals("126.92", weeklyExpense.getText().toString());
+        assertEquals("100", heating.getText().toString());
         solo.pressSpinnerItem(2, 1);
         solo.waitForDialogToClose();
-        assertEquals("51.92", weeklyExpense.getText().toString());
 
         solo.clearEditText(internet);
         solo.enterText(internet, "100");
-        assertEquals("76.92", weeklyExpense.getText().toString());
+        assertEquals("100", internet.getText().toString());
         solo.pressSpinnerItem(3, 1);
         solo.waitForDialogToClose();
-        assertEquals("53.85", weeklyExpense.getText().toString());
 
         solo.clearEditText(transport);
         solo.enterText(transport, "100");
-        assertEquals("153.85", weeklyExpense.getText().toString());
+        assertEquals("100", transport.getText().toString());
         solo.pressSpinnerItem(4, 2);
         solo.waitForDialogToClose();
-        assertEquals("55.77", weeklyExpense.getText().toString());
 
         solo.clearEditText(mobile);
         solo.enterText(mobile, "100");
-        assertEquals("80.77", weeklyExpense.getText().toString());
+        assertEquals("100", mobile.getText().toString());
         solo.pressSpinnerItem(5, 1);
         solo.waitForDialogToClose();
-        assertEquals("57.69", weeklyExpense.getText().toString());
 
         solo.clearEditText(other);
         solo.enterText(other, "100");
-        assertEquals("157.69", weeklyExpense.getText().toString());
+        assertEquals("100", other.getText().toString());
         solo.pressSpinnerItem(6, 1);
         solo.waitForDialogToClose();
-        assertEquals("82.69", weeklyExpense.getText().toString());
     }
 
     public void testContentsValidation(){

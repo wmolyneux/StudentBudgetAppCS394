@@ -153,6 +153,15 @@
     <string name="overviewMainBudget">Overall Budget progress:</string>
     <string name="budget_exists">"budget already exists!"</string>
     <string name="budget_must_be_more_than">Budget must be more than</string>
+    <string name="pin_lock">Pin lock</string>
+    <string name="toggle_pin_lock">Toggle pin lock</string>
+    <string name="set_pin_number">Set pin number</string>
+    <string name="pin_number">Pin number</string>
+    <string name="enter_4_digit">Please enter 4-digit pin</string>
+    <string name="reenter_4_digit">Please re-enter 4-digit pin</string>
+    <string name="pin_set">Pin set!</string>
+    <string name="pin_doesnt_match">Pin does not match</string>
+    <string name="ok">OK</string>
 
 
 </resources>

@@ -67,7 +67,7 @@ public class SettingsFragment extends PreferenceFragment {
     private void openInitialPinDialog() {
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.custom_pin_dialog);
-        dialog.setTitle("Please enter a 4-digit pin");
+        dialog.setTitle(getActivity().getString(R.string.enter_4_digit));
 
         final EditText pinField = (EditText)dialog.findViewById(R.id.pin_et);
         pinField.addTextChangedListener(new TextWatcher() {
@@ -104,7 +104,7 @@ public class SettingsFragment extends PreferenceFragment {
     private void openPinValidationDialog() {
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.custom_pin_dialog);
-        dialog.setTitle("Please re-enter the 4-digit pin");
+        dialog.setTitle(getActivity().getString(R.string.reenter_4_digit));
 
         final EditText pinField = (EditText)dialog.findViewById(R.id.pin_et);
         pinField.addTextChangedListener(new TextWatcher() {
@@ -122,7 +122,7 @@ public class SettingsFragment extends PreferenceFragment {
                         setPinPreference();
                     }
                     else{
-                        showMessageDialog("Pin values do not match!", true);
+                        showMessageDialog(getActivity().getString(R.string.pin_doesnt_match), true);
                     }
                 }
             }
@@ -150,7 +150,7 @@ public class SettingsFragment extends PreferenceFragment {
         editor.putString("pref_pin", pin2);
         editor.commit();
 
-        showMessageDialog("Pin set!", false);
+        showMessageDialog(getActivity().getString(R.string.pin_set), false);
 
     }
 
@@ -163,7 +163,7 @@ public class SettingsFragment extends PreferenceFragment {
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getActivity().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }

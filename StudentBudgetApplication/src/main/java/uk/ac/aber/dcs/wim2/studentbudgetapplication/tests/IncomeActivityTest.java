@@ -2,6 +2,7 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.tests;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -91,7 +92,8 @@ public class IncomeActivityTest extends ActivityInstrumentationTestCase2<EnterAc
         assertEquals("100", salaryField.getText().toString());
         solo.pressSpinnerItem(0, 1);
         solo.waitForDialogToClose();
-        assertEquals("Spinner is not selected to monthly", true, solo.isSpinnerTextSelected(0, "Monthly"));
+        TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.weekly_monthly_yearly);
+        assertEquals("Spinner is not selected to monthly", true, solo.isSpinnerTextSelected(0, typedArray.getString(1)));
 
 
         solo.clearEditText(otherField);
@@ -99,7 +101,7 @@ public class IncomeActivityTest extends ActivityInstrumentationTestCase2<EnterAc
         assertEquals("100", otherField.getText().toString());
         solo.pressSpinnerItem(1, 1);
         solo.waitForDialogToClose();
-        assertEquals("Spinner is not selected to monthly", true, solo.isSpinnerTextSelected(1, "Monthly"));
+        assertEquals("Spinner is not selected to monthly", true, solo.isSpinnerTextSelected(1, typedArray.getString(1)));
 
     }
 
