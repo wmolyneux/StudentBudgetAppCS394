@@ -126,7 +126,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/dateField"
-                android:layout_weight="1.4"
+                android:layout_weight="1.6"
                 android:editable="false"/>
 
     </LinearLayout>
