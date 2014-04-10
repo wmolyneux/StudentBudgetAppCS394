@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -33,7 +34,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
-public class TransactionsFragment extends Fragment implements View.OnTouchListener, View.OnClickListener, AdapterView.OnItemSelectedListener{
+public class TransactionsFragment extends Fragment implements View.OnTouchListener, View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
     //views from the layout
     private EditText amount;
@@ -117,6 +118,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
 
         date = (EditText) inflate.findViewById(R.id.dateField);
         date.setOnTouchListener(this);
+        type.setOnCheckedChangeListener(this);
 
 
         clear = (Button) inflate.findViewById(R.id.clearButton);
@@ -205,4 +207,17 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
     }
 
 
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        switch(compoundButton.getId()){
+            case R.id.typeButton:
+                if(compoundButton.isChecked()){
+                    category.setSelection(7);
+                }
+                else{
+                    category.setSelection(0);
+                }
+                break;
+        }
+    }
 }
