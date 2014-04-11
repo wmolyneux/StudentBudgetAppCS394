@@ -20,7 +20,7 @@
     <string name="title_activity_settings_fragment">SettingsFragment</string>
 
     <string-array name="language_names">
-        <item>Saesneg</item>
+        <item>English</item>
         <item>Cymraeg</item>
     </string-array>
     <string-array name="language_codes">

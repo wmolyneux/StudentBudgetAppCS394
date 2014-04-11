@@ -38,7 +38,6 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 
     private Button entryButton;
     private SQLiteDatabaseHelper db;
-    private Button clear;
     private Context context;
 
     @Override
@@ -54,12 +53,6 @@ public class EnterActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_enter);
         entryButton = (Button)findViewById(R.id.enterButton);
         entryButton.setOnClickListener(this);
-
-        //testing purposes remove!!!!
-        clear = (Button) findViewById(R.id.clearDB);
-        clear.setOnClickListener(this);
-
-
     }
 
     @Override
@@ -103,18 +96,6 @@ public class EnterActivity extends Activity implements View.OnClickListener{
                     startActivity(intent);
                 }
                 break;
-
-            case R.id.clearDB:
-                db = new SQLiteDatabaseHelper(this);
-                for (Detail det : db.getAllDetails()){
-                    db.deleteDetail(det);
-                }
-                for (Constant con : db.getAllConstants()){
-                    db.deleteConstant(con);
-                }
-                for (Transaction trans : db.getAllTransactions()){
-                    db.deleteTransaction(trans);
-                }
         }
     }
 
