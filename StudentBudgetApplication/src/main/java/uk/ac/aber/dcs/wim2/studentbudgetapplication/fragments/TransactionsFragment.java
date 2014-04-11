@@ -2,10 +2,15 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,40 +22,42 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import org.joda.time.DateTime;
-import org.joda.time.Weeks;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
-public class TransactionsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener{
+public class TransactionsFragment extends Fragment implements View.OnTouchListener, View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     //views from the layout
-    EditText amount;
-    EditText shortDesc;
-    ToggleButton type;
-    Spinner category;
-    EditText date;
-    Button clear;
-    Button create;
+    private EditText amount;
+    private EditText shortDesc;
+    private ToggleButton type;
+    private Spinner category;
+    private EditText date;
+    private Button clear;
+    private Button create;
 
     //saved instance account
-    Detail detail;
+    private Detail detail;
 
     //values for new transaction
-    String tmpType;
-    SQLiteDatabaseHelper db;
+    private String tmpType;
+    private SQLiteDatabaseHelper db;
 
-    int day;
-    int month;
-    int year;
-    String todaysDate;
+    private int day;
+    private int month;
+    private int year;
+    private String todaysDate;
+
+    private DatePickerDialog dateDialog;
+    private String description;
 
 
 
@@ -64,18 +71,23 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         month = cal.get(Calendar.MONTH);
         year = cal.get(Calendar.YEAR);
 
-        String zeroDay = "";
-        String zeroMonth = "";
-
-        if((month+1) < 10){
-            zeroMonth = "0";
-        }
-        if(day < 10){
-            zeroDay = "0";
-        }
-        todaysDate = zeroDay+day+"-"+zeroMonth+(month+1)+"-"+year;
+        todaysDate = day+"/"+(month+1)+"/"+year;
         date.setText(todaysDate);
         return inflate;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int selYear, int selMonth, int selDay) {
+                date.setText(selDay+"/"+(1+selMonth)+"/"+selYear);
+            }
+        };
+
+        dateDialog = new DatePickerDialog(getActivity(), listener, year, month, day);
     }
 
     private void registerViews(View inflate) {
@@ -85,10 +97,13 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         category = (Spinner) inflate.findViewById(R.id.categorySpinner);
 
         db = new SQLiteDatabaseHelper(getActivity());
+
         detail = db.getAllDetails().get(0);
+        TypedArray categoryArray = getResources().obtainTypedArray(R.array.categories);
+
         ArrayList<String> tempCategories = new ArrayList<String>();
         for (Category cat : db.getAllCategories()){
-            tempCategories.add(cat.getName());
+            tempCategories.add(categoryArray.getString(cat.getPosition()));
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
@@ -100,16 +115,15 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
         category.setOnItemSelectedListener(this);
 
-
-
-
         date = (EditText) inflate.findViewById(R.id.dateField);
-        date.setOnClickListener(this);
+        date.setOnTouchListener(this);
+
 
         clear = (Button) inflate.findViewById(R.id.clearButton);
         create = (Button) inflate.findViewById(R.id.createTransButton);
 
         create.setOnClickListener(this);
+        clear.setOnClickListener(this);
     }
 
 
@@ -118,24 +132,21 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         switch (view.getId()){
             case R.id.createTransButton:
                 if(validateInput()){
-
                     Transaction newTrans =
                             new Transaction(Float.valueOf(amount.getText().toString()),
-                                    shortDesc.getText().toString(), tmpType, category.getSelectedItem().toString(), date.getText().toString());
+                                    description, tmpType, category.getSelectedItemPosition(), date.getText().toString());
                     SQLiteDatabaseHelper db = new SQLiteDatabaseHelper(getActivity());
                     db.addTransaction(newTrans);
+                    BalanceUtilities.updateWidget(getActivity());
 
-                    Toast.makeText(getActivity(), "Transaction added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.transaction_added), Toast.LENGTH_LONG).show();
                     getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new OverviewFragment()).commit();
+                            .replace(R.id.content_frame, new OverviewFragment(), "overview").commit();
                 }
                 break;
             case R.id.clearButton:
                 cleanForm();
                 break;
-            case R.id.dateField:
-//                getActivity().showDialog(0);
-
         }
 
     }
@@ -149,6 +160,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
     }
 
+
     private boolean validateInput() {
         if(type.isChecked()){
             tmpType = "plus";
@@ -156,21 +168,18 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         else{
             tmpType = "minus";
         }
-
-        if(amount.getText().toString().isEmpty()){
-            return false;
-        }
         if(shortDesc.getText().toString().isEmpty()){
+            description = getString(R.string.no_desc);
+        }
+        else{
+            description = shortDesc.getText().toString();
+        }
+        if(amount.getText().toString().isEmpty() || Float.valueOf(amount.getText().toString()) == 0){
             return false;
         }
         if(category.getSelectedItem().toString().isEmpty()){
             return false;
         }
-        if(date.getText().toString().isEmpty() || !date.getText().toString().matches("\\d{2}-\\d{2}-\\d{4}")){
-            Toast.makeText(getActivity(), "Please enter valid date in the format dd-mm-yyyy", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
         return true;
     }
 
@@ -183,4 +192,17 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (view.getId()){
+            case R.id.dateField:
+                dateDialog.show();
+                break;
+        }
+
+        return false;
+    }
+
+
 }

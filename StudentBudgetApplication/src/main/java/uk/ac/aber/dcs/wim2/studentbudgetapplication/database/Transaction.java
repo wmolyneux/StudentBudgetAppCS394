@@ -3,6 +3,8 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
 
 import java.io.Serializable;
 
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+
 /**
  * Created by wim2 on 13/02/2014.
  */
@@ -12,12 +14,12 @@ public class Transaction implements Serializable{
     private Float amount;
     private String shortDesc;
     private String type;
-    private String category;
-    private String date; //dd/mm/yyyy
+    private int category;
+    private String date;
 
     public Transaction(){}
 
-    public Transaction(Float amount, String desc, String type, String cat, String date){
+    public Transaction(Float amount, String desc, String type, int cat, String date){
         super();
         this.amount = amount;
         this.shortDesc = desc;
@@ -47,7 +49,7 @@ public class Transaction implements Serializable{
         return type;
     }
 
-    public String getCategory(){
+    public int getCategory(){
         return category;
     }
 
@@ -67,7 +69,7 @@ public class Transaction implements Serializable{
         this.shortDesc = shortDesc;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 

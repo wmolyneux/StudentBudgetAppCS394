@@ -3,6 +3,7 @@
     package="uk.ac.aber.dcs.wim2.studentbudgetapplication"
     android:versionCode="1"
     android:versionName="1.0" >
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -16,6 +17,7 @@
         <activity
             android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity"
             android:label="@string/app_name" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,45 +25,46 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.MainActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.AccountsActivity"
-            android:label="@string/title_activity_accounts" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.NewAccountActivity"
-            android:label="@string/title_activity_new_account" >
-        </activity>
-        <activity
             android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity"
             android:label="@string/title_activity_transaction" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.IncomeActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.IncomeActivity"
             android:label="@string/title_activity_income" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.ExpenseActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity"
             android:label="@string/title_activity_expense" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.AcademicYearActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.BudgetPeriodActivity"
             android:label="@string/title_activity_term" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.DetailActivity"
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.DetailActivity"
             android:label="@string/title_activity_detail" >
         </activity>
+
+        <receiver
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider"
+            android:label="Student budget widget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name=".widget.INCREMENT_AMOUNT_BUTTON" />
+                <action android:name=".widget.DECREMENT_AMOUNT_BUTTON" />
+                <action android:name=".widget.SUBMIT_BUTTON" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_attributes" />
+        </receiver>
+
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.IncomeFragment"
-            android:label="@string/title_activity_income_fragment" >
+            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.SettingsActivity"
+            android:label="@string/title_activity_settings" >
         </activity>
-        <activity
-            android:name=".newActivities.ExpenseFragment"
-            android:label="@string/title_activity_expense_fragment" >
-        </activity>
+
     </application>
 
 </manifest>

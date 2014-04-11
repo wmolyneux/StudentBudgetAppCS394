@@ -1,34 +1,45 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.preference.PreferenceManager;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.joda.time.DateTime;
-import org.joda.time.Weeks;
+import org.joda.time.Days;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.List;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Constant;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BudgetAdapterListener;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BudgetArrayAdapter;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
-public class OverviewFragment extends Fragment {
+public class OverviewFragment extends ListFragment {
 
-    Detail detail = null;
-    SQLiteDatabaseHelper db;
-    TextView weeklyIncome;
-    TextView weeklyExpense;
-    TextView weeklyBalance;
-    TextView totalBalance;
-    ArrayList<Transaction> thisWeekTransaction;
-
+    private Detail detail = null;
+    private SQLiteDatabaseHelper db;
+    private TextView weeklyIncome;
+    private TextView weeklyExpense;
+    private TextView weeklyBalance;
+    private ListView list;
+    private BudgetArrayAdapter listAdapter;
+    private BudgetAdapterListener listen;
+    private List<Budget> budgets;
+    private String currency;
 
 
     @Override
@@ -40,10 +51,11 @@ public class OverviewFragment extends Fragment {
     }
 
     private void registerViews(View view) {
-        weeklyIncome = (TextView) view.findViewById(R.id.overWeeklyIncome);
-        weeklyExpense = (TextView) view.findViewById(R.id.overWeeklyExpense);
+//        weeklyIncome = (TextView) view.findViewById(R.id.overWeeklyIncome);
+//        weeklyExpense = (TextView) view.findViewById(R.id.overWeeklyExpense);
         weeklyBalance = (TextView) view.findViewById(R.id.overWeeklyBalance);
-        totalBalance = (TextView) view.findViewById(R.id.totalBalance);
+        list = (ListView)view.findViewById(android.R.id.list);
+
     }
 
     @Override
@@ -51,150 +63,102 @@ public class OverviewFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         db = new SQLiteDatabaseHelper(getActivity());
         detail = db.getAllDetails().get(0);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         setup();
-
-
     }
 
     private void setup() {
-        weeklyIncome.setText(detail.getWeeklyIncome().toString());
-        weeklyExpense.setText(detail.getWeeklyExpense().toString());
-
-        //calculate balance using incomes and expense constants
-        calculateBalanceWithConstants(detail.getTotalWeeks());
-
-        int weeks = calculateWeeksTillEndOfYear();
-        detail.setWeeksRemaining(weeks);
+        currency = FragmentUtilities.getCurrency(getActivity());
+        setStartAndEndDates();
 
 
-
-        //Array for this weeks transactions
-        thisWeekTransaction = new ArrayList<Transaction>();
-
-        //do all transactions from other weeks
-        calculateBalanceWithTransactionsOnDifferentWeeks(weeks);
-
-        //calculate weekly balance from the current balance
-        detail.setWeeklyBalance(calculateWeeklyBalance());
-
-        //for the remaining transaction that occured this week.
-        calculateWeeklyBalanceWithTransactionsFromCurrentWeek();
-
-        totalBalance.setText(detail.getBalance()+"");
-        weeklyBalance.setText(detail.getWeeklyBalance() + "");
+        detail = BalanceUtilities.recalculateBalance(detail, db);
+        weeklyBalance.setText(currency+BalanceUtilities.getValueAs2dpString(detail.getWeeklyBalance()));
         db.updateDetail(detail);
 
+        checkBudgets();
+        budgets = db.getAllBudgets();
+        listAdapter = new BudgetArrayAdapter(getActivity(), budgets);
+        listen = new BudgetAdapterListener(getActivity(), budgets, db, listAdapter);
+        list.setOnItemLongClickListener(listen);
+        list.setOnItemClickListener(listen);
 
+        checkMainBudget();
+
+        setListAdapter(listAdapter);
     }
 
-    private void calculateWeeklyBalanceWithTransactionsFromCurrentWeek() {
-        for (Transaction trans : thisWeekTransaction){
-            //if transaction type is minus then remove from the weekly balance and the total balance
-            if(trans.getType().equalsIgnoreCase("minus")){
-                detail.setBalance(detail.getBalance()-trans.getAmount());
-                detail.setWeeklyBalance(detail.getWeeklyBalance()-trans.getAmount());
-            }
-
-        }
-    }
-
-    private void calculateBalanceWithTransactionsOnDifferentWeeks(int weeks) {
-        for(Transaction trans : db.getAllTransactions()){
-            //date object for transaction date
-            String[] split = trans.getDate().split("-");
-            DateTime transDate = new DateTime(Integer.valueOf(split[2]),
-                    Integer.valueOf(split[1]), Integer.valueOf(split[0]), 0, 0);
-
-            //date object for end of year
-            String[] endSplit = detail.getEndDate().split("-");
-            DateTime end = new DateTime(Integer.valueOf(endSplit[2]),
-                    Integer.valueOf(endSplit[1]), Integer.valueOf(endSplit[0]), 0, 0);
-
-            //weeks between transaction date and end of year.
-            int transWeeks = Weeks.weeksBetween(transDate, end).getWeeks();
-
-            //if the transactions are on the same week AND is a minus type
-            // (plus types are included in the total)
-            if(transWeeks==weeks && trans.getType().equalsIgnoreCase("minus")){
-                //add to the temp array for later use
-                thisWeekTransaction.add(trans);
-            }
-            //otherwise if a minus transaction
-            else if(trans.getType().equalsIgnoreCase("minus")){
-                //minus the amount from total balance
-                detail.setBalance(detail.getBalance()-trans.getAmount());
-            }
-            //else if the transaction type is plus basically
-            else{
-                //add the value to the balance
-                detail.setBalance(detail.getBalance()+trans.getAmount());
-            }
-
-        }
-    }
-
-    public Float calculateWeeklyBalance(){
-        return (detail.getBalance()/detail.getWeeksRemaining());
-    }
-
-    private int calculateWeeksTillEndOfYear() {
-        String[] startSplit = detail.getStartDate().split("-");
-        DateTime start = new DateTime(Integer.valueOf(startSplit[2]),
-                Integer.valueOf(startSplit[1]), Integer.valueOf(startSplit[0]), 0, 0);
+    private void checkMainBudget() {
+        TextView overviewPercent = (TextView)getActivity().findViewById(R.id.overviewBudgetPercent);
+        ProgressBar overviewProgress = (ProgressBar)getActivity().findViewById(R.id.overviewProgressBar);
 
         Calendar cal = Calendar.getInstance();
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int month = cal.get(Calendar.MONTH);
         int year = cal.get(Calendar.YEAR);
         DateTime today = new DateTime(year, month+1, day, 0, 0);
-        if(today.isAfter(start)){
-            start = today;
-        }
 
-        String[] endSplit = detail.getEndDate().split("-");
-        DateTime end = new DateTime(Integer.valueOf(endSplit[2]),
-                Integer.valueOf(endSplit[1]), Integer.valueOf(endSplit[0]), 0, 0);
+        String[] endSplit = detail.getStartDate().split("/");
+        DateTime startDate = new DateTime(Integer.valueOf(endSplit[2]), Integer.parseInt(endSplit[1]), Integer.valueOf(endSplit[0]), 0, 0);
 
-        return Weeks.weeksBetween(start, end).getWeeks();
-    }
+        float percent = ((Days.daysBetween(startDate, today).getDays()+1) * 100)/Float.valueOf(detail.getTotalWeeks());
 
-    private void calculateBalanceWithConstants(int weeks) {
-        detail.setBalance(Float.valueOf(0));
-        for (Constant con : db.getAllConstants()){
-            if(con.getType().equalsIgnoreCase("income")){
-                if(con.getRecurr().equalsIgnoreCase("weekly")){
-                    Float temp = con.getAmount()*weeks;
-                    detail.setBalance(detail.getBalance()+temp);
-                }
-                else if(con.getRecurr().equalsIgnoreCase("monthly")){
-                    Float temp = con.getAmount()/4;
-                    temp = temp*weeks;
-                    detail.setBalance(detail.getBalance()+temp);
-                }
-                else{
-                    detail.setBalance(detail.getBalance()+con.getAmount());
-                }
-            }
-            else{
-                if(con.getRecurr().equalsIgnoreCase("weekly")){
-                    Float temp = con.getAmount()*weeks;
-                    detail.setBalance(detail.getBalance()-temp);
-                }
-                else if(con.getRecurr().equalsIgnoreCase("monthly")){
-                    Float temp = con.getAmount()/4;
-                    temp = temp*weeks;
-                    detail.setBalance(detail.getBalance()-temp);
-                }
-                else{
-                    detail.setBalance(detail.getBalance()-con.getAmount());
-                }
+        overviewPercent.setText(BalanceUtilities.getValueAs0dpString(percent)+"%");
+        overviewProgress.setProgress((int)percent);
 
-
-            }
-//
-        }
 
     }
 
+    private void setStartAndEndDates() {
+        TextView weekStart = (TextView)getActivity().findViewById(R.id.overWeekStart);
+        TextView weekEnd = (TextView)getActivity().findViewById(R.id.overWeekEnd);
+
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+        DateTime today = new DateTime(year, month+1, day, 0, 0);
+        today = today.withDayOfWeek(1);
+
+        String[] splitStart = detail.getStartDate().split("/");
+        DateTime startDate = new DateTime(Integer.valueOf(splitStart[2]), Integer.parseInt(splitStart[1]), Integer.valueOf(splitStart[0]), 0, 0);
+        if(startDate.isAfter(today)){
+            weekStart.setText(detail.getStartDate()+"  ");
+        }
+        else{
+            weekStart.setText(today.getDayOfMonth()+"/"+today.getMonthOfYear()+"/"+today.getYear()+"  ");
+        }
+
+        today = today.withDayOfWeek(7);
+        String[] splitEnd = detail.getEndDate().split("/");
+        DateTime endDate = new DateTime(Integer.valueOf(splitEnd[2]), Integer.parseInt(splitEnd[1]), Integer.valueOf(splitEnd[0]), 0, 0);
+        if(endDate.isBefore(today)){
+            weekEnd.setText("  "+detail.getEndDate());
+        }
+        else{
+            weekEnd.setText("  "+today.getDayOfMonth()+"/"+today.getMonthOfYear()+"/"+today.getYear());
+        }
+    }
+
+    private void checkBudgets() {
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+        DateTime today = new DateTime(year, month+1, day, 0, 0);
+        for(Budget budget : db.getAllBudgets()){
+            String[] budgetSplit = budget.getDate().split("/");
+            DateTime budgetDate = new DateTime(Integer.valueOf(budgetSplit[2]),
+                    Integer.valueOf(budgetSplit[1]), Integer.valueOf(budgetSplit[0]), 0, 0);
+            if(Days.daysBetween(budgetDate, today).getDays() > 6){
+                db.deleteBudget(budget);
+            }
+        }
+    }
 
 }

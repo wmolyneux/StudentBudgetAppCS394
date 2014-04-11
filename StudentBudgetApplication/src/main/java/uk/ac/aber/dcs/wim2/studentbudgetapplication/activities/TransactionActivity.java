@@ -1,29 +1,28 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class TransactionActivity extends Activity implements View.OnClickListener{
 
-    TextView amount;
-    TextView shortDesc;
-    TextView type;
-    TextView category;
-    TextView date;
-    Button doneButton;
+    private TextView amount;
+    private TextView shortDesc;
+    private TextView type;
+    private TextView category;
+    private TextView date;
+    private Button doneButton;
 
-    Transaction transaction;
+    private Transaction transaction;
 
 
 
@@ -34,7 +33,7 @@ public class TransactionActivity extends Activity implements View.OnClickListene
         initialiseViews();
 
         transaction = (Transaction)getIntent().getSerializableExtra("TRANSACTION");
-        SQLiteHelper db = new SQLiteHelper(this);
+
 
         //Enter the transaction information into the layout
         enterTransactionInformation();
@@ -42,17 +41,15 @@ public class TransactionActivity extends Activity implements View.OnClickListene
     }
 
     private void enterTransactionInformation() {
-
-
-        amount.setText(transaction.getAmount().toString());
+        amount.setText(FragmentUtilities.getCurrency(this)+ BalanceUtilities.getValueAs2dpString(transaction.getAmount()));
         shortDesc.setText(transaction.getShortDesc());
         if(!transaction.getType().equalsIgnoreCase("minus")){
-            type.setText("Income");
+            type.setText(this.getString(R.string.transaction_expense));
         }
         else{
-            type.setText("Expense");
+            type.setText(this.getString(R.string.history_income));
         }
-        category.setText(transaction.getCategory());
+        category.setText(getResources().obtainTypedArray(R.array.categories).getString(transaction.getCategory()));
         date.setText(transaction.getDate());
     }
 
@@ -62,6 +59,7 @@ public class TransactionActivity extends Activity implements View.OnClickListene
         type = (TextView) findViewById(R.id.typeValue);
         category = (TextView) findViewById(R.id.categoryValue);
         date = (TextView) findViewById(R.id.dateValue);
+
 
         doneButton = (Button) findViewById(R.id.doneButton);
         doneButton.setOnClickListener(this);

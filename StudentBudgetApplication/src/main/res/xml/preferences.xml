@@ -1,0 +1,34 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+            android:title="@string/settings_title"
+            android:key="pref_key_storage_settings">
+
+        <ListPreference
+                android:key="pref_language"
+                android:summary="@string/preference_language_summary"
+                android:title="@string/preference_language_title"
+                android:entries="@array/language_names"
+                android:entryValues="@array/language_codes"
+                android:defaultValue="en"/>
+
+        <ListPreference
+                android:key="pref_currency"
+                android:summary="@string/preference_currency_summary"
+                android:title="@string/preference_currency_title"
+                android:entries="@array/currency"
+                android:entryValues="@array/currency"
+                android:defaultValue="£"/>
+        <CheckBoxPreference
+                android:key="pref_bool_pin"
+                android:summary="@string/toggle_pin_lock"
+                android:title="@string/pin_lock"
+                android:defaultValue="false"/>
+        <Preference
+                android:dependency="pref_bool_pin"
+                android:key="pref_pin"
+                android:title="@string/pin_number"
+                android:summary="@string/set_pin_number"/>
+
+    </PreferenceCategory>
+    ...
+</PreferenceScreen>

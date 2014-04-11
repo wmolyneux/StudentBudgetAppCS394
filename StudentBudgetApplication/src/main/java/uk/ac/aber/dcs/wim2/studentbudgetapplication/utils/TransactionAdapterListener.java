@@ -1,25 +1,25 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.utils;
 
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.MainActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Account;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.OverviewFragment;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
 import static android.widget.AdapterView.OnItemClickListener;
 import static android.widget.AdapterView.OnItemLongClickListener;
@@ -32,18 +32,13 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
     Context context;
     List<Transaction> transactions;
     SQLiteDatabaseHelper db;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> values;
-    Detail detail;
+    HistoryArrayAdapter adapter;
 
-    public TransactionAdapterListener(Context con, Detail det,
-                List<Transaction> trans, SQLiteDatabaseHelper database, ArrayAdapter<String> adap, ArrayList<String> vals){
+    public TransactionAdapterListener(Context con, List<Transaction> trans, SQLiteDatabaseHelper database, HistoryArrayAdapter adap){
         context = con;
         transactions = trans;
         db = database;
         adapter = adap;
-        values = vals;
-        detail = det;
 
     }
 
@@ -62,32 +57,27 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
     }
 
     private void deleteAlert(final int transactionToRemove) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                context);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         // set title
-        alertDialogBuilder.setTitle("Remove "+transactions.get(transactionToRemove).getShortDesc()+"?");
+        alertDialogBuilder.setTitle(context.getString(R.string.transaction_removed)+" "+transactions.get(transactionToRemove).getShortDesc()+"?");
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("Transaction will be permanently removed!")
+                .setMessage(context.getString(R.string.transaction_remove_msg))
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(context.getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //remove the selected item from the necessary arrays and database
-                        values.remove(transactionToRemove);
                         db.deleteTransaction(transactions.get(transactionToRemove));
-                        Transaction trans = transactions.get(transactionToRemove);
-                        adjustBalance(db, trans.getType(), trans.getAmount());
                         transactions.remove(transactionToRemove);
-
 
                         //re-validate the adapter and close the dialog
                         adapter.notifyDataSetInvalidated();
                         dialog.cancel();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(context.getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, just close
                         // the dialog box and do nothing
@@ -102,16 +92,4 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
         alertDialog.show();
     }
 
-    private void adjustBalance(SQLiteDatabaseHelper db, String type, Float amount) {
-
-        //currently doing nothing
-//        if(type.equalsIgnoreCase("minus")){
-//            current.setBalance(current.getBalance()+Float.valueOf(amount.toString()));
-//
-//        }
-//        else{
-//            current.setBalance(current.getBalance()-Float.valueOf(amount.toString()));
-//        }
-//        db.updateAccount(current);
-    }
 }

@@ -19,13 +19,14 @@
         <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="30dp"
+                android:gravity="center_horizontal">
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Amount:"
+                    android:text="@string/new_transaction_amount"
                     android:id="@+id/amountText"/>
 
             <TextView
@@ -41,13 +42,14 @@
         <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="30dp"
+                android:gravity="center_horizontal">
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Short Description:"
+                    android:text="@string/new_transaction_desc"
                     android:id="@+id/descText"
                     android:layout_column="0"/>
 
@@ -63,13 +65,14 @@
         <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="30dp"
+                android:gravity="center_horizontal">
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Type:"
+                    android:text="@string/new_transaction_type"
                     android:id="@+id/typeText"
                     android:layout_column="0"/>
             <TextView
@@ -83,13 +86,14 @@
         <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="30dp"
+                android:gravity="center_horizontal">
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Category:"
+                    android:text="@string/new_transaction_category"
                     android:id="@+id/categoryText"
                     android:layout_column="0"/>
             <TextView
@@ -103,13 +107,14 @@
         <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="30dp"
+                android:gravity="center_horizontal">
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Date:"
+                    android:text="@string/new_transaction_date"
                     android:id="@+id/dateText"
                     android:layout_column="0"/>
             <TextView
@@ -125,7 +130,7 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Done"
+            android:text="@string/done_button"
             android:id="@+id/doneButton"
             android:layout_below="@+id/tableLayout"
             android:layout_centerHorizontal="true"/>

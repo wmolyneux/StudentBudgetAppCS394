@@ -1,30 +1,56 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Vibrator;
+import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
+import java.util.Calendar;
+
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Category;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.AcademicYearActivity;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Constant;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.Detail;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.DetailActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.newActivities.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 public class EnterActivity extends Activity implements View.OnClickListener{
 
-    Button entryButton;
-    SQLiteDatabaseHelper db;
-    Button clear;
+    private Button entryButton;
+    private SQLiteDatabaseHelper db;
+    private Button clear;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = new SQLiteDatabaseHelper(this);
+        FragmentUtilities.refreshPreferences(this);
+        context = this;
+
+        if(db.getAllDetails().size()!=0){
+            startDetail();
+        }
         setContentView(R.layout.activity_enter);
         entryButton = (Button)findViewById(R.id.enterButton);
         entryButton.setOnClickListener(this);
@@ -36,12 +62,31 @@ public class EnterActivity extends Activity implements View.OnClickListener{
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        FragmentUtilities.refreshPreferences(this);
+        Intent i = getIntent();
+        finish();
+        startActivity(i);
+    }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.enter, menu);
+        getMenuInflater().inflate(R.menu.detail, menu);
+        MenuItem settings = menu.findItem(R.id.action_settings);
+        if(settings != null){
+            settings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(context, SettingsActivity.class);
+                    startActivityForResult(intent, 0);
+                    return true;
+                }
+            });
+        }
         return true;
     }
 
@@ -49,22 +94,12 @@ public class EnterActivity extends Activity implements View.OnClickListener{
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.enterButton:
-                //temp code REMOVE!!!
-
-//                AccountDataSQLHelper db = new AccountDataSQLHelper(this);
-//                db.addAccount(new Account("awdwadwdwd", Float.valueOf(2000), Float.valueOf(200)));
-//                Toast.makeText(this, db.getAllAccounts().size()+"", Toast.LENGTH_LONG).show();
-//
-                db = new SQLiteDatabaseHelper(this);
                 populateCategoryTable();
-
-                try{
-                    Detail detail = db.getAllDetails().get(0);
-                    Intent intent = new Intent(this, DetailActivity.class);
-                    startActivity(intent);
+                if(db.getAllDetails().size()!=0){
+                    startDetail();
                 }
-                catch(IndexOutOfBoundsException e){
-                    Intent intent = new Intent(this, AcademicYearActivity.class);
+                else {
+                    Intent intent = new Intent(this, BudgetPeriodActivity.class);
                     startActivity(intent);
                 }
                 break;
@@ -83,18 +118,26 @@ public class EnterActivity extends Activity implements View.OnClickListener{
         }
     }
 
+    private void startDetail() {
+        Intent intent = new Intent(this, DetailActivity.class);
+        startActivity(intent);
+    }
+
 
     private void populateCategoryTable() {
         if(db.getAllCategories().size()==0){
-            db.addCategory(new Category("Food"));
-            db.addCategory(new Category("Booze"));
-            db.addCategory(new Category("Sport"));
-            db.addCategory(new Category("University"));
-            db.addCategory(new Category("Travel"));
-            db.addCategory(new Category("Clothing"));
-            db.addCategory(new Category("Other"));
+            db.addCategory(new Category(0, "cyan"));
+            db.addCategory(new Category(1, "darkGreen"));
+            db.addCategory(new Category(2, "green"));
+            db.addCategory(new Category(3, "magenta"));
+            db.addCategory(new Category(4, "yellow"));
+            db.addCategory(new Category(5, "red"));
+            db.addCategory(new Category(6, "blue"));
+            db.addCategory(new Category(7, "purple"));
         }
     }
+
+
 
 
 }
