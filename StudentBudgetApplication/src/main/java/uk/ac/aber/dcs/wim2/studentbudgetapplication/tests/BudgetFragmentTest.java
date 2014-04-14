@@ -47,6 +47,7 @@ public class BudgetFragmentTest extends ActivityInstrumentationTestCase2<EnterAc
         if(solo.waitForActivity(DetailActivity.class, 1000)){
             TestingUtilities.checkDatabase(solo);
             solo.finishOpenedActivities();
+            solo = new Solo(getInstrumentation());
             activity.startActivity(newIntent);
         }
 

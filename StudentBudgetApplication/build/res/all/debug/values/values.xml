@@ -136,10 +136,10 @@
     <string name="settings_title">Application</string>
     <string name="submit_button">Submit</string>
     <string name="title_activity_budgets_fragments">BudgetsFragments</string>
-    <string name="title_activity_detail">DetailActivity</string>
-    <string name="title_activity_expense">ExpenseActivity</string>
+    <string name="title_activity_detail">StudentBudgetApplication</string>
+    <string name="title_activity_expense">Expenses</string>
     <string name="title_activity_expense_fragment">ExpenseFragment</string>
-    <string name="title_activity_income">IncomeActivity</string>
+    <string name="title_activity_income">Incomes</string>
     <string name="title_activity_income_fragment">IncomeFragment</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_overview_fragment">OverviewFragment</string>
@@ -147,7 +147,7 @@
     <string name="title_activity_report_fragment">ReportFragment</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_settings_fragment">SettingsFragment</string>
-    <string name="title_activity_term">TermActivity</string>
+    <string name="title_activity_term">Budget dates</string>
     <string name="title_activity_transaction">TransactionActivity</string>
     <string name="title_activity_transactions_fragment">TransactionsFragment</string>
     <string name="toggle_pin_lock">Toggle pin lock</string>
