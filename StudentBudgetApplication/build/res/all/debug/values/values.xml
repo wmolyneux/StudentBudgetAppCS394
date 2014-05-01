@@ -93,6 +93,13 @@
     <string name="income_remaining_loans">Remaining loans:</string>
     <string name="income_salary">Salary:</string>
     <string name="income_weekly">Weekly Income:</string>
+    <string name="licensetext">Licensing:\n\n
+        Icons8\n
+        The icons used on the transaction history are from Icons8 (See http://icons8.com/)\n\n
+        AChartEngine\n
+        For the creation of the chart the AChartEngine library was used. This library is under the Apache License 2.0 (See http://www.apache.org/licenses/LICENSE-2.0).\n\n
+        Joda-Time\n
+        The library Joda-Time was used for assistance with date/time calculations throughout the application. This library is under the Apache License 2.0 (See http://www.apache.org/licenses/LICENSE-2.0).</string>
     <string name="msg_budget_end">budget start date</string>
     <string name="msg_budget_valid">valid budget dates</string>
     <string name="msg_expense_electricity">electricity amount</string>
@@ -141,6 +148,7 @@
     <string name="title_activity_expense_fragment">ExpenseFragment</string>
     <string name="title_activity_income">Incomes</string>
     <string name="title_activity_income_fragment">IncomeFragment</string>
+    <string name="title_activity_license">LicenseActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_overview_fragment">OverviewFragment</string>
     <string name="title_activity_pin">PinActivity</string>

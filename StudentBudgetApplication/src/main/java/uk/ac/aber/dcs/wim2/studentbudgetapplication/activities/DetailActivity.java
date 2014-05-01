@@ -1,5 +1,6 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.activities;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,10 +25,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.Locale;
-
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.LicenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.BudgetsFragment;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments.HistoryFragment;
@@ -174,23 +173,10 @@ public class DetailActivity extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.detail, menu);
-        MenuItem settings = menu.findItem(R.id.action_settings);
-        if(settings != null){
-            settings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    Intent intent = new Intent(context, SettingsActivity.class);
-                    startActivityForResult(intent, 0);
-                    return true;
-                }
-            });
-        }
-        return true;
-
-
+        return FragmentUtilities.menuItemSetup(menu, this);
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

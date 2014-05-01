@@ -33,7 +33,7 @@
         <item>€</item>
     </string-array>
 
-<!--     Translate from here down please! -->
+    <!-- Translate from here down please! -->
 
     <string-array name="items">
         <item>Home</item>
@@ -141,7 +141,7 @@
         <item>Micro Transaction</item>
     </string-array>
 
-<!--     new Strings below -->
+    <!-- new Strings below -->
 
     <string name="widget_text">Weekly Balance:</string>
     <string name="submit_button">Submit</string>
@@ -162,6 +162,13 @@
     <string name="pin_set">Pin set!</string>
     <string name="pin_doesnt_match">Pin does not match</string>
     <string name="ok">OK</string>
-
-
+    <string name="title_activity_license">LicenseActivity</string>
+    <string name="licensetext">Licensing:\n\n
+        Icons8\n
+        The icons used on the transaction history are from Icons8 (See http://icons8.com/)\n\n
+        AChartEngine\n
+        For the creation of the chart the AChartEngine library was used. This library is under the Apache License 2.0 (See http://www.apache.org/licenses/LICENSE-2.0).\n\n
+        Joda-Time\n
+        The library Joda-Time was used for assistance with date/time calculations throughout the application. This library is under the Apache License 2.0 (See http://www.apache.org/licenses/LICENSE-2.0).
+    </string>
 </resources>

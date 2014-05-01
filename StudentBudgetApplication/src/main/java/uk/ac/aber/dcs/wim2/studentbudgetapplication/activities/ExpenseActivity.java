@@ -114,20 +114,7 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.detail, menu);
-        MenuItem settings = menu.findItem(R.id.action_settings);
-        if(settings != null){
-            settings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    Intent intent = new Intent(context, SettingsActivity.class);
-                    startActivityForResult(intent, 0);
-                    return true;
-                }
-            });
-        }
-        return true;
+        return FragmentUtilities.menuItemSetup(menu, this);
     }
 
     @Override

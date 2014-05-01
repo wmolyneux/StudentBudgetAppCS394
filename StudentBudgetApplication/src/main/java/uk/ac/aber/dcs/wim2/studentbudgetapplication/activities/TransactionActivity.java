@@ -68,9 +68,7 @@ public class TransactionActivity extends Activity implements View.OnClickListene
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.transaction, menu);
-        return true;
+        return FragmentUtilities.menuItemSetup(menu, this);
     }
 
     @Override
