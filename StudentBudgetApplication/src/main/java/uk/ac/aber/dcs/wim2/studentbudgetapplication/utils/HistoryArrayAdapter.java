@@ -57,22 +57,22 @@ public class HistoryArrayAdapter extends ArrayAdapter<Transaction> {
             image = R.drawable.supermarket;
         }
         else if(cat == 2){
-            image = R.drawable.university;
+            image = R.drawable.booze;
         }
         else if(cat == 3){
-            image = R.drawable.clothing;
-        }
-        else if(cat == 4){
-            image = R.drawable.other;
-        }
-        else if(cat == 5){
             image = R.drawable.sports;
         }
-        else if(cat == 6){
+        else if(cat == 4){
+            image = R.drawable.university;
+        }
+        else if(cat == 5){
             image = R.drawable.travel;
         }
+        else if(cat == 6){
+            image = R.drawable.clothing;
+        }
         else if(cat == 7){
-            image = R.drawable.booze;
+            image = R.drawable.other;
         }
         else if(cat == 8){
             image = R.drawable.microtrans;
