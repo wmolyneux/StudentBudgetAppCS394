@@ -146,7 +146,8 @@ public class ReportFragment extends Fragment implements View.OnClickListener {
         for(int i = 0; i < itemValues.size(); i++){
             float percent = (itemValues.get(i)/total)*100;
             mSeries.add(BalanceUtilities.getValueAs2dpString(percent)+"%   ", percent);
-            setLegendText(legends[i], "• "+itemNames.get(i)+" "+ FragmentUtilities.getCurrency(getActivity())+itemValues.get(i), itemColor.get(i));
+            setLegendText(legends[i], "• "+itemNames.get(i)+" "+ FragmentUtilities.getCurrency(getActivity())+
+                    BalanceUtilities.getValueAs2dpString(itemValues.get(i)), itemColor.get(i));
             SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
             renderer.setColor(itemColor.get(i));
             mRenderer.addSeriesRenderer(renderer);
