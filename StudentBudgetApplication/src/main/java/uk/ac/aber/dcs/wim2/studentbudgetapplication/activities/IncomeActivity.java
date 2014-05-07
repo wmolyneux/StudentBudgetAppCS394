@@ -23,6 +23,12 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 
+/**
+ * This class contains the functionality for setting up reoccurring incomes.
+ *
+ * @author wim2
+ * @version 1.0
+ */
 public class IncomeActivity extends Activity implements View.OnClickListener, TextWatcher, AdapterView.OnItemSelectedListener {
 
     private EditText balanceAmount;
@@ -41,7 +47,11 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
     private Context context;
 
 
-
+    /**
+     * Called when the activity is created to instantiate the objects required.
+     *
+     * @param savedInstanceState - saved bundled state including any variables passed from other activities.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,17 +61,16 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         registerViews();
     }
 
+    /**
+     * Register views with onClick and OnTextChanged listeners
+     */
     public void registerViews(){
         balanceAmount = (EditText)findViewById(R.id.balanceAmount);
         balanceAmount.addTextChangedListener(this);
 
-//        loanSpinner = (Spinner) findViewById(R.id.loanSpinner);
-//        loanSpinner.setOnItemSelectedListener(this);
         loanAmount = (EditText) findViewById(R.id.loanAmount);
         loanAmount.addTextChangedListener(this);
 
-//        grantSpinner = (Spinner) findViewById(R.id.grantSpinner);
-//        grantSpinner.setOnItemSelectedListener(this);
         grantAmount = (EditText) findViewById(R.id.grantAmount);
         grantAmount.addTextChangedListener(this);
 
@@ -81,7 +90,13 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         next.setOnClickListener(this);
     }
 
-
+    /**
+     * Called when a activity is finished with a result code sent to this activity.
+     *
+     * @param requestCode - request code
+     * @param resultCode - result code
+     * @param data - data sent from finishing activity
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -91,12 +106,24 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         startActivity(i);
     }
 
-
+    /**
+     * Called on creation of the activity to create options menu.
+     *
+     * @param menu - Menu on the screen
+     *
+     * @return true if passed
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return FragmentUtilities.menuItemSetup(menu, this);
     }
 
+    /**
+     * Called when an item with an OnClickListener is clicked.
+     * Used for when the next button is pressed to redirect to the next screen.
+     *
+     * @param view - View that has been pressed.
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -116,22 +143,11 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         }
     }
 
-    private void addValuesToDatabase() {
-        detail.setWeeklyIncome(Float.valueOf(weeklyIncome.getText().toString()));
-        Constant balance = new Constant("income", Float.valueOf(balanceAmount.getText().toString()), "balance");
-        Constant loan = new Constant("income", Float.valueOf(loanAmount.getText().toString()), "remaining");
-        Constant grant = new Constant("income", Float.valueOf(grantAmount.getText().toString()), "remaining");
-        Constant wage = new Constant("income", Float.valueOf(wageAmount.getText().toString()), wageSpinner.getSelectedItem().toString());
-        Constant other = new Constant("income", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
-        db = new SQLiteDatabaseHelper(this);
-        db.addConstant(balance);
-        db.addConstant(loan);
-        db.addConstant(grant);
-        db.addConstant(wage);
-        db.addConstant(other);
-
-    }
-
+    /**
+     * Function to validate the input for incomes, checking they are not empty.
+     *
+     * @return - true if passes
+     */
     private boolean validate() {
         if(balanceAmount.getText().toString().isEmpty()){
             Toast.makeText(this, getString(R.string.please_enter)+" "+getString(R.string.msg_income_balance), Toast.LENGTH_LONG).show();
@@ -156,6 +172,9 @@ public class IncomeActivity extends Activity implements View.OnClickListener, Te
         return true;
     }
 
+    /**
+     * Function to recalculate the weekly expense balance as the spinners or values in text fields are changed.
+     */
     public void itemChanged(){
         Float income = new Float(0);
         if(!balanceAmount.getText().toString().isEmpty()){

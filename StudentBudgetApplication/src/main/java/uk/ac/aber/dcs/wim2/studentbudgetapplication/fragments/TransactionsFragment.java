@@ -2,13 +2,9 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.fragments;
 
 
 import android.app.DatePickerDialog;
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,8 +28,13 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
+/**
+ * This class contains the functionality for the budget screen of the application.
+ *
+ * @author wim2
+ * @version 1.0
+ */
 public class TransactionsFragment extends Fragment implements View.OnTouchListener, View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
     //views from the layout
@@ -61,7 +62,15 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
     private String description;
 
 
-
+    /**
+     * Called when creating a fragment inflating the view and instantiating objects
+     *
+     * @param inflater - layout inflater
+     * @param container - container of the view
+     * @param savedInstanceState - bundled state
+     *
+     * @return - view that has been inflated
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_transactions, container, false);
@@ -77,6 +86,11 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         return inflate;
     }
 
+    /**
+     * Called when activity is created to ensure the setup of the screen is done before the main thread
+     *
+     * @param savedInstanceState - bundled state
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -91,6 +105,11 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         dateDialog = new DatePickerDialog(getActivity(), listener, year, month, day);
     }
 
+    /**
+     * Registers views displayed on the screen, including displaying correct values, and setting up onClick listeners
+     *
+     * @param view - fragment view
+     */
     private void registerViews(View inflate) {
         amount = (EditText) inflate.findViewById(R.id.amountField);
         shortDesc = (EditText) inflate.findViewById(R.id.descField);
@@ -128,7 +147,12 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         clear.setOnClickListener(this);
     }
 
-
+    /**
+     * Called when an item with an OnClickListener is clicked.
+     * Used for when the next button is pressed to redirect to the next screen.
+     *
+     * @param view - View that has been pressed.
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -153,6 +177,9 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
 
     }
 
+    /**
+     * clean the form back to its default values
+     */
     public void cleanForm(){
         amount.setText("");
         shortDesc.setText("");
@@ -163,6 +190,11 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
     }
 
 
+    /**
+     * Validate the input in the form
+     *
+     * @return - true if passes
+     */
     private boolean validateInput() {
         if(type.isChecked()){
             tmpType = "plus";
@@ -185,6 +217,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         return true;
     }
 
+
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         category.setSelection(i);
@@ -206,7 +239,11 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
         return false;
     }
 
-
+    /**
+     * called when the toggle button is changed, changing the default category depending on the state
+     * @param compoundButton - toggle button
+     * @param b
+     */
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         switch(compoundButton.getId()){

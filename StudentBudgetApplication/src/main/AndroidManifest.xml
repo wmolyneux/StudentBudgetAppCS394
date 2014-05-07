@@ -65,7 +65,7 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="uk.ac.aber.dcs.wim2.studentbudgetapplication.LicenseActivity"
+            android:name=".activities.LicenseActivity"
             android:label="@string/title_activity_license" >
         </activity>
     </application>

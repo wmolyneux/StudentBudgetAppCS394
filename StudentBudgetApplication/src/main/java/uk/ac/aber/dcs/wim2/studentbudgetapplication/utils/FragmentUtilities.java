@@ -16,7 +16,7 @@ import android.widget.Spinner;
 
 import java.util.Locale;
 
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.LicenseActivity;
+import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.LicenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.SettingsActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;

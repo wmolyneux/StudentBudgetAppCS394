@@ -10,7 +10,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by wim2 on 26/02/2014.
+ * This class contains the functionality for the SQLite database used throughout the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
@@ -147,17 +150,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
-    /**
-     *
-     *
-     *
+
+    /**###########################################
      *
      * CODE FOR DETAIL DATABASE OPERATIONS IS HERE
      *
-     *
-     *
-     *
-     */
+     *############################################*/
+
 
     /**
      * Function takes an detail object and adds it into the database.
@@ -312,17 +311,13 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    /**
-     *
-     *
-     *
+
+    /**###########################################
      *
      * CODE FOR Constant DATABASE OPERATIONS IS HERE
      *
-     *
-     *
-     *
-     */
+     *############################################*/
+
 
     /**
      * Function takes an constant object and adds it into the database.
@@ -457,15 +452,12 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    /**
+
+    /**###########################################
      *
-     * ################################################
      * CODE FOR TRANSACTION DATABASE OPERATIONS IS HERE
-     * ################################################
      *
-     *
-     *
-     */
+     *############################################*/
 
 
 
@@ -611,16 +603,12 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    /**
-     *
-     * ################################################
-     * CODE FOR CATEGORY DATABASE OPERATIONS IS HERE
-     * ################################################
-     *
-     *
-     *
-     */
 
+    /**###########################################
+     *
+     * CODE FOR Category DATABASE OPERATIONS IS HERE
+     *
+     *############################################*/
 
 
     /**
@@ -751,17 +739,11 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    /**
+    /**###########################################
      *
+     * CODE FOR Budgets DATABASE OPERATIONS IS HERE
      *
-     *
-     *
-     * CODE FOR BUDGETS DATABASE OPERATIONS IS HERE
-     *
-     *
-     *
-     *
-     */
+     *############################################*/
 
     /**
      * Function takes an budget object and adds it into the database.

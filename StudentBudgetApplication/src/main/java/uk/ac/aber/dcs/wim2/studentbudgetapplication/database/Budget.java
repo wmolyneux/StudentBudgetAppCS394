@@ -3,7 +3,10 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
 import java.io.Serializable;
 
 /**
- * Created by wim2 on 25/02/2014.
+ * This class contains the functionality for the Budget object
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class Budget implements Serializable{
     private int id;

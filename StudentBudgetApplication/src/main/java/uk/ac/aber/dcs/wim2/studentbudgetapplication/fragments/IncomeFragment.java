@@ -23,6 +23,12 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
+/**
+ * This class contains the functionality for the managing income screen of the application.
+ *
+ * @author wim2
+ * @version 1.0
+ */
 public class IncomeFragment extends Fragment implements AdapterView.OnItemSelectedListener, TextWatcher, View.OnClickListener {
 
     private EditText balanceAmount;
@@ -39,6 +45,15 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
     private SQLiteDatabaseHelper db;
 
 
+    /**
+     * Called when creating a fragment inflating the view and instantiating objects
+     *
+     * @param inflater - layout inflater
+     * @param container - container of the view
+     * @param savedInstanceState - bundled state
+     *
+     * @return - view that has been inflated
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_income, container, false);
@@ -46,6 +61,11 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
         return inflate;
     }
 
+    /**
+     * Registers views displayed on the screen, including displaying correct values, and setting up onClick listeners
+     *
+     * @param inflate - fragment view
+     */
     private void registerViews(View inflate) {
 
         balanceAmount = (EditText)inflate.findViewById(R.id.updateBalanceAmount);
@@ -73,6 +93,11 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
 
     }
 
+    /**
+     * Called when activity is created to ensure the setup of the screen is done before the main thread
+     *
+     * @param savedInstanceState - bundled state
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -129,6 +154,12 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
 
     }
 
+    /**
+     * Called when an item with an OnClickListener is clicked.
+     * Used for when the next button is pressed to redirect to the next screen.
+     *
+     * @param view - View that has been pressed.
+     */
     @Override
     public void onClick(View view) {
         //on button click move back to overview fragment
@@ -146,29 +177,41 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
         }
     }
 
+    /**
+     * Adds values from this screen to the database
+     */
     public void addValuesToDatabase(){
         Detail detail = db.getAllDetails().get(0);
+
+        //removes all current income entries from the Constant table
         for(Constant con : db.getAllConstants()){
             if(con.getType().equalsIgnoreCase("income")){
                 db.deleteConstant(con);
             }
         }
 
+        //constructs the new Constant objects
         detail.setWeeklyIncome(Float.valueOf(weeklyIncome.getText().toString()));
         Constant balance = new Constant("income", Float.valueOf(balanceAmount.getText().toString()), "balance");
         Constant loan = new Constant("income", Float.valueOf(loanAmount.getText().toString()), "remaining");
         Constant grant = new Constant("income", Float.valueOf(grantAmount.getText().toString()), "remaining");
         Constant wage = new Constant("income", Float.valueOf(wageAmount.getText().toString()), wageSpinner.getSelectedItem().toString());
         Constant other = new Constant("income", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
+
+        //adds the new Constant objects to the database
         db.addConstant(balance);
         db.addConstant(loan);
         db.addConstant(grant);
         db.addConstant(wage);
         db.addConstant(other);
-
         db.updateDetail(detail);
     }
 
+    /**
+     * validate the input from the user on the current screen
+     *
+     * @return true if passes
+     */
     private boolean validate() {
         if(balanceAmount.getText().toString().isEmpty()){
             Toast.makeText(getActivity(), getString(R.string.please_enter)+" "+getString(R.string.msg_income_balance), Toast.LENGTH_LONG).show();
@@ -193,6 +236,9 @@ public class IncomeFragment extends Fragment implements AdapterView.OnItemSelect
         return true;
     }
 
+    /**
+     * Update the weekly expense when an item is changed
+     */
     public void itemChanged(){
         Float income = new Float(0);
         if(!balanceAmount.getText().toString().isEmpty()){

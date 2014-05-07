@@ -23,6 +23,12 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
+/**
+ * This class contains the functionality for the managing expense screen of the application.
+ *
+ * @author wim2
+ * @version 1.0
+ */
 public class ExpenseFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener, TextWatcher {
 
     private Spinner rentSpinner;
@@ -44,7 +50,15 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
     private SQLiteDatabaseHelper db;
 
 
-
+    /**
+     * Called when creating a fragment inflating the view and instantiating objects
+     *
+     * @param inflater - layout inflater
+     * @param container - container of the view
+     * @param savedInstanceState - bundled state
+     *
+     * @return - view that has been inflated
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_expense, container, false);
@@ -52,6 +66,11 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         return inflate;
     }
 
+    /**
+     * Registers views displayed on the screen, including displaying correct values, and setting up onClick listeners
+     *
+     * @param inflate - fragment view
+     */
     private void registerViews(View inflate) {
         rentSpinner = (Spinner) inflate.findViewById(R.id.updateRentSpinner);
         rentSpinner.setOnItemSelectedListener(this);
@@ -95,6 +114,11 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
 
     }
 
+    /**
+     * Called when activity is created to ensure the setup of the screen is done before the main thread
+     *
+     * @param savedInstanceState - bundled state
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -129,6 +153,12 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         FragmentUtilities.resetWeekMonthYearSpinnerAndAmount(tempExpenses.get(6), otherSpinner, otherAmount);
     }
 
+    /**
+     * Called when an item with an OnClickListener is clicked.
+     * Used for when the next button is pressed to redirect to the next screen.
+     *
+     * @param view - View that has been pressed.
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -145,14 +175,20 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         }
     }
 
+    /**
+     * Adds values from this screen to the database
+     */
     private void addValuesToDatabase() {
         Detail detail = db.getAllDetails().get(0);
+
+        //removes all current expense entries from the Constant table
         for(Constant con : db.getAllConstants()){
             if(con.getType().equalsIgnoreCase("expense")){
                 db.deleteConstant(con);
             }
         }
 
+        //constructs the new Constant objects
         Constant rent = new Constant("expense", Float.valueOf(rentAmount.getText().toString()), rentSpinner.getSelectedItem().toString());
         Constant electricity = new Constant("expense", Float.valueOf(electricityAmount.getText().toString()), electricitySpinner.getSelectedItem().toString());
         Constant heating = new Constant("expense", Float.valueOf(heatingAmount.getText().toString()), heatingSpinner.getSelectedItem().toString());
@@ -161,6 +197,7 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         Constant mobile = new Constant("expense", Float.valueOf(mobileAmount.getText().toString()), mobileSpinner.getSelectedItem().toString());
         Constant other = new Constant("expense", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
 
+        //adds the new Constant objects to the database
         db.addConstant(rent);
         db.addConstant(electricity);
         db.addConstant(heating);
@@ -169,11 +206,17 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         db.addConstant(mobile);
         db.addConstant(other);
 
+        //update the weekly balance
         detail.setWeeklyExpense(Float.valueOf(weeklyExpense.getText().toString()));
         db.updateDetail(detail);
 
     }
 
+    /**
+     * validate the input from the user on the current screen
+     *
+     * @return true if passes
+     */
     private boolean validate() {
         if(rentAmount.getText().toString().isEmpty()){
             Toast.makeText(getActivity(), getString(R.string.please_enter)+" "+getString(R.string.msg_expense_rent), Toast.LENGTH_LONG).show();
@@ -206,6 +249,9 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener, A
         return true;
     }
 
+    /**
+     * Update the weekly expense when an item is changed
+     */
     public void itemChanged(){
         Float expense = new Float(0);
         if(!rentAmount.getText().toString().isEmpty()){

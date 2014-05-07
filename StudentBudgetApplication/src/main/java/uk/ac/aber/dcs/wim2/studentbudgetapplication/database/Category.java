@@ -4,7 +4,10 @@ package uk.ac.aber.dcs.wim2.studentbudgetapplication.database;
 import java.io.Serializable;
 
 /**
- * Created by wim2 on 05/02/2014.
+ * This class contains the functionality for the Category object
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class Category implements Serializable{
 

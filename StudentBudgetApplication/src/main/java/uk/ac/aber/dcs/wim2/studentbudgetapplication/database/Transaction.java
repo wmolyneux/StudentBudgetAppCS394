@@ -6,7 +6,10 @@ import java.io.Serializable;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 
 /**
- * Created by wim2 on 13/02/2014.
+ * This class contains the functionality for the Transaction object
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class Transaction implements Serializable{
 

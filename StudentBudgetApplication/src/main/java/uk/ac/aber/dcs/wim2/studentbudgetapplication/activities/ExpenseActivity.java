@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -24,6 +23,12 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
 
+/**
+ * This class contains the functionality for setting up reoccurring expenses.
+ *
+ * @author wim2
+ * @version 1.0
+ */
 public class ExpenseActivity extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener, TextWatcher {
 
     private Spinner rentSpinner;
@@ -49,7 +54,11 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
     private Context context;
 
 
-
+    /**
+     * Called when the activity is created to instantiate the objects required.
+     *
+     * @param savedInstanceState - saved bundled state including any variables passed from other activities.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +69,9 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
 
     }
 
+    /**
+     * Register views with onClick and OnTextChanged listeners
+     */
     public void registerViews(){
         rentSpinner = (Spinner) findViewById(R.id.rentSpinner);
         rentSpinner.setOnItemSelectedListener(this);
@@ -102,6 +114,13 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         finish.setOnClickListener(this);
     }
 
+    /**
+     * Called when a activity is finished with a result code sent to this activity.
+     *
+     * @param requestCode - request code
+     * @param resultCode - result code
+     * @param data - data sent from finishing activity
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -111,12 +130,24 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         startActivity(i);
     }
 
-
+    /**
+     * Called on creation of the activity to create options menu.
+     *
+     * @param menu - Menu on the screen
+     *
+     * @return true if passed
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return FragmentUtilities.menuItemSetup(menu, this);
     }
 
+    /**
+     * Called when an item with an OnClickListener is clicked.
+     * Used for when the next button is pressed to redirect to the next screen.
+     *
+     * @param view - View that has been pressed.
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -131,7 +162,11 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         }
     }
 
+    /**
+     * Function to add the values to the database once the setup process has been completed.
+     */
     private void addValuesToDatabase() {
+        //Construct the expense objects from fields on this activity
         Constant rent = new Constant("expense", Float.valueOf(rentAmount.getText().toString()), rentSpinner.getSelectedItem().toString());
         Constant electricity = new Constant("expense", Float.valueOf(electricityAmount.getText().toString()), electricitySpinner.getSelectedItem().toString());
         Constant heating = new Constant("expense", Float.valueOf(heatingAmount.getText().toString()), heatingSpinner.getSelectedItem().toString());
@@ -139,6 +174,8 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         Constant transport = new Constant("expense", Float.valueOf(transportAmount.getText().toString()), transportSpinner.getSelectedItem().toString());
         Constant mobile = new Constant("expense", Float.valueOf(mobileAmount.getText().toString()), mobileSpinner.getSelectedItem().toString());
         Constant other = new Constant("expense", Float.valueOf(otherAmount.getText().toString()), otherSpinner.getSelectedItem().toString());
+
+        //Add the 'expense' objects to the Constants table in the database
         db = new SQLiteDatabaseHelper(this);
         db.addConstant(rent);
         db.addConstant(electricity);
@@ -148,21 +185,27 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         db.addConstant(mobile);
         db.addConstant(other);
 
+        //Add the 'income' objects, previously passed from the setup of incomes, to the Constants table in the database
         db.addConstant((Constant)getIntent().getSerializableExtra("balance"));
         db.addConstant((Constant)getIntent().getSerializableExtra("loan"));
         db.addConstant((Constant)getIntent().getSerializableExtra("grant"));
         db.addConstant((Constant)getIntent().getSerializableExtra("wage"));
         db.addConstant((Constant)getIntent().getSerializableExtra("other"));
 
+        //weekly expenses are added to the Detail object and then the object is added to the Detail table
         detail.setWeeklyExpense(Float.valueOf(weeklyExpense.getText().toString()));
         db.addDetail(detail);
 
+        //Widget is updated with new values
         BalanceUtilities.updateWidget(this);
-
-
     }
 
 
+    /**
+     * Function to validate the input for expenses, checking they are not empty.
+     *
+     * @return - true if passes
+     */
     private boolean validate() {
         if(rentAmount.getText().toString().isEmpty()){
             Toast.makeText(this, getString(R.string.please_enter)+" "+getString(R.string.msg_expense_rent), Toast.LENGTH_LONG).show();
@@ -195,7 +238,9 @@ public class ExpenseActivity extends Activity implements View.OnClickListener, A
         return true;
     }
 
-
+    /**
+     * Function to recalculate the weekly expense balance as the spinners or values in text fields are changed.
+     */
     public void itemChanged(){
         Float expense = new Float(0);
         if(!rentAmount.getText().toString().isEmpty()){
