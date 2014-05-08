@@ -1,6 +1,5 @@
 package uk.ac.aber.dcs.wim2.studentbudgetapplication.tests;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.res.TypedArray;
 import android.test.ActivityInstrumentationTestCase2;
@@ -15,13 +14,12 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.DetailActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.IncomeActivity;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TestingUtilities;
 
 /**
- * Created by wim2 on 28/03/2014.
+ * This class contains the functionality for testing the home screen of the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class OverviewFragmentTest extends ActivityInstrumentationTestCase2<EnterActivity>{
     private Solo solo;
@@ -31,16 +29,26 @@ public class OverviewFragmentTest extends ActivityInstrumentationTestCase2<Enter
         super(EnterActivity.class);
     }
 
+    /**
+     * Setup objects required for testing and prepares the activity to be opened
+     */
     public void setUp(){
         solo = new Solo(getInstrumentation());
         activity = getActivity();
     }
 
+    /**
+     * Tears down the test and any objects or activities created during the test
+     */
     public void tearDown(){
         solo.finishOpenedActivities();
     }
 
+    /**
+     * Completes the necessary setup in order to get to the test state for this class
+     */
     public void getToTestState(){
+        //if database doesnt exist, create a budget with dates, incomes and expenses
         if(!solo.waitForActivity(DetailActivity.class, 1000)){
             solo.clickOnButton(0);
             Calendar cal = Calendar.getInstance();
@@ -69,12 +77,16 @@ public class OverviewFragmentTest extends ActivityInstrumentationTestCase2<Enter
 
     }
 
+    /**
+     * Test that the home page is displayed correctly
+     */
     public void testCheckCorrectActivityAndFragmentAreDisplayed(){
         getToTestState();
         solo.assertCurrentActivity("Should be the detail activity", DetailActivity.class);
         DetailActivity det = (DetailActivity)solo.getCurrentActivity();
         assertNotNull(det.getSupportFragmentManager().findFragmentByTag("overview"));
 
+        //check that navigation menu correctly displays
         solo.clickOnImage(0);
         TypedArray itemArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.waitForText(itemArray.getString(0));

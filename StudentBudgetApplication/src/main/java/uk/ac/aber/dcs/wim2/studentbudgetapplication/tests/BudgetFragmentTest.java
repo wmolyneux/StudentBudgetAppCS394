@@ -21,7 +21,10 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TestingUtilities;
 
 /**
- * Created by wim2 on 03/04/2014.
+ * This class contains the functionality for testing the budget screen of the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class BudgetFragmentTest extends ActivityInstrumentationTestCase2<EnterActivity> {
     private Solo solo;
@@ -32,18 +35,30 @@ public class BudgetFragmentTest extends ActivityInstrumentationTestCase2<EnterAc
         super(EnterActivity.class);
     }
 
+    /**
+     * Setup objects required for testing and prepares the activity to be opened
+     */
     public void setUp(){
         solo = new Solo(getInstrumentation());
         activity = getActivity();
         newIntent = new Intent(activity, EnterActivity.class);
     }
 
+    /**
+     * Tears down the test and any objects or activities created during the test
+     *
+     * @throws Exception
+     */
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();
 
     }
 
+    /**
+     * Completes the necessary setup in order to get to the test state for this class
+     */
     public void getToTestState(){
+        //if database exists, clear the database and reopen the application
         if(solo.waitForActivity(DetailActivity.class, 1000)){
             TestingUtilities.checkDatabase(solo);
             solo.finishOpenedActivities();
@@ -51,6 +66,7 @@ public class BudgetFragmentTest extends ActivityInstrumentationTestCase2<EnterAc
             activity.startActivity(newIntent);
         }
 
+        //setup a budget with dates, incomes and expenses
         solo.clickOnButton(0);
         Calendar cal = Calendar.getInstance();
         int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -70,6 +86,7 @@ public class BudgetFragmentTest extends ActivityInstrumentationTestCase2<EnterAc
         solo.waitForActivity(DetailActivity.class);
         activity = solo.getCurrentActivity();
 
+        //Change to budget screen using navigation menu
         solo.clickOnImage(0);
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnText(typedArray.getString(4));
@@ -77,36 +94,51 @@ public class BudgetFragmentTest extends ActivityInstrumentationTestCase2<EnterAc
         solo.waitForFragmentByTag("budget");
     }
 
+    /**
+     * Tests that budgets can be created
+     */
     public void testBudgetCanBeCreated(){
         getToTestState();
+
+        //fill in fields for creating a budget
         solo.pressSpinnerItem(0, 0);
         solo.waitForDialogToClose();
         solo.setProgressBar(0, 30);
 
         solo.clickOnButton(1);
         solo.waitForText(activity.getString(R.string.create_budget));
-        assertTrue(solo.searchText("30"));
 
+        //check that budget appears on home screen
+        assertTrue(solo.searchText("30"));
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.categories);
         assertTrue(solo.searchText(typedArray.getString(0)));
     }
 
+    /**
+     * Tests that budgets can be deleted from the home page
+     */
     public void testBudgetsCanBeDeletedFromOverviewFragment(){
         getToTestState();
+
+        //fill in fields for creating a budget
         solo.pressSpinnerItem(0, 0);
         solo.waitForDialogToClose();
         solo.setProgressBar(0, 30);
 
         solo.clickOnButton(1);
         solo.waitForText(activity.getString(R.string.create_budget));
+
+        //long click budget on home screen to open delete dialog
         solo.clickLongInList(0);
         solo.waitForDialogToOpen();
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.categories);
         assertTrue(solo.searchText(typedArray.getString(0)));
 
+        //select yes to delete
         solo.clickOnText(activity.getString(R.string.yes));
         solo.waitForDialogToClose();
 
+        //check that it no longer exists
         assertFalse(solo.searchText(typedArray.getString(0)));
 
     }

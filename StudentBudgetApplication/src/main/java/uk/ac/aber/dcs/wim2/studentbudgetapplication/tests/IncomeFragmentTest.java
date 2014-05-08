@@ -21,7 +21,10 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TestingUtilities;
 
 /**
- * Created by wim2 on 14/04/2014.
+ * This class contains the functionality for testing the manage income screen of the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class IncomeFragmentTest extends ActivityInstrumentationTestCase2<EnterActivity> {
     private Solo solo;
@@ -32,17 +35,27 @@ public class IncomeFragmentTest extends ActivityInstrumentationTestCase2<EnterAc
         super(EnterActivity.class);
     }
 
+    /**
+     * Setup objects required for testing and prepares the activity to be opened
+     */
     public void setUp(){
         solo = new Solo(getInstrumentation());
         activity = getActivity();
         newIntent = new Intent(activity, EnterActivity.class);
     }
 
+    /**
+     * Tears down the test and any objects or activities created during the test
+     */
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();
     }
 
+    /**
+     * Completes the necessary setup in order to get to the test state for this class
+     */
     public void getToTestState(){
+        //if the database does not exist, setup the budget with dates, incomes and expenses
         if(!solo.waitForActivity(DetailActivity.class, 1000)){
             solo.clickOnButton(0);
             Calendar cal = Calendar.getInstance();
@@ -67,6 +80,7 @@ public class IncomeFragmentTest extends ActivityInstrumentationTestCase2<EnterAc
         else{
             activity = solo.getCurrentActivity();
         }
+        //redirect to manage incomes screen
         solo.clickOnImage(0);
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnText(typedArray.getString(5));
@@ -74,38 +88,51 @@ public class IncomeFragmentTest extends ActivityInstrumentationTestCase2<EnterAc
         solo.waitForFragmentByTag("income");
     }
 
+    /**
+     * Test the incomes can be updated in the database
+     */
     public void testIncomesChangeAndSaveInDatabase(){
         getToTestState();
+
+        //initiate views
         EditText balanceAmount = (EditText)activity.findViewById(R.id.updateBalanceAmount);
         EditText loanAmount = (EditText) activity.findViewById(R.id.updateLoanAmount);
         EditText grantAmount = (EditText) activity.findViewById(R.id.updateGrantAmount);
         EditText wageAmount = (EditText) activity.findViewById(R.id.updateWageAmount);
         EditText otherAmount = (EditText) activity.findViewById(R.id.updateOtherAmount);
 
+        //update balance
         solo.clearEditText(balanceAmount);
         solo.enterText(balanceAmount, "111");
 
+        //update loan
         solo.clearEditText(loanAmount);
         solo.enterText(loanAmount, "222");
 
+        //update grant
         solo.clearEditText(grantAmount);
         solo.enterText(grantAmount, "333");
 
+        //update wage
         solo.clearEditText(wageAmount);
         solo.enterText(wageAmount, "444");
 
+        //update other
         solo.clearEditText(otherAmount);
         solo.enterText(otherAmount, "555");
 
+        //press update button
         solo.clickOnButton(activity.getString(R.string.update_button));
         solo.waitForFragmentByTag("overview");
 
+        //change back to manage income screen
         solo.clickOnImage(0);
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnText(typedArray.getString(5));
 
         solo.waitForFragmentByTag("income");
 
+        //check updated values are displayed
         solo.searchText("111");
         solo.searchText("222");
         solo.searchText("333");

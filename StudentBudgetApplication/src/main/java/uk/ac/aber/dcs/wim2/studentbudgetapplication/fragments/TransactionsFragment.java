@@ -30,7 +30,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 
 /**
- * This class contains the functionality for the budget screen of the application.
+ * This class contains the functionality for the new transaction screen of the application.
  *
  * @author wim2
  * @version 1.0
@@ -108,7 +108,7 @@ public class TransactionsFragment extends Fragment implements View.OnTouchListen
     /**
      * Registers views displayed on the screen, including displaying correct values, and setting up onClick listeners
      *
-     * @param view - fragment view
+     * @param inflate - fragment view
      */
     private void registerViews(View inflate) {
         amount = (EditText) inflate.findViewById(R.id.amountField);

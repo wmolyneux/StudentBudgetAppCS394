@@ -19,7 +19,10 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.IncomeActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.TestingUtilities;
 
 /**
- * Created by wim2 on 28/03/2014.
+ * This class contains the functionality for testing the expense screen of the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterActivity>{
 
@@ -31,26 +34,34 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         super(EnterActivity.class);
     }
 
+    /**
+     * Setup objects required for testing and prepares the activity to be opened
+     */
     public void setUp(){
         solo = new Solo(getInstrumentation());
         activity = getActivity();
         newIntent = new Intent(activity, EnterActivity.class);
     }
 
+    /**
+     * Tears down the test and any objects or activities created during the test
+     */
     public void tearDown(){
         solo.finishOpenedActivities();
     }
 
+    /**
+     * Completes the necessary setup in order to get to the test state for this class
+     */
     public void getToTestState(){
+        //if the database exists, remove it and start application again
         if(solo.waitForActivity(DetailActivity.class, 1000)){
             solo.assertCurrentActivity("Should be DetailActivity", DetailActivity.class);
             TestingUtilities.checkDatabase(solo);
             activity.startActivity(newIntent);
-//            solo.finishOpenedActivities();
-//            this.launchActivity("uk.ac.aber.dcs.wim2.studentbudgetapplication", EnterActivity.class, null);
-//
-//            solo.sleep(1000);
         }
+
+        //setup the budget period dates and incomes ready for the test
         solo.clickOnButton(0);
         Calendar cal = Calendar.getInstance();
         int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -68,8 +79,13 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         activity = solo.getCurrentActivity();
     }
 
+    /**
+     * Test that the contents of activity are correct
+     */
     public void testContentsOfActivity(){
         getToTestState();
+
+        //instantiate objects
         EditText rent = (EditText)activity.findViewById(R.id.rentAmount);
         EditText electricity = (EditText)activity.findViewById(R.id.electricityAmount);
         EditText heating = (EditText)activity.findViewById(R.id.heatingAmount);
@@ -78,6 +94,8 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         EditText mobile = (EditText)activity.findViewById(R.id.mobileAmount);
         EditText other = (EditText)activity.findViewById(R.id.otherAmount);
         TextView weeklyExpense = (TextView)activity.findViewById(R.id.ExpenseWeeklyExp);
+
+        //setup rent expenses
         solo.waitForText("Rent");
         solo.clearEditText(rent);
         solo.enterText(rent, "100");
@@ -85,38 +103,42 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         solo.pressSpinnerItem(0, 1);
         solo.waitForDialogToClose();
 
-
+        //setup electricity expenses
         solo.clearEditText(electricity);
         solo.enterText(electricity, "100");
         assertEquals("100", electricity.getText().toString());
         solo.pressSpinnerItem(1, 1);
         solo.waitForDialogToClose();
 
-
+        //setup heating expenses
         solo.clearEditText(heating);
         solo.enterText(heating, "100");
         assertEquals("100", heating.getText().toString());
         solo.pressSpinnerItem(2, 1);
         solo.waitForDialogToClose();
 
+        //setup internet expenses
         solo.clearEditText(internet);
         solo.enterText(internet, "100");
         assertEquals("100", internet.getText().toString());
         solo.pressSpinnerItem(3, 1);
         solo.waitForDialogToClose();
 
+        //setup transport expenses
         solo.clearEditText(transport);
         solo.enterText(transport, "100");
         assertEquals("100", transport.getText().toString());
         solo.pressSpinnerItem(4, 2);
         solo.waitForDialogToClose();
 
+        //setup mobile expenses
         solo.clearEditText(mobile);
         solo.enterText(mobile, "100");
         assertEquals("100", mobile.getText().toString());
         solo.pressSpinnerItem(5, 1);
         solo.waitForDialogToClose();
 
+        //setup other expenses
         solo.clearEditText(other);
         solo.enterText(other, "100");
         assertEquals("100", other.getText().toString());
@@ -124,8 +146,13 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         solo.waitForDialogToClose();
     }
 
+    /**
+     * Tests the validation works for the contents provided
+     */
     public void testContentsValidation(){
         getToTestState();
+
+        //instantiate views
         EditText rent = (EditText)activity.findViewById(R.id.rentAmount);
         EditText electricity = (EditText)activity.findViewById(R.id.electricityAmount);
         EditText heating = (EditText)activity.findViewById(R.id.heatingAmount);
@@ -135,41 +162,50 @@ public class ExpenseActivityTest extends ActivityInstrumentationTestCase2<EnterA
         EditText other = (EditText)activity.findViewById(R.id.otherAmount);
         TextView weeklyExpense = (TextView)activity.findViewById(R.id.ExpenseWeeklyExp);
 
+
+        //validate rent expense
         solo.clearEditText(rent);
         solo.clickOnButton(0);
         solo.waitForText(activity.getString(R.string.please_enter));
         solo.enterText(rent, "100");
 
+        //validate electricity expense
         solo.clearEditText(electricity);
         solo.clickOnButton(0);
         solo.waitForText(activity.getString(R.string.please_enter));
         solo.enterText(electricity, "100");
 
+        //validate heating expense
         solo.clearEditText(heating);
         solo.clickOnButton(0);
         solo.waitForText(activity.getString(R.string.please_enter));
         solo.enterText(heating, "100");
 
+        //validate internet expense
         solo.clearEditText(internet);
         solo.clickOnButton(0);
         solo.waitForText(activity.getString(R.string.please_enter));
         solo.enterText(internet, "100");
 
+        //validate transport expense
         solo.clearEditText(transport);
         solo.clickOnButton(0);
         solo.waitForText(activity.getString(R.string.please_enter));
         solo.enterText(transport, "100");
 
+        //validate mobile expense
         solo.clearEditText(mobile);
         solo.clickOnButton(0);
         solo.waitForText(activity.getString(R.string.please_enter));
         solo.enterText(mobile, "100");
 
+        //validate other expense
         solo.clearEditText(other);
         solo.clickOnButton(0);
         solo.waitForText(activity.getString(R.string.please_enter));
         solo.enterText(other, "100");
 
+        //check all validation passes
         solo.clickOnButton(0);
         solo.waitForActivity(DetailActivity.class);
         solo.assertCurrentActivity("Should now be on Detail activity", DetailActivity.class);

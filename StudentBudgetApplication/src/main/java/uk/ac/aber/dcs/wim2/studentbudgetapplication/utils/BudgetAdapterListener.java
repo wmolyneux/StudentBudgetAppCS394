@@ -15,7 +15,10 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Budget;
 
 /**
- * Created by wim2 on 18/03/2014.
+ * This class contains the functionality to assist with budget list on click events such as removign a budget with a long click
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class BudgetAdapterListener implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener{
 
@@ -38,6 +41,10 @@ public class BudgetAdapterListener implements AdapterView.OnItemLongClickListene
         return true;
     }
 
+    /**
+     * Opens an alert dialog to allow a budget to be deleted
+     * @param budgetToRemove - position of budget to be removed
+     */
     private void deleteAlert(final int budgetToRemove) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 context);

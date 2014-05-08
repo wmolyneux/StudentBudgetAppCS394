@@ -9,22 +9,37 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelpe
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 
 /**
- * Created by wim2 on 28/03/2014.
+ * This class contains the functionality to assist with testing the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class TestingUtilities {
 
+    /**
+     * Checks if the database exists and removes all values from it
+     *
+     * @param solo - testing instrumentation object
+     */
     public static void checkDatabase(Solo solo) {
         SQLiteDatabaseHelper db = new SQLiteDatabaseHelper(solo.getCurrentActivity());
         if(db.getAllDetails().size()!=0){
+            //removes all detail objects
             for (Detail detail : db.getAllDetails()){
                 db.deleteDetail(detail);
             }
+
+            //removes all transactions
             for (Transaction trans : db.getAllTransactions()){
                 db.deleteTransaction(trans);
             }
+
+            //removes all budgets
             for (Budget budget : db.getAllBudgets()){
                 db.deleteBudget(budget);
             }
+
+            //removes all constants
             for (Constant con : db.getAllConstants()){
                 db.deleteConstant(con);
             }

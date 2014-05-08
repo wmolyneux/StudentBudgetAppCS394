@@ -25,7 +25,10 @@ import static android.widget.AdapterView.OnItemClickListener;
 import static android.widget.AdapterView.OnItemLongClickListener;
 
 /**
- * Created by wim2 on 12/02/2014.
+ * This class contains the functionality for assisting with deleting a transaction from a list
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class TransactionAdapterListener implements OnItemLongClickListener, OnItemClickListener{
 
@@ -42,6 +45,13 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
 
     }
 
+    /**
+     * Called when a list item is clicked
+     *
+     * @param adapterView - adapter
+     * @param view - list item
+     * @param i - position in list
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(context, TransactionActivity.class);
@@ -49,13 +59,23 @@ public class TransactionAdapterListener implements OnItemLongClickListener, OnIt
         context.startActivity(intent);
     }
 
+    /**
+     * Called when a list item is clicked for an extended period of time
+     *
+     * @param adapterView - adapter
+     * @param view - list item
+     * @param i - position in list
+     */
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         deleteAlert(i);
-
         return true;
     }
 
+    /**
+     * Opens an alert dialog to allow a transaction to be deleted
+     * @param transactionToRemove - position of transaction to be removed
+     */
     private void deleteAlert(final int transactionToRemove) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 

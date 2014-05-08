@@ -19,7 +19,7 @@ import android.widget.EditText;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.R;
 
 /**
- * This class contains the functionality for the managing expense screen of the application.
+ * This class contains the functionality for the settings screen of the application.
  *
  * @author wim2
  * @version 1.0

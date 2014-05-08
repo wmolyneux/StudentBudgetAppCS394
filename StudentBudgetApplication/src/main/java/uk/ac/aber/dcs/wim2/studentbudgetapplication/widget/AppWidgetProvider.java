@@ -19,6 +19,12 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
+/**
+ * This class contains the functionality for the home screen widget
+ *
+ * @author wim2
+ * @version 1.0
+ */
 public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
 
     public static String INCREMENT_BUTTON = ".widget.INCREMENT_AMOUNT_BUTTON";
@@ -31,6 +37,13 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     private static Context context;
     private static String currency;
 
+    /**
+     * Updates the widget with new values from the application
+     *
+     * @param context - context
+     * @param appWidgetManager - widget manager
+     * @param appWidgetIds - widget id
+     */
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         final int N = appWidgetIds.length;
         db = new SQLiteDatabaseHelper(context);
@@ -72,13 +85,25 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         }
     }
 
+    /**
+     * setup the submit button ready for seting a broadcast to the application when clicked and updating the balance
+     *
+     * @param context - context
+     * @param views - submit button
+     *
+     * @return - pending intent
+     */
     private PendingIntent setupSubmitButton(Context context, RemoteViews views) {
         PendingIntent pendingSubmit;
         Intent submitIntent;
+
+        //if the database doesnt exist, open the application
         if(dbSize==0){
             submitIntent = new Intent(context, EnterActivity.class);
             pendingSubmit = PendingIntent.getActivity(context, 0, submitIntent, 0);
         }
+
+        //else submit the micro transaction and update the balance
         else{
             submitIntent = new Intent(SUBMIT_BUTTON);
             pendingSubmit = PendingIntent.getBroadcast(context, 0,
@@ -88,12 +113,23 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         return pendingSubmit;
     }
 
+    /**
+     * setup the app icon button to open the application
+     *
+     * @param context - context
+     * @param views - submit button
+     *
+     * @return - pending intent
+     */
     private PendingIntent setupAppButton(Context context, RemoteViews views){
         PendingIntent pendingApp;
         Intent appIntent;
+        //if the database is empty, open the enter screen to begin initial budget setup
         if(dbSize==0){
             appIntent = new Intent(context, EnterActivity.class);
         }
+
+        //else open the home screen of the application
         else{
             appIntent = new Intent(context, DetailActivity.class);
         }
@@ -101,6 +137,11 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         return pendingApp;
     }
 
+    /**
+     * Recalculates balance when a transaction has occured and displays on the widget
+     *
+     * @param views - views to be updated
+     */
     private void validateBalance(RemoteViews views) {
         Detail detail = db.getAllDetails().get(0);
         BalanceUtilities.recalculateBalance(detail, db);
@@ -110,24 +151,35 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     }
 
 
+    /**
+     * Called when a broadcast is recieved
+     * @param context - context
+     * @param intent - intent
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_simple);
         db = new SQLiteDatabaseHelper(context);
 
+        //if the increment button is clicked
         if(INCREMENT_BUTTON.equals(intent.getAction())){
+            //increase the value by 0.5, but no higher than 3
             if(value<3){
                 value += (float)0.5;
                 views.setTextViewText(R.id.widgetValueField, currency+"-"+BalanceUtilities.getValueAs2dpString(value));
             }
         }
+        //if the decrement button is clicked
         else if(DECREMENT_BUTTON.equals(intent.getAction())){
+            //decrement the value by 0.5 but not lower than 0.5
             if(value>0.5){
                 value -= (float)0.5;
                 views.setTextViewText(R.id.widgetValueField, currency+"-"+BalanceUtilities.getValueAs2dpString(value));
             }
         }
+        //if the submit button is clicked, submit the transaction with today's date as a micro transaction
+        //and revalidate the balance
         else if(SUBMIT_BUTTON.equals(intent.getAction())){
             Calendar cal = Calendar.getInstance();
             int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -139,10 +191,17 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
             validateBalance(views);
         }
 
+        //update the widget
         pushUpdate(context, views);
 
     }
 
+    /**
+     * Updates the widgets views calling onUpdate()
+     *
+     * @param context - context
+     * @param views - views to be updated
+     */
     private void pushUpdate(Context context, RemoteViews views) {
         ComponentName widget =
                 new ComponentName(context.getApplicationContext(), AppWidgetProvider.class);

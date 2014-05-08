@@ -31,7 +31,7 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.BalanceUtilities;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.utils.FragmentUtilities;
 
 /**
- * This class contains the functionality for the managing expense screen of the application.
+ * This class contains the functionality for the report screen of the application.
  *
  * @author wim2
  * @version 1.0

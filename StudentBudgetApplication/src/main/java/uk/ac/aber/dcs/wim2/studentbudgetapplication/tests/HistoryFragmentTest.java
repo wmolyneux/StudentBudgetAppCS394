@@ -21,7 +21,10 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.IncomeActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.TransactionActivity;
 
 /**
- * Created by wim2 on 03/04/2014.
+ * This class contains the functionality for testing the history screen of the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class HistoryFragmentTest extends ActivityInstrumentationTestCase2<EnterActivity> {
 
@@ -32,16 +35,26 @@ public class HistoryFragmentTest extends ActivityInstrumentationTestCase2<EnterA
         super(EnterActivity.class);
     }
 
+    /**
+     * Setup objects required for testing and prepares the activity to be opened
+     */
     public void setUp(){
         solo = new Solo(getInstrumentation());
         activity = getActivity();
     }
 
+    /**
+     * Tears down the test and any objects or activities created during the test
+     */
     public void tearDown(){
         solo.finishOpenedActivities();
     }
 
+    /**
+     * Completes the necessary setup in order to get to the test state for this class
+     */
     public void getToTestState(){
+        //if database doesnt exist, setup an example budget period
         if(!solo.waitForActivity(DetailActivity.class, 1000)){
             solo.clickOnButton(0);
             Calendar cal = Calendar.getInstance();
@@ -66,6 +79,8 @@ public class HistoryFragmentTest extends ActivityInstrumentationTestCase2<EnterA
         else{
             activity = solo.getCurrentActivity();
         }
+
+        //change to history screen
         solo.clickOnImage(0);
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnText(typedArray.getString(2));
@@ -73,25 +88,33 @@ public class HistoryFragmentTest extends ActivityInstrumentationTestCase2<EnterA
         solo.waitForFragmentByTag("history");
     }
 
+    /**
+     * Test history displays income and expense transaction in tabs
+     */
     public void testHistoryIsDisplaysIncomeAndExpenseTransactions(){
         getToTestState();
 
+        //count initial items in the expense list
         ListView list = (ListView)activity.findViewById(android.R.id.list);
         int initialExpenses = list.getCount();
 
+        //change to the income tab
         ViewGroup tabs = (ViewGroup)activity.findViewById(android.R.id.tabs);
         View incomeTab = tabs.getChildAt(0);
         solo.clickOnView(incomeTab);
 
+        //count initial items in the income list
         list = (ListView)activity.findViewById(android.R.id.list);
         int initialIncomes = list.getCount();
 
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
 
+        //change to new transaction screen
         solo.clickOnText(activity.getString(R.string.title_activity_detail));
         solo.clickOnText(typedArray.getString(1));
         solo.waitForFragmentByTag("transaction");
 
+        //create new income transaction
         EditText amountEdit = (EditText)activity.findViewById(R.id.amountField);
         EditText descEdit = (EditText)activity.findViewById(R.id.descField);
 
@@ -99,9 +122,11 @@ public class HistoryFragmentTest extends ActivityInstrumentationTestCase2<EnterA
         solo.enterText(descEdit, "test transaction 1");
         solo.clickOnButton(2);
 
+        //wait for transaction added message and redirect to home screen
         solo.waitForText(activity.getString(R.string.transaction_added));
         solo.waitForFragmentByTag("overview");
 
+        //change to new expense transaction screen
         solo.clickOnImage(0);
         solo.clickOnText(typedArray.getString(1));
         solo.waitForFragmentByTag("transaction");
@@ -114,39 +139,50 @@ public class HistoryFragmentTest extends ActivityInstrumentationTestCase2<EnterA
         solo.clickOnToggleButton(activity.getString(R.string.transaction_expense));
         solo.clickOnButton(2);
 
+        //wait for transaction added message and redirect to home screen
         solo.waitForText(activity.getString(R.string.transaction_added));
         solo.waitForFragmentByTag("overview");
 
+        //change back to history page
         solo.clickOnImage(0);
         solo.clickOnText(typedArray.getString(2));
         solo.waitForFragmentByTag("history");
 
+        //count list and assert that new items appear
         list = (ListView)activity.findViewById(android.R.id.list);
         int newExpenses = list.getCount();
         assertNotSame(initialExpenses, newExpenses);
 
+        //change to income tab
         tabs = (ViewGroup)activity.findViewById(android.R.id.tabs);
         incomeTab = tabs.getChildAt(0);
         solo.clickOnView(incomeTab);
 
+        //assert that new list contains more item than old list
         list = (ListView)activity.findViewById(android.R.id.list);
         int newIncomes = list.getCount();
         assertNotSame(initialIncomes, newIncomes);
 
+        //assert that items in list display correct descriptions when selected
         solo.clickInList(0);
         solo.waitForActivity(TransactionActivity.class);
         assertTrue(solo.searchText("test transaction 2"));
     }
 
+    /**
+     * Test that transactions can be removed from the list
+     */
     public void testDeleteTransactionRemovesFromList(){
         getToTestState();
         ListView list = (ListView)activity.findViewById(android.R.id.list);
+        //if an item is in the list, attempt to remove it
         if(list.getCount()>0){
             removeItemFromList(list);
         }
+        //else create and transaction and remove it from the history list
         else{
             TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
-
+            //change to new transaction screen
             solo.clickOnText(activity.getString(R.string.title_activity_detail));
             solo.clickOnText(typedArray.getString(1));
             solo.waitForFragmentByTag("transaction");
@@ -154,23 +190,32 @@ public class HistoryFragmentTest extends ActivityInstrumentationTestCase2<EnterA
             EditText amountEdit = (EditText)activity.findViewById(R.id.amountField);
             EditText descEdit = (EditText)activity.findViewById(R.id.descField);
 
+            //enter transaction information
             solo.enterText(amountEdit, "1");
             solo.enterText(descEdit, "test transaction 1");
             solo.clickOnButton(2);
 
+            //submit transaction
             solo.waitForText(activity.getString(R.string.transaction_added));
             solo.waitForFragmentByTag("overview");
 
+            //check history for new item
             solo.clickOnText(activity.getString(R.string.title_activity_detail));
             solo.clickOnText(typedArray.getString(2));
             solo.waitForFragmentByTag("history");
             list = (ListView)activity.findViewById(android.R.id.list);
             assertTrue(list.getCount()!=0);
+            //remove the transaction from the list
             removeItemFromList(list);
         }
 
     }
 
+    /**
+     * Removes first item from a listview using long click
+     *
+     * @param list - listview containing item to be removed
+     */
     private void removeItemFromList(ListView list) {
         int listLength  = list.getCount();
         solo.clickLongInList(0);

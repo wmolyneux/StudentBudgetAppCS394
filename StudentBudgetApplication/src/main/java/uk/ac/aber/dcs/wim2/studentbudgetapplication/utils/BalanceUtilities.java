@@ -4,22 +4,12 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Weeks;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.EnterActivity;
-import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Constant;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Detail;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.SQLiteDatabaseHelper;
@@ -27,13 +17,23 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.database.Transaction;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.widget.AppWidgetProvider;
 
 /**
- * Created by wim2 on 04/03/2014.
+ * This class contains the functionality for assisting with balance calculations throughout the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class BalanceUtilities {
 
     private static Detail staticDetail;
 
-
+    /**
+     * Recalculate weekly balance
+     *
+     * @param detail - Detail object from database
+     * @param db - database
+     *
+     * @return updated detail object
+     */
     public static Detail recalculateBalance(Detail detail, SQLiteDatabaseHelper db){
         staticDetail = detail;
         //calculate balance using incomes and expense constants
@@ -43,16 +43,23 @@ public class BalanceUtilities {
 
         ArrayList<Transaction> thisWeekTransaction;
 
+        //calculate balance including transaction on different weeks
         thisWeekTransaction = calculateBalanceWithTransactionsOnDifferentWeeks(daysRemaining, db);
 
         staticDetail.setWeeklyBalance(calculateWeeklyBalance(daysRemaining));
 
+        //calculate weekly balance with transactions from current week
         calculateWeeklyBalanceWithTransactionsFromCurrentWeek(thisWeekTransaction);
 
+        //update database
         db.updateDetail(staticDetail);
         return staticDetail;
     }
 
+    /**
+     * Calculate weekly balance with transactions from current week
+     * @param thisWeekTransaction - list of transactions on current week
+     */
     private static void calculateWeeklyBalanceWithTransactionsFromCurrentWeek(ArrayList<Transaction> thisWeekTransaction) {
         for (Transaction trans : thisWeekTransaction){
             //if transaction type is minus then remove from the weekly balance and the total balance
@@ -64,6 +71,14 @@ public class BalanceUtilities {
         }
     }
 
+    /**
+     * Calculate balance with transactions on different weeks taken into account
+     *
+     * @param weeks - number of weeks
+     * @param db - database
+     *
+     * @return - list containing transaction on different weeks
+     */
     private static ArrayList<Transaction> calculateBalanceWithTransactionsOnDifferentWeeks(int weeks, SQLiteDatabaseHelper db) {
         ArrayList<Transaction> tempTransactions = new ArrayList<Transaction>();
         Calendar cal = Calendar.getInstance();
@@ -96,6 +111,13 @@ public class BalanceUtilities {
         return tempTransactions;
     }
 
+    /**
+     * Calculates weekly balance
+     *
+     * @param daysRemaining - days remaining of budget period
+     *
+     * @return - weekly balance
+     */
     public static Float calculateWeeklyBalance(int daysRemaining){
         Calendar cal = Calendar.getInstance();
         int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -133,6 +155,11 @@ public class BalanceUtilities {
         return weeklyBalance;
     }
 
+    /**
+     * Calculate weeks till end of the year
+     *
+     * @return - weeks till end of year
+     */
     private static int calculateWeeksTillEndOfYear() {
         Calendar cal = Calendar.getInstance();
         int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -157,6 +184,12 @@ public class BalanceUtilities {
 
     }
 
+    /**
+     * Calculate balance with constants from database
+     *
+     * @param days - total days in budget period
+     * @param db - database
+     */
     private static void calculateBalanceWithConstants(int days, SQLiteDatabaseHelper db) {
         staticDetail.setBalance(Float.valueOf(0));
         for (Constant con : db.getAllConstants()){
@@ -183,6 +216,11 @@ public class BalanceUtilities {
 
     }
 
+    /**
+     * Update the widget after a change to the weekly balance has been done
+     *
+     * @param activity - current activity
+     */
     public static void updateWidget(Activity activity) {
         Intent intent = new Intent(activity, AppWidgetProvider.class);
         intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
@@ -192,10 +230,24 @@ public class BalanceUtilities {
         activity.sendBroadcast(intent);
     }
 
+    /**
+     * Change a float value in a 2 decimal place string
+     *
+     * @param value - value to be parsed
+     *
+     * @return - string value of the float as 2dp
+     */
     public static String getValueAs2dpString(Float value){
         return String.format("%.2f", value);
     }
 
+    /**
+     * Change a float value in a 0 decimal place string
+     *
+     * @param value - value to be parsed
+     *
+     * @return - string value of the float as 0dp
+     */
     public static String getValueAs0dpString(Float value){
         return String.format("%.0f", value);
     }

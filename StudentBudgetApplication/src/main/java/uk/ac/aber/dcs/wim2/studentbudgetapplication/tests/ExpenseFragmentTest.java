@@ -18,7 +18,10 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.IncomeActivity;
 
 /**
- * Created by wim2 on 14/04/2014.
+ * This class contains the functionality for testing the manage expense screen of the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class ExpenseFragmentTest extends ActivityInstrumentationTestCase2<EnterActivity> {
     private Solo solo;
@@ -29,17 +32,27 @@ public class ExpenseFragmentTest extends ActivityInstrumentationTestCase2<EnterA
         super(EnterActivity.class);
     }
 
+    /**
+     * Setup objects required for testing and prepares the activity to be opened
+     */
     public void setUp(){
         solo = new Solo(getInstrumentation());
         activity = getActivity();
         newIntent = new Intent(activity, EnterActivity.class);
     }
 
+    /**
+     * Tears down the test and any objects or activities created during the test
+     */
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();
     }
 
+    /**
+     * Completes the necessary setup in order to get to the test state for this class
+     */
     public void getToTestState(){
+        //setup initial budget if it does not already exist in the database
         if(!solo.waitForActivity(DetailActivity.class, 1000)){
             solo.clickOnButton(0);
             Calendar cal = Calendar.getInstance();
@@ -64,15 +77,21 @@ public class ExpenseFragmentTest extends ActivityInstrumentationTestCase2<EnterA
         else{
             activity = solo.getCurrentActivity();
         }
+
+        //change to the manage expenses screen
         solo.clickOnImage(0);
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnText(typedArray.getString(6));
-
         solo.waitForFragmentByTag("expense");
     }
 
-    public void testIncomesChangeAndSaveInDatabase(){
+    /**
+     * Test Expenses can be updated in the database
+     */
+    public void testExpensesChangeAndSaveInDatabase(){
         getToTestState();
+
+        //initiate views
         EditText rentAmount = (EditText) activity.findViewById(R.id.updateRentAmount);
         EditText electricityAmount = (EditText) activity.findViewById(R.id.updateElectricityAmount);
         EditText heatingAmount = (EditText) activity.findViewById(R.id.updateHeatingAmount);
@@ -81,35 +100,45 @@ public class ExpenseFragmentTest extends ActivityInstrumentationTestCase2<EnterA
         EditText mobileAmount = (EditText) activity.findViewById(R.id.updateMobileAmount);
         EditText otherAmount = (EditText) activity.findViewById(R.id.updateOtherAmount);
 
+        //update rent
         solo.clearEditText(rentAmount);
         solo.enterText(rentAmount, "11");
 
+        //update electricity
         solo.clearEditText(electricityAmount);
         solo.enterText(electricityAmount, "22");
 
+        //update heating
         solo.clearEditText(heatingAmount);
         solo.enterText(heatingAmount, "33");
 
+        //update internet
         solo.clearEditText(internetAmount);
         solo.enterText(internetAmount, "44");
 
+        //update transport
         solo.clearEditText(transportAmount);
         solo.enterText(transportAmount, "55");
 
+        //update mobile
         solo.clearEditText(mobileAmount);
         solo.enterText(mobileAmount, "66");
 
+        //update other
         solo.clearEditText(otherAmount);
         solo.enterText(otherAmount, "77");
 
+        //update
         solo.clickOnButton(activity.getString(R.string.update_button));
 
+        //return to expense page
         solo.clickOnImage(0);
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnText(typedArray.getString(5));
 
-        solo.waitForFragmentByTag("income");
+        solo.waitForFragmentByTag("expense");
 
+        //check that new values exist
         solo.searchText("111");
         solo.searchText("222");
         solo.searchText("333");

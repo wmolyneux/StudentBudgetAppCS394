@@ -18,7 +18,10 @@ import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.ExpenseActivity;
 import uk.ac.aber.dcs.wim2.studentbudgetapplication.activities.IncomeActivity;
 
 /**
- * Created by wim2 on 31/03/2014.
+ * This class contains the functionality for testing the new transaction screen of the application
+ *
+ * @author wim2
+ * @version 1.0
  */
 public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<EnterActivity> {
 
@@ -29,16 +32,26 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         super(EnterActivity.class);
     }
 
+    /**
+     * Setup objects required for testing and prepares the activity to be opened
+     */
     public void setUp(){
         solo = new Solo(getInstrumentation());
         activity = getActivity();
     }
 
+    /**
+     * Tears down the test and any objects or activities created during the test
+     */
     public void tearDown(){
         solo.finishOpenedActivities();
     }
 
+    /**
+     * Completes the necessary setup in order to get to the test state for this class
+     */
     public void getToTestState(){
+        //if database doesnt exist, create a budget with dates, incomes and expenses
         if(!solo.waitForActivity(DetailActivity.class, 1000)){
             solo.clickOnButton(0);
             Calendar cal = Calendar.getInstance();
@@ -63,6 +76,8 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         else{
             activity = solo.getCurrentActivity();
         }
+
+        //change to new transaction page
         solo.clickOnImage(0);
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnText(typedArray.getString(1));
@@ -70,16 +85,23 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         solo.waitForFragmentByTag("transaction");
     }
 
+    /**
+     * Test transaction is successfully created and appends balance
+     */
     public void testTransactionIsSuccessfullyCreatedAndAppendsBalance(){
         getToTestState();
 
+        //change to home screen
         TypedArray typedArray = activity.getResources().obtainTypedArray(R.array.items);
         solo.clickOnImage(0);
         solo.clickOnText(typedArray.getString(0));
         solo.waitForFragmentByTag("overview");
+
+        //check weekly balance before transaction
         TextView weeklyBalance = (TextView)activity.findViewById(R.id.overWeeklyBalance);
         Float beforeBalance = Float.valueOf(weeklyBalance.getText().toString().substring(1, weeklyBalance.getText().toString().length()));
 
+        //change to new transaction page
         solo.clickOnImage(0);
         solo.clickOnText(typedArray.getString(1));
         solo.waitForFragmentByTag("transaction");
@@ -87,6 +109,7 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         EditText amountEdit = (EditText)activity.findViewById(R.id.amountField);
         EditText descEdit = (EditText)activity.findViewById(R.id.descField);
 
+        //create test transaction
         solo.enterText(amountEdit, "10");
         solo.enterText(descEdit, "Iceland");
         solo.pressSpinnerItem(0, 1);
@@ -96,21 +119,27 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         solo.waitForDialogToClose();
         solo.clickOnButton(2);
 
-
+        //submit transaction
         solo.waitForText(activity.getString(R.string.transaction_added));
         solo.waitForFragmentByTag("overview");
 
+        //check weekly balance after transaction
         weeklyBalance = (TextView)activity.findViewById(R.id.overWeeklyBalance);
         Float afterBalance = Float.valueOf(weeklyBalance.getText().toString().substring(1, weeklyBalance.getText().toString().length()));
 
+        //assert that there is a change of the amount of the transaction
         assertEquals((beforeBalance-10), afterBalance);
     }
 
+    /**
+     * Test transaction validation
+     */
     public void testTransactionValidation(){
         getToTestState();
         EditText amountEdit = (EditText)activity.findViewById(R.id.amountField);
         EditText descEdit = (EditText)activity.findViewById(R.id.descField);
 
+        //attempt to enter new transaction with no amount
         solo.enterText(descEdit, "Iceland");
         solo.pressSpinnerItem(0, 1);
         solo.clickOnEditText(2);
@@ -119,6 +148,7 @@ public class TransactionFragmentTest extends ActivityInstrumentationTestCase2<En
         solo.waitForDialogToClose();
         solo.clickOnButton(2);
 
+        //Enter valid transaction and submit
         solo.enterText(amountEdit, "5");
         solo.clickOnToggleButton(activity.getString(R.string.transaction_expense));
         solo.clickOnButton(2);
